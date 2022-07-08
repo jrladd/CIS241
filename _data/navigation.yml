@@ -1,0 +1,15 @@
+main:
+  - title: "Schedule & Readings"
+    url: /schedule/
+    #- title: "Workshops"
+    #url: /workshops/
+  - title: "Assignments & Grading"
+    url: /assignments/
+  - title: "Course Policies"
+    url: /policies/
+  - title: "Ground Rules"
+    url: /groundrules/
+  - title: "Slides"
+    url: /slides/
+    #- title: "Credits"
+    #url: /credits/
