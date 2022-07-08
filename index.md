@@ -1,38 +1,36 @@
 ---
 layout: splash
-title: "Introduction to Data Analytics"
+title: "Introduction to Data Mining"
 header:
   overlay_color: "#000"
   overlay_filter: "0.5"
   overlay_image: /assets/images/startrek.jpg
+  caption: "The Library Computer Access/Retrieval System (LCARS), a fictional operating system and data analysis interface from Star Trek: The Next Generation"
   actions:
     - label: "Schedule & Readings"
       url: "/schedule/"
-    - label: "Assignments & Grading"
+    - label: "Assignments"
       url: "/assignments/"
     - label: "Course Policies"
       url: "/policies/"
-excerpt: "DA 101. Denison University. Spring 2022."
+    - label: "Sakai"
+      url: "https://sakai.washjeff.edu"
+excerpt: "CIS 241. Washington & Jefferson College. Fall 2022."
 ---
 
-**Section 01: MWF 8:30-9:20am, Lab on Mondays 1:30-4:20pm, TA Claire Powell  
-Section 03: MWF 11:30am-12:20pm, Lab on Wednesdays 1:30-4:20pm, TA Milo Dao**
+**Meeting Time: TR 9-10:45am**
 
-Dr. Ladd's Student Drop-In Hours: W 9:30-11am, Th 1-3pm in Burton Morgan 411   
-TA Hours (for all DA 101 TAs) are posted online [here](https://docs.google.com/document/d/1Kl6FkqpAsO3IqiSrvT9ZB_pDJQZxxlEwbymAjr-SjlE/edit?usp=sharing).
+Dr. Ladd's Student Drop-In Hours: TBA
 
 ## Course Description
 
-Many of the most pressing problems in the world can be addressed with data. We are awash in data, and modern citizenship demands that we become literate in how to interpret data, what assumptions and processes are necessary to analyze data, as well as how we might participate in generating our own analyses and presentations of data. Consequently, data analytics is an emerging field with skills applicable to a wide variety of disciplines. This course introduces analysis, computation, and presentation concerns through the investigation of data driven puzzles in a wide array of fields – political, economic, historical, social, biological, and others. No previous coding or statistics experience is required.
+An introduction to the concepts and practices involved in data mining, this course addresses data mining activities in three phases: data preparation (or preprocessing), mining techniques, and classification and analysis. These concepts will be taught using industry-standard tools for data mining activities. Projects and assignments will be completed as students organize and mine data sets taken from various disciplines of study including marketing, finance, and natural and social sciences. 
 
 ## Learning Goals
 
 At the end of this course, you should be able to:
 
-- identify, describe, and use different formats of data and data sources
-- collect, clean, store, and extract data needed for an analysis
-- write basic computer programs using RStudio for a reproducible data analysis workflow
-- create data visualizations and interpret them
-- perform statistical analysis on a dataset, and interpret the results
-- evaluate the ethical, social, and legal issues in data collection, analysis, and security
-- combine the above to communicate and interpret all aspects of data analysis (data, cleaning, analysis, results) to a diverse, technical or non-technical audience, in oral, visual, and written format
+- Understand and implement the data mining process, from project understanding to deployment.
+- Use exploratory data analysis to quickly understand a complex dataset.
+- Apply modeling techniques to make predictions.
+- Evaluate the effectiveness of different modeling techniques.
