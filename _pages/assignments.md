@@ -11,8 +11,10 @@ On this page you'll find prompts for the different assignments in our course (po
 
 Assignment|Percentage
 ---|--
-Preparation and Participation|20%
-In-Class Assignments|20%
-Semester-Long Project (in 4 stages)|40%
+In-Class Assignments and Participation|20%
+Documentation Assignment|10%
+Tutorial Assignment|10%
 Quizzes|20%
+Final Presentation|10%
+Final Project (in 3 stages)|30%
 

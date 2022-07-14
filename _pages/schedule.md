@@ -11,25 +11,23 @@ sidebar:
 
 ## Class Schedule
 
-**On Monday and Wednesday we'll cover new topics and skills, and on Fridays we'll discuss readings related to those topics. This schedule also includes the topics for the Labs, which will reinforce what we do in class.**
-
-Date|Topics & Slides|Assignments
---|---|---
+Date|Topics & Slides|In-class Datasets|Assignments
+--|---|---|---
 25 Aug.|Introduction to the course and to Python|
-30 Aug. & 1 Sept.|Pandas and Data Wrangling|
-6 & 8 Sept.|Exploratory Data Analysis|**Project Part I**
-13 & 15 Sept.|Hypothesis Testing|
-20 & 22 Sept.|Correlation|**Take-Home Quiz I**
-27 & 29 Sept.|Simple Linear Regression
-4 & 6 Oct.|Multivariate Regression|**Project Part II**
-11 & 13 Oct.|Logistic Regression|
+30 Aug. & 1 Sept.|Pandas and Data Wrangling|Movies|
+6 & 8 Sept.|Exploratory Data Analysis|Movies|**Documentation Assignment Due 8 Sept.**
+13 & 15 Sept.|Hypothesis Testing|Sociology
+20 & 22 Sept.|Correlation|Sociology|**Take-Home Quiz I**
+27 & 29 Sept.|Simple Linear Regression|Business
+4 & 6 Oct.|Multivariate Regression|Business
+11 & 13 Oct.|Logistic Regression|Ecology|**Tutorial Assignment Due 13 Oct.**
 18 Oct.|NO CLASS: Fall Break
-20 Oct.|*Project Meetings (no formal class)*
-25 & 27 Oct.|Naive Bayes Classifier|**Take-Home Quiz II**
-1 & 3 Nov.|Decision Trees and the Random Forest
-8 & 10 Nov.|Clustering and Unsupervised Approaches|**Project Part III**
-15 & 17 Nov.|Neural Networks|
-22 Nov.|*Project Meetings (no formal class)*|**Take-Home Quiz III**
+20 Oct.|Naive Bayes Classifier|Ecology|**Take-Home Quiz II**
+25 & 27 Oct.|K-Nearest Neighbors|Health|
+1 & 3 Nov.|Decision Trees and the Random Forest|Health|**Project Proposal Due 3 Nov.**
+8 & 10 Nov.|Clustering and Unsupervised Approaches|Literature|
+15 & 17 Nov.|Neural Networks|Literature|**Take-Home Quiz III**
+22 Nov.|*Project Meetings (no formal class)*||**Progress Report Due 22 Nov.**
 24 Nov.|NO CLASS: Thanksgiving Break
-29 Nov. & 1 Dec.|Work Day & Final Presentations|**Project Part IV**
-6 Dec.|Final Presentations & Wrap-Up
+29 Nov. & 1 Dec.|Work Day & Final Presentations|
+6 Dec.|Final Presentations & Wrap-Up||**Final Project Due 6 Dec.**
