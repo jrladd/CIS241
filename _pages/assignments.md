@@ -5,7 +5,7 @@ permalink: /assignments/
 taxonomy: assignments
 ---
 
-On this page you'll find prompts for the different assignments in our course (posted closer to their due dates), as well as a breakdown of assignments. Additional information about assignments and grading can be found on the [Course Policies](/policies/) page.
+On this page you'll find prompts for the different assignments in our course (posted closer to their due dates), as well as a breakdown of assignments. Additional information about assignments and grading can be found on the [Course Policies](/CIS241/policies/) page.
 
 ## Assignment Breakdown
 
