@@ -43,6 +43,10 @@ In this course, as in all courses, you are expected to adhere to W&J's standards
 
 In general, when completing writing assignments, ensure all work is your own, and give credit where it is due in your citations. Likewise do not collaborate on quizzes, tests, or homework assignments unless explicitly granted permission. If you have any concerns about whether you might have plagiarized (e.g., if you’re not sure about some particular rule), please get in touch with me immediately---I will gladly discuss the matter with you.
 
+#### Academic Honesty & Coding
+
+These standards of academic integrity apply to coding as well as other kinds of classwork. Citation isn't just for papers! It's very common, and perfectly permissible, to borrow code snippets from a classmate or from somewhere online. When you do, make sure to include a note in your code's comments about where the code came from. Not only will this let you give appropriate intellectual credit and avoid plagiarism, it will also help you remember what you were trying to do when you revise your code later.
+
 ### Names and Pronouns
 
 Everyone has the right to be addressed as they feel most comfortable. It’s hard to learn if you cringe every time I call on you or address you in communication. I will ask everyone at the beginning of the semester to tell me their preferred name, pronunciation, and the pronouns they use. I will do my very best to get it right.  Please do not feel the need to change your name or pronouns to “make it easy” for me, and please correct me if I get it wrong! This policy goes for everyone---use the names and pronouns dictated by the person to whom they belong. Also, our personal growth does not always align with the semester system: If your name or pronoun changes part way through the class, please send me an update!
@@ -52,6 +56,10 @@ Everyone has the right to be addressed as they feel most comfortable. It’s har
 Please be respectful with your use of laptops and technology in class. I request that you only use them for class related purposes, as I and others may find them distracting (For example, no email or social media should be open in your browser tabs!). Cell phones should be kept silent and put away, and you can expect the same from me.
 
 ## Important Resources for this Class and Your College Journey
+
+### CIS PAL Tutors
+
+[Information on tutors TK.]
 
 ### Mental Health
 
