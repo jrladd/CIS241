@@ -14,7 +14,7 @@ In between classes you should:
 
 - Review your notes from class
 - Read relevant portions of your textbook or any online readings
-- Refer to this site for updates to the [schedule](/schedule)
+- Refer to this site for updates to the [schedule](/CIS241/schedule)
 - DO NOT wait until the last minute to begin your final project
 - Proofread your writing and coding assignments
 - EMAIL your instructor with any questions. Ask lots of questions!
