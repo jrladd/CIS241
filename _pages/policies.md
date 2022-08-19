@@ -37,6 +37,18 @@ However, you **must ask for the extension *at least* 24 hours before the assignm
 
 But keep in mind: **I cannot accept any assignment more than one week late.** Assignments more than one week late will receive a 0.
 
+#### Longer Absences
+
+The guidelines above apply to typical short absences (missing just one class in a row and catching up on work as normal). However, I recognize that COVID and other issues may lead to an *extended* absence, when you might be out of class for several classes in a row, or even a week or more.
+
+In these cases, **it's your responsibility to contact me as soon as you know you'll be out**. Let me know how long you expect the absence to be, and we can talk through what some of the expectations will be during this time and how you will complete the work.
+
+It's important that you attend class as much as you can, but it's also important that you stay home if you're sick and get the care you need. We can work on this balance together, and if you have any questions about you can always ask me!
+
+#### Instructor Absence
+
+If I have to miss class due to illness or any other reason, I will let you know as soon as possible via email. I'll also post any relevant materials on Sakai or on this website, and my email will let you know what you need to do. It's a good idea to check your email at least once a day, since that's the primary way I'll keep in touch about any changes to the schedule.
+
 ### Academic Honesty and Integrity
 
 In this course, as in all courses, you are expected to adhere to W&J's standards of academic honesty and integrity. You should refer to the College Catalog on MyW&J for the details of this policy and how cases of academic misconduct are handled.
