@@ -13,7 +13,7 @@ sidebar:
 
 Date|Topics & Slides|In-class Datasets|Assignments
 --|---|---|---
-25 Aug.|Introduction to the course and to Python|
+25 Aug.|Introduction to the course and to Python, [Jupyter Lab](/CIS241/jupyter)|
 30 Aug. & 1 Sept.|Pandas and Data Wrangling|Movies|
 6 & 8 Sept.|Exploratory Data Analysis|Movies|**Documentation Assignment Due 8 Sept.**
 13 & 15 Sept.|Hypothesis Testing|Sports
