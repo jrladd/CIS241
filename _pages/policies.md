@@ -71,7 +71,9 @@ Please be respectful with your use of laptops and technology in class. I request
 
 ### CIS PAL Tutors
 
-[Information on tutors TK.]
+The CIS department has its own PAL tutors: they're available to help **Sunday--Thursday evenings from 7--10pm** in the CIS Lounge on the second floor of the Tech Center. There are peer tutors who can help with our class (CIS 241) on Sunday, Monday, Wednesday, and Thursday this semester. (I'll post more detailed tutor bios and schedules on [Sakai](https://sakai.washjeff.edu).)
+
+All the CIS PAL tutors are students who've taken this class before and/or have lots of knowledge about Python and data analysis. They're a great resource, and they're there to help you! I encourage you to take advantage of their expertise when you have questions or need help.
 
 ### Mental Health
 
