@@ -108,6 +108,7 @@ Python has many built-in functions.
 ```python
 # Some functions give a number result
 sum([5,6,7])
+mylist = [5,6,7]
 sum(mylist)
 len(mylist)
 
@@ -134,6 +135,31 @@ def get_last_value(some_list):
 # But you can do this with some_list[-1]
 ```
 
+# Loops and Conditions let you manipulate data.
+
+## You can use the `for` operator to iterate through a list.
+
+```python
+mylist = [5,6,7,8]
+for item in mylist:
+  addone = item + 1
+  print(addone)
+```
+
+## You can use `if` and `else` to set conditions.
+
+```python
+# Let's use the range() function to make a list
+newlist = range(1,11) 
+for i in newlist:
+  if i-5 == 5:
+    print("It's five!")
+  elif i-5 == 5:
+    print("It's ten!")
+  else:
+    print("Nope, try again...")
+```
+
 ## Libraries/Packages contain reusable functions made by someone else.
 
 ```python
@@ -142,12 +168,13 @@ pip install packagename
 
 # Import a library every time you run your code
 import packagename
+
+# You can also rename packages to make it easier
+import packagename as pn
 ```
 
 ## You Try It!
 
-Install and import the `pandas` package.
-
-# Now you're ready to try some things on your own!
+Import the `pandas` package and abbreviate it `pd`. If it works, there will be no output!
 
 ## All this and more in [Chapters 2 & 3](https://wesmckinney.com/book/python-builtin.html) of Python for Data Analysis!
