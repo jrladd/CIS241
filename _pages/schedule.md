@@ -14,7 +14,7 @@ sidebar:
 Date|Topics & Slides|In-class Datasets|Assignments
 --|---|---|---
 25 Aug.|Introduction to the course and to Python, [Jupyter Lab](/CIS241/jupyter)|
-30 Aug. & 1 Sept.|Pandas and Data Wrangling|Movies|
+30 Aug. & 1 Sept.|[What Is Data?](/CIS241/slides/whatisdata), [Python](/CIS241/slides/pythonbasics) and [Data Wrangling](/CIS241/slides/wrangling)|Movies|
 6 & 8 Sept.|Exploratory Data Analysis|Movies|**Documentation Assignment Due 8 Sept.**
 13 & 15 Sept.|Hypothesis Testing|Sports
 20 & 22 Sept.|Correlation|Sports|**Take-Home Quiz I**
