@@ -1,78 +1,65 @@
-% Data Wrangling with dplyr
-% DA 101, Dr. Ladd
-% Week 3
-
-# First, Let's Review
-
-## In-Class Exercise
-
-1. Create a new .R file
-2. Import the `tidyverse` library
-3. Make sure to add comments as you go!
-4. Find the `mpg` dataset, view it, and get a summary
+% Data Wrangling with pandas
+% CIS 241, Dr. Ladd
 
 # Wrangling Data
 
 ## Why not just edit the data in the spreadsheet?
 
-## Tibbles are special Data Frames
+## DataFrames are like spreadsheets for Python.
 
-```r
-library(tidyverse)
-
-library(nycflights13)
-
-flights <- flights
-
-glimpse(flights)
+```python
+# These are our standard imports
+import pandas as pd
+import numpy as np
+import seaborn as sns
+sns.set_theme()
 ```
+
+```python
+taxis = sns.load_dataset('taxis')
+taxis
+```
+
+## Normally, get data from CSV files.
+
+```python
+mydata = pd.read_csv("name_of_file.csv")
+```
+
+For today, we're using the built-in taxis data set.
 
 ## Every variable (column) has a data type.
 
 - int: integers
-- dbl: doubles, floats, or real numbers
-- chr: character, or string
-- dttm: date-times
-- lgl: logical, True or False
-- fctr: factors (categorical variables)
-- date: dates
+- float: floats, doubles, or real numbers
+- str: string, character, or object
+- Other data types: boolean, date-times, factors
 
-Use `glimpse()` to see columns and their types!
-
-# Filtering and Selecting
-
-## Filter lets you get a subset of observations (rows).
-
-```r
-jan1_flights <- filter(flights, month==1, day==1)
+```python
+taxis.info() # Pandas works by adding methods to dataframes
 ```
 
-or with dplyr's special "pipe" notation, `%>%`:
+# Selecting rows and columns
 
-```r
-jan1_flights <- flights %>%
-	filter(month==1 & day==1)
+## Brackets let you get a subset of observations (rows).
+
+```python
+cheap_fares = taxis[taxis.total < 10]
+cheap_fares
 ```
 
-These two are the same!
+Remember to save everything in variables
 
-## You almost always save `dplyr` outputs to variables.
+## Row selection uses standard comparisons.
 
-```r
-christmas_flights <- flights %>%
-	filter(month == 12 & day == 25)
-```
+- `>` greater than
+- `>=` greater than or equal to
+- `<` less than
+- `<=` less than or equal to
+- `!=` not equal
+- `==` equal (note the double equals sign!)
 
-## `filter()` uses standard comparisons.
-
-- `>`: greater than
-- `>=`: greater than or equal to
-- `<`: less than
-- `<=`: less than or equal to
-- `!=`: not equal
-- `==`: equal (note the double equals sign!)
-
-## `filter()` also uses logical operators to combine comparisons.
+## You can also use logical operators to combine comparisons.
 
 & "and", | "or", and ! "not"
 
@@ -80,125 +67,73 @@ christmas_flights <- flights %>%
 
 ## Logical operators can also be combined.
 
-```r
-nov_dec <- flights %>%
-	filter(month == 11 | month == 12)
-
-alt_nov_dec <- flights %>%
-	filter(month %in% c(11, 12))
-
-not_too_late <- flights %>%
-	filter(!(arr_delay > 120 | dep_delay > 120))
-
-alt_not_too_late <- flights %>%
-	filter(arr_delay <= 120, dep_delay <= 120)
-```
-
-## Null values are never part of the filter!
-
-It's because they are never "true". You must ask for them explicitly with `is.na()`.
-
-```r
-# Create a small tibble to test
-df <- tibble(x = c(1, NA, 3))
-
-greater_than_one <- df %>%
-	filter(x > 1)
-
-greater_than_one_with_NA <- df %>%
-	filter(is.na(x) | x > 1)
+```python
+extreme_fares = taxis[(taxis.total < 7) | (taxis.total > 50)]
+extreme_fares
 ```
 
 ## You try it!
 
-Work through the exercise in the textbook, [section 5.2.4](https://r4ds.had.co.nz/transform.html#exercises-8).
+Get only the rows for the green taxis.
 
-## Arrange lets you sort rows.
+## The `.sort_values()` method lets you sort rows by value.
 
-```r
-flights_by_date <- flights %>%
-	arrange(year, month, day)
-
-flights_by_longest_delay <- flights %>%
-	arrange(desc(dep_delay))
+```python
+taxis.sort_values("distance", ascending=False)
 ```
 
-## Select lets you get a set of variables (columns).
+## You can also select a set of variables (columns).
 
-```r
-only_dates <- flights %>%
-	select(year, month, day)
-
-only_dates <- flights %>%
-	select(year:day)
-
-everything_but_dates <- flights %>%
-	select(-(year:day))
+```python
+prices = taxis[['fare','tip','tolls','total']]
+prices
 ```
 
-See the [textbook](https://r4ds.had.co.nz/transform.html#select) for additional tips.
+## `.rename()` lets you rename columns.
 
-## Rename lets you rename columns.
-
-```r
-flights <- flights %>%
-	rename(tail_num = tailnum)
+```python
+taxis = taxis.rename(columns={"fare": "base_fare"})
+taxis
 ```
 
-## Mutate lets you add new columns based on existing ones.
+Notice we kept the same variable name here!
 
-```r
-flights <- flights %>%
-	mutate(gain = dep_delay - arr_delay,
-  	       hours = air_time / 60,
-  	       gain_per_hour = gain / hours)
+## `.assign()` lets you add new columns based on existing ones.
+
+```python
+taxis_new_column = taxis.assign(total_per_person = taxis.total/taxis.passengers)
+taxis_new_column
 ```
 
-Transmute does the same thing but only keeps the new variables.
+# Grouping and Summarizing
 
-# Summarizing and Grouping
-
-## We use summarize() and group_by() together to make *summary tables*.
+## We use `.groupby()` with summary statistics to make *summary tables*.
 
 *Summary tables* are new dataframes that summarize our original data.
 
-## Summarize lets you get summary statistics.
+This paradigm is known as *split-apply-combine*, and it's key to data analysis.
 
-```r
-avg_delay <- flights %>%
-	summarize(delay = mean(dep_delay, na.rm = TRUE))
+## You can use summary statistic methods to get values for a whole column.
+
+```python
+taxis.tip.mean()
 ```
 
-Stat functions to use with summarise: `mean(), median(), min(), max(), sd(), range()`.
+Stat functions to use: `mean(), median(), min(), max(), std()`.
 
 ## Groupby lets you group data, to get summaries for each group.
 
-```r
-by_month <- flights %>%
-	group_by(year, month)
+```
+taxis.groupby(['dropoff_borough'])
 ```
 
 It doesn't look like anything on its own!
 
-## The pipe lets you "stack" multiple `dplyr` operations.
-
-```r
-delays_by_month <- flights %>%
-	group_by(year, month) %>%
-	summarize(delay = mean(dep_delay, na.rm=TRUE))
-```
-
 ## Now we can put it all together!
 
-```r
-delays <- flights %>%
-  group_by(dest) %>%
-  summarize(
-    count = n(),
-    dist = mean(distance, na.rm = TRUE),
-    delay = mean(arr_delay, na.rm = TRUE)
-  ) %>%
-  filter(count > 20, dest != "HNL")
+```python
+# Use multiple methods to "chain" operations
+taxis.groupby(["dropoff_borough"]).mean()
 ```
 
-## [Chapter 5](https://r4ds.had.co.nz/transform.html) has lots more guidance, and many examples for you to try!
+## [Chapter 5](https://wesmckinney.com/book/pandas-basics.html#pandas_frame) and [Chapter 8](https://wesmckinney.com/book/data-wrangling.html) have lots more guidance, and many examples for you to try!
