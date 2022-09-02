@@ -1,6 +1,5 @@
 % Exploratory Data Analysis
-% DA 101, Dr. Ladd
-% Week 5
+% CIS 241, Dr. Ladd
 
 # *Look* at the Data
 
@@ -8,7 +7,9 @@
 
 ![John Tukey pioneered Exploratory Data Analysis starting in 1962 and again with a book in 1977.](img/tukey.png)
 
-## Exploratory Data Analysis is focused on the **location**, **variability**, and **distribution** of data.
+# Summary Statistics
+
+## Summary Statistics are focused on the **location**, **variability**, and **distribution** of data.
 
 # Location: What is the data's "typical value"?
 
@@ -24,12 +25,13 @@ AKA "average"
 
 $\dfrac{600+470+170+430+300}{5} = 394$
 
-## We can calculate the mean easily in R.
+## We can calculate the mean easily in Python.
 
-```r
-dogs <- c(600, 470, 170, 430, 300) # Put the dog heights into a vector
+```python
+# Put the dog heights into a dataframe
+dogs = pd.DataFrame({"height": [600, 470, 170, 430, 300]})
 
-mean(dogs) # Calculate the mean
+dogs.height.mean() # Calculate the mean
 ```
 
 ## Median is the value such that half of the data lies above and below.
@@ -38,8 +40,8 @@ AKA "50th percentile"
 
 ![600, 470, 170, 430, 300](img/dogs1.gif)
 
-```r
-median(dogs)
+```python
+dogs.height.median()
 ```
 
 ## Percentile is a value such that *P* percent of the data lies below.
@@ -50,16 +52,16 @@ AKA "quantile"
 
 ![600, 470, 170, 430, 300](img/dogs1.gif)
 
-```r
-summary(dogs)
+```python
+dogs.describe()
 ```
 
 ## The 75th Percentile is the 3rd Quartile.
 
 ![600, 470, 170, 430, 300](img/dogs1.gif)
 
-```r
-summary(dogs)
+```python
+dogs.describe()
 ```
 
 ## The median is the 2nd Quartile!!
@@ -74,8 +76,8 @@ AKA "extreme value"
 
 ## The **interquartile range** is the difference between the 1st and 3rd quartiles.
 
-```r
-IQR(dogs)
+```python
+dogs.height.quantile(.75)-dogs.height.quantile(.25)
 ```
 
 ## A **deviation** is the difference between an actual value and an estimate of location (like the mean).
@@ -94,12 +96,12 @@ $\dfrac{206^2+76^2+(-224)^2+36^2+(-94)^2}{5} = 21,704$
 
 Rottweilers *are* tall, and dachsunds *are* short---compared to the standard deviation from the mean.
 
-## Now calculate the variance and standard deviations in R.
+## Now calculate the variance and standard deviations in Python.
 
-```r
-var(dogs)
+```python
+dogs.height.var()
 
-sd(dogs)
+dogs.height.std()
 ```
 
 Were these the results you expected?
@@ -114,7 +116,7 @@ When you have "N" data values:
 Sample variance: $\dfrac{108,520}{4}=27,130$  
 Sample standard deviation: $\sqrt{27,130}=164$
 
-Think of it as a "correction" when your data is only a sample. R does this by default!
+Think of it as a "correction" when your data is only a sample. Pandas does this by default!
 
 ## Neither the mean, variance, nor standard deviation are **robust**. They are all very sensitive to outliers!
 
@@ -138,40 +140,166 @@ Be careful: normal distributions are assumed for many statistical analyses!
 
 ## Location, Variability, and Distribution are for one variable at a time (univariate analysis). Correlation is for *two* variables (bivariate analysis).
 
-## Let's look at `displ` and `hwy` in the `mpg` dataset
+## Scatter plots and correlation coefficients are used to determine correlation.
 
-![Does the size of the engine affect fuel efficiency?](img/mpg_scatter.png)
+We'll talk more about correlation in a couple weeks!
 
-## Correlation coefficient measures the extent to which two variables are related, on a scale of -1 to 1.
+# Visualization
 
-Pearson's correlation coefficient multiplies the deviations from the mean for two variables, and divides by the product of the standard deviation.
+![xkcd.com/688](img/xkcd_self_description.png)
 
-```r
-cor(mpg$displ,mpg$hwy)
+## Some Good Resources on Visualization
+
+- Claus Wilke's [Fundamentals of Data Visualzation](https://clauswilke.com/dataviz/) (The illustrations in this slide show come from here!)
+- [The Seaborn tutorials](https://seaborn.pydata.org/tutorial.html)
+
+# Why Do We Visualize Data?
+
+## Visualization can be *exploratory*, *explanatory*, or both!
+
+- Exploratory viz helps *us* (the researchers or analysts) understand the data.
+- Explanatory viz helps *others* (the clients or audience) understand our analysis.
+- Many visualizations do both of these things at once!
+
+# What Does Visualization Help Us to See?
+
+## Viz Can Help Us See *Amounts*.
+
+![Graph a single value across one set of categories.](img/amounts-1.png)
+
+- Variable types: 1 categorical and 1 numerical
+- Common graph types: Bar plot (Don't confuse the dot plot with the scatter plot!)
+
+## Plot *Amounts* With Multiple Categories.
+
+![](img/amounts-2.png)
+
+- Variable types: 2 or more categorical, 1 numerical
+- Common graph types: Grouped or stacked bar, heat map
+
+## Viz Can Help Us See *Distributions*.
+
+![Graph a distribution of a single variable.](img/single-distributions.png)
+
+- Variable type: 1 continuous (numerical)
+- Common graph types: Histograms, Density plots, Q-Q plots
+
+## *Distributions* with Multiple Categories.
+
+![](img/multiple-distributions.png)
+
+- Variable types: 1 continuous (numerical), 1 categorical
+- Common graph types: Box plots, Violin plots
+
+## You Try It!
+
+Look at the `taxis` data set. What visualization type would you use to compare the counts of each destination Borough? Which variables would you use, and what *kind* of variables are they? Jot down your answers.
+
+## Viz Can Help Us See *Proportions*.
+
+![](img/proportions.png)
+
+- Variable types: 1 numerical, 1 categorical
+- Common graph types: Pie chart, Bar plot
+
+## Viz Can Help Us See *Relationships*.
+
+![](img/basic-scatter.png)
+
+- Variable types: 2 continuous (numerical), (3 in a bubble chart)
+- Common graph types: Scatter plot, Bubble Chart, Hex bins, Density contours
+
+## You Try It!
+
+Look at the `taxis` data again. What visualization type would you use to compare the distribution of tips among different taxi colors? Which variables would you use, and what *kind* of variables are they? Jot down your answers.
+
+## Viz Helps Us See *Time*, *Location*, *Uncertainty*...
+
+![Confidence bands are an example of visualized uncertainty.](img/confidence-bands.png)
+
+More on these viz types in future lessons!
+
+# Make Great Viz with `seaborn`
+
+## Import Seaborn and add default theme
+
+```python
+import seaborn as sns
 ```
 
-# Don't be fooled!
-
-## Always use summary statistics and visualization *together*.
-
-![](img/unstructured_quartet.png)
-
-## If we have the same **mean**, **standard deviation**, and **correlation** we might expect the data sets to be similar...
-
-## But they could very clearly and visually **distinct**!
-
-![](img/anscombes_quartet.png)
-
-## Data Challenge
-
-```r
-install.packages(“datasauRus”)
-library(datasauRus)
+```python
+sns.set_theme()
+# It's a good idea to use this every time
 ```
 
-Use `dplyr` to find the summary statistics for each dataset in the `datasaurus_dozen`.
+## Each Seaborn function looks for a data parameter and variables
 
-- Find mean, standard deviation, and correlation for both x and y of each dataset.
-- Wrap your functions in `round()` to round to 3 decimal places.
+```python
+# A scatter plot as an example
+sns.relplot(x="FirstVariable",y="SecondVariable",data=YourDataFrame)
+```
 
-When you're done, try making scatter plots!
+In this example, `FirstVariable` becomes the x-axis and `SecondVariable` becomes the y-axis. You can also add a mapping for `hue` (i.e. color).
+
+## Create different shapes and plot types with different functions.
+
+- `sns.relplot()`: scatter plots and line plots (relationships)
+- `sns.displot()`: histograms and frequency polygons (distributions)
+- `sns.catplot()`: bar plots and boxplots (categories)
+- and more we'll cover later!
+
+Sometimes you'll use the `kind` parameter to set the type of plot!
+
+## You Try It!
+
+Create a plot to compare the distance a taxi traveled to the total fare using the `taxis` DataFrame. Then create the same plot but show color as the type of payment.
+
+## Use the `col` parameter to create side-by-side plots for different categories.
+
+```python
+sns.displot(x="NumericalVariable", col="CategoricalVariable", data=YourDataFrame)
+```
+
+## Use `.set_axis_labels()` to add your own graph labels.
+
+Never rely on the default column names! You can "chain" this function onto an existing Seaborn plot.
+
+```python
+sns.catplot(...).set_axis_labels("A Better Label for X", "A Better Label for Y")
+```
+
+## You Try It!
+
+Create a plot showing the distribution of tips in the `taxis` dataset. Then show the distributions according to each pickup borough, in different columns. Finally, change the size of the bins in each distribution to show less detail (wider bars).
+
+# Ugly, Bad, or Wrong 
+
+---
+
+<img src="img/audible_bar.png" style="max-height:80vh" />
+
+---
+
+<img src="img/spreadsheet_viz.jpg" style="max-height:80vh" />
+
+---
+
+<img src="img/german_map.png" style="max-height:80vh" />
+
+---
+
+<img src="img/portuguese_elections.png" style="max-height:80vh" />
+
+---
+
+<img src="img/evaporation_color.jpg" style="max-height:80vh" />
+
+---
+
+<img src="img/violentcrime.jpg" style="max-height:80vh" />
+
+## More Examples of Bad Viz
+
+[viz.wtf](https://viz.wtf/)
+
+[r/dataisugly](https://www.reddit.com/r/dataisugly/)
