@@ -1,6 +1,6 @@
 % Hypothesis Testing
-% DA 101, Dr. Ladd
-% Week 8
+% CIS 241: Data Mining
+% Dr. Ladd
 
 # Why Do We Need a Hypothesis?
 
@@ -10,7 +10,7 @@
 
 ## Hypothesis tests protect researchers from being fooled by random chance.
 
-# Sample vs. Population
+# Sample & Population
 
 ## A **sample** is the data we actually have, some subset of all possible data.
 
@@ -18,7 +18,7 @@
 
 ## Hypothesis tests help us to know if the observed differences in the sample are the result of random chance.
 
-# The Null Hypothesis and the Alternative Hypothesis
+# The Null and Alternative Hypotheses
 
 ## The **Null Hypothesis** is a baseline assumption that the result is due to chance.
 
@@ -50,7 +50,7 @@ Different research questions lead to different alternative hypotheses.
 
 ## What are the Null and Alternative Hypotheses?
 
-1. Is the median house price in Granville larger than the median price in Newark?
+1. Is the median house price in Pittsburgh larger than the median price in Washington?
 
 2. Is the mean number of mountain lions per 100 km^2 equal in North and South America?
 
@@ -86,7 +86,9 @@ In the end we'd have a *distribution* of how much the means differ among a thous
 
 <img src="img/resampling.png" style="max-height:55vh" />
 
-## In this case, we care about how often the random differences were greater than the observed difference.
+---
+
+In this case, we care about how often the random differences were greater than the observed difference.
 
 I.e., how often the values were to the right of the dotted line.
 
@@ -122,9 +124,7 @@ This is just a rule of thumb!
 
 ## T-Tests let you calculate a p-value for a difference in means.
 
-In our example of two groups in our data, we could test whether their difference in means is significant using a **t-test**.
-
-A t-test estimates the random reshuffled distributions based on a series of assumptions about what that distribution should look like. It calculates a p-value based on that "t-distribution."
+In our example of two groups in our data, we could test whether their difference in means is significant using a **t-test**. It calculates a p-value based on a "t-distribution."
 
 Different statistical tests calculate p-values for other kinds of differences.
 
@@ -153,76 +153,176 @@ Consider results that are:
 
 Misreading or overemphasizing the p-value can lead us to error!
 
-# More Hypothesis Tests!
+# How do you solve a problem like a T-Test?
 
-## How do we test whether the means of two groups are the same?
+## T-Tests rely on *assumptions*.
 
-The two-sample t-test: (This one is review!)
+- Normality (Are both samples normally distributed?)
+- Equality of Variance (Are the variables spread out roughly the same amount?)
 
-```r
-# First filter some data
-mpg_filtered <- filter(mpg, class=="minivan"|class=="pickup")
+## If either of these assumptions aren't met, our t-test could be misleading!
 
-# Then run the test
-t.test(hwy~class,mpg_filtered)
+## "Parametric" hypothesis tests were designed to solve a problem before computers existed, but now there are other approaches.
+
+# Resampling
+
+## Resampling is simply drawing multiple random samples from observed data.
+
+I can grab a sample of 5 observations. Then I can "resample" 5 more. Then 5 more, and so on and so on.
+
+## First proposed in the 1960s, resampling procedures weren't practical until computing took off in the 1980s.
+
+## Resampling is an umbrella term. It can include:
+
+- The Bootstrap, used to assess the reliability of an estimated statistic
+- Permutation Tests, used as an alternative to parametric hypothesis tests
+
+## You can resample with or without *replacement*.
+
+Replacement means an item is returned to the sample before the next draw (i.e. you could wind up with the same observation multiple times).
+
+# Permutation Tests
+
+## A permutation test solves the t-test problem!
+
+It doesn't matter whether the samples are normally distributed or whether their variance is equal. There are no assumptions in a permutation test.
+
+## *Permute* means to change the order of a set of values.
+
+In a permutation test, you rearrange groups randomly to determine a permutation distribution.
+
+## A permutation distribution embodies the *null hypothesis*.
+
+It shows you what the distribution would look like if the difference between the groups was the result of random variation.
+
+## You can create a permutation procedure to replace different kinds of statistical tests.
+
+Let's look at the steps of a permutation test that would replace a two-sample t-test...
+
+---
+
+1. Randomly resample (without replacement) a group the same size at the first group.
+2. From the remaining data, randomly resample (without replacement) a group the same size as the second group.
+3. Calculate the difference in means between the two resamples. This is one permutation.
+4. Repeat these steps as many times as you want to create a permutation distribution.
+5. Compare the observed difference in the real groups to the permutation distribution.
+
+## You can use the permutation distribution to calculate a p-value.
+
+# Permutation Tests in Python
+
+## Let's look at the `penguins` dataset.
+
+```python
+import pandas as pd
+import numpy as np
+import seaborn as sns
+sns.set_theme()
+
+penguins = sns.load_dataset('penguins')
+penguins
 ```
 
-## How do we test the mean of one variable?
-
-The one-sample t-test:
-
-```r
-# Run the test to see if the mean of hwy
-# is greater than 0.
-t.test(mpg$hwy, mu=0, alternative="greater")
+```python
+sns.catplot(x="species",y="bill_depth_mm",kind="box",data=penguins)
 ```
 
-We can set the default mean (`mu`) to *any value*. Remember that the variable **must** be normally distributed.
+## What's the difference in means?
 
-## How do we know if a variable is normally distributed?
-
-The Shapiro-Wilk test:
-
-```r
-shapiro.test(mpg$hwy)
+```python
+mean_diff = (penguins[penguins.species == "Chinstrap"].bill_depth_mm.mean() 
+             - penguins[penguins.species == "Adelie"].bill_depth_mm.mean())
+mean_diff
 ```
 
-**Important note**: the variable likely has a normal distribution if the p-value is *higher* than .05. Always compare with a histogram!
+## Functions create reusable code
 
-## Can we make our own normally-distributed variable?
-
-Let's try out `rnorm()`. It takes 3 parameters: the number of observations, the mean, and the standard deviation.
-
-```r
-# A normally-distributed variable of 100 values, with mean of 5 and sd of 2
-v1 <- rnorm(100, mean=5, sd=2)
-
-# Let's look at this one:
-ggplot(,aes(v1)) +
-  geom_histogram()
-
-# And we can test to make sure it's normally distributed:
-shapiro.test(v1)
+```python
+def adding_func(x,n):
+    sum = x + n
+    return sum
 ```
+
+```python
+adding_func(4,2)
+```
+
+First name the function and define input. Then do something and return a result!
+
+## Repeat functions with list comprehensions
+
+These work just like loops!
+
+```python
+repeated_adding = [adding_func(4,2) for i in range(100)]
+```
+
+## Create a random `sample`
+
+```python
+your_sample = your_dataframe.sample(n=number_of_rows)
+```
+
+## Let's create a function for permutation!
+
+```python
+# This function assumes that everything not in the first
+# category will be in the other.
+
+def mean_perm(df, var, cat, group1):
+    group1_len = len(df[df[cat] == group1])
+    group1_sample = df.sample(n=group1_len)
+    group2_index = set(df.index) - set(group1_sample.index)
+    group2_sample = df.loc[list(group2_index)]
+    return group1_sample[var].mean() - group2_sample[var].mean()
+```
+
+You can reuse this code!
+
+## Now we can make 5000 permutations.
+
+```python
+# First we need *only* Chinstrap and Adelie
+# You can do this on one line.
+chinstrap_adelie = (penguins[(penguins.species == "Chinstrap") | 
+                             (penguins.species == "Adelie")].dropna())
+
+# Then we can permute
+mean_perms = (pd.Series([mean_perm(chinstrap_adelie, 
+                                   "bill_depth_mm", 
+                                   "species", 
+                                   "Chinstrap") for i in range(10000)]))
+```
+
+## Let's look at the results in a histogram
+
+```python
+plt = sns.histplot(x=mean_perms)
+plt.axvline(x=mean_diff, color="red", ls="--")
+```
+
+How is this different from previous Seaborn plots?
+
+## Finally, we can calculate a p-value:
+
+```python
+p_value = np.mean(mean_perms > mean_diff)
+p_value
+```
+
+Why does this code work?
+
+Is our result statistically significant? Is it practically significant?
 
 # You Try It!
 
-## Set Up
+## Permutation Exercise
 
-Install and load the `palmerpenguins` dataset. Then create a filtered dataset of only the Adelie penguins.
+Determine if users spend significantly more time on Page B than they do on Page A.
 
-Make sure you've got `tidyverse` imported, too.
-
-Ask yourself: what test or function would you run? How would you run it?
-
-## Challenges
-
-1. Are the flipper lengths of Adelie penguins normally distributed?
-
-2. Are the flipper lengths of Adelie penguins significantly less than 190mm?
-
-3. Is there a significant difference in the flipper length of Adelie penguins vs. Gentoo penguins?
-
-4. Let's create a normally distributed variable with roughly the same mean and standard deviation as the flipper length of Adelie penguins, but with twice the number of observations.
-
-
+1. Download <a href="https://jrladd.com/CIS241/data/web_page_data.csv" download>web_page_data.csv</a>.
+2. Make a boxplot of session times for Pages A and B.
+3. Calculate the observed difference in means.
+4. Run 2000 permutations of randomly resampled groups.
+5. Make a histogram of permutation results and show the observed difference as a vertical line.
+6. Calculate the p-value for your permutation test.
