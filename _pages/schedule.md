@@ -17,7 +17,7 @@ Date|Topics & Slides|In-class Datasets|Assignments
 30 Aug. & 1 Sept.|[What Is Data?](/CIS241/slides/whatisdata), [Python](/CIS241/slides/pythonbasics) and [Data Wrangling](/CIS241/slides/wrangling)|[Movies](/CIS241/workshops/2022/08/31/movie-dialogue-1.html)|
 6 & 8 Sept.|[Exploratory Data Analysis](/CIS241/slides/eda)|[Movies](/CIS241/workshops/2022/09/07/movie-dialogue-2.html)|
 13 & 15 Sept.|[Hypothesis Testing](/CIS241/slides/hypothesis)|[Sports](/CIS241/workshops/2022/09/14/sports-1.html)|**Documentation Assignment Due 15 Sept.**
-20 & 22 Sept.|[Correlation](/CIS241/slides/correlation)|Sports
+20 & 22 Sept.|[Correlation](/CIS241/slides/correlation)|[Sports](/CIS241/workshops/2022/09/21/sports-2.html)
 27 & 29 Sept.|Simple Linear Regression|Business|**Take-Home Quiz I**
 4 & 6 Oct.|Multivariate Regression|Business
 11 & 13 Oct.|Logistic Regression|Ecology|**Tutorial Assignment Due 13 Oct.**
