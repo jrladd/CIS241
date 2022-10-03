@@ -1,12 +1,13 @@
-% Predictive Analytics: Multiple Regression
-% DA 101, Dr. Ladd
-% Week 11
+% Multiple Regression
+% CIS 241, Dr. Ladd
 
 # Multiple or *Multivariate* Regression
 
+## Bivariate regression is great at *explanation* but lousy at *prediction*.
+
 ## Multiple Regression lets you add more independent variables.
 
-Bivariate regression (the normal kind):
+Bivariate regression:
 
 $Y=b_{0}+b_{1}x$
 
@@ -14,26 +15,11 @@ Multivariate regression:
 
 $Y=b_{0}+b_{1}x_{1}+b_{2}x_{2}+b_{3}x_{3}+...$
 
-## You can add more variables to the `fit()` function.
+## You can add more variables as predictors.
 
-Let's use the `mtcars` dataset, which has more variables than `mpg`.
+Let's stick with the `mpg` dataset from last time.
 
-```r
-carmodel <- linear_reg() %>%
-      set_engine("lm") %>%
-      fit(mpg~disp+hp+drat, data=mtcars)
-
-#Let's talk about the results together:
-summary(carmodel$fit)
-```
-
-## Once you have a model, you can predict new values!
-
-```r
-newvals <- tibble(disp=400,hp=145,drat=4.2)
-
-predict(carmodel,newvals)
-```
+How would you adjust our bivariate code to accept *multiple* predictors? How would you display coefficients? Try it now!
 
 # How to Choose Predictor Variables
 
@@ -43,11 +29,9 @@ predict(carmodel,newvals)
 
 ![Think carefully about how many variables you add.](img/William_of_Ockham.png)
 
-## As you add variables, $R^{2}$ will increase.
+## As you add variables, $R^{2}$ will increase and `RMSE` will decrease.
 
-But think about *how much* it's increasing.
-
-And use Adjusted $R^{2}$ for multivariate models. It accounts for adding more variables. 
+But think about *how much* it increases or decreases.
 
 ## Avoid Multicollinearity: when two predictor variables correlate.
 
@@ -57,21 +41,29 @@ This will confuse the model and mess up your results! It could even result in *f
 
 You can do a *pairwise* comparison of the variables you're thinking about. 
 
-```r
-library(GGally)
-
-ggpairs(dataset, columns=c("var1","var2","var3"))
+```python
+sns.pairplot(cars[predictors], kind='reg')
 ```
 
-This will give you scatterplots and correlation coefficients to compare.
+Compare this to the correlation matrix.
+
+```python
+cars[predictors].corr()
+```
 
 ## You can consider categorical variables as predictors, too.
 
-But in the coefficients, the first category will always be left out as the baseline.
+Reference coding converts categorical variables to a set of binary variables.
 
-All the remaining slopes are relative to that baseline!
+```python
+X = pd.get_dummies(cars[predictors], drop_first=True)
+```
 
-Let's create an example using the `mpg` dataset.
+The first category should always be left out as the reference (`drop_first=True`). All the remaining slopes are relative to that reference!
+
+## When interpreting coefficients, watch out for *confounding variables*!
+
+Ask yourself: is there an important variable that the data doesn't account for?
 
 ## Challenge: Seattle Housing Data
 
@@ -79,48 +71,52 @@ Try to make an effective multivariate linear model to predict housing prices in 
 
 Take a look at the dataset and logically choose some predictors. Check for multicollinearity before you run your model! When you're done, try to predict housing price based on some new data points you create.
 
-Download [house_sales.tsv](../data/house_sales.tsv). You'll need to open this with `housing <- read_tsv("house_sales.tsv")`.
+Download [house_sales.tsv](../data/house_sales.tsv). You'll need to open this with:
+
+```python
+housing = pd.read_csv("house_sales.tsv", sep="\t")
+```
 
 # Regression Diagnostics
 
-## Like the Q-Q Plot, diagnostic plots help us understand if our model is valid and reliable.
+## How does the model do on out-of-sample data?
 
-## `autoplot()` gives us four common diagnostic plots.
+```python
+outofsample_fitted = our_model.predict(X_test)
 
-```r
-library(ggfortify)
+# RMSE
+np.sqrt(mean_squared_error(y_test, outofsample_fitted))
 
-autoplot(mpgmodel$fit)
+# r_2
+r2_score(y_test, outofsample_fitted)
 ```
 
-Without `ggfortify`, you will see an error: "Objects of type lm not supported by autoplot."
+##  Are the residuals normally distributed, with a mean near 0?
 
----
+```python
+residuals = y_test - outofsample_fitted
 
-![The output of the autoplot function. Let's go through these one at a time](img/autoplot.png)
+sns.displot(x="mpg",data=residuals).set_axis_labels(x="Residuals")
+```
 
-## On all of these graphs, pay attention to labeled/numbered outliers.
+You could also use a Q-Q plot for this!
 
-## Top right shows the Q-Q Plot.
+## Does the model suggest heteroskedasticity?
 
-We know this one already! Look for the dots to be on the line.
+Is the variance consistent across the range of predicted values?
 
-## Top left shows Residuals vs. Fitted Values.
+```python
+# Plot the absolute value of residuals against the predicted values
+sns.regplot(x=outofsample_fitted, y=np.abs(residuals.mpg), lowess=True)
+```
 
-Residuals (the vertical distance from a point to the regression line) versus the fitted values (the y-value on the line corresponding to each x-value).
+If the line is horizontal, there's no heterskedasticity.
 
-The blue line should be **relatively flat and lie close to the gray dashed line.**
+## Other validation methods
 
-## Bottom left shows the square root of standardized residuals vs. fitted values.
-
-The x-axis is the same here as on the one above. This graph helps us see **homoscedasticity**, that the variance in the residuals doesn’t change as a function of x.
-
-We want the **blue line to be mostly flat**. We want to avoid heteroscedasticity!
-
-## Lower right shows standardized residuals against leverage.
-
-Leverage is a measure of how much each data point influences the regression. On this plot, you want to see that the **blue line stays close to the horizontal gray dashed line and that no points have a large Cook’s distance (i.e, >0.5).**
-
-In this case, it's showing factor levels because we used a categorical variable.
+- Finding Outliers
+- Cook's Distance and Leverage
+- Check for independence of errors
+- Partial residual plots
 
 ## Let's try this again with your Seattle housing models!

@@ -3,20 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
-  <meta name="author" content="DA 101, Dr. Ladd">
-  <title>Predictive Analytics: Multiple Regression</title>
+  <meta name="author" content="CIS 241, Dr. Ladd">
+  <title>Multiple Regression</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reset.css">
   <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/reveal.css">
   <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    span.underline{text-decoration: underline;}
-    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -55,7 +63,7 @@
     code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
     code span.at { color: #7d9029; } /* Attribute */
     code span.bn { color: #40a070; } /* BaseN */
-    code span.bu { } /* BuiltIn */
+    code span.bu { color: #008000; } /* BuiltIn */
     code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
     code span.ch { color: #4070a0; } /* Char */
     code span.cn { color: #880000; } /* Constant */
@@ -68,7 +76,7 @@
     code span.ex { } /* Extension */
     code span.fl { color: #40a070; } /* Float */
     code span.fu { color: #06287e; } /* Function */
-    code span.im { } /* Import */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
     code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
     code span.kw { color: #007020; font-weight: bold; } /* Keyword */
     code span.op { color: #666666; } /* Operator */
@@ -88,126 +96,166 @@
     <div class="slides">
 
 <section id="title-slide">
-  <h1 class="title">Predictive Analytics: Multiple Regression</h1>
-  <p class="author">DA 101, Dr. Ladd</p>
-  <p class="date">Week 11</p>
+  <h1 class="title">Multiple Regression</h1>
+  <p class="author">CIS 241, Dr. Ladd</p>
 </section>
 
 <section>
-<section id="multiple-or-multivariate-regression" class="title-slide slide level1">
+<section id="multiple-or-multivariate-regression"
+class="title-slide slide level1">
 <h1>Multiple or <em>Multivariate</em> Regression</h1>
 
 </section>
-<section id="multiple-regression-lets-you-add-more-independent-variables." class="slide level2">
+<section
+id="bivariate-regression-is-great-at-explanation-but-lousy-at-prediction."
+class="slide level2">
+<h2>Bivariate regression is great at <em>explanation</em> but lousy at
+<em>prediction</em>.</h2>
+</section>
+<section
+id="multiple-regression-lets-you-add-more-independent-variables."
+class="slide level2">
 <h2>Multiple Regression lets you add more independent variables.</h2>
-<p>Bivariate regression (the normal kind):</p>
+<p>Bivariate regression:</p>
 <p><span class="math inline">\(Y=b_{0}+b_{1}x\)</span></p>
 <p>Multivariate regression:</p>
-<p><span class="math inline">\(Y=b_{0}+b_{1}x_{1}+b_{2}x_{2}+b_{3}x_{3}+...\)</span></p>
+<p><span
+class="math inline">\(Y=b_{0}+b_{1}x_{1}+b_{2}x_{2}+b_{3}x_{3}+...\)</span></p>
 </section>
-<section id="you-can-add-more-variables-to-the-fit-function." class="slide level2">
-<h2>You can add more variables to the <code>fit()</code> function.</h2>
-<p>Let’s use the <code>mtcars</code> dataset, which has more variables than <code>mpg</code>.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>carmodel <span class="ot">&lt;-</span> <span class="fu">linear_reg</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>      <span class="fu">set_engine</span>(<span class="st">&quot;lm&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">fit</span>(mpg<span class="sc">~</span>disp<span class="sc">+</span>hp<span class="sc">+</span>drat, <span class="at">data=</span>mtcars)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Let&#39;s talk about the results together:</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(carmodel<span class="sc">$</span>fit)</span></code></pre></div>
-</section>
-<section id="once-you-have-a-model-you-can-predict-new-values" class="slide level2">
-<h2>Once you have a model, you can predict new values!</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>newvals <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">disp=</span><span class="dv">400</span>,<span class="at">hp=</span><span class="dv">145</span>,<span class="at">drat=</span><span class="fl">4.2</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(carmodel,newvals)</span></code></pre></div>
+<section id="you-can-add-more-variables-as-predictors."
+class="slide level2">
+<h2>You can add more variables as predictors.</h2>
+<p>Let’s stick with the <code>mpg</code> dataset from last time.</p>
+<p>How would you adjust our bivariate code to accept <em>multiple</em>
+predictors? How would you display coefficients? Try it now!</p>
 </section></section>
 <section>
-<section id="how-to-choose-predictor-variables" class="title-slide slide level1">
+<section id="how-to-choose-predictor-variables"
+class="title-slide slide level1">
 <h1>How to Choose Predictor Variables</h1>
 
 </section>
-<section id="theres-no-magic-solution-you-can-try-different-options-but-use-your-logic-and-dont-just-throw-everything-in-there." class="slide level2">
-<h2>There’s no magic solution! You can try different options, but use your logic and don’t just throw everything in there.</h2>
+<section
+id="theres-no-magic-solution-you-can-try-different-options-but-use-your-logic-and-dont-just-throw-everything-in-there."
+class="slide level2">
+<h2>There’s no magic solution! You can try different options, but use
+your logic and don’t just throw everything in there.</h2>
 </section>
-<section id="occams-razor-says-that-the-simplest-model-is-probably-the-best-one." class="slide level2">
-<h2>Occam’s Razor says that the simplest model is probably the best one.</h2>
+<section
+id="occams-razor-says-that-the-simplest-model-is-probably-the-best-one."
+class="slide level2">
+<h2>Occam’s Razor says that the simplest model is probably the best
+one.</h2>
 <figure>
-<img data-src="img/William_of_Ockham.png" alt="Think carefully about how many variables you add." /><figcaption aria-hidden="true">Think carefully about how many variables you add.</figcaption>
+<img data-src="img/William_of_Ockham.png"
+alt="Think carefully about how many variables you add." />
+<figcaption aria-hidden="true">Think carefully about how many variables
+you add.</figcaption>
 </figure>
 </section>
-<section id="as-you-add-variables-r2-will-increase." class="slide level2">
-<h2>As you add variables, <span class="math inline">\(R^{2}\)</span> will increase.</h2>
-<p>But think about <em>how much</em> it’s increasing.</p>
-<p>And use Adjusted <span class="math inline">\(R^{2}\)</span> for multivariate models. It accounts for adding more variables.</p>
+<section
+id="as-you-add-variables-r2-will-increase-and-rmse-will-decrease."
+class="slide level2">
+<h2>As you add variables, <span class="math inline">\(R^{2}\)</span>
+will increase and <code>RMSE</code> will decrease.</h2>
+<p>But think about <em>how much</em> it increases or decreases.</p>
 </section>
-<section id="avoid-multicollinearity-when-two-predictor-variables-correlate." class="slide level2">
-<h2>Avoid Multicollinearity: when two predictor variables correlate.</h2>
-<p>This will confuse the model and mess up your results! It could even result in <em>false</em> predictions.</p>
+<section
+id="avoid-multicollinearity-when-two-predictor-variables-correlate."
+class="slide level2">
+<h2>Avoid Multicollinearity: when two predictor variables
+correlate.</h2>
+<p>This will confuse the model and mess up your results! It could even
+result in <em>false</em> predictions.</p>
 </section>
 <section id="how-do-we-find-multicollinearity" class="slide level2">
 <h2>How do we find multicollinearity?</h2>
-<p>You can do a <em>pairwise</em> comparison of the variables you’re thinking about.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(dataset, <span class="at">columns=</span><span class="fu">c</span>(<span class="st">&quot;var1&quot;</span>,<span class="st">&quot;var2&quot;</span>,<span class="st">&quot;var3&quot;</span>))</span></code></pre></div>
-<p>This will give you scatterplots and correlation coefficients to compare.</p>
+<p>You can do a <em>pairwise</em> comparison of the variables you’re
+thinking about.</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(cars[predictors], kind<span class="op">=</span><span class="st">&#39;reg&#39;</span>)</span></code></pre></div>
+<p>Compare this to the correlation matrix.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>cars[predictors].corr()</span></code></pre></div>
 </section>
-<section id="you-can-consider-categorical-variables-as-predictors-too." class="slide level2">
+<section id="you-can-consider-categorical-variables-as-predictors-too."
+class="slide level2">
 <h2>You can consider categorical variables as predictors, too.</h2>
-<p>But in the coefficients, the first category will always be left out as the baseline.</p>
-<p>All the remaining slopes are relative to that baseline!</p>
-<p>Let’s create an example using the <code>mpg</code> dataset.</p>
+<p>Reference coding converts categorical variables to a set of binary
+variables.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.get_dummies(cars[predictors], drop_first<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<p>The first category should always be left out as the reference
+(<code>drop_first=True</code>). All the remaining slopes are relative to
+that reference!</p>
+</section>
+<section
+id="when-interpreting-coefficients-watch-out-for-confounding-variables"
+class="slide level2">
+<h2>When interpreting coefficients, watch out for <em>confounding
+variables</em>!</h2>
+<p>Ask yourself: is there an important variable that the data doesn’t
+account for?</p>
 </section>
 <section id="challenge-seattle-housing-data" class="slide level2">
 <h2>Challenge: Seattle Housing Data</h2>
-<p>Try to make an effective multivariate linear model to predict housing prices in Seattle.</p>
-<p>Take a look at the dataset and logically choose some predictors. Check for multicollinearity before you run your model! When you’re done, try to predict housing price based on some new data points you create.</p>
-<p>Download <a href="../data/house_sales.tsv">house_sales.tsv</a>. You’ll need to open this with <code>housing &lt;- read_tsv("house_sales.tsv")</code>.</p>
+<p>Try to make an effective multivariate linear model to predict housing
+prices in Seattle.</p>
+<p>Take a look at the dataset and logically choose some predictors.
+Check for multicollinearity before you run your model! When you’re done,
+try to predict housing price based on some new data points you
+create.</p>
+<p>Download <a href="../data/house_sales.tsv">house_sales.tsv</a>.
+You’ll need to open this with:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>housing <span class="op">=</span> pd.read_csv(<span class="st">&quot;house_sales.tsv&quot;</span>, sep<span class="op">=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
 </section></section>
 <section>
 <section id="regression-diagnostics" class="title-slide slide level1">
 <h1>Regression Diagnostics</h1>
 
 </section>
-<section id="like-the-q-q-plot-diagnostic-plots-help-us-understand-if-our-model-is-valid-and-reliable." class="slide level2">
-<h2>Like the Q-Q Plot, diagnostic plots help us understand if our model is valid and reliable.</h2>
+<section id="how-does-the-model-do-on-out-of-sample-data"
+class="slide level2">
+<h2>How does the model do on out-of-sample data?</h2>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>outofsample_fitted <span class="op">=</span> our_model.predict(X_test)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># RMSE</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>np.sqrt(mean_squared_error(y_test, outofsample_fitted))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="co"># r_2</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>r2_score(y_test, outofsample_fitted)</span></code></pre></div>
 </section>
-<section id="autoplot-gives-us-four-common-diagnostic-plots." class="slide level2">
-<h2><code>autoplot()</code> gives us four common diagnostic plots.</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(mpgmodel<span class="sc">$</span>fit)</span></code></pre></div>
-<p>Without <code>ggfortify</code>, you will see an error: “Objects of type lm not supported by autoplot.”</p>
+<section id="are-the-residuals-normally-distributed-with-a-mean-near-0"
+class="slide level2">
+<h2>Are the residuals normally distributed, with a mean near 0?</h2>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>residuals <span class="op">=</span> y_test <span class="op">-</span> outofsample_fitted</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>sns.displot(x<span class="op">=</span><span class="st">&quot;mpg&quot;</span>,data<span class="op">=</span>residuals).set_axis_labels(x<span class="op">=</span><span class="st">&quot;Residuals&quot;</span>)</span></code></pre></div>
+<p>You could also use a Q-Q plot for this!</p>
 </section>
-<section class="slide level2">
-
-<figure>
-<img data-src="img/autoplot.png" alt="The output of the autoplot function. Let’s go through these one at a time" /><figcaption aria-hidden="true">The output of the autoplot function. Let’s go through these one at a time</figcaption>
-</figure>
+<section id="does-the-model-suggest-heteroskedasticity"
+class="slide level2">
+<h2>Does the model suggest heteroskedasticity?</h2>
+<p>Is the variance consistent across the range of predicted values?</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the absolute value of residuals against the predicted values</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sns.regplot(x<span class="op">=</span>outofsample_fitted, y<span class="op">=</span>np.<span class="bu">abs</span>(residuals.mpg), lowess<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<p>If the line is horizontal, there’s no heterskedasticity.</p>
 </section>
-<section id="on-all-of-these-graphs-pay-attention-to-labelednumbered-outliers." class="slide level2">
-<h2>On all of these graphs, pay attention to labeled/numbered outliers.</h2>
+<section id="other-validation-methods" class="slide level2">
+<h2>Other validation methods</h2>
+<ul>
+<li class="fragment">Finding Outliers</li>
+<li class="fragment">Cook’s Distance and Leverage</li>
+<li class="fragment">Check for independence of errors</li>
+<li class="fragment">Partial residual plots</li>
+</ul>
 </section>
-<section id="top-right-shows-the-q-q-plot." class="slide level2">
-<h2>Top right shows the Q-Q Plot.</h2>
-<p>We know this one already! Look for the dots to be on the line.</p>
-</section>
-<section id="top-left-shows-residuals-vs.-fitted-values." class="slide level2">
-<h2>Top left shows Residuals vs. Fitted Values.</h2>
-<p>Residuals (the vertical distance from a point to the regression line) versus the fitted values (the y-value on the line corresponding to each x-value).</p>
-<p>The blue line should be <strong>relatively flat and lie close to the gray dashed line.</strong></p>
-</section>
-<section id="bottom-left-shows-the-square-root-of-standardized-residuals-vs.-fitted-values." class="slide level2">
-<h2>Bottom left shows the square root of standardized residuals vs. fitted values.</h2>
-<p>The x-axis is the same here as on the one above. This graph helps us see <strong>homoscedasticity</strong>, that the variance in the residuals doesn’t change as a function of x.</p>
-<p>We want the <strong>blue line to be mostly flat</strong>. We want to avoid heteroscedasticity!</p>
-</section>
-<section id="lower-right-shows-standardized-residuals-against-leverage." class="slide level2">
-<h2>Lower right shows standardized residuals against leverage.</h2>
-<p>Leverage is a measure of how much each data point influences the regression. On this plot, you want to see that the <strong>blue line stays close to the horizontal gray dashed line and that no points have a large Cook’s distance (i.e, &gt;0.5).</strong></p>
-<p>In this case, it’s showing factor levels because we used a categorical variable.</p>
-</section>
-<section id="lets-try-this-again-with-your-seattle-housing-models" class="slide level2">
+<section id="lets-try-this-again-with-your-seattle-housing-models"
+class="slide level2">
 <h2>Let’s try this again with your Seattle housing models!</h2>
 </section></section>
     </div>
@@ -244,7 +292,7 @@
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: true,
+        slideNumber: false,
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
