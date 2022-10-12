@@ -20,7 +20,7 @@ Date|Topics & Slides|In-class Datasets|Assignments
 20 & 22 Sept.|[Correlation](/CIS241/slides/correlation)|[Sports](/CIS241/workshops/2022/09/21/sports-2.html)
 27 & 29 Sept.|[Simple Linear Regression](/CIS241/slides/regression)|[Business](/CIS241/workshops/2022/09/28/business-1.html)|**Take-Home Quiz I**
 4 & 6 Oct.|[Multivariate Regression](/CIS241/slides/multiple)|[Business](/CIS241/workshops/2022/10/05/business-2.html)
-11 & 13 Oct.|[Logistic Regression](/CIS241/slides/logit)|Ecology|**Tutorial Assignment Due 13 Oct.**
+11 & 13 Oct.|[Logistic Regression](/CIS241/slides/logit)|[Ecology](/CIS241/workshops/2022/10/12/ecology-1.html)|**Tutorial Assignment Due 13 Oct.**
 18 Oct.|NO CLASS: Fall Break
 20 Oct.|Naive Bayes Classifier|Ecology|**Take-Home Quiz II**
 25 & 27 Oct.|K-Nearest Neighbors|Health|
