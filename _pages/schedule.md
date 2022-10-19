@@ -22,7 +22,7 @@ Date|Topics & Slides|In-class Datasets|Assignments
 4 & 6 Oct.|[Multivariate Regression](/CIS241/slides/multiple)|[Business](/CIS241/workshops/2022/10/05/business-2.html)
 11 & 13 Oct.|[Logistic Regression](/CIS241/slides/logit)|[Ecology](/CIS241/workshops/2022/10/12/ecology-1.html)|**Tutorial Assignment Due 13 Oct.**
 18 Oct.|NO CLASS: Fall Break
-20 Oct.|Naive Bayes Classifier|Ecology|**Take-Home Quiz II**
+20 Oct.|[Naive Bayes Classifier](/CIS241/slides/naivebayes)|Ecology|**Take-Home Quiz II**
 25 & 27 Oct.|K-Nearest Neighbors|Health|
 1 & 3 Nov.|Decision Trees and the Random Forest|Health|**Project Proposal Due 3 Nov.**
 8 & 10 Nov.|Clustering and Unsupervised Approaches|Literature|
