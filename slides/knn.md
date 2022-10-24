@@ -51,11 +51,10 @@ from sklearn.neighbors import KNeighborsRegressor, KNeighborsClassifier
 
 You will also need plenty of classes and functions that we've used previously!
 
-## Standardizing predictors with z-scores
+## Standardizing with z-scores
 
 ```python
 # Using the penguins dataset
-# Decide on your predictors and targets
 predictors = ["bill_length_mm", "bill_depth_mm", "flipper_length_mm", "sex"]
 target = "body_mass_g" # A numerical target for now
 
@@ -74,7 +73,6 @@ X_train, X_test, y_train, y_test = train_test_split(
 # Standardizing using the training data
 scaler = StandardScaler()
 scaler.fit(X_train)
-
 X_train_std = scaler.transform(X_train)
 ```
 
