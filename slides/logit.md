@@ -95,7 +95,7 @@ logit_model.predict_proba(X_test)
 
 ```python
 # Or we can make it look nicer
-categories = gentoo_chinstrap['species'].unique()
+categories = logit_model.classes_
 pred = pd.DataFrame(logit_model.predict_proba(X_test), 
                     columns=categories)
 pred

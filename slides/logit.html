@@ -233,7 +233,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a hr
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>logit_model.predict_proba(X_test)</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Or we can make it look nicer</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> gentoo_chinstrap[<span class="st">&#39;species&#39;</span>].unique()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> logit_model.classes_</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> pd.DataFrame(logit_model.predict_proba(X_test), </span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                    columns<span class="op">=</span>categories)</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>pred</span></code></pre></div>

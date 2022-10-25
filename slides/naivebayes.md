@@ -115,7 +115,9 @@ plt.plot([0, 1], [0, 1], color = 'g')
 
 ## Find the AUC Score
 
+```python
 roc_auc_score(y_test,probabilities[1])
+```
 
 ## Thanks, Thomas Bayes!
 
