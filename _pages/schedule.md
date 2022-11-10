@@ -25,7 +25,7 @@ Date|Topics & Slides|In-class Datasets|Assignments
 20 Oct.|[Naive Bayes Classifier](/CIS241/slides/naivebayes)|[Ecology](/CIS241/workshops/2022/10/12/ecology-2.html)|
 25 & 27 Oct.|[K-Nearest Neighbors](/CIS241/slides/knn)|[Health](/CIS241/workshops/2022/10/26/health-1.html)|
 1 & 3 Nov.|[Decision Trees and the Random Forest](/CIS241/slides/randomforest)|[Health](/CIS241/workshops/2022/11/02/health-2.html)|**Project Proposal Due 3 Nov.**
-8 & 10 Nov.|[Clustering and Unsupervised Approaches](/CIS241/slides/clustering)|Literature|**Take-Home Quiz II**
+8 & 10 Nov.|[Clustering and Unsupervised Approaches](/CIS241/slides/clustering)|[Literature](/CIS241/workshops/2022/11/09/lit-1.html)|**Take-Home Quiz II**
 15 & 17 Nov.|Neural Networks|Literature|
 22 Nov.|*Project Meetings (no formal class)*||**Progress Report Due 22 Nov.**
 24 Nov.|NO CLASS: Thanksgiving Break
