@@ -30,4 +30,4 @@ Date|Topics & Slides|In-class Datasets|Assignments
 22 Nov.|*Project Meetings (no formal class)*||**[Progress Report](https://jrladd.com/CIS241/assignments/2022/11/10/progress-report.html) Due 22 Nov. at 9am**
 24 Nov.|NO CLASS: Thanksgiving Break
 29 Nov. & 1 Dec.|Work Day & Final Presentations|
-6 Dec.|Final Presentations & Wrap-Up||**Final Project Due 6 Dec.**
+6 Dec.|Final Presentations & Wrap-Up||**[Final Project](https://jrladd.com/CIS241/assignments/2022/11/10/final-report.html) Due 13 Dec.**
