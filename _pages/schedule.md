@@ -27,7 +27,7 @@ Date|Topics & Slides|In-class Datasets|Assignments
 1 & 3 Nov.|[Decision Trees and the Random Forest](/CIS241/slides/randomforest)|[Health](/CIS241/workshops/2022/11/02/health-2.html)|**Project Proposal Due 3 Nov.**
 8 & 10 Nov.|[Clustering and Unsupervised Approaches](/CIS241/slides/clustering)|[Literature](/CIS241/workshops/2022/11/09/lit-1.html)|**Take-Home Quiz II**
 15 & 17 Nov.|Neural Networks|Literature|
-22 Nov.|*Project Meetings (no formal class)*||**Progress Report Due 22 Nov.**
+22 Nov.|*Project Meetings (no formal class)*||**[Progress Report](https://jrladd.com/CIS241/assignments/2022/11/10/progress-report.html) Due 22 Nov. at 9am**
 24 Nov.|NO CLASS: Thanksgiving Break
 29 Nov. & 1 Dec.|Work Day & Final Presentations|
 6 Dec.|Final Presentations & Wrap-Up||**Final Project Due 6 Dec.**
