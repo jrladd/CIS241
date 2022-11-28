@@ -35,7 +35,7 @@ You will be assessed on the content of this video and how well it addresses the 
 
 ## Responding to Videos
 
-In addition to making a video presentation, you will watch and respond to the videos made by your peers. Before class on Thursday 1 Dec. and Tuesday 6 Dec., you will watch the videos on the schedule for that day (see Sakai for the presentation schedule). After watching a video, you will write down the following for each one.
+In addition to making a video presentation, you will watch and respond to the videos made by your peers. Before class on Thursday 1 Dec. and Tuesday 6 Dec., you will watch the videos on the schedule for that day (see Sakai for the [presentation schedule](https://sakai.washjeff.edu/access/content/group/25083-CIS-241-01-2022FAL/PresentationSchedule.txt)). After watching a video, you will write down the following for each one.
 
 1. One substantive similarity between the presenter's project and your own.
 2. One question you have about the project.
