@@ -11,7 +11,7 @@ On this page you'll find prompts for the different assignments in our course, as
 
 Assignment|Percentage
 ---|--
-In-Class Workshops|20%
+Weekly Workshops|20%
 Documentation Assignment|10%
 Tutorial Assignment|10%
 Quizzes|20%
