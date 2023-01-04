@@ -3,7 +3,7 @@ title:  "Final Project Proposal"
 date:   2022-10-26 17:00:00 -0400
 show_date: false
 ---
-**Complete by: Thursday 3 Nov. by 11:59pm**
+**Complete by: Thursday 13 Apr. by 9am**
 
 ## Description
 
@@ -45,18 +45,7 @@ We can ask questions that are **closed** (yes or no answer; are the two things _
 
 ### Where can I find datasets?
 
-* Google Dataset Toolbox: [https://toolbox.google.com/datasetsearch](https://toolbox.google.com/datasetsearch) 
-* Data Is Plural: [https://www.data-is-plural.com/archive/](https://docs.google.com/spreadsheets/d/1wZhPLMCHKJvwOkP4juclhjFgqIY8fQFMemwKL2c64vk/edit#gid=0) 
-* US Government open data: [https://www.data.gov/](https://www.data.gov/) 
-* Health data: [https://healthData.gov/](https://healthData.gov/) 
-* Lots of data: [https://data.world/](https://data.world/) 
-* Kaggle: [https://www.kaggle.com/datasets](https://www.kaggle.com/datasets) 
-* United States Politics: [https://voteview.com/data](https://voteview.com/data)
-* Substance Abuse and Mental Health Administration: [https://www.samhsa.gov/data/](https://www.samhsa.gov/data/) 
-* Ecological data: [https://ecologicaldata.org/find-data](https://ecologicaldata.org/find-data) 
-* Sports data: [https://community.amstat.org/sis/sportsdataresources](https://community.amstat.org/sis/sportsdataresources) 
-* US Dept. of Education - [https://collegescorecard.ed.gov/data/](https://collegescorecard.ed.gov/data/)
-* US Dept. of Energy - [https://www.osti.gov/dataexplorer](https://www.osti.gov/dataexplorer)
+The Finding Data page of the [CIS LibGuide](https://libguides.washjeff.edu/cis/data) has an extensive list of data resources, including general sites as well as repositories broken down by topic.
 
 ### How do I choose data and organize my project?
 

@@ -3,9 +3,9 @@ title:  "Movie Dialogue 2"
 date:   2022-09-07 2:00:00 -0400
 show_date: false
 ---
-**Complete by: Sunday 11 Sept. at 11:59pm**
+**Complete by: Tuesday 14 Feb. at 9am**
 
-This is our second weekly in-class "workshop" assignment. Typically, you'll download a Jupyter Notebook file and a dataset, and you'll work on the assignment in class on Thursday. Sometimes you'll be able to finish the assignment by the end of class, and other times they will take longer. You'll turn in the assignment by midnight on the following Sunday: go to the "Drop Box" section of Sakai and submit the file to my Sakai folder.
+This is our second weekly in-class "workshop" assignment. Typically, you'll download a Jupyter Notebook file and a dataset, and you'll work on the assignment in class on Thursday. Sometimes you'll be able to finish the assignment by the end of class, and other times they will take longer. You'll submit the finished notebook to the Sakai assignment by 9am the following Tuesday.
 
 This week we're continuing our work on a data set of dialogue in movies.
 

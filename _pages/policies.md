@@ -23,7 +23,7 @@ Each class must create its own learning community as the result of shared effort
 
 ### Attendance & Participation
 
-Good participation should be understood as consistent and thoughtful contribution to the classroom community, an engagement with course materials and conversations, and a general responsiveness to (and respect for) one’s fellow students and instructor. This isn’t an accounting of how often you speak in class. Instead, it’s about what you offer to the intellectual life of the class, and everyone contributes to this on-going work in different ways. You'll get participation credit simply for attending class and doing the work with care.
+Good participation should be understood as consistent and thoughtful contribution to the classroom community, an engagement with course materials and conversations, and a general responsiveness to (and respect for) one’s fellow students and instructor. This isn’t an accounting of how often you speak in class. Instead, it’s about what you offer to the intellectual life of the class, and everyone contributes to this on-going work in different ways.
 
 **You can miss 3 class sessions without penalty, and you don't need to contact me if you have missed or will miss a class**. However, if you miss more than 3 classes, you will be marked down one grade "step" for each additional class missed. (For example, if you miss four classes and your final grade is 90% (A-), your fourth absence will cause you to have a B+ instead.) Excessive absences may also affect your participation grade.
 
@@ -87,7 +87,7 @@ Washington & Jefferson College is committed to providing academic accommodations
 
 ### W&J Library
 
-I highly recommend that you make use of the W&J Library resources while navigating your work this semester. That includes not only primary literature, access to databases, and book references, but also the friendly members of the library staff. They are excellent resources for finding information efficiently, or learning what you can access through W&J subscriptions that might not be freely available on the internet. The W&J Library homepage is <https://libguides.washjeff.edu/home>.
+I highly recommend that you make use of the W&J Library resources while navigating your work this semester. That includes not only primary literature, access to databases, and book references, but also the friendly members of the library staff. They are excellent resources for finding information efficiently, or learning what you can access through W&J subscriptions that might not be freely available on the internet. The W&J Library page for CIS is <https://libguides.washjeff.edu/cis>.
 
 ### Writing Center
 
@@ -107,8 +107,8 @@ This semester we will address topics which may be emotionally difficult. I ackno
 
 Letter Grade|Point Total
 ---|---
-A|93-100
-A-|90-92
+A|95-100
+A-|90-94
 B+|87-89
 B|83-86
 B-|80-82

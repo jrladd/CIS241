@@ -3,7 +3,7 @@ title:  "Presentation"
 date:   2022-11-17 11:00:00 -0500
 show_date: false
 ---
-**Complete by: Tuesday 29 Nov. by 11:59pm**
+**Complete by: Tuesday 9 May by 9am**
 
 *You will prepare a 3-5 minute “elevator pitch” video presentation about your project for your classmates. The goal of this video is not to summarize the entire content of your project, but rather to explain to your audience your chosen data set, the questions you have, and the approaches you plan to take it to it, in a way that will generate interest and allow others to offer suggestions.*
 
@@ -23,7 +23,7 @@ Your content must reflect the expected knowledge of your audience. This means ch
 
 You will be assessed on the content of this video and how well it addresses the Content requirements laid out above in an Audience aware manner. You will not be assessed on the production quality, so long as the audio and video are clear. Your video may simply be a recording of you talking taken through your webcam or phone camera. You may also provide an audio track over visuals if you prefer. However, your goal is to be compelling to a general student audience in an “elevator pitch” style, so ***do not narrate over a traditional PowerPoint with titles, bullet points, etc.***
 
-*Once videos are posted by midnight on Nov. 29, you'll be expected to watch your classmate's videos and prepare to discuss them on Thursday Dec. 1. More information on this step coming later.*
+*Once videos are posted, you'll be expected to watch your classmate's videos and prepare to discuss them during the final exam session. More information on this step coming later.*
 
 ## How to Submit a Video
 
@@ -35,7 +35,7 @@ You will be assessed on the content of this video and how well it addresses the 
 
 ## Responding to Videos
 
-In addition to making a video presentation, you will watch and respond to the videos made by your peers. Before class on Thursday 1 Dec. and Tuesday 6 Dec., you will watch the videos on the schedule for that day (see Sakai for the [presentation schedule](https://sakai.washjeff.edu/access/content/group/25083-CIS-241-01-2022FAL/PresentationSchedule.txt)). After watching a video, you will write down the following for each one.
+In addition to making a video presentation, you will watch and respond to the videos made by your peers. Before the final exam session, you will watch the videos on the schedule for that day (see Sakai for the [presentation schedule]()). After watching a video, you will write down the following for each one.
 
 1. One substantive similarity between the presenter's project and your own.
 2. One question you have about the project.

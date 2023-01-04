@@ -17,7 +17,7 @@ header:
       url: "/policies/"
     - label: "Sakai"
       url: "https://sakai.washjeff.edu"
-excerpt: "CIS 241. Washington & Jefferson College. Fall 2022."
+excerpt: "CIS 241. Washington & Jefferson College. Spring 2023."
 ---
 
 **Meeting Time: TR 9-10:45am**

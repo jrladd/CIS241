@@ -3,7 +3,7 @@ title:  "Documentation Assignment"
 date:   2022-09-05 12:00:00 -0400
 show_date: false
 ---
-**Complete by: Thursday 15 Sept. by 11:59pm**
+**Complete by: Thursday 9 Feb. by 9am**
 
 The goal of this assignment is to get you more familiar with finding, understanding, and documenting a data set. You'll find a dataset online and create documentation and metadata for it, using the guidelines below.
 
@@ -31,18 +31,7 @@ Later in the semester, you'll choose a dataset to work on for your final project
 
 ### Where can I find datasets?
 
-* Google Dataset Toolbox: [https://toolbox.google.com/datasetsearch](https://toolbox.google.com/datasetsearch) 
-* Data Is Plural: [https://www.data-is-plural.com/archive/](https://docs.google.com/spreadsheets/d/1wZhPLMCHKJvwOkP4juclhjFgqIY8fQFMemwKL2c64vk/edit#gid=0) 
-* US Government open data: [https://www.data.gov/](https://www.data.gov/) 
-* Health data: [https://healthData.gov/](https://healthData.gov/) 
-* Lots of data: [https://data.world/](https://data.world/) 
-* Kaggle: [https://www.kaggle.com/datasets](https://www.kaggle.com/datasets) 
-* United States Politics: [https://voteview.com/data](https://voteview.com/data)
-* Substance Abuse and Mental Health Administration: [https://www.samhsa.gov/data/](https://www.samhsa.gov/data/) 
-* Ecological data: [https://ecologicaldata.org/find-data](https://ecologicaldata.org/find-data) 
-* Sports data: [https://community.amstat.org/sis/sportsdataresources](https://community.amstat.org/sis/sportsdataresources) 
-* US Dept. of Education - [https://collegescorecard.ed.gov/data/](https://collegescorecard.ed.gov/data/)
-* US Dept. of Energy - [https://www.osti.gov/dataexplorer](https://www.osti.gov/dataexplorer)
+The Data page of the [CIS LibGuide](https://libguides.washjeff.edu/cis/data) has an extensive list of data resources, including general sites as well as repositories broken down by topic.
 
 ## Writing Your Documentation
 

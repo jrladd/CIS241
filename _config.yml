@@ -52,11 +52,12 @@ defaults:
       type: posts
     values:
       layout: single
-      show_date: true
-      author_profile: true
-      read_time: true
-      share: true
+      show_date: false
+      author_profile: false
+      read_time: false
+      share: false
       related: true
+      permalink: /:categories/:title/
   # _pages
   - scope:
       path: ""

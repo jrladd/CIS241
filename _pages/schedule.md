@@ -11,23 +11,22 @@ sidebar:
 
 ## Class Schedule
 
-Date|Topics & Slides|In-class Datasets|Assignments
+Date|Topics & Slides|Workshops|Assignments
 --|---|---|---
-25 Aug.|Introduction to the course and to Python, [Jupyter Lab](/CIS241/jupyter)|
-30 Aug. & 1 Sept.|[What Is Data?](/CIS241/slides/whatisdata), [Python](/CIS241/slides/pythonbasics) and [Data Wrangling](/CIS241/slides/wrangling)|[Movies](/CIS241/workshops/2022/08/31/movie-dialogue-1.html)|
-6 & 8 Sept.|[Exploratory Data Analysis](/CIS241/slides/eda)|[Movies](/CIS241/workshops/2022/09/07/movie-dialogue-2.html)|
-13 & 15 Sept.|[Hypothesis Testing](/CIS241/slides/hypothesis)|[Sports](/CIS241/workshops/2022/09/14/sports-1.html)|**Documentation Assignment Due 15 Sept.**
-20 & 22 Sept.|[Correlation](/CIS241/slides/correlation)|[Sports](/CIS241/workshops/2022/09/21/sports-2.html)
-27 & 29 Sept.|[Simple Linear Regression](/CIS241/slides/regression)|[Business](/CIS241/workshops/2022/09/28/business-1.html)|**Take-Home Quiz I**
-4 & 6 Oct.|[Multivariate Regression](/CIS241/slides/multiple)|[Business](/CIS241/workshops/2022/10/05/business-2.html)
-11 & 13 Oct.|[Logistic Regression](/CIS241/slides/logit)|[Ecology](/CIS241/workshops/2022/10/12/ecology-1.html)|**Tutorial Assignment Due 13 Oct.**
-18 Oct.|NO CLASS: Fall Break
-20 Oct.|[Naive Bayes Classifier](/CIS241/slides/naivebayes)|[Ecology](/CIS241/workshops/2022/10/12/ecology-2.html)|
-25 & 27 Oct.|[K-Nearest Neighbors](/CIS241/slides/knn)|[Health](/CIS241/workshops/2022/10/26/health-1.html)|
-1 & 3 Nov.|[Decision Trees and the Random Forest](/CIS241/slides/randomforest)|[Health](/CIS241/workshops/2022/11/02/health-2.html)|**Project Proposal Due 3 Nov.**
-8 & 10 Nov.|[Clustering and Unsupervised Approaches](/CIS241/slides/clustering)|[Literature](/CIS241/workshops/2022/11/09/lit-1.html)|**Take-Home Quiz II**
-15 & 17 Nov.|[Neural Networks](/CIS241/slides/neuralnetworks)|[Literature](/CIS241/workshops/2022/11/16/lit-2.html)|
-22 Nov.|*Project Meetings (no formal class)*||**[Progress Report](https://jrladd.com/CIS241/assignments/2022/11/10/progress-report.html) Due 22 Nov. at 9am**
-24 Nov.|NO CLASS: Thanksgiving Break
-29 Nov. & 1 Dec.|Work Day & Final Presentations|
-6 Dec.|Final Presentations & Wrap-Up||**[Final Project](https://jrladd.com/CIS241/assignments/2022/11/10/final-report.html) Due 13 Dec.**
+26 Jan.|Introduction to the course and to Python, [Jupyter Lab](/CIS241/jupyter)|
+31 Jan. & 2 Feb.|[What Is Data?](/CIS241/slides/whatisdata), [Python](/CIS241/slides/pythonbasics) and [Data Wrangling](/CIS241/slides/wrangling)|[Movies](/CIS241/workshops/movie-dialogue-1)|
+7 & 9 Feb.|[Exploratory Data Analysis](/CIS241/slides/eda)|[Movies](/CIS241/workshops/movie-dialogue-2)|**[Documentation Assignment](/CIS241/assignments/documentation) Due 9 Feb. at 9am**
+14 & 16 Feb.|[Hypothesis Testing](/CIS241/slides/hypothesis)|[Sports](/CIS241/workshops/sports-1)|
+21 & 24 Feb.|[Correlation](/CIS241/slides/correlation)|[Sports](/CIS241/workshops/sports-2)|**Take-Home Quiz I**
+28 Feb. & 2 Mar.|[Simple Linear Regression](/CIS241/slides/regression)|[Business](/CIS241/workshops/business-1)|
+7 & 9 Mar.|[Multivariate Regression](/CIS241/slides/multiple)|[Business](/CIS241/workshops/business-2)
+14 & 16 Mar.|[Logistic Regression](/CIS241/slides/logit)|[Ecology](/CIS241/workshops/ecology-1)|**[Tutorial Assignment](/CIS241/assignments/tutorial/) Due 16 Mar. at 9am**
+21 & 23 Mar.|NO CLASS: Spring Break
+28 Mar.|[Naive Bayes Classifier](/CIS241/slides/naivebayes)|[Ecology](/CIS241/workshops/ecology-2)|
+4 & 6 Apr.|[K-Nearest Neighbors](/CIS241/slides/knn)|[Health](/CIS241/workshops/health-1)|**Take-Home Quiz II**
+11 & 13 Apr.|[Decision Trees and the Random Forest](/CIS241/slides/randomforest)|[Health](/CIS241/workshops/health-2)|**[Project Proposal](/CIS241/assignments/project-proposal/) Due 13 Apr. at 9am**
+18 & 20 Apr.|[Clustering and Unsupervised Approaches](/CIS241/slides/clustering)|[Literature](/CIS241/workshops/lit-1)|
+25 & 27 Apr.|[Neural Networks](/CIS241/slides/neuralnetworks)|[Literature](/CIS241/workshops/lit-2)|**[Progress Report](/CIS241/assignments/progress-report) Due 27 Apr. at 9am**
+2 & 4 May|Project Meetings and Work Day||
+9 May|Work Day & Wrap-Up||**[Video Presentations](/CIS241/assignments/presentation/) Due 9 May at 9am**
+15 May 2-5pm|Panel Presentations||**[Final Project](/CIS241/assignments/final-report) Due 15 May at 2pm**
