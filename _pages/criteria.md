@@ -12,3 +12,5 @@ Good data analysis requires the combination of clear writing, well-functioning c
 - **Code**: Code sections are complete and all code runs without errors. Code is well-commented and easy to read.
 - **Statistics & Analysis**: All analysis is accurate and given in context, both in terms of the data and of the relevant statistical concepts.
 - **Visualization**: Visualizations are clear, accurate, and well-labeled. Good visualizations should be readable on their own but also well-explained in writing.
+
+For more on what I'm looking for in the writing, visualization, and analysis portions of the reports, you can refer to the [How to Explain in CIS241](/CIS241/resources/how-to-explain) guide.
