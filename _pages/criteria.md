@@ -3,7 +3,7 @@ title: Criteria for Good Reports
 permalink: /criteria/
 ---
 
-In this course, you'll write data analysis reports in Jupyter notebooks, combining programming in Python with visualizations and written explanations. You'll turn in a report for each week's Workshop assignment, and your exams and final project will also take the form of a Jupyter notebook report.
+In this course, you'll write data analysis reports in Jupyter notebooks, combining programming in Python with visualizations and written explanations. You'll turn in a report for each week's Workshop assignment, and your quizzes and final project will also take the form of Jupyter notebook reports.
 
 Good data analysis requires the combination of clear writing, well-functioning code, and solid quantitative reasoning. Since these reports are a new genre you are learning in this class, you can follow this list of criteria for crafting good reports. I'll use the same criteria when I assess your work.
 
