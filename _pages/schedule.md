@@ -17,7 +17,7 @@ Date|Topics & Slides|Workshops|Assignments
 31 Jan. & 2 Feb.|[What Is Data?](/CIS241/slides/whatisdata), [Python](/CIS241/slides/pythonbasics) and [Data Wrangling](/CIS241/slides/wrangling)|[Movies](/CIS241/workshops/movie-dialogue-1)|
 7 & 9 Feb.|[Exploratory Data Analysis](/CIS241/slides/eda)|[Movies](/CIS241/workshops/movie-dialogue-2)|**[Documentation Assignment](/CIS241/assignments/documentation) Due 9 Feb. at 9am**
 14 & 16 Feb.|[Hypothesis Testing](/CIS241/slides/hypothesis)|[Sports](/CIS241/workshops/sports-1)|
-21 & 24 Feb.|[Correlation](/CIS241/slides/correlation)|[Sports](/CIS241/workshops/sports-2)|**Take-Home Quiz I**
+21 & 23 Feb.|[Correlation](/CIS241/slides/correlation)|[Sports](/CIS241/workshops/sports-2)|**Take-Home Quiz I**
 28 Feb. & 2 Mar.|[Simple Linear Regression](/CIS241/slides/regression)|[Business](/CIS241/workshops/business-1)|
 7 & 9 Mar.|[Multivariate Regression](/CIS241/slides/multiple)|[Business](/CIS241/workshops/business-2)
 14 & 16 Mar.|[Logistic Regression](/CIS241/slides/logit)|[Ecology](/CIS241/workshops/ecology-1)|**[Tutorial Assignment](/CIS241/assignments/tutorial/) Due 16 Mar. at 9am**
