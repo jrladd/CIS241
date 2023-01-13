@@ -27,6 +27,6 @@ Date|Topics & Slides|Workshops|Assignments
 11 & 13 Apr.|[Decision Trees and the Random Forest](/CIS241/slides/randomforest)|[Health](/CIS241/workshops/health-2)|**[Project Proposal](/CIS241/assignments/project-proposal/) Due 13 Apr. at 9am**
 18 & 20 Apr.|[Clustering and Unsupervised Approaches](/CIS241/slides/clustering)|[Literature](/CIS241/workshops/lit-1)|
 25 & 27 Apr.|[Neural Networks](/CIS241/slides/neuralnetworks)|[Literature](/CIS241/workshops/lit-2)|**[Progress Report](/CIS241/assignments/progress-report) Due 27 Apr. at 9am**
-2 & 4 May|Project Meetings and Work Day||
-9 May|Work Day & Wrap-Up||**[Video Presentations](/CIS241/assignments/presentation/) Due 9 May at 9am**
-15 May 2-5pm|Panel Presentations||**[Final Project](/CIS241/assignments/final-report) Due 15 May at 2pm**
+2 & 4 May|Project Meetings and Panel Presentations||**[Video Presentations](/CIS241/assignments/presentation/) Due 4 May at 9am**
+9 May|Panel Presentations & Wrap-Up||
+15 May 2-5pm|**NO MEETING**||**[Final Project](/CIS241/assignments/final-report) Due 15 May at 5pm**
