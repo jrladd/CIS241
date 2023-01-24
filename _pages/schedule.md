@@ -14,19 +14,19 @@ sidebar:
 Date|Topics & Slides|Workshops|Assignments
 --|---|---|---
 26 Jan.|Introduction to the course and to Python|[JupyterHub](/CIS241/jupyterhub)|
-31 Jan. & 2 Feb.|[What Is Data?](/CIS241/slides/whatisdata), [Python](/CIS241/slides/pythonbasics) and [Data Wrangling](/CIS241/slides/wrangling)|[Movies](/CIS241/workshops/movie-dialogue-1)|
-7 & 9 Feb.|[Exploratory Data Analysis](/CIS241/slides/eda)|[Movies](/CIS241/workshops/movie-dialogue-2)|**[Documentation Assignment](/CIS241/assignments/documentation) Due 9 Feb. at 9am**
-14 & 16 Feb.|[Hypothesis Testing](/CIS241/slides/hypothesis)|[Sports](/CIS241/workshops/sports-1)|
-21 & 23 Feb.|[Correlation](/CIS241/slides/correlation)|[Sports](/CIS241/workshops/sports-2)|**Take-Home Quiz I**
-28 Feb. & 2 Mar.|[Simple Linear Regression](/CIS241/slides/regression)|[Business](/CIS241/workshops/business-1)|
-7 & 9 Mar.|[Multivariate Regression](/CIS241/slides/multiple)|[Business](/CIS241/workshops/business-2)
-14 & 16 Mar.|[Logistic Regression](/CIS241/slides/logit)|[Ecology](/CIS241/workshops/ecology-1)|**[Tutorial Assignment](/CIS241/assignments/tutorial/) Due 16 Mar. at 9am**
+31 Jan. & 2 Feb.|[What Is Data?](/CIS241/slides/whatisdata), [Python](/CIS241/slides/pythonbasics) and [Data Wrangling](/CIS241/slides/wrangling)|[Movies](/CIS241/resources/01_movies1.ipynb)|
+7 & 9 Feb.|[Exploratory Data Analysis](/CIS241/slides/eda)|[Movies](/CIS241/resources/01_movies2.ipynb)|**[Documentation Assignment](/CIS241/assignments/documentation) Due 9 Feb. at 9am**
+14 & 16 Feb.|[Hypothesis Testing](/CIS241/slides/hypothesis)|[Sports](/CIS241/resources/02_tennis1.ipynb)|
+21 & 23 Feb.|[Correlation](/CIS241/slides/correlation)|[Sports](/CIS241/resources/02_tennis2.ipynb)|**Take-Home Quiz I**
+28 Feb. & 2 Mar.|[Simple Linear Regression](/CIS241/slides/regression)|[Business](/CIS241/resources/03_airbnb1.ipynb)|
+7 & 9 Mar.|[Multivariate Regression](/CIS241/slides/multiple)|[Business](/CIS241/resources/03_airbnb2.ipynb)
+14 & 16 Mar.|[Logistic Regression](/CIS241/slides/logit)|[Ecology](/CIS241/resources/04_trees1.ipynb)|**[Tutorial Assignment](/CIS241/assignments/tutorial/) Due 16 Mar. at 9am**
 21 & 23 Mar.|NO CLASS: Spring Break
-28 Mar.|[Naive Bayes Classifier](/CIS241/slides/naivebayes)|[Ecology](/CIS241/workshops/ecology-2)|
-4 & 6 Apr.|[K-Nearest Neighbors](/CIS241/slides/knn)|[Health](/CIS241/workshops/health-1)|**Take-Home Quiz II**
-11 & 13 Apr.|[Decision Trees and the Random Forest](/CIS241/slides/randomforest)|[Health](/CIS241/workshops/health-2)|**[Project Proposal](/CIS241/assignments/project-proposal/) Due 13 Apr. at 9am**
-18 & 20 Apr.|[Clustering and Unsupervised Approaches](/CIS241/slides/clustering)|[Literature](/CIS241/workshops/lit-1)|
-25 & 27 Apr.|[Neural Networks](/CIS241/slides/neuralnetworks)|[Literature](/CIS241/workshops/lit-2)|**[Progress Report](/CIS241/assignments/progress-report) Due 27 Apr. at 9am**
+28 Mar.|[Naive Bayes Classifier](/CIS241/slides/naivebayes)|[Ecology](/CIS241/resources/04_trees1.ipynb)|
+4 & 6 Apr.|[K-Nearest Neighbors](/CIS241/slides/knn)|[Health](/CIS241/resources/05_health1.ipynb)|**Take-Home Quiz II**
+11 & 13 Apr.|[Decision Trees and the Random Forest](/CIS241/slides/randomforest)|[Health](/CIS241/resources/05_health2.ipynb)|**[Project Proposal](/CIS241/assignments/project-proposal/) Due 13 Apr. at 9am**
+18 & 20 Apr.|[Clustering and Unsupervised Approaches](/CIS241/slides/clustering)|[Literature](/CIS241/resources/06_lit1.ipynb)|
+25 & 27 Apr.|[Neural Networks](/CIS241/slides/neuralnetworks)|[Literature](/CIS241/resources/06_lit2.ipynb)|**[Progress Report](/CIS241/assignments/progress-report) Due 27 Apr. at 9am**
 2 & 4 May|Project Meetings and Panel Presentations||**[Video Presentations](/CIS241/assignments/presentation/) Due 4 May at 9am**
 9 May|Panel Presentations & Wrap-Up||
 15 May 2-5pm|**NO MEETING**||**[Final Project](/CIS241/assignments/final-report) Due 15 May at 5pm**
