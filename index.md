@@ -11,8 +11,6 @@ header:
       url: "/schedule/"
     - label: "Assignments"
       url: "/assignments/"
-    - label: "Workshops"
-      url: "/workshops/"
     - label: "Course Policies"
       url: "/policies/"
     - label: "Sakai"
