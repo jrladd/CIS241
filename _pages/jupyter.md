@@ -5,7 +5,7 @@ permalink: /jupyter/
 
 This page will help you make sure you are set up to use Python and Jupyter Lab on your own computer as well as in the classroom. You will use the Jupyter Notebook file `getting_started.ipynb` linked below and also available in the Python folder in the Resources tab to test that you are set up properly.
 
-[getting_started.ipynb](http://104.131.179.70/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fjrladd%2Fdata-workshops&branch=main&urlpath=lab%2Ftree%2Fdata-workshops%2F00_getting_started.ipynb)
+<https://jrladd.com/CIS241/resources/00_getting_started.ipynb>
 
 ## Getting Set Up On Your Own Computer
 

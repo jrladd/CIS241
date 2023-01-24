@@ -13,7 +13,7 @@ sidebar:
 
 Date|Topics & Slides|Workshops|Assignments
 --|---|---|---
-26 Jan.|Introduction to the course and to Python, [Jupyter Lab](/CIS241/jupyter)|
+26 Jan.|Introduction to the course and to Python|[JupyterHub](/CIS241/jupyterhub)|
 31 Jan. & 2 Feb.|[What Is Data?](/CIS241/slides/whatisdata), [Python](/CIS241/slides/pythonbasics) and [Data Wrangling](/CIS241/slides/wrangling)|[Movies](/CIS241/workshops/movie-dialogue-1)|
 7 & 9 Feb.|[Exploratory Data Analysis](/CIS241/slides/eda)|[Movies](/CIS241/workshops/movie-dialogue-2)|**[Documentation Assignment](/CIS241/assignments/documentation) Due 9 Feb. at 9am**
 14 & 16 Feb.|[Hypothesis Testing](/CIS241/slides/hypothesis)|[Sports](/CIS241/workshops/sports-1)|
