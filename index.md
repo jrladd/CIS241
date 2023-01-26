@@ -23,6 +23,9 @@ excerpt: "CIS 241. Washington & Jefferson College. Spring 2023."
 Dr. Ladd's Student Drop-In Hours: M 11:30am-1:30pm & W 1-3pm in TECH 201  
 or email for appointment, <jladd@washjeff.edu>
 
+PAL Tutoring Hours: 7-10pm Sunday through Thursday on the 2nd floor of the Tech Center  
+[Tutor bios and additional info](https://mywj.washjeff.edu/knowledgebase/cis-peer-tutoring/department/computing-and-information-studies)
+
 ## Course Description
 
 From social media to the James Webb telescope, from Shakespeare's plays to the U.S. Census, data is being collected all around us, all the time. How can we make sense of these near-constant streams of information?
