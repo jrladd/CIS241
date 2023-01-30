@@ -152,7 +152,7 @@ for item in mylist:
 # Let's use the range() function to make a list
 newlist = range(1,11) 
 for i in newlist:
-  if i-5 == 5:
+  if i-5 == 0:
     print("It's five!")
   elif i-5 == 5:
     print("It's ten!")
