@@ -15,6 +15,8 @@ header:
       url: "/policies/"
     - label: "Sakai"
       url: "https://sakai.washjeff.edu"
+    - label: "JupyterHub"
+      url: "http://104.131.179.70/"
 excerpt: "CIS 241. Washington & Jefferson College. Spring 2023."
 ---
 
