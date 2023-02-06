@@ -144,6 +144,51 @@ Be careful: normal distributions are assumed for many statistical analyses!
 
 We'll talk more about correlation in a couple weeks!
 
+# Resampling and Confidence Intervals
+
+## Resampling is simply drawing multiple random samples from observed data.
+
+I can grab a sample of 5 observations. Then I can "resample" 5 more. Then 5 more, and so on and so on.
+
+## First proposed in the 1960s, resampling procedures weren't practical until computing took off in the 1980s.
+
+## Resampling is an umbrella term. It can include:
+
+- The Bootstrap, used to assess the reliability of an estimated statistic
+- Permutation Tests, used as an alternative to parametric hypothesis tests
+
+## You can resample with or without *replacement*.
+
+Replacement means an item is returned to the sample before the next draw (i.e. you could wind up with the same observation multiple times).
+
+## Using bootstrap sampling, we can estimate a confidence interval for any summary statistic.
+
+- Remember: bootstrap sampling is sampling *with* replacement.
+- The 90% confidence interval tells us where 90% of the data is likely to fall, if the data were random.
+- Confidence intervals are used to gauge *uncertainty*. 
+
+## Confidence intervals with Pandas
+
+```python
+n_rows = dogs.shape[0] # First find the number of rows in the dataframe.
+
+# Then take a sample with replacement from your dataset, and
+# Calculate the mean each time. Do this 5000 times.
+bootstrap_samples = [dogs.sample(n=n_rows, replace=True).height.mean()
+                     for i in range(5000)]
+# Put the results into a pandas Series object
+bootstrap_samples = pd.Series(bootstrap_samples)
+
+# Calculate the 95th percentile and the 5th percentile.
+top_percentile = bootstrap_samples.quantile(.95)
+bottom_percentile = bootstrap_samples.quantile(.05)
+
+# Print the results using nice f-strings.
+print(f"""The mean dog height in our data is {dogs.height.mean():.3f},
+      with a 90% confidence interval
+      of {bottom_percentile:.3f} to {top_percentile:.3f}.""")
+```
+
 # Visualization
 
 ![xkcd.com/688](img/xkcd_self_description.png)
