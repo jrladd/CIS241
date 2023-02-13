@@ -164,26 +164,11 @@ Misreading or overemphasizing the p-value can lead us to error!
 
 ## "Parametric" hypothesis tests were designed to solve a problem before computers existed, but now there are other approaches.
 
-# Resampling
-
-## Resampling is simply drawing multiple random samples from observed data.
-
-I can grab a sample of 5 observations. Then I can "resample" 5 more. Then 5 more, and so on and so on.
-
-## First proposed in the 1960s, resampling procedures weren't practical until computing took off in the 1980s.
-
-## Resampling is an umbrella term. It can include:
-
-- The Bootstrap, used to assess the reliability of an estimated statistic
-- Permutation Tests, used as an alternative to parametric hypothesis tests
-
-## You can resample with or without *replacement*.
-
-Replacement means an item is returned to the sample before the next draw (i.e. you could wind up with the same observation multiple times).
-
 # Permutation Tests
 
 ## A permutation test solves the t-test problem!
+
+It solves that problem using *resampling* (without replacement).
 
 It doesn't matter whether the samples are normally distributed or whether their variance is equal. There are no assumptions in a permutation test.
 
@@ -230,8 +215,12 @@ sns.catplot(x="species",y="bill_depth_mm",kind="box",data=penguins)
 ## What's the difference in means?
 
 ```python
-mean_diff = (penguins[penguins.species == "Chinstrap"].bill_depth_mm.mean() 
-             - penguins[penguins.species == "Adelie"].bill_depth_mm.mean())
+# Get two groups
+chinstrap_bill_depth = penguins[penguins.species == "Chinstrap"].bill_depth_mm
+adelie_bill_depth = penguins[penguins.species == "Adelie"].bill_depth_mm
+
+# Calculate the difference in means
+mean_diff = chinstrap_bill_depth.mean() - adelie_bill_depth.mean()
 mean_diff
 ```
 
@@ -249,32 +238,16 @@ adding_func(4,2)
 
 First name the function and define input. Then do something and return a result!
 
-## Repeat functions with list comprehensions
-
-These work just like loops!
-
-```python
-repeated_adding = [adding_func(4,2) for i in range(100)]
-```
-
-## Create a random `sample`
-
-```python
-your_sample = your_dataframe.sample(n=number_of_rows)
-```
-
 ## Let's create a function for permutation!
 
 ```python
-# This function assumes that everything not in the first
-# category will be in the other.
-
-def mean_perm(df, var, cat, group1):
-    group1_len = len(df[df[cat] == group1])
-    group1_sample = df.sample(n=group1_len)
-    group2_index = set(df.index) - set(group1_sample.index)
-    group2_sample = df.loc[list(group2_index)]
-    return group1_sample[var].mean() - group2_sample[var].mean()
+def simulate_two_groups(data1, data2):
+    n = len(data1) #Get length of first group
+    data = pd.concat([data1, data2]) #Get all data
+    data = data.sample(frac=1) #Reshuffle all data
+    group1 = data[:n] #Get random first group
+    group2 = data[n:] #Get random second group
+    return group1.mean() - group2.mean() #Calculate mean difference
 ```
 
 You can reuse this code!
@@ -282,16 +255,10 @@ You can reuse this code!
 ## Now we can make 5000 permutations.
 
 ```python
-# First we need *only* Chinstrap and Adelie
-# You can do this on one line.
-chinstrap_adelie = (penguins[(penguins.species == "Chinstrap") | 
-                             (penguins.species == "Adelie")].dropna())
-
-# Then we can permute
-mean_perms = (pd.Series([mean_perm(chinstrap_adelie, 
-                                   "bill_depth_mm", 
-                                   "species", 
-                                   "Chinstrap") for i in range(10000)]))
+# This is similar to how we
+# calculated confidence intervals
+mean_perms = [simulate_two_groups(chinstrap, adelie) for i in range(5000)]
+mean_perms = pd.Series(mean_perms)
 ```
 
 ## Let's look at the results in a histogram

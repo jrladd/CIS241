@@ -25,6 +25,7 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -184,11 +185,11 @@ alternative hypothesis would be that A and B are <em>not</em> equal
 class="slide level2">
 <h2>The Alternative Hypothesis can be One- or Two-Tailed.</h2>
 <ul>
-<li class="fragment"><p>One-tailed: We only care about a non-equal
-result in one direction, i.e. if A &gt; B but <strong>not</strong> if A
-&lt; B.</p></li>
-<li class="fragment"><p>Two-tailed: We care about differences in both
-directions, i.e. A != B but could be larger or smaller.</p></li>
+<li><p>One-tailed: We only care about a non-equal result in one
+direction, i.e. if A &gt; B but <strong>not</strong> if A &lt;
+B.</p></li>
+<li><p>Two-tailed: We care about differences in both directions, i.e. A
+!= B but could be larger or smaller.</p></li>
 </ul>
 <p>Different research questions lead to different alternative
 hypotheses.</p>
@@ -203,13 +204,12 @@ class="title-slide slide level1">
 class="slide level2">
 <h2>What are the Null and Alternative Hypotheses?</h2>
 <ol type="1">
-<li class="fragment"><p>Is the median house price in Pittsburgh larger
-than the median price in Washington?</p></li>
-<li class="fragment"><p>Is the mean number of mountain lions per 100
-km^2 equal in North and South America?</p></li>
-<li class="fragment"><p>NHANES reports the average starting age of
-smoking is 19. Is this correct, or is the true mean lower than
-this?</p></li>
+<li><p>Is the median house price in Pittsburgh larger than the median
+price in Washington?</p></li>
+<li><p>Is the mean number of mountain lions per 100 km^2 equal in North
+and South America?</p></li>
+<li><p>NHANES reports the average starting age of smoking is 19. Is this
+correct, or is the true mean lower than this?</p></li>
 </ol>
 </section></section>
 <section>
@@ -312,36 +312,34 @@ differences.</p>
 <section id="all-other-things-being-equal" class="slide level2">
 <h2>All other things being equal…</h2>
 <ul>
-<li class="fragment">The observed difference increasing will decrease
-the p-value (more likely to find significance)</li>
-<li class="fragment">The sample size increasing will decrease the
-p-value (more likely to find significance)</li>
-<li class="fragment">The variability increasing will increase the
-p-value (less likely to find significance)</li>
+<li>The observed difference increasing will decrease the p-value (more
+likely to find significance)</li>
+<li>The sample size increasing will decrease the p-value (more likely to
+find significance)</li>
+<li>The variability increasing will increase the p-value (less likely to
+find significance)</li>
 </ul>
 </section>
 <section id="dont-only-consider-the-p-value" class="slide level2">
 <h2>Don’t <em>only</em> consider the p-value!</h2>
 <p>Consider results that are:</p>
 <ul>
-<li class="fragment"><strong>Statistically significant and practically
-significant (i.e. useful)</strong></li>
-<li class="fragment">Statistically significant and <em>not</em>
-practically significant (i.e. not useful)</li>
-<li class="fragment">Statistically insignificant and practically
-significant</li>
-<li class="fragment">Marginally significant and practically
-significant</li>
+<li><strong>Statistically significant and practically significant
+(i.e. useful)</strong></li>
+<li>Statistically significant and <em>not</em> practically significant
+(i.e. not useful)</li>
+<li>Statistically insignificant and practically significant</li>
+<li>Marginally significant and practically significant</li>
 </ul>
 </section>
 <section id="error-in-hypothesis-testing" class="slide level2">
 <h2>Error in Hypothesis Testing</h2>
 <p><img data-src="img/errorht.png" /></p>
 <ul>
-<li class="fragment"><p>Type I Error (alpha-error) is rejecting the null
-hypothesis when it is true.</p></li>
-<li class="fragment"><p>Type II Error (beta-error) is failing to reject
-the null hypothesis when it is false.</p></li>
+<li><p>Type I Error (alpha-error) is rejecting the null hypothesis when
+it is true.</p></li>
+<li><p>Type II Error (beta-error) is failing to reject the null
+hypothesis when it is false.</p></li>
 </ul>
 <p>Misreading or overemphasizing the p-value can lead us to error!</p>
 </section></section>
@@ -354,10 +352,9 @@ class="title-slide slide level1">
 <section id="t-tests-rely-on-assumptions." class="slide level2">
 <h2>T-Tests rely on <em>assumptions</em>.</h2>
 <ul>
-<li class="fragment">Normality (Are both samples normally
-distributed?)</li>
-<li class="fragment">Equality of Variance (Are the variables spread out
-roughly the same amount?)</li>
+<li>Normality (Are both samples normally distributed?)</li>
+<li>Equality of Variance (Are the variables spread out roughly the same
+amount?)</li>
 </ul>
 </section>
 <section
@@ -373,42 +370,6 @@ class="slide level2">
 before computers existed, but now there are other approaches.</h2>
 </section></section>
 <section>
-<section id="resampling" class="title-slide slide level1">
-<h1>Resampling</h1>
-
-</section>
-<section
-id="resampling-is-simply-drawing-multiple-random-samples-from-observed-data."
-class="slide level2">
-<h2>Resampling is simply drawing multiple random samples from observed
-data.</h2>
-<p>I can grab a sample of 5 observations. Then I can “resample” 5 more.
-Then 5 more, and so on and so on.</p>
-</section>
-<section
-id="first-proposed-in-the-1960s-resampling-procedures-werent-practical-until-computing-took-off-in-the-1980s."
-class="slide level2">
-<h2>First proposed in the 1960s, resampling procedures weren’t practical
-until computing took off in the 1980s.</h2>
-</section>
-<section id="resampling-is-an-umbrella-term.-it-can-include"
-class="slide level2">
-<h2>Resampling is an umbrella term. It can include:</h2>
-<ul>
-<li class="fragment">The Bootstrap, used to assess the reliability of an
-estimated statistic</li>
-<li class="fragment">Permutation Tests, used as an alternative to
-parametric hypothesis tests</li>
-</ul>
-</section>
-<section id="you-can-resample-with-or-without-replacement."
-class="slide level2">
-<h2>You can resample with or without <em>replacement</em>.</h2>
-<p>Replacement means an item is returned to the sample before the next
-draw (i.e. you could wind up with the same observation multiple
-times).</p>
-</section></section>
-<section>
 <section id="permutation-tests" class="title-slide slide level1">
 <h1>Permutation Tests</h1>
 
@@ -416,6 +377,8 @@ times).</p>
 <section id="a-permutation-test-solves-the-t-test-problem"
 class="slide level2">
 <h2>A permutation test solves the t-test problem!</h2>
+<p>It solves that problem using <em>resampling</em> (without
+replacement).</p>
 <p>It doesn’t matter whether the samples are normally distributed or
 whether their variance is equal. There are no assumptions in a
 permutation test.</p>
@@ -444,16 +407,16 @@ two-sample t-test…</p>
 <section class="slide level2">
 
 <ol type="1">
-<li class="fragment">Randomly resample (without replacement) a group the
-same size at the first group.</li>
-<li class="fragment">From the remaining data, randomly resample (without
-replacement) a group the same size as the second group.</li>
-<li class="fragment">Calculate the difference in means between the two
-resamples. This is one permutation.</li>
-<li class="fragment">Repeat these steps as many times as you want to
-create a permutation distribution.</li>
-<li class="fragment">Compare the observed difference in the real groups
-to the permutation distribution.</li>
+<li>Randomly resample (without replacement) a group the same size at the
+first group.</li>
+<li>From the remaining data, randomly resample (without replacement) a
+group the same size as the second group.</li>
+<li>Calculate the difference in means between the two resamples. This is
+one permutation.</li>
+<li>Repeat these steps as many times as you want to create a permutation
+distribution.</li>
+<li>Compare the observed difference in the real groups to the
+permutation distribution.</li>
 </ol>
 </section>
 <section
@@ -484,9 +447,13 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
 <section id="whats-the-difference-in-means" class="slide level2">
 <h2>What’s the difference in means?</h2>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>mean_diff <span class="op">=</span> (penguins[penguins.species <span class="op">==</span> <span class="st">&quot;Chinstrap&quot;</span>].bill_depth_mm.mean() </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>             <span class="op">-</span> penguins[penguins.species <span class="op">==</span> <span class="st">&quot;Adelie&quot;</span>].bill_depth_mm.mean())</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>mean_diff</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get two groups</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>chinstrap_bill_depth <span class="op">=</span> penguins[penguins.species <span class="op">==</span> <span class="st">&quot;Chinstrap&quot;</span>].bill_depth_mm</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>adelie_bill_depth <span class="op">=</span> penguins[penguins.species <span class="op">==</span> <span class="st">&quot;Adelie&quot;</span>].bill_depth_mm</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the difference in means</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>mean_diff <span class="op">=</span> chinstrap_bill_depth.mean() <span class="op">-</span> adelie_bill_depth.mean()</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>mean_diff</span></code></pre></div>
 </section>
 <section id="functions-create-reusable-code" class="slide level2">
 <h2>Functions create reusable code</h2>
@@ -499,60 +466,40 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a hr
 <p>First name the function and define input. Then do something and
 return a result!</p>
 </section>
-<section id="repeat-functions-with-list-comprehensions"
-class="slide level2">
-<h2>Repeat functions with list comprehensions</h2>
-<p>These work just like loops!</p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>repeated_adding <span class="op">=</span> [adding_func(<span class="dv">4</span>,<span class="dv">2</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)]</span></code></pre></div>
-</section>
-<section id="create-a-random-sample" class="slide level2">
-<h2>Create a random <code>sample</code></h2>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>your_sample <span class="op">=</span> your_dataframe.sample(n<span class="op">=</span>number_of_rows)</span></code></pre></div>
-</section>
 <section id="lets-create-a-function-for-permutation"
 class="slide level2">
 <h2>Let’s create a function for permutation!</h2>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This function assumes that everything not in the first</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># category will be in the other.</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mean_perm(df, var, cat, group1):</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    group1_len <span class="op">=</span> <span class="bu">len</span>(df[df[cat] <span class="op">==</span> group1])</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    group1_sample <span class="op">=</span> df.sample(n<span class="op">=</span>group1_len)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>    group2_index <span class="op">=</span> <span class="bu">set</span>(df.index) <span class="op">-</span> <span class="bu">set</span>(group1_sample.index)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    group2_sample <span class="op">=</span> df.loc[<span class="bu">list</span>(group2_index)]</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group1_sample[var].mean() <span class="op">-</span> group2_sample[var].mean()</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate_two_groups(data1, data2):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(data1) <span class="co">#Get length of first group</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> pd.concat([data1, data2]) <span class="co">#Get all data</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> data.sample(frac<span class="op">=</span><span class="dv">1</span>) <span class="co">#Reshuffle all data</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    group1 <span class="op">=</span> data[:n] <span class="co">#Get random first group</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    group2 <span class="op">=</span> data[n:] <span class="co">#Get random second group</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group1.mean() <span class="op">-</span> group2.mean() <span class="co">#Calculate mean difference</span></span></code></pre></div>
 <p>You can reuse this code!</p>
 </section>
 <section id="now-we-can-make-5000-permutations." class="slide level2">
 <h2>Now we can make 5000 permutations.</h2>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First we need *only* Chinstrap and Adelie</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># You can do this on one line.</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>chinstrap_adelie <span class="op">=</span> (penguins[(penguins.species <span class="op">==</span> <span class="st">&quot;Chinstrap&quot;</span>) <span class="op">|</span> </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                             (penguins.species <span class="op">==</span> <span class="st">&quot;Adelie&quot;</span>)].dropna())</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Then we can permute</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>mean_perms <span class="op">=</span> (pd.Series([mean_perm(chinstrap_adelie, </span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;bill_depth_mm&quot;</span>, </span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;species&quot;</span>, </span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">&quot;Chinstrap&quot;</span>) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10000</span>)]))</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This is similar to how we</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># calculated confidence intervals</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>mean_perms <span class="op">=</span> [simulate_two_groups(chinstrap, adelie) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5000</span>)]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>mean_perms <span class="op">=</span> pd.Series(mean_perms)</span></code></pre></div>
 </section>
 <section id="lets-look-at-the-results-in-a-histogram"
 class="slide level2">
 <h2>Let’s look at the results in a histogram</h2>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plt <span class="op">=</span> sns.histplot(x<span class="op">=</span>mean_perms)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span>mean_diff, color<span class="op">=</span><span class="st">&quot;red&quot;</span>, ls<span class="op">=</span><span class="st">&quot;--&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>plt <span class="op">=</span> sns.histplot(x<span class="op">=</span>mean_perms)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span>mean_diff, color<span class="op">=</span><span class="st">&quot;red&quot;</span>, ls<span class="op">=</span><span class="st">&quot;--&quot;</span>)</span></code></pre></div>
 <p>How is this different from previous Seaborn plots?</p>
 </section>
 <section id="finally-we-can-calculate-a-p-value" class="slide level2">
 <h2>Finally, we can calculate a p-value:</h2>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="op">=</span> np.mean(mean_perms <span class="op">&gt;</span> mean_diff)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>p_value</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="op">=</span> np.mean(mean_perms <span class="op">&gt;</span> mean_diff)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>p_value</span></code></pre></div>
 <p>Why does this code work?</p>
 <p>Is our result statistically significant? Is it practically
 significant?</p>
@@ -567,17 +514,14 @@ significant?</p>
 <p>Determine if users spend significantly more time on Page B than they
 do on Page A.</p>
 <ol type="1">
-<li class="fragment">Download
+<li>Download
 <a href="https://jrladd.com/CIS241/data/web_page_data.csv" download>web_page_data.csv</a>.</li>
-<li class="fragment">Make a boxplot of session times for Pages A and
-B.</li>
-<li class="fragment">Calculate the observed difference in means.</li>
-<li class="fragment">Run 2000 permutations of randomly resampled
-groups.</li>
-<li class="fragment">Make a histogram of permutation results and show
-the observed difference as a vertical line.</li>
-<li class="fragment">Calculate the p-value for your permutation
-test.</li>
+<li>Make a boxplot of session times for Pages A and B.</li>
+<li>Calculate the observed difference in means.</li>
+<li>Run 2000 permutations of randomly resampled groups.</li>
+<li>Make a histogram of permutation results and show the observed
+difference as a vertical line.</li>
+<li>Calculate the p-value for your permutation test.</li>
 </ol>
 </section></section>
     </div>
