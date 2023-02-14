@@ -245,8 +245,8 @@ def simulate_two_groups(data1, data2):
     n = len(data1) #Get length of first group
     data = pd.concat([data1, data2]) #Get all data
     data = data.sample(frac=1) #Reshuffle all data
-    group1 = data[:n] #Get random first group
-    group2 = data[n:] #Get random second group
+    group1 = data.loc[:n] #Get random first group
+    group2 = data.loc[n:] #Get random second group
     return group1.mean() - group2.mean() #Calculate mean difference
 ```
 
@@ -257,7 +257,8 @@ You can reuse this code!
 ```python
 # This is similar to how we
 # calculated confidence intervals
-mean_perms = [simulate_two_groups(chinstrap, adelie) for i in range(5000)]
+mean_perms = ([simulate_two_groups(chinstrap_bill_depth, adelie_bill_depth)
+               for i in range(5000)])
 mean_perms = pd.Series(mean_perms)
 ```
 
