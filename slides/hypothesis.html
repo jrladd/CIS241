@@ -474,8 +474,8 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a hr
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(data1) <span class="co">#Get length of first group</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> pd.concat([data1, data2]) <span class="co">#Get all data</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> data.sample(frac<span class="op">=</span><span class="dv">1</span>) <span class="co">#Reshuffle all data</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    group1 <span class="op">=</span> data.loc[:n] <span class="co">#Get random first group</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    group2 <span class="op">=</span> data.loc[n:] <span class="co">#Get random second group</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    group1 <span class="op">=</span> data.iloc[:n] <span class="co">#Get random first group</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    group2 <span class="op">=</span> data.iloc[n:] <span class="co">#Get random second group</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group1.mean() <span class="op">-</span> group2.mean() <span class="co">#Calculate mean difference</span></span></code></pre></div>
 <p>You can reuse this code!</p>
 </section>
