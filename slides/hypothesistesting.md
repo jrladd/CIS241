@@ -245,8 +245,8 @@ def simulate_two_groups(data1, data2):
     n = len(data1) #Get length of first group
     data = pd.concat([data1, data2]) #Get all data
     data = data.sample(frac=1) #Reshuffle all data
-    group1 = data.loc[:n] #Get random first group
-    group2 = data.loc[n:] #Get random second group
+    group1 = data.iloc[:n] #Get random first group
+    group2 = data.iloc[n:] #Get random second group
     return group1.mean() - group2.mean() #Calculate mean difference
 ```
 
