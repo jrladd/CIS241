@@ -25,6 +25,7 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -217,7 +218,7 @@ class="slide level2">
 <h2>Instead of resampling, we can <em>rearrange</em> the variables at
 random.</h2>
 <div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> corr_permutation(df,var1,var2):</span>
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate_correlation(df,var1,var2):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    shuffled <span class="op">=</span> df[var1].sample(frac<span class="op">=</span><span class="dv">1</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    corr <span class="op">=</span> shuffled.corr(df[var2])</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> corr</span></code></pre></div>
@@ -259,11 +260,11 @@ data sets to be similar…</h2>
 dataset in the
 <a href="/CIS241/data/DatasaurusDozen.tsv" download><code>datasaurus_dozen</code></a>.</p>
 <ul>
-<li class="fragment">Find mean, standard deviation, and correlation for
-both x and y of each dataset. (You may need to group things by the
-“dataset” column.)</li>
-<li class="fragment">When you’re done, try making scatter plots! (You
-may need to use the <code>col</code> parameter.)</li>
+<li>Find mean, standard deviation, and correlation for both x and y of
+each dataset. (You may need to group things by the “dataset”
+column.)</li>
+<li>When you’re done, try making scatter plots! (You may need to use the
+<code>col</code> parameter.)</li>
 </ul>
 </section></section>
     </div>

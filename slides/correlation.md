@@ -98,7 +98,7 @@ There are standard parametric approaches to this, but we can use permutation!
 ## Instead of resampling, we can *rearrange* the variables at random.
 
 ```python
-def corr_permutation(df,var1,var2):
+def simulate_correlation(df,var1,var2):
     shuffled = df[var1].sample(frac=1).reset_index(drop=True)
     corr = shuffled.corr(df[var2])
     return corr
