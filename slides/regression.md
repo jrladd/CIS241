@@ -24,9 +24,9 @@
 
 ## That line represents the connection between an ________ (x-axis) and a ________ (y-axis) variable.
 
-## And in this case, the ______________ variable is a function of the ________________ variable. 
+## And in this case, the target (dependent) variable is a function of the predictor (independent) variable. 
 
-## To define independent and dependent variables, you need to *use your human brain*.
+## To define predictor and target variables, you need to *use your human brain*.
 
 Come up with a *rationale* for why you think they would be related.
 
@@ -46,9 +46,9 @@ Can also be written as: $Y=b_{1}X+b_{0}$
 
 ## $Y=b_{1}X+b_{0}$
 
-$Y$ is your dependent variable.
+$Y$ is your target (dependent) variable.
 
-$X$ is your independent variable.
+$X$ is your predictor (independent) variable.
 
 ## $Y=b_{1}X+b_{0}$
 
@@ -120,10 +120,17 @@ That's why we imported the LinearRegression class above.
 ## Then we split the data.
 
 ```python
+
+target = "mpg" # Our target variable
+predictors = ["displacement"] # A list of predictors
+
+X = cars[predictors]
+y = cars[target]
+
 # The train_test_split() function will create 4 variables
 X_train, X_test, y_train, y_test = train_test_split(
-    cars[["displacement"]], # The first argument is the X variable
-    cars[["mpg"]], # The second argument is the Y variable
+    X, # The first argument is the X variable
+    y, # The second argument is the Y variable
     test_size=0.4, # Proportion of the data in the test set
     random_state=0) # Set a random state so it's the same every time
 ```
@@ -139,8 +146,8 @@ our_model.fit(X_train, y_train) # Run the fit() method on training data
 
 ```python
 # We use f-strings to print complex things, with rounding
-print(f"Intercept: {our_model.intercept_[0]:.3f}")
-print(f"Coefficient (Slope): {our_model.coef_[0][0]:.4f}")
+print(f"Intercept: {our_model.intercept_:.3f}")
+print(f"Coefficient (Slope): {our_model.coef_[0]:.4f}")
 ```
 
 ---
@@ -149,7 +156,7 @@ With a slope of `-0.0597`, this linear regression provides evidence that as engi
 
 For every additional unit of engine displacement, the expected fuel efficiency decreases by 0.0597.
 
-The intercept indicates that if engine displacment were 0, fuel efficiency would be 34.839 miles per gallon.
+The intercept indicates that if engine displacment were 0, fuel efficiency would be 34.829 miles per gallon.
 
 *Be careful not to imply that there is a direct causal link, especially without more evidence or studies.*
 
@@ -161,23 +168,25 @@ sns.lmplot(x="displacement",y="mpg",data=cars)
 
 ![](img/mpg_regression_py.png)
 
-## Let's look at that all together.
+## All together now.
 
 ```python
+target = "mpg" # Our target variable
+predictors = ["displacement"] # A list of predictors
+X = cars[predictors]
+y = cars[target]
 # Split the data
 X_train, X_test, y_train, y_test = train_test_split(
-    cars[["displacement"]], 
-    cars[["mpg"]], 
+    X, 
+    y, 
     test_size=0.4, 
     random_state=0)
-
 # Fit the model
 our_model = LinearRegression()
 our_model.fit(X_train, y_train)
-
 # View coefficients
-print(f"Intercept: {our_model.intercept_[0]:.3f}")
-print(f"Coefficient (Slope): {our_model.coef_[0][0]:.4f}")
+print(f"Intercept: {our_model.intercept_:.3f}")
+print(f"Coefficient (Slope): {our_model.coef_[0]:.4f}")
 ```
 
 # Assessing Your Model

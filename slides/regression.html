@@ -25,6 +25,7 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -117,9 +118,9 @@ the <em>strength</em> of a relationship, but how do we learn the
 class="slide level2">
 <h2>Questions we might want to answer with regression:</h2>
 <ul>
-<li class="fragment">Does x influence y?</li>
-<li class="fragment">Is crop growth rate improved by fertilizer?</li>
-<li class="fragment">Do taller sprinters run faster?</li>
+<li>Does x influence y?</li>
+<li>Is crop growth rate improved by fertilizer?</li>
+<li>Do taller sprinters run faster?</li>
 </ul>
 </section>
 <section
@@ -159,16 +160,16 @@ class="slide level2">
 a ________ (y-axis) variable.</h2>
 </section>
 <section
-id="and-in-this-case-the-______________-variable-is-a-function-of-the-________________-variable."
+id="and-in-this-case-the-target-dependent-variable-is-a-function-of-the-predictor-independent-variable."
 class="slide level2">
-<h2>And in this case, the ______________ variable is a function of the
-________________ variable.</h2>
+<h2>And in this case, the target (dependent) variable is a function of
+the predictor (independent) variable.</h2>
 </section>
 <section
-id="to-define-independent-and-dependent-variables-you-need-to-use-your-human-brain."
+id="to-define-predictor-and-target-variables-you-need-to-use-your-human-brain."
 class="slide level2">
-<h2>To define independent and dependent variables, you need to <em>use
-your human brain</em>.</h2>
+<h2>To define predictor and target variables, you need to <em>use your
+human brain</em>.</h2>
 <p>Come up with a <em>rationale</em> for why you think they would be
 related.</p>
 </section>
@@ -199,10 +200,10 @@ class="math inline">\(Y=b_{1}X+b_{0}\)</span></p>
 </section>
 <section id="yb_1xb_0" class="slide level2">
 <h2><span class="math inline">\(Y=b_{1}X+b_{0}\)</span></h2>
-<p><span class="math inline">\(Y\)</span> is your dependent
+<p><span class="math inline">\(Y\)</span> is your target (dependent)
 variable.</p>
-<p><span class="math inline">\(X\)</span> is your independent
-variable.</p>
+<p><span class="math inline">\(X\)</span> is your predictor
+(independent) variable.</p>
 </section>
 <section id="yb_1xb_0-1" class="slide level2">
 <h2><span class="math inline">\(Y=b_{1}X+b_{0}\)</span></h2>
@@ -286,11 +287,11 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
 <section id="the-scikit-learn-modeling-workflow" class="slide level2">
 <h2>The scikit-learn modeling workflow</h2>
 <ol type="1">
-<li class="fragment">Choose your model</li>
-<li class="fragment">Split the data into train and test portions</li>
-<li class="fragment">Fit the model to your training data</li>
-<li class="fragment">Summarize or predict based on the model</li>
-<li class="fragment">Validate and assess the model</li>
+<li>Choose your model</li>
+<li>Split the data into train and test portions</li>
+<li>Fit the model to your training data</li>
+<li>Summarize or predict based on the model</li>
+<li>Validate and assess the model</li>
 </ol>
 <p>Full scikit-learn documentation <a
 href="https://scikit-learn.org/stable/index.html">here</a></p>
@@ -309,12 +310,19 @@ class="slide level2">
 <section id="then-we-split-the-data." class="slide level2">
 <h2>Then we split the data.</h2>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The train_test_split() function will create 4 variables</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    cars[[<span class="st">&quot;displacement&quot;</span>]], <span class="co"># The first argument is the X variable</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    cars[[<span class="st">&quot;mpg&quot;</span>]], <span class="co"># The second argument is the Y variable</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.4</span>, <span class="co"># Proportion of the data in the test set</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">0</span>) <span class="co"># Set a random state so it&#39;s the same every time</span></span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="st">&quot;mpg&quot;</span> <span class="co"># Our target variable</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>predictors <span class="op">=</span> [<span class="st">&quot;displacement&quot;</span>] <span class="co"># A list of predictors</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> cars[predictors]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> cars[target]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># The train_test_split() function will create 4 variables</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    X, <span class="co"># The first argument is the X variable</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    y, <span class="co"># The second argument is the Y variable</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.4</span>, <span class="co"># Proportion of the data in the test set</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">0</span>) <span class="co"># Set a random state so it&#39;s the same every time</span></span></code></pre></div>
 </section>
 <section id="then-we-can-fit-our-model." class="slide level2">
 <h2>Then we can fit our model.</h2>
@@ -327,8 +335,8 @@ class="slide level2">
 <h2>Now we can look at the model’s coefficients</h2>
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We use f-strings to print complex things, with rounding</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Intercept: </span><span class="sc">{</span>our_model<span class="sc">.</span>intercept_[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss">&quot;</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Coefficient (Slope): </span><span class="sc">{</span>our_model<span class="sc">.</span>coef_[<span class="dv">0</span>][<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Intercept: </span><span class="sc">{</span>our_model<span class="sc">.</span>intercept_<span class="sc">:.3f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Coefficient (Slope): </span><span class="sc">{</span>our_model<span class="sc">.</span>coef_[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
 </section>
 <section class="slide level2">
 
@@ -338,7 +346,7 @@ slightly!</p>
 <p>For every additional unit of engine displacement, the expected fuel
 efficiency decreases by 0.0597.</p>
 <p>The intercept indicates that if engine displacment were 0, fuel
-efficiency would be 34.839 miles per gallon.</p>
+efficiency would be 34.829 miles per gallon.</p>
 <p><em>Be careful not to imply that there is a direct causal link,
 especially without more evidence or studies.</em></p>
 </section>
@@ -348,23 +356,25 @@ especially without more evidence or studies.</em></p>
 class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sns.lmplot(x<span class="op">=</span><span class="st">&quot;displacement&quot;</span>,y<span class="op">=</span><span class="st">&quot;mpg&quot;</span>,data<span class="op">=</span>cars)</span></code></pre></div>
 <p><img data-src="img/mpg_regression_py.png" /></p>
 </section>
-<section id="lets-look-at-that-all-together." class="slide level2">
-<h2>Let’s look at that all together.</h2>
+<section id="all-together-now." class="slide level2">
+<h2>All together now.</h2>
 <div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the data</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    cars[[<span class="st">&quot;displacement&quot;</span>]], </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    cars[[<span class="st">&quot;mpg&quot;</span>]], </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.4</span>, </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>our_model <span class="op">=</span> LinearRegression()</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>our_model.fit(X_train, y_train)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># View coefficients</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Intercept: </span><span class="sc">{</span>our_model<span class="sc">.</span>intercept_[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss">&quot;</span>)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Coefficient (Slope): </span><span class="sc">{</span>our_model<span class="sc">.</span>coef_[<span class="dv">0</span>][<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="st">&quot;mpg&quot;</span> <span class="co"># Our target variable</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>predictors <span class="op">=</span> [<span class="st">&quot;displacement&quot;</span>] <span class="co"># A list of predictors</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> cars[predictors]</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> cars[target]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the data</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    X, </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    y, </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.4</span>, </span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>our_model <span class="op">=</span> LinearRegression()</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>our_model.fit(X_train, y_train)</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># View coefficients</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Intercept: </span><span class="sc">{</span>our_model<span class="sc">.</span>intercept_<span class="sc">:.3f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Coefficient (Slope): </span><span class="sc">{</span>our_model<span class="sc">.</span>coef_[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
 </section></section>
 <section>
 <section id="assessing-your-model" class="title-slide slide level1">
@@ -458,18 +468,16 @@ the data here</a>.</p>
 <section id="follow-these-steps" class="slide level2">
 <h2>Follow these steps:</h2>
 <ol type="1">
-<li class="fragment">Determine which should be your dependent and which
-should be your independent variable.</li>
-<li class="fragment">Create a scatter plot with a trend line to see if
-you think there is a linear relationship. Form a hypothesis with your
-partner!</li>
-<li class="fragment">Using <code>sklearn</code>, create a linear
-regression model, split the data, and fit the model.</li>
-<li class="fragment">Interpret the coefficents of the model
-<em>completely and accurately and in terms of the data</em>.</li>
-<li class="fragment">Assess your model with <span
-class="math inline">\(R^2\)</span> and <code>RMSE</code>. How did your
-model do?</li>
+<li>Determine which should be your dependent and which should be your
+independent variable.</li>
+<li>Create a scatter plot with a trend line to see if you think there is
+a linear relationship. Form a hypothesis with your partner!</li>
+<li>Using <code>sklearn</code>, create a linear regression model, split
+the data, and fit the model.</li>
+<li>Interpret the coefficents of the model <em>completely and accurately
+and in terms of the data</em>.</li>
+<li>Assess your model with <span class="math inline">\(R^2\)</span> and
+<code>RMSE</code>. How did your model do?</li>
 </ol>
 </section></section>
     </div>
