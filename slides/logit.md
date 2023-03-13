@@ -65,6 +65,8 @@ logit_model = LogisticRegression(penalty='none',
 logit_model.fit(X_train, y_train)
 ```
 
+Do you need to drop null values?
+
 ## Setting model parameters
 
 - **penalty**: By default, scikit-learn regularizes your predictors. This could lead to unpredictable results for non-normalized data! For now, always set this to 'none'.
@@ -89,16 +91,19 @@ How do *the odds* change for each unit of the predictor?
 ## Instead of predicting a value, we can predict the *probability* that our new data will fall into category.
 
 ```python
-# We can use the basic function
-logit_model.predict_proba(X_test)
+# We can get prediction probabilities
+probabilities = logit_model.predict_proba(X_test)
+# We can get the predictions themselves
+predictions = logit_model.predict(X_test)
+# We can get the categories or classes we predicted
+categories = logit_model.classes_
 ```
 
 ```python
-# Or we can make it look nicer
-categories = logit_model.classes_
-pred = pd.DataFrame(logit_model.predict_proba(X_test), 
+# Let's make the probabilities look nicer
+probabilities = pd.DataFrame(probabilities, 
                     columns=categories)
-pred
+probabilities
 ```
 
 ## There is no RMSE or $R^{2}$ for logistic regression.
@@ -108,9 +113,13 @@ So how do we assess our model instead?
 ## We need another set of metric functions
 
 ```python
-from sklearn.metrics import confusion_matrix, accuracy_score
-from sklearn.metrics import precision_recall_fscore_support
-from sklearn.metrics import roc_curve, RocCurveDisplay, roc_auc_score
+# These replace the r-squared score and RMSE
+# You could put these all on one line
+from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.metric import RocCurveDisplay
+
+# You'll also need matplotlib this time
+import matplotlib.pyplot as plt
 ```
 
 ## Assess classification models with the *confusion matrix*.
@@ -144,20 +153,21 @@ conf_mat = confusion_matrix(y_test,predictions)
 ## Calculating these scores is simple in scikit-learn.
 
 ```python
-# Accuracy simply uses the accuracy function
-accuracy_score(y_test,predictions)
-
-# Precision, recall, and sensitivity are all in one
-precision_recall_fscore_support(y_test,predictions,labels=categories)
+# You must use print to make this readable
+print(classification_report(y_test, predictions))
 ```
+
+There are individual functions for these, too.
 
 ## Plot the model's recall with the ROC Curve.
 
 ```python
-from matplotlib import pyplot as plt
+# Create our ROC Curve plot
+RocCurveDisplay.from_predictions(y_test,
+                                 probabilities[categories[1]],
+                                 pos_label=categories[1])
 
-fpr, tpr, _ = roc_curve(y_test,pred["Chinstrap"],pos_label='Chinstrap')
-RocCurveDisplay(fpr=fpr, tpr=tpr).plot()
+# Draw a green line for 0
 plt.plot([0, 1], [0, 1], color = 'g')
 ```
 
@@ -165,7 +175,4 @@ ROC: Receiver Operating Characteristics
 
 ## Another helpful measure is the area under the ROC curve (AUC).
 
-```python
-numerical_y_test = [1 if yi == "Chinstrap" else 0 for yi in y_test]
-roc_auc_score(numerical_y,pred["Chinstrap"])
-```
+This measure is written right on the ROC Curve plot!

@@ -25,6 +25,7 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -186,20 +187,20 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a hr
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                                 solver<span class="op">=</span><span class="st">&#39;lbfgs&#39;</span>, </span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                                 random_state<span class="op">=</span><span class="dv">42</span>)</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>logit_model.fit(X_train, y_train)</span></code></pre></div>
+<p>Do you need to drop null values?</p>
 </section>
 <section id="setting-model-parameters" class="slide level2">
 <h2>Setting model parameters</h2>
 <ul>
-<li class="fragment"><strong>penalty</strong>: By default, scikit-learn
-regularizes your predictors. This could lead to unpredictable results
-for non-normalized data! For now, always set this to ‘none’.</li>
-<li class="fragment"><strong>solver</strong>: This is the underlying
-algorithm scikit-learn will use to calculate the coefficients. The
+<li><strong>penalty</strong>: By default, scikit-learn regularizes your
+predictors. This could lead to unpredictable results for non-normalized
+data! For now, always set this to ‘none’.</li>
+<li><strong>solver</strong>: This is the underlying algorithm
+scikit-learn will use to calculate the coefficients. The
 <code>lbfgs</code> solver is the default and is good for small
 datasets.</li>
-<li class="fragment"><strong>random_state</strong>: As in
-<code>train_test_split</code>, this should always be set to ensure
-repeatability.</li>
+<li><strong>random_state</strong>: As in <code>train_test_split</code>,
+this should always be set to ensure repeatability.</li>
 </ul>
 <p><small>For more on this, read <a
 href="https://ryxcommar.com/2019/08/30/scikit-learns-defaults-are-wrong/">Scikit-learns
@@ -229,14 +230,17 @@ class="slide level2">
 <h2>Instead of predicting a value, we can predict the
 <em>probability</em> that our new data will fall into category.</h2>
 <div class="sourceCode" id="cb5"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can use the basic function</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>logit_model.predict_proba(X_test)</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can get prediction probabilities</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>probabilities <span class="op">=</span> logit_model.predict_proba(X_test)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># We can get the predictions themselves</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> logit_model.predict(X_test)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># We can get the categories or classes we predicted</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> logit_model.classes_</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Or we can make it look nicer</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> logit_model.classes_</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>pred <span class="op">=</span> pd.DataFrame(logit_model.predict_proba(X_test), </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                    columns<span class="op">=</span>categories)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>pred</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s make the probabilities look nicer</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>probabilities <span class="op">=</span> pd.DataFrame(probabilities, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                    columns<span class="op">=</span>categories)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>probabilities</span></code></pre></div>
 </section>
 <section id="there-is-no-rmse-or-r2-for-logistic-regression."
 class="slide level2">
@@ -248,9 +252,13 @@ logistic regression.</h2>
 class="slide level2">
 <h2>We need another set of metric functions</h2>
 <div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, accuracy_score</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> precision_recall_fscore_support</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_curve, RocCurveDisplay, roc_auc_score</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># These replace the r-squared score and RMSE</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># You could put these all on one line</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, classification_report</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metric <span class="im">import</span> RocCurveDisplay</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># You&#39;ll also need matplotlib this time</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
 </section>
 <section id="assess-classification-models-with-the-confusion-matrix."
 class="slide level2">
@@ -280,14 +288,14 @@ model.</figcaption>
 class="slide level2">
 <h2>From the confusion matrix, we get scores for our model.</h2>
 <ul>
-<li class="fragment"><strong>accuracy</strong>: the proportion of cases
-classified correctly</li>
-<li class="fragment"><strong>precision</strong>: the proportion of
-predicted values that are correct</li>
-<li class="fragment"><strong>recall</strong>: the proportion of all
-values that are correctly classified</li>
-<li class="fragment"><strong>sensitivity</strong>: the recall score for
-the other category</li>
+<li><strong>accuracy</strong>: the proportion of cases classified
+correctly</li>
+<li><strong>precision</strong>: the proportion of predicted values that
+are correct</li>
+<li><strong>recall</strong>: the proportion of all values that are
+correctly classified</li>
+<li><strong>sensitivity</strong>: the recall score for the other
+category</li>
 </ul>
 </section>
 <section class="slide level2">
@@ -298,30 +306,28 @@ the other category</li>
 class="slide level2">
 <h2>Calculating these scores is simple in scikit-learn.</h2>
 <div class="sourceCode" id="cb9"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Accuracy simply uses the accuracy function</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>accuracy_score(y_test,predictions)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Precision, recall, and sensitivity are all in one</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>precision_recall_fscore_support(y_test,predictions,labels<span class="op">=</span>categories)</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You must use print to make this readable</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, predictions))</span></code></pre></div>
+<p>There are individual functions for these, too.</p>
 </section>
 <section id="plot-the-models-recall-with-the-roc-curve."
 class="slide level2">
 <h2>Plot the model’s recall with the ROC Curve.</h2>
 <div class="sourceCode" id="cb10"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>fpr, tpr, _ <span class="op">=</span> roc_curve(y_test,pred[<span class="st">&quot;Chinstrap&quot;</span>],pos_label<span class="op">=</span><span class="st">&#39;Chinstrap&#39;</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>RocCurveDisplay(fpr<span class="op">=</span>fpr, tpr<span class="op">=</span>tpr).plot()</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], color <span class="op">=</span> <span class="st">&#39;g&#39;</span>)</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create our ROC Curve plot</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>RocCurveDisplay.from_predictions(y_test,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                                 probabilities[categories[<span class="dv">1</span>]],</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                                 pos_label<span class="op">=</span>categories[<span class="dv">1</span>])</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw a green line for 0</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], color <span class="op">=</span> <span class="st">&#39;g&#39;</span>)</span></code></pre></div>
 <p>ROC: Receiver Operating Characteristics</p>
 </section>
 <section
 id="another-helpful-measure-is-the-area-under-the-roc-curve-auc."
 class="slide level2">
 <h2>Another helpful measure is the area under the ROC curve (AUC).</h2>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>numerical_y_test <span class="op">=</span> [<span class="dv">1</span> <span class="cf">if</span> yi <span class="op">==</span> <span class="st">&quot;Chinstrap&quot;</span> <span class="cf">else</span> <span class="dv">0</span> <span class="cf">for</span> yi <span class="kw">in</span> y_test]</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>roc_auc_score(numerical_y,pred[<span class="st">&quot;Chinstrap&quot;</span>])</span></code></pre></div>
+<p>This measure is written right on the ROC Curve plot!</p>
 </section></section>
     </div>
   </div>
