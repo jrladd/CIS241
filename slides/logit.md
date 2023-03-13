@@ -164,8 +164,8 @@ There are individual functions for these, too.
 ```python
 # Create our ROC Curve plot
 RocCurveDisplay.from_predictions(y_test,
-                                 probabilities[categories[1]],
-                                 pos_label=categories[1])
+                                 probabilities[categories[0]],
+                                 pos_label=categories[0])
 
 # Draw a green line for 0
 plt.plot([0, 1], [0, 1], color = 'g')
