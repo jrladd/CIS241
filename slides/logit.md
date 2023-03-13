@@ -144,7 +144,7 @@ conf_mat = confusion_matrix(y_test,predictions)
 - **accuracy**: the proportion of cases classified correctly
 - **precision**: the proportion of predicted values that are correct
 - **recall**: the proportion of all values that are correctly classified
-- **sensitivity**: the recall score for the other category
+- **specificity**: the recall score for the other category
 
 ---
 
