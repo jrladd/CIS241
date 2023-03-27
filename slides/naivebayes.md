@@ -96,28 +96,24 @@ conf_mat = confusion_matrix(y_test,predictions)
 ## Get Accuracy, Precision, Recall, and Specificity
 
 ```python
-accuracy_score(y_test,predictions)
-
-precision_recall_fscore_support(y_test,predictions)
+print(classification_report(y_test, predictions))
 ```
-
-How would you print these out more nicely?
 
 ## Display the ROC Curve
 
 ```python
-from matplotlib import pyplot as plt
+# Create our ROC Curve plot
+# This is simpler than last time because
+# the category labels are 0 and 1.
+# Check the logistic regression slides for
+# the more complex method.
+RocCurveDisplay.from_predictions(y_test, probabilities[1])
 
-fpr, tpr, thresholds = roc_curve(y_test,probabilities[1])
-RocCurveDisplay(fpr=fpr, tpr=tpr).plot()
+# Draw a green line for 0
 plt.plot([0, 1], [0, 1], color = 'g')
 ```
 
-## Find the AUC Score
-
-```python
-roc_auc_score(y_test,probabilities[1])
-```
+Remember to pay attention to the AUC score!
 
 ## Thanks, Thomas Bayes!
 
