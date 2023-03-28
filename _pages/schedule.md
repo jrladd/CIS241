@@ -22,7 +22,7 @@ Date|Topics & Slides|Workshops|Assignments
 7 & 9 Mar.|[Multivariate Regression](/CIS241/slides/multiple)|[Business](/CIS241/resources/03_airbnb2.ipynb)
 14 & 16 Mar.|[Logistic Regression](/CIS241/slides/logit)|[Ecology](/CIS241/resources/04_trees1.ipynb)|**[Tutorial Assignment](/CIS241/assignments/tutorial/) Due 16 Mar. at 9am**
 21 & 23 Mar.|NO CLASS: Spring Break
-28 Mar.|[Naive Bayes Classifier](/CIS241/slides/naivebayes)|[Ecology](/CIS241/resources/04_trees1.ipynb)|
+28 Mar.|[Naive Bayes Classifier](/CIS241/slides/naivebayes)|[Ecology](/CIS241/resources/04_trees2.ipynb)|
 4 & 6 Apr.|[K-Nearest Neighbors](/CIS241/slides/knn)|[Health](/CIS241/resources/05_health1.ipynb)|**Take-Home Quiz II**
 11 & 13 Apr.|[Decision Trees and the Random Forest](/CIS241/slides/randomforest)|[Health](/CIS241/resources/05_health2.ipynb)|**[Project Proposal](/CIS241/assignments/project-proposal/) Due 13 Apr. at 9am**
 18 & 20 Apr.|[Clustering and Unsupervised Approaches](/CIS241/slides/clustering)|[Literature](/CIS241/resources/06_lit1.ipynb)|
