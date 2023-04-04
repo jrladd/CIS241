@@ -24,8 +24,8 @@ Date|Topics & Slides|Workshops|Assignments
 21 & 23 Mar.|NO CLASS: Spring Break
 28 Mar.|[Naive Bayes Classifier](/CIS241/slides/naivebayes)|[Ecology](/CIS241/resources/04_trees2.ipynb)|
 4 & 6 Apr.|[K-Nearest Neighbors](/CIS241/slides/knn)|[Health](/CIS241/resources/05_health1.ipynb)|**Take-Home Quiz II**
-11 & 13 Apr.|[Decision Trees and the Random Forest](/CIS241/slides/randomforest)|[Health](/CIS241/resources/05_health2.ipynb)|**[Project Proposal](/CIS241/assignments/project-proposal/) Due 13 Apr. at 9am**
-18 & 20 Apr.|[Clustering and Unsupervised Approaches](/CIS241/slides/clustering)|[Literature](/CIS241/resources/06_lit1.ipynb)|
+11 & 13 Apr.|[Decision Trees and the Random Forest](/CIS241/slides/randomforest)|[Health](/CIS241/resources/05_health2.ipynb)|
+18 & 20 Apr.|[Clustering and Unsupervised Approaches](/CIS241/slides/clustering)|[Literature](/CIS241/resources/06_lit1.ipynb)|**[Project Proposal](/CIS241/assignments/project-proposal/) Due 18 Apr. at 9am**
 25 & 27 Apr.|[Neural Networks](/CIS241/slides/neuralnetworks)|[Literature](/CIS241/resources/06_lit2.ipynb)|**[Progress Report](/CIS241/assignments/progress-report) Due 27 Apr. at 9am**
 2 & 4 May|Project Meetings and Panel Presentations||**[Video Presentations](/CIS241/assignments/presentation/) Due 4 May at 9am**
 9 May|Panel Presentations & Wrap-Up||
