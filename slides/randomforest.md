@@ -51,6 +51,13 @@ Setting these can help you create smaller trees and avoid spurious results!
 
 By now, you're equipped to find out how to do this on your own, so let's try an example.
 
+Here's a hint:
+
+```python
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.ensemble import RandomForestClassifier
+```
+
 ## Create a Random Forest Classifier for the `penguins` dataset.
 
 1. Select features and prepare data: you will predict the `species` of the penguins.
