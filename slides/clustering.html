@@ -25,6 +25,7 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -123,24 +124,18 @@ labels.</p>
 class="slide level2">
 <h2>Unsupervised learning can have different uses.</h2>
 <ul>
-<li class="fragment">Dimension reduction: get a more manageable set of
-variables.</li>
-<li class="fragment">Clustering: identify meaningful categories in the
-data.</li>
-<li class="fragment">Exploration: analyze variables and discover
-relationships.</li>
+<li>Dimension reduction: get a more manageable set of variables.</li>
+<li>Clustering: identify meaningful categories in the data.</li>
+<li>Exploration: analyze variables and discover relationships.</li>
 </ul>
 </section>
 <section id="types-of-unsupervised-learning" class="slide level2">
 <h2>Types of unsupervised learning</h2>
 <ul>
-<li class="fragment">Principal component analysis (PCA): dimension
-reduction</li>
-<li class="fragment">Correspondence analysis: dimension reduction</li>
-<li class="fragment"><strong>K-Means Clustering: clustering and
-exploration</strong></li>
-<li class="fragment">Hierarchical Clustering: clustering and
-exploration</li>
+<li>Principal component analysis (PCA): dimension reduction</li>
+<li>Correspondence analysis: dimension reduction</li>
+<li><strong>K-Means Clustering: clustering and exploration</strong></li>
+<li>Hierarchical Clustering: clustering and exploration</li>
 </ul>
 </section></section>
 <section>
@@ -207,21 +202,20 @@ test set. There would be nothing to test on!</p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, n_init<span class="op">=</span><span class="dv">10</span>, max_iter<span class="op">=</span><span class="dv">300</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, n_init<span class="op">=</span><span class="st">&#39;auto&#39;</span>, max_iter<span class="op">=</span><span class="dv">300</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>kmeans.fit(X_std)</span></code></pre></div>
 </section>
 <section id="as-always-pay-attention-to-the-hyperparameters."
 class="slide level2">
 <h2>As always pay attention to the hyperparameters.</h2>
 <ul>
-<li class="fragment"><code>n_clusters</code>: the number of clusters the
-model will produce. This is “K”!</li>
-<li class="fragment"><code>n_init</code>: the total number of times the
-model will be run.</li>
-<li class="fragment"><code>max_iter</code>: the number of iterations the
-model will take to find centroids.</li>
-<li class="fragment"><code>random_state</code>: keeps the model the same
-every time.</li>
+<li><code>n_clusters</code>: the number of clusters the model will
+produce. This is “K”!</li>
+<li><code>n_init</code>: the total number of times the model will be
+run.</li>
+<li><code>max_iter</code>: the number of iterations the model will take
+to find centroids.</li>
+<li><code>random_state</code>: keeps the model the same every time.</li>
 </ul>
 </section>
 <section id="we-can-interpret-the-clusters-in-two-ways."
@@ -255,12 +249,12 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a hr
 class="slide level2">
 <h2>Try K-Means Clustering for the <code>penguins</code> dataset.</h2>
 <ol type="1">
-<li class="fragment">Select features and prepare data. Consider
-standardizations as well as null values.</li>
-<li class="fragment">Run K-Means clustering. Be thoughtful about the
-hyperparameters, especially K (<code>n_clusters</code>)!</li>
-<li class="fragment">Assess your model using the cluster sizes and a bar
-plot of the cluster means.</li>
+<li>Select features and prepare data. Consider standardizations as well
+as null values.</li>
+<li>Run K-Means clustering. Be thoughtful about the hyperparameters,
+especially K (<code>n_clusters</code>)!</li>
+<li>Assess your model using the cluster sizes and a bar plot of the
+cluster means.</li>
 </ol>
 <p>Good luck! 🐧🐧🐧</p>
 </section></section>
@@ -290,12 +284,12 @@ id="if-youre-lost-when-choosing-k-you-can-try-the-elbow-method."
 class="slide level2">
 <h2>If you’re lost when choosing K, you can try the “elbow method.”</h2>
 <ol type="1">
-<li class="fragment">Run K-Means multiple times, with a different value
-for K each time.</li>
-<li class="fragment">Look at how close the values are to their centroid.
-(This is called inertia.)</li>
-<li class="fragment">Create a graph to see at what value for K this
-inertia measure begins to settle.</li>
+<li>Run K-Means multiple times, with a different value for K each
+time.</li>
+<li>Look at how close the values are to their centroid. (This is called
+inertia.)</li>
+<li>Create a graph to see at what value for K this inertia measure
+begins to settle.</li>
 </ol>
 </section>
 <section id="heres-what-the-elbow-method-looks-like-in-python."
@@ -305,7 +299,7 @@ class="slide level2">
 class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Steps 1 &amp; 2: Run K-means with different K and get inertia</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>inertia <span class="op">=</span> []</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n_clusters <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">14</span>):</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>n_clusters, random_state<span class="op">=</span><span class="dv">0</span>).fit(X_std)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>n_clusters, n_init<span class="op">=</span><span class="st">&#39;auto&#39;</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit(X_std)</span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    inertia.append(kmeans.inertia_ <span class="op">/</span> n_clusters)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Put into a dataframe and create a line plot</span></span>

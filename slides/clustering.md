@@ -66,7 +66,7 @@ This isn't the whole workflow, it's just the model code.
 ```python
 from sklearn.cluster import KMeans
 
-kmeans = KMeans(n_clusters=3, n_init=10, max_iter=300, random_state=0)
+kmeans = KMeans(n_clusters=3, n_init='auto', max_iter=300, random_state=0)
 kmeans.fit(X_std)
 ```
 
@@ -132,7 +132,7 @@ Maybe your company needs to split customers into exactly 4 categories, for insta
 # Steps 1 & 2: Run K-means with different K and get inertia
 inertia = []
 for n_clusters in range(2,14):
-    kmeans = KMeans(n_clusters=n_clusters, random_state=0).fit(X_std)
+    kmeans = KMeans(n_clusters=n_clusters, n_init='auto', random_state=0).fit(X_std)
     inertia.append(kmeans.inertia_ / n_clusters)
 
 # Step 3: Put into a dataframe and create a line plot
