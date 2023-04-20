@@ -7,7 +7,7 @@ show_date: false
 
 **Please note that this final deadline is set by the college. I *cannot* accept any work past this deadline.**
 
-**A polished Jupyter Notebook file reporting the results of your final data analysis project** 
+**A polished Jupyter Notebook HTML file reporting the results of your final data analysis project** 
 
 Roughly, 5-7 written pages (though this is hard to measure in a Jupyter notebook, so consider it a *guideline*). Think about this report as a “final takeaway” of all the skills you’ve learned in class over the semester. Below is a rough structure of your final written report. **This should be a ready-to-deliver report with clear section headers and interpretations of any statistical or graphical output (like several of our previous projects).**
 

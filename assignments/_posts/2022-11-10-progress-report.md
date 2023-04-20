@@ -3,7 +3,7 @@ title:  "Progress Report"
 date:   2022-11-10 13:00:00 -0500
 show_date: false
 ---
-**Complete by: Tuesday 27 Apr. by 9am**
+**Complete by: Thursday 27 Apr. by 9am**
 
 *The report should demonstrate significant coding and data exploration or analysis progress since the previous week. You should be beginning to move beyond initial data wrangling and exploration at this point.*
 
