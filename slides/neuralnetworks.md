@@ -73,23 +73,12 @@ print(f"{scores.mean():.2} accuracy with standard deviation {scores.std():.2}")
 
 You will need to standardize X first!
 
-## Quicker methods for validation measures and ROC Curve.
-
-```python
-print(classification_report(y_test, predictions))
-```
-
-```python
-RocCurveDisplay.from_predictions(y_test, predictions)
-plt.plot([0, 1], [0, 1], color = 'g')
-```
-
 ## Try it with the Titanic dataset!
 
 1. Load dataset and choose predictors.
 2. Wrangle, split, and standardize data.
 3. Choose hyperparameters and train neural net.
-4. Validate using usual methods, but with new functions.
+4. Validate using usual methods.
 5. Cross-validate model to see mean accuracy score.
 
 Can you get a cross-validation accuracy above 80%?

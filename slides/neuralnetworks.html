@@ -25,6 +25,7 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -168,9 +169,9 @@ href="https://keras.io/">Keras</a></p>
 class="slide level2">
 <h2>Using the MLPClassifier will be familiar.</h2>
 <ul>
-<li class="fragment">Same workflow as all other sklearn models.</li>
-<li class="fragment">You must use one-hot encoding and you <em>must</em>
-scale your variables.</li>
+<li>Same workflow as all other sklearn models.</li>
+<li>You must use one-hot encoding and you <em>must</em> scale your
+variables.</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neural_network <span class="im">import</span> MLPClassifier</span></code></pre></div>
@@ -178,26 +179,24 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a hr
 <section id="which-hyperparameters-are-important" class="slide level2">
 <h2>Which hyperparameters are important?</h2>
 <ul>
-<li class="fragment"><code>hidden_layer_sizes</code>: number
-<em>and</em> size of hidden layers</li>
-<li class="fragment"><code>activation</code>: type of activation
-function to use</li>
-<li class="fragment"><code>solver</code>: solving method. ‘sgd’ and
-‘adam’ are both stochastic gradient descent and useful for larger
-datasets. ‘lbfgs’ is better for small data.</li>
-<li class="fragment"><code>alpha</code>: strength of regularization
-(helps with outliers)</li>
+<li><code>hidden_layer_sizes</code>: number <em>and</em> size of hidden
+layers</li>
+<li><code>activation</code>: type of activation function to use</li>
+<li><code>solver</code>: solving method. ‘sgd’ and ‘adam’ are both
+stochastic gradient descent and useful for larger datasets. ‘lbfgs’ is
+better for small data.</li>
+<li><code>alpha</code>: strength of regularization (helps with
+outliers)</li>
 </ul>
 </section>
 <section id="hyperparameters-continued" class="slide level2">
 <h2>Hyperparameters, continued</h2>
 <ul>
-<li class="fragment"><code>learning_rate</code> and
-<code>learning_rate_init</code>: for gradient descent only, determines
-the size of the steps</li>
-<li class="fragment"><code>max_iter</code>: the number of iterations or
-epochs until the model converges</li>
-<li class="fragment"><code>random_state</code></li>
+<li><code>learning_rate</code> and <code>learning_rate_init</code>: for
+gradient descent only, determines the size of the steps</li>
+<li><code>max_iter</code>: the number of iterations or epochs until the
+model converges</li>
+<li><code>random_state</code></li>
 </ul>
 </section>
 <section
@@ -210,25 +209,14 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="sc">{</span>scores<span class="sc">.</span>mean()<span class="sc">:.2}</span><span class="ss"> accuracy with standard deviation </span><span class="sc">{</span>scores<span class="sc">.</span>std()<span class="sc">:.2}</span><span class="ss">&quot;</span>)</span></code></pre></div>
 <p>You will need to standardize X first!</p>
 </section>
-<section id="quicker-methods-for-validation-measures-and-roc-curve."
-class="slide level2">
-<h2>Quicker methods for validation measures and ROC Curve.</h2>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, predictions))</span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>RocCurveDisplay.from_predictions(y_test, predictions)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], color <span class="op">=</span> <span class="st">&#39;g&#39;</span>)</span></code></pre></div>
-</section>
 <section id="try-it-with-the-titanic-dataset" class="slide level2">
 <h2>Try it with the Titanic dataset!</h2>
 <ol type="1">
-<li class="fragment">Load dataset and choose predictors.</li>
-<li class="fragment">Wrangle, split, and standardize data.</li>
-<li class="fragment">Choose hyperparameters and train neural net.</li>
-<li class="fragment">Validate using usual methods, but with new
-functions.</li>
-<li class="fragment">Cross-validate model to see mean accuracy
-score.</li>
+<li>Load dataset and choose predictors.</li>
+<li>Wrangle, split, and standardize data.</li>
+<li>Choose hyperparameters and train neural net.</li>
+<li>Validate using usual methods.</li>
+<li>Cross-validate model to see mean accuracy score.</li>
 </ol>
 <p>Can you get a cross-validation accuracy above 80%?</p>
 </section></section>
