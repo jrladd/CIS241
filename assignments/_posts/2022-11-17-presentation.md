@@ -35,7 +35,7 @@ You will be assessed on the content of this video and how well it addresses the 
 
 ## Responding to Videos
 
-In addition to making a video presentation, you will watch and respond to the videos made by your peers. Before the final day of class (May 9), you will watch the videos on the schedule for that day (see Sakai for the [presentation schedule]()). After watching a video, you will write down the following for each one.
+In addition to making a video presentation, you will watch and respond to the videos made by your peers. Before the final day of class (May 9), you will watch *all* the videos. After watching a video, you will write down the following for each one.
 
 1. One substantive similarity between the presenter's project and your own.
 2. One question you have about the project.
