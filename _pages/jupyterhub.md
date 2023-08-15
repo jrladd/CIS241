@@ -9,7 +9,7 @@ This page will help you get set up to use Python and JupyterHub, a data science 
 
 ## Setting Up JupyterHub
 
-1. Navigate to the [CIS JupyterHub](http://104.131.179.70).
+1. Navigate to the [CIS JupyterHub](https://jupyterhub.ciswashjeff.net/).
 2. Log in with your W&J username (the part of your email address before the @). ***Whatever password you enter for the first time will become your password. KEEP TRACK OF WHAT YOU ENTERED SO THAT YOU DON'T GET LOCKED OUT!***
 3. Bookmark this page so you can always get back to JupyterHub.
 4. That's it! You can use this site from any machine, and as long as you save your work, your files will follow you everywhere.
@@ -23,4 +23,4 @@ This page will help you get set up to use Python and JupyterHub, a data science 
 
 Now you're ready to begin! Read through the Getting Started notebook and follow the instructions. You don't need to code anything yourself today---just follow the examples and get a feel for how Jupyter works.
 
-*n.b. We're experimenting with JupyterHub for the first time this semester. If you experience any problems with how it works (e.g. it runs really slowly, files go missing, really anything that seems odd), let me know right away. You can always run Jupyter locally on your own laptop or on any of our classroom or lab computers. See this page for [instructions on working with Jupyter locally](/CIS241/jupyter).*
+*n.b. We're still experimenting with JupyterHub. If you experience any problems with how it works (e.g. it runs really slowly, files go missing, really anything that seems odd), let me know right away. You can always run Jupyter locally on your own laptop or on any of our classroom or lab computers. See this page for [instructions on working with Jupyter locally](/CIS241/jupyter).*

@@ -16,13 +16,13 @@ header:
     - label: "Sakai"
       url: "https://sakai.washjeff.edu"
     - label: "JupyterHub"
-      url: "http://104.131.179.70/"
-excerpt: "CIS 241. Washington & Jefferson College. Spring 2023."
+      url: "https://jupyterhub.ciswashjeff.net/"
+excerpt: "CIS 241. Washington & Jefferson College. Fall 2023."
 ---
 
-**Meeting Time: TR 9-10:45am**
+**Meeting Time: TR 10:55-12:40pm**
 
-Dr. Ladd's Student Drop-In Hours: M 11:30am-1:30pm & W 1-3pm in TECH 201  
+Dr. Ladd's Student Drop-In Hours: M 11:30am-1:30pm & Tu 2-4pm in TECH 201  
 or email for appointment, <jladd@washjeff.edu>
 
 PAL Tutoring Hours: 7-10pm Sunday through Thursday on the 2nd floor of the Tech Center  

@@ -8,7 +8,7 @@ main:
   - title: "Ground Rules"
     url: /groundrules/
   - title: "JupyterHub"
-    url: http://104.131.179.70/
+    url: https://jupyterhub.ciswashjeff.net/
     #  - title: "Slides"
     #    url: /slides/
     #- title: "Credits"
