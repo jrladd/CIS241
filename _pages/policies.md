@@ -43,7 +43,7 @@ The guidelines above apply to typical short absences (missing just one class in 
 
 In these cases, **it's your responsibility to contact me as soon as you know you'll be out**. Let me know how long you expect the absence to be, and we can talk through what some of the expectations will be during this time and how you will complete the work.
 
-It's important that you attend class as much as you can, but it's also important that you stay home if you're sick and get the care you need. We can work on this balance together, and if you have any questions about you can always ask me!
+It's important that you attend class as much as you can, but it's also important that you stay home if you're sick and get the care you need. We can work on this balance together, and if you have any questions about this you can always ask me!
 
 #### Instructor Absence
 
@@ -57,7 +57,7 @@ In general, when completing writing assignments, ensure all work is your own, an
 
 #### Academic Honesty & Coding
 
-These standards of academic integrity apply to coding as well as other kinds of classwork. Citation isn't just for papers! It's very common, and perfectly permissible, to borrow code snippets from a classmate or from somewhere online. When you do, make sure to include a note in your code's comments about where the code came from. Not only will this let you give appropriate intellectual credit and avoid plagiarism, it will also help you remember what you were trying to do when you revise your code later.
+These standards of academic integrity apply to coding as well as other kinds of classwork. Citation isn't just for papers! It's very common, and perfectly permissible, to borrow code snippets from a classmate or from somewhere online. When you do, make sure to include a note in your code's comments about where the code came from. Keep in mind that this includes the use of any automated writing or code assistants like ChatGPT—any use of such programs should be cited like any website, with a link to the chat record. (And keep in mind that these tools may not give you the best advice! It's always better to work from our course materials or ask a classmate for help.) Not only will this let you give appropriate intellectual credit and avoid plagiarism, it will also help you remember what you were trying to do when you revise your code later.
 
 ### Names and Pronouns
 
@@ -71,7 +71,7 @@ Please be respectful with your use of laptops and technology in class. I request
 
 ### CIS PAL Tutors
 
-The CIS department has its own PAL tutors: they're available to help **Sunday--Thursday evenings from 7--10pm** in the CIS Lounge on the second floor of the Tech Center. There are peer tutors who can help with our class (CIS 241) on Sunday, Monday, Wednesday, and Thursday this semester. (I'll post more detailed tutor bios and schedules on [Sakai](https://sakai.washjeff.edu).)
+The CIS department has its own PAL tutors: they're available to help **Sunday--Thursday evenings from 7--10pm** in the CIS Lounge on the second floor of the Tech Center. (I'll post more detailed tutor bios and schedules on [Sakai](https://sakai.washjeff.edu).)
 
 All the CIS PAL tutors are students who've taken this class before and/or have lots of knowledge about Python and data analysis. They're a great resource, and they're there to help you! I encourage you to take advantage of their expertise when you have questions or need help.
 
