@@ -1,9 +1,9 @@
 ---
 title:  "Final Written Report"
-date:   2022-11-10 13:00:00 -0500
+date:   2023-10-31 10:55:00 -0500
 show_date: false
 ---
-**Complete by: Monday 15 May by 2pm**
+**Complete by: Tuesday 12 Dec. by Noon**
 
 **Please note that this final deadline is set by the college. I *cannot* accept any work past this deadline.**
 
