@@ -23,11 +23,9 @@ Each class must create its own learning community as the result of shared effort
 
 ### Attendance & Participation
 
-Good participation should be understood as consistent and thoughtful contribution to the classroom community, an engagement with course materials and conversations, and a general responsiveness to (and respect for) one’s fellow students and instructor. This isn’t an accounting of how often you speak in class. Instead, it’s about what you offer to the intellectual life of the class, and everyone contributes to this on-going work in different ways.
+Good participation should be understood as consistent and thoughtful contribution to the classroom community, an engagement with course materials and conversations, and a general responsiveness to (and respect for) one’s fellow students and instructor. This isn’t an accounting of how often you speak in class. Instead, it’s about what you offer to the intellectual life of the class, and everyone contributes to this on-going work in different ways. Particularly because so much of the class will consist of hands-on work, you’ll get participation credit simply for attending class and doing the work with care.
 
-**You can miss 3 class sessions without penalty, and you don't need to contact me if you have missed or will miss a class**. However, if you miss more than 3 classes, you will be marked down one grade "step" for each additional class missed. (For example, if you miss four classes and your final grade is 90% (A-), your fourth absence will cause you to have a B+ instead.) Excessive absences may also affect your participation grade.
-
-Though you're not required to, you can always reach out to me or a classmate to find out what you missed. We're all in this together, and I'll do my best to make sure no one falls behind.
+Attending class is not optional: regular attendance is necessary to succeed in this course. Each day will have new content, activities, and learning opportunities. You'll want to attend as much as possible to avoid falling behind. **If you have to miss class for any reason, please let me know in advance**, especially if you have to miss more than one class in a row. Missing class is not an excuse for missing assignment deadlines, being unprepared for the next class session, or falling behind on the daily quizzes. You are responsible for keeping up-to-date with the work of the course or for communicating with me about unexpected circumstances which change your ability to do so. You can always reach out to me or a classmate to find out what you missed. We're all in this together, and I'll do my best to make sure no one falls behind.
 
 ### Lateness and Extensions
 
@@ -36,14 +34,6 @@ All assignments are due by the time listed on the prompt. I know that things don
 However, you **must ask for the extension *at least* 24 hours before the assignment deadline**. When you email about an extension, please propose a new deadline for the assignment (a good rule of thumb is 2 or 3 days after the original deadline). Any work received late without an agreed-upon extension will be penalized one point per day.
 
 But keep in mind: **I cannot accept any assignment more than one week late.** Assignments more than one week late will receive a 0.
-
-#### Longer Absences
-
-The guidelines above apply to typical short absences (missing just one class in a row and catching up on work as normal). However, I recognize that COVID and other issues may lead to an *extended* absence, when you might be out of class for several classes in a row, or even a week or more.
-
-In these cases, **it's your responsibility to contact me as soon as you know you'll be out**. Let me know how long you expect the absence to be, and we can talk through what some of the expectations will be during this time and how you will complete the work.
-
-It's important that you attend class as much as you can, but it's also important that you stay home if you're sick and get the care you need. We can work on this balance together, and if you have any questions about this you can always ask me!
 
 #### Instructor Absence
 
