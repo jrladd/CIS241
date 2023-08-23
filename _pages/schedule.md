@@ -13,8 +13,8 @@ sidebar:
 
 Date|Topics & Slides|Workshops|Assignments
 --|---|---|---
-24 Aug.|Introduction to the course and to Python|[JupyterHub](/CIS241/jupyterhub)|
-29 & 31 Aug.|[What Is Data?](/CIS241/slides/whatisdata), [Python](/CIS241/slides/pythonbasics) and [Data Wrangling](/CIS241/slides/wrangling)|[Movies](/CIS241/resources/01_movies1.ipynb)|
+24 Aug.|Introduction to the course, [What Is Data?](/CIS241/slides/whatisdata)|[JupyterHub](/CIS241/jupyterhub)|
+29 & 31 Aug.|[Python](/CIS241/slides/pythonbasics) and [Data Wrangling](/CIS241/slides/wrangling)|[Movies](/CIS241/resources/01_movies1.ipynb)|
 5 & 7 Sept.|[Exploratory Data Analysis](/CIS241/slides/eda)|[Movies](/CIS241/resources/01_movies2.ipynb)|**[Documentation Assignment](/CIS241/assignments/documentation) Due 7 Sept. at 10:55am**
 12 & 14 Sept.|[Hypothesis Testing](/CIS241/slides/hypothesis)|[Sports](/CIS241/resources/02_tennis1.ipynb)|
 19 & 21 Sept.|[Correlation](/CIS241/slides/correlation)|[Sports](/CIS241/resources/02_tennis2.ipynb)|**Take-Home Quiz I**
