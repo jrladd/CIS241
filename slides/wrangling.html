@@ -25,6 +25,8 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -88,7 +90,6 @@
     code span.va { color: #19177c; } /* Variable */
     code span.vs { color: #4070a0; } /* VerbatimString */
     code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/theme/solarized.css" id="theme">
 </head>
@@ -133,10 +134,10 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a hr
 class="slide level2">
 <h2>Every variable (column) has a data type.</h2>
 <ul>
-<li>int: integers</li>
-<li>float: floats, doubles, or real numbers</li>
-<li>str: string, character, or object</li>
-<li>Other data types: boolean, date-times, factors</li>
+<li class="fragment">int: integers</li>
+<li class="fragment">float: floats, doubles, or real numbers</li>
+<li class="fragment">str: string, character, or object</li>
+<li class="fragment">Other data types: boolean, date-times, factors</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>taxis.info() <span class="co"># Pandas works by adding methods to dataframes</span></span></code></pre></div>
@@ -159,12 +160,13 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a hr
 class="slide level2">
 <h2>Row selection uses standard comparisons.</h2>
 <ul>
-<li><code>&gt;</code> greater than</li>
-<li><code>&gt;=</code> greater than or equal to</li>
-<li><code>&lt;</code> less than</li>
-<li><code>&lt;=</code> less than or equal to</li>
-<li><code>!=</code> not equal</li>
-<li><code>==</code> equal (note the double equals sign!)</li>
+<li class="fragment"><code>&gt;</code> greater than</li>
+<li class="fragment"><code>&gt;=</code> greater than or equal to</li>
+<li class="fragment"><code>&lt;</code> less than</li>
+<li class="fragment"><code>&lt;=</code> less than or equal to</li>
+<li class="fragment"><code>!=</code> not equal</li>
+<li class="fragment"><code>==</code> equal (note the double equals
+sign!)</li>
 </ul>
 </section>
 <section id="you-can-also-use-logical-operators-to-combine-comparisons."
@@ -249,7 +251,7 @@ class="slide level2">
 <h2>Now we can put it all together!</h2>
 <div class="sourceCode" id="cb13"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use multiple methods to &quot;chain&quot; operations</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>taxis.groupby([<span class="st">&quot;dropoff_borough&quot;</span>]).mean()</span></code></pre></div>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>taxis.groupby([<span class="st">&quot;dropoff_borough&quot;</span>]).mean(numeric_only<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
 </section>
 <section
 id="chapter-5-and-chapter-8-have-lots-more-guidance-and-many-examples-for-you-to-try"

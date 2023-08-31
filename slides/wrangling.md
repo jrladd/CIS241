@@ -133,7 +133,7 @@ It doesn't look like anything on its own!
 
 ```python
 # Use multiple methods to "chain" operations
-taxis.groupby(["dropoff_borough"]).mean()
+taxis.groupby(["dropoff_borough"]).mean(numeric_only=True)
 ```
 
 ## [Chapter 5](https://wesmckinney.com/book/pandas-basics.html#pandas_frame) and [Chapter 8](https://wesmckinney.com/book/data-wrangling.html) have lots more guidance, and many examples for you to try!
