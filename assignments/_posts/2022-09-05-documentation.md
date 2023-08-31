@@ -1,6 +1,6 @@
 ---
 title:  "Documentation Assignment"
-date:   2023-08-29 10:55:00 -0400
+date:   2023-09-01 09:00:00 -0400
 show_date: false
 ---
 **Complete by: Thursday 7 Sept. by 10:55am**
@@ -59,7 +59,7 @@ _Please note that if your data set has multiple data tables, you will need to pr
 
 Column Name|Variable Definition|Units|Data Type|Variable Codes and definitions|Missing value codes
 ---|---|---|---|---|---
-The name of the column, exactly as it appears in your .csv file|Describe what each variable represents, and if known, how it was measured.|if units needed; grams, days…|integer, decimal, ordinal, nominal, character|if not a continuous variable, you could list the acceptable values|if there is missing data, indicate what is used, e.g. blank, NA, NULL, etc.
+The name of the column, exactly as it appears in your .csv file|Describe what each variable represents, and if known, how it was measured.|if units needed; grams, days…|Say whether the data is numerical or categorical, and give a subcategory (e.g. continuous)|if not a continuous variable, you could list the acceptable values|if there is missing data, indicate what is used, e.g. blank, NA, NULL, etc.
 
 Add more rows as needed... [n.b. *You only need to create a chart of 20 variables. If your data set has more than 20 variables, just choose the 20 that seem the most relevant or interesting.*]
 
