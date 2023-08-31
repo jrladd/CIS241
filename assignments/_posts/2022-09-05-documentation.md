@@ -1,6 +1,6 @@
 ---
 title:  "Documentation Assignment"
-date:   2023-09-01 09:00:00 -0400
+date:   2023-08-31 09:00:00 -0400
 show_date: false
 ---
 **Complete by: Thursday 7 Sept. by 10:55am**
