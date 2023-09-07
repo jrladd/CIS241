@@ -305,7 +305,7 @@ Create a plot to compare the distance a taxi traveled to the total fare using th
 sns.displot(x="NumericalVariable", col="CategoricalVariable", data=YourDataFrame)
 ```
 
-## Use `.set()" add your own title and axis label.
+## Use `.set()` add your own title and axis label.
 
 Never rely on the default column names! You can "chain" this function onto an existing Seaborn plot.
 
