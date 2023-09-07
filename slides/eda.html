@@ -275,9 +275,10 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a hr
 <h2>Population vs. Sample</h2>
 <p>When you have “N” data values:</p>
 <ul>
-<li>The Entire Population: divide by N when calculating variance (like
-we did)</li>
-<li>A Sample: divide by N-1 when calculating variance</li>
+<li class="fragment">The Entire Population: divide by N when calculating
+variance (like we did)</li>
+<li class="fragment">A Sample: divide by N-1 when calculating
+variance</li>
 </ul>
 <p>Sample variance: <span
 class="math inline">\(\dfrac{108,520}{4}=27,130\)</span><br />
@@ -374,10 +375,10 @@ until computing took off in the 1980s.</h2>
 class="slide level2">
 <h2>Resampling is an umbrella term. It can include:</h2>
 <ul>
-<li>The Bootstrap, used to assess the reliability of an estimated
-statistic</li>
-<li>Permutation Tests, used as an alternative to parametric hypothesis
-tests</li>
+<li class="fragment">The Bootstrap, used to assess the reliability of an
+estimated statistic</li>
+<li class="fragment">Permutation Tests, used as an alternative to
+parametric hypothesis tests</li>
 </ul>
 </section>
 <section id="you-can-resample-with-or-without-replacement."
@@ -393,11 +394,12 @@ class="slide level2">
 <h2>Using bootstrap sampling, we can estimate a confidence interval for
 any summary statistic.</h2>
 <ul>
-<li>Remember: bootstrap sampling is sampling <em>with</em>
-replacement.</li>
-<li>The 90% confidence interval tells us where 90% of the data is likely
-to fall, if the data were random.</li>
-<li>Confidence intervals are used to gauge <em>uncertainty</em>.</li>
+<li class="fragment">Remember: bootstrap sampling is sampling
+<em>with</em> replacement.</li>
+<li class="fragment">The 90% confidence interval tells us where 90% of
+the data is likely to fall, if the data were random.</li>
+<li class="fragment">Confidence intervals are used to gauge
+<em>uncertainty</em>.</li>
 </ul>
 </section>
 <section id="confidence-intervals-with-pandas" class="slide level2">
@@ -432,10 +434,12 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a hr
 <section id="some-good-resources-on-visualization" class="slide level2">
 <h2>Some Good Resources on Visualization</h2>
 <ul>
-<li>Claus Wilke’s <a href="https://clauswilke.com/dataviz/">Fundamentals
-of Data Visualzation</a> (The illustrations in this slide show come from
+<li class="fragment">Claus Wilke’s <a
+href="https://clauswilke.com/dataviz/">Fundamentals of Data
+Visualzation</a> (The illustrations in this slide show come from
 here!)</li>
-<li><a href="https://seaborn.pydata.org/tutorial.html">The Seaborn
+<li class="fragment"><a
+href="https://seaborn.pydata.org/tutorial.html">The Seaborn
 tutorials</a></li>
 </ul>
 </section></section>
@@ -449,11 +453,12 @@ class="slide level2">
 <h2>Visualization can be <em>exploratory</em>, <em>explanatory</em>, or
 both!</h2>
 <ul>
-<li>Exploratory viz helps <em>us</em> (the researchers or analysts)
-understand the data.</li>
-<li>Explanatory viz helps <em>others</em> (the clients or audience)
-understand our analysis.</li>
-<li>Many visualizations do both of these things at once!</li>
+<li class="fragment">Exploratory viz helps <em>us</em> (the researchers
+or analysts) understand the data.</li>
+<li class="fragment">Explanatory viz helps <em>others</em> (the clients
+or audience) understand our analysis.</li>
+<li class="fragment">Many visualizations do both of these things at
+once!</li>
 </ul>
 </section></section>
 <section>
@@ -471,9 +476,9 @@ alt="Graph a single value across one set of categories." />
 categories.</figcaption>
 </figure>
 <ul>
-<li>Variable types: 1 categorical and 1 numerical</li>
-<li>Common graph types: Bar plot (Don’t confuse the dot plot with the
-scatter plot!)</li>
+<li class="fragment">Variable types: 1 categorical and 1 numerical</li>
+<li class="fragment">Common graph types: Bar plot (Don’t confuse the dot
+plot with the scatter plot!)</li>
 </ul>
 </section>
 <section id="plot-amounts-with-multiple-categories."
@@ -481,8 +486,10 @@ class="slide level2">
 <h2>Plot <em>Amounts</em> With Multiple Categories.</h2>
 <p><img data-src="img/amounts-2.png" /></p>
 <ul>
-<li>Variable types: 2 or more categorical, 1 numerical</li>
-<li>Common graph types: Grouped or stacked bar, heat map</li>
+<li class="fragment">Variable types: 2 or more categorical, 1
+numerical</li>
+<li class="fragment">Common graph types: Grouped or stacked bar, heat
+map</li>
 </ul>
 </section>
 <section id="viz-can-help-us-see-distributions." class="slide level2">
@@ -494,8 +501,9 @@ alt="Graph a distribution of a single variable." />
 variable.</figcaption>
 </figure>
 <ul>
-<li>Variable type: 1 continuous (numerical)</li>
-<li>Common graph types: Histograms, Density plots, Q-Q plots</li>
+<li class="fragment">Variable type: 1 continuous (numerical)</li>
+<li class="fragment">Common graph types: Histograms, Density plots, Q-Q
+plots</li>
 </ul>
 </section>
 <section id="distributions-with-multiple-categories."
@@ -503,8 +511,9 @@ class="slide level2">
 <h2><em>Distributions</em> with Multiple Categories.</h2>
 <p><img data-src="img/multiple-distributions.png" /></p>
 <ul>
-<li>Variable types: 1 continuous (numerical), 1 categorical</li>
-<li>Common graph types: Box plots, Violin plots</li>
+<li class="fragment">Variable types: 1 continuous (numerical), 1
+categorical</li>
+<li class="fragment">Common graph types: Box plots, Violin plots</li>
 </ul>
 </section>
 <section id="you-try-it" class="slide level2">
@@ -518,17 +527,18 @@ Jot down your answers.</p>
 <h2>Viz Can Help Us See <em>Proportions</em>.</h2>
 <p><img data-src="img/proportions.png" /></p>
 <ul>
-<li>Variable types: 1 numerical, 1 categorical</li>
-<li>Common graph types: Pie chart, Bar plot</li>
+<li class="fragment">Variable types: 1 numerical, 1 categorical</li>
+<li class="fragment">Common graph types: Pie chart, Bar plot</li>
 </ul>
 </section>
 <section id="viz-can-help-us-see-relationships." class="slide level2">
 <h2>Viz Can Help Us See <em>Relationships</em>.</h2>
 <p><img data-src="img/basic-scatter.png" /></p>
 <ul>
-<li>Variable types: 2 continuous (numerical), (3 in a bubble chart)</li>
-<li>Common graph types: Scatter plot, Bubble Chart, Hex bins, Density
-contours</li>
+<li class="fragment">Variable types: 2 continuous (numerical), (3 in a
+bubble chart)</li>
+<li class="fragment">Common graph types: Scatter plot, Bubble Chart, Hex
+bins, Density contours</li>
 </ul>
 </section>
 <section id="you-try-it-1" class="slide level2">
@@ -581,12 +591,13 @@ class="slide level2">
 <h2>Create different shapes and plot types with different
 functions.</h2>
 <ul>
-<li><code>sns.relplot()</code>: scatter plots and line plots
-(relationships)</li>
-<li><code>sns.displot()</code>: histograms and frequency polygons
-(distributions)</li>
-<li><code>sns.catplot()</code>: bar plots and boxplots (categories)</li>
-<li>and more we’ll cover later!</li>
+<li class="fragment"><code>sns.relplot()</code>: scatter plots and line
+plots (relationships)</li>
+<li class="fragment"><code>sns.displot()</code>: histograms and
+frequency polygons (distributions)</li>
+<li class="fragment"><code>sns.catplot()</code>: bar plots and boxplots
+(categories)</li>
+<li class="fragment">and more we’ll cover later!</li>
 </ul>
 <p>Sometimes you’ll use the <code>kind</code> parameter to set the type
 of plot!</p>
@@ -605,21 +616,24 @@ different categories.</h2>
 <div class="sourceCode" id="cb11"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>sns.displot(x<span class="op">=</span><span class="st">&quot;NumericalVariable&quot;</span>, col<span class="op">=</span><span class="st">&quot;CategoricalVariable&quot;</span>, data<span class="op">=</span>YourDataFrame)</span></code></pre></div>
 </section>
-<section id="use-.set_axis_labels-to-add-your-own-graph-labels."
+<section id="use-.set-add-your-own-title-and-axis-label."
 class="slide level2">
-<h2>Use <code>.set_axis_labels()</code> to add your own graph
-labels.</h2>
+<h2>Use `.set()” add your own title and axis label.</h2>
 <p>Never rely on the default column names! You can “chain” this function
 onto an existing Seaborn plot.</p>
 <div class="sourceCode" id="cb12"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(...).set_axis_labels(<span class="st">&quot;A Better Label for X&quot;</span>, <span class="st">&quot;A Better Label for Y&quot;</span>)</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>sns.catplot(...).<span class="bu">set</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">&quot;A Title for the Whole Plot&quot;</span>,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="st">&quot;A Better Label for X&quot;</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="st">&quot;A Better Label for Y&quot;</span>)</span></code></pre></div>
 </section>
 <section id="you-try-it-3" class="slide level2">
 <h2>You Try It!</h2>
 <p>Create a plot showing the distribution of tips in the
-<code>taxis</code> dataset. Then show the distributions according to
-each pickup borough, in different columns. Finally, change the size of
-the bins in each distribution to show less detail (wider bars).</p>
+<code>taxis</code> dataset. Give the plot a title and labels for both
+axes. Then show the distributions according to each pickup borough, in
+different columns. Finally, change the size of the bins in each
+distribution to show less detail (wider bars).</p>
 </section></section>
 <section>
 <section id="ugly-bad-or-wrong" class="title-slide slide level1">

@@ -305,17 +305,20 @@ Create a plot to compare the distance a taxi traveled to the total fare using th
 sns.displot(x="NumericalVariable", col="CategoricalVariable", data=YourDataFrame)
 ```
 
-## Use `.set_axis_labels()` to add your own graph labels.
+## Use `.set()" add your own title and axis label.
 
 Never rely on the default column names! You can "chain" this function onto an existing Seaborn plot.
 
 ```python
-sns.catplot(...).set_axis_labels("A Better Label for X", "A Better Label for Y")
+sns.catplot(...).set(
+    title="A Title for the Whole Plot",
+    xlabel="A Better Label for X",
+    ylabel="A Better Label for Y")
 ```
 
 ## You Try It!
 
-Create a plot showing the distribution of tips in the `taxis` dataset. Then show the distributions according to each pickup borough, in different columns. Finally, change the size of the bins in each distribution to show less detail (wider bars).
+Create a plot showing the distribution of tips in the `taxis` dataset. Give the plot a title and labels for both axes. Then show the distributions according to each pickup borough, in different columns. Finally, change the size of the bins in each distribution to show less detail (wider bars).
 
 # Ugly, Bad, or Wrong 
 
