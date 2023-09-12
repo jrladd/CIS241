@@ -1,6 +1,6 @@
 % Hypothesis Testing
-% CIS 241: Data Mining
-% Dr. Ladd
+% for Comparison of Means
+% CIS 241: Data Mining, Dr. Ladd
 
 # Why Do We Need a Hypothesis?
 
@@ -206,10 +206,15 @@ sns.set_theme()
 
 penguins = sns.load_dataset('penguins')
 penguins
-```
 
-```python
-sns.catplot(x="species",y="bill_depth_mm",kind="box",data=penguins)
+sns.catplot(
+  x="species",
+  y="bill_depth_mm",
+  kind="box",
+  data=penguins).set(
+  xlabel="Species of Penguin",
+  ylabel="Bill Depth (mm)",
+  title="Comparing Penguins' Bill Depth by Species")
 ```
 
 ## What's the difference in means?
@@ -265,7 +270,9 @@ mean_perms = pd.Series(mean_perms)
 ## Let's look at the results in a histogram
 
 ```python
-plt = sns.histplot(x=mean_perms)
+plt = sns.histplot(x=mean_perms).set(
+  title="Permutation Distribution for Penguin Bill Depth",
+  xlabel="Difference in Means between Adelie and Chinstrap Penguins")
 plt.axvline(x=mean_diff, color="red", ls="--")
 ```
 
@@ -288,7 +295,7 @@ Is our result statistically significant? Is it practically significant?
 
 Determine if users spend significantly more time on Page B than they do on Page A.
 
-1. Download <a href="https://jrladd.com/CIS241/data/web_page_data.csv" download>web_page_data.csv</a>.
+1. Copy the URL for <a href="https://jrladd.com/CIS241/data/web_page_data.csv" download>web_page_data.csv</a>.
 2. Make a boxplot of session times for Pages A and B.
 3. Calculate the observed difference in means.
 4. Run 2000 permutations of randomly resampled groups.
