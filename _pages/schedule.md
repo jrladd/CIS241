@@ -16,8 +16,8 @@ Date|Topics & Slides|Workshops|Assignments
 24 Aug.|Introduction to the course, [What Is Data?](/CIS241/slides/whatisdata)|[JupyterHub](/CIS241/jupyterhub)|
 29 & 31 Aug.|[Python](/CIS241/slides/pythonbasics) and [Data Wrangling](/CIS241/slides/wrangling)|[Movies](/CIS241/resources/01_movies1.ipynb)|
 5 & 7 Sept.|[Exploratory Data Analysis](/CIS241/slides/eda)|[Movies](/CIS241/resources/01_movies2.ipynb)|**[Documentation Assignment](/CIS241/assignments/documentation) Due 7 Sept. at 10:55am**
-12 & 14 Sept.|[Hypothesis Testing](/CIS241/slides/hypothesis)|[Sports](/CIS241/resources/02_tennis1.ipynb)|
-19 & 21 Sept.|[Correlation](/CIS241/slides/correlation)|[Sports](/CIS241/resources/02_tennis2.ipynb)|**Take-Home Quiz I**
+12 & 14 Sept.|[Hypothesis Testing: Comparison of Means](/CIS241/slides/hypothesis)|[Sports](/CIS241/resources/02_tennis1.ipynb)|
+19 & 21 Sept.|[Hypothesis Testing: Correlation](/CIS241/slides/correlation)|[Sports](/CIS241/resources/02_tennis2.ipynb)|**Take-Home Quiz I**
 26 & 28 Sept.|[Simple Linear Regression](/CIS241/slides/regression)|[Business](/CIS241/resources/03_airbnb1.ipynb)|
 3 & 5 Oct.|[Multivariate Regression](/CIS241/slides/multiple)|[Business](/CIS241/resources/03_airbnb2.ipynb)
 10 & 12 Oct.|[Logistic Regression](/CIS241/slides/logit)|[Ecology](/CIS241/resources/04_trees1.ipynb)|**[Tutorial Assignment](/CIS241/assignments/tutorial/) Due 12 Oct. at 10:55am**
