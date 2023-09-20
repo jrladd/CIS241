@@ -503,10 +503,11 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a hr
 class="slide level2">
 <h2>Let’s look at the results in a histogram</h2>
 <div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt <span class="op">=</span> sns.histplot(x<span class="op">=</span>mean_perms).<span class="bu">set</span>(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  title<span class="op">=</span><span class="st">&quot;Permutation Distribution for Penguin Bill Depth&quot;</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  xlabel<span class="op">=</span><span class="st">&quot;Difference in Means between Adelie and Chinstrap Penguins&quot;</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span>mean_diff, color<span class="op">=</span><span class="st">&quot;red&quot;</span>, ls<span class="op">=</span><span class="st">&quot;--&quot;</span>)</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt <span class="op">=</span> sns.histplot(x<span class="op">=</span>mean_perms)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.<span class="bu">set</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  title<span class="op">=</span><span class="st">&quot;Permutation Distribution for Penguin Bill Depth&quot;</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  xlabel<span class="op">=</span><span class="st">&quot;Difference in Means between Adelie and Chinstrap Penguins&quot;</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span>mean_diff, color<span class="op">=</span><span class="st">&quot;red&quot;</span>, ls<span class="op">=</span><span class="st">&quot;--&quot;</span>)</span></code></pre></div>
 <p>How is this different from previous Seaborn plots?</p>
 </section>
 <section id="finally-we-can-calculate-a-p-value" class="slide level2">

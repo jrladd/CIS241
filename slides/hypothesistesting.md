@@ -270,7 +270,8 @@ mean_perms = pd.Series(mean_perms)
 ## Let's look at the results in a histogram
 
 ```python
-plt = sns.histplot(x=mean_perms).set(
+plt = sns.histplot(x=mean_perms)
+plt.set(
   title="Permutation Distribution for Penguin Bill Depth",
   xlabel="Difference in Means between Adelie and Chinstrap Penguins")
 plt.axvline(x=mean_diff, color="red", ls="--")
