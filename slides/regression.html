@@ -118,9 +118,9 @@ the <em>strength</em> of a relationship, but how do we learn the
 class="slide level2">
 <h2>Questions we might want to answer with regression:</h2>
 <ul>
-<li>Does x influence y?</li>
-<li>Is crop growth rate improved by fertilizer?</li>
-<li>Do taller sprinters run faster?</li>
+<li class="fragment">Does x influence y?</li>
+<li class="fragment">Is crop growth rate improved by fertilizer?</li>
+<li class="fragment">Do taller sprinters run faster?</li>
 </ul>
 </section>
 <section
@@ -166,9 +166,9 @@ class="slide level2">
 the predictor (independent) variable.</h2>
 </section>
 <section
-id="to-define-predictor-and-target-variables-you-need-to-use-your-human-brain."
+id="to-define-predictors-and-a-target-variable-you-need-to-use-your-human-brain."
 class="slide level2">
-<h2>To define predictor and target variables, you need to <em>use your
+<h2>To define predictors and a target variable, you need to <em>use your
 human brain</em>.</h2>
 <p>Come up with a <em>rationale</em> for why you think they would be
 related.</p>
@@ -185,12 +185,12 @@ variables together.</p>
 <section id="regression-can-be-for-explanation-or-prediction."
 class="slide level2">
 <h2>Regression can be for <em>explanation</em> or
-<em>prediction</em>.</h2>
+<strong><em>prediction</em></strong>.</h2>
 </section></section>
 <section>
-<section id="calculating-simple-linear-regression"
+<section id="calculating-linear-regression"
 class="title-slide slide level1">
-<h1>Calculating simple linear regression</h1>
+<h1>Calculating linear regression</h1>
 
 </section>
 <section id="ymxb" class="slide level2">
@@ -203,11 +203,11 @@ class="math inline">\(Y=b_{1}X+b_{0}\)</span></p>
 <p><span class="math inline">\(Y\)</span> is your target (dependent)
 variable.</p>
 <p><span class="math inline">\(X\)</span> is your predictor
-(independent) variable.</p>
+(independent) variable. (There will eventually be many predictors.)</p>
 </section>
 <section id="yb_1xb_0-1" class="slide level2">
 <h2><span class="math inline">\(Y=b_{1}X+b_{0}\)</span></h2>
-<p>Two coefficients:</p>
+<p>Coefficients:</p>
 <p><span class="math inline">\(b_{1}\)</span> (or <span
 class="math inline">\(m\)</span>) describes the <em>slope</em> of the
 line (and its direction).</p>
@@ -217,9 +217,9 @@ class="math inline">\(b\)</span>) describes the height of the line when
 y-intercept or simply the intercept.</p>
 </section>
 <section
-id="we-can-provide-2-numeric-variables-x-and-y-and-python-will-calculate-the-b_0-and-b_1-values."
+id="we-can-provide-numeric-variables-x-and-y-and-python-will-calculate-the-b_0-and-b_1-values."
 class="slide level2">
-<h2>We can provide 2 numeric variables (<span
+<h2>We can provide numeric variables (<span
 class="math inline">\(X\)</span> and <span
 class="math inline">\(Y\)</span>), and Python will calculate the <span
 class="math inline">\(b_{0}\)</span> and <span
@@ -233,6 +233,28 @@ class="slide level2">
 class="math inline">\(b_{0}\)</span> and <span
 class="math inline">\(b_{1}\)</span>, you can use any new X value to
 <em>predict</em> a Y value. Wow!</h2>
+</section>
+<section
+id="bivariate-regression-is-great-at-explanation-but-lousy-at-prediction."
+class="slide level2">
+<h2>Bivariate regression is great at <em>explanation</em> but lousy at
+<em>prediction</em>.</h2>
+</section>
+<section
+id="multiple-regression-lets-you-add-more-independent-variables."
+class="slide level2">
+<h2>Multiple Regression lets you add more independent variables.</h2>
+<p>Bivariate regression:</p>
+<p><span class="math inline">\(Y=b_{0}+b_{1}x\)</span></p>
+<p>Multivariate regression:</p>
+<p><span
+class="math inline">\(Y=b_{0}+b_{1}x_{1}+b_{2}x_{2}+b_{3}x_{3}+...\)</span></p>
+</section>
+<section id="you-can-add-more-variables-as-predictors."
+class="slide level2">
+<h2>You can add more variables as predictors.</h2>
+<p>As many as you want, but make sure you <em>develop a rationale</em>
+(use your human brain)!</p>
 </section></section>
 <section>
 <section id="linear-regression-in-python"
@@ -264,7 +286,8 @@ alt="What do you think?" />
 class="slide level2">
 <h2>It looks like there might be a linear relationship!</h2>
 <p>We can see a general trend: as engine size goes up, fuel efficiency
-goes down. Now we’re ready to try modeling this relationship.</p>
+goes down. Now we’re ready to try modeling this relationship as part of
+a larger linear regression model.</p>
 </section>
 <section id="beware" class="slide level2">
 <h2>Beware!</h2>
@@ -287,11 +310,13 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a hr
 <section id="the-scikit-learn-modeling-workflow" class="slide level2">
 <h2>The scikit-learn modeling workflow</h2>
 <ol type="1">
-<li>Choose your model</li>
-<li>Split the data into train and test portions</li>
-<li>Fit the model to your training data</li>
-<li>Summarize or predict based on the model</li>
-<li>Validate and assess the model</li>
+<li class="fragment">Choose your model</li>
+<li class="fragment">Choose predictor and target variables, test for
+validity</li>
+<li class="fragment">Split the data into train and test portions</li>
+<li class="fragment">Fit the model to your training data</li>
+<li class="fragment">Summarize or predict based on the model</li>
+<li class="fragment">Validate and assess the model</li>
 </ol>
 <p>Full scikit-learn documentation <a
 href="https://scikit-learn.org/stable/index.html">here</a></p>
@@ -312,7 +337,7 @@ class="slide level2">
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="st">&quot;mpg&quot;</span> <span class="co"># Our target variable</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>predictors <span class="op">=</span> [<span class="st">&quot;displacement&quot;</span>] <span class="co"># A list of predictors</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>predictors <span class="op">=</span> [<span class="st">&quot;displacement&quot;</span>, <span class="st">&quot;model_year&quot;</span>, <span class="st">&quot;acceleration&quot;</span>] <span class="co"># A list of predictors</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> cars[predictors]</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> cars[target]</span>
@@ -335,46 +360,134 @@ class="slide level2">
 <h2>Now we can look at the model’s coefficients</h2>
 <div class="sourceCode" id="cb5"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We use f-strings to print complex things, with rounding</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Intercept: </span><span class="sc">{</span>our_model<span class="sc">.</span>intercept_<span class="sc">:.3f}</span><span class="ss">&quot;</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Coefficient (Slope): </span><span class="sc">{</span>our_model<span class="sc">.</span>coef_[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We can use a for loop to print multiple coefficients</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Intercept: </span><span class="sc">{</span>our_model<span class="sc">.</span>intercept_<span class="sc">:.3f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Intercept: </span><span class="sc">{</span>our_model<span class="sc">.</span>intercept_<span class="sc">:.3f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c,p <span class="kw">in</span> <span class="bu">zip</span>(our_model.coef_,X.columns):</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Coefficient for </span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>c<span class="sc">:.4f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
 </section>
 <section class="slide level2">
 
-<p>With a slope of <code>-0.0597</code>, this linear regression provides
-evidence that as engine displacment increases, fuel efficiency decreases
-slightly!</p>
+<p>With a coefficient for displacement of <code>-0.0520</code>, this
+linear regression provides evidence that as engine displacment
+increases, fuel efficiency decreases slightly!</p>
 <p>For every additional unit of engine displacement, the expected fuel
-efficiency decreases by 0.0597.</p>
-<p>The intercept indicates that if engine displacment were 0, fuel
-efficiency would be 34.829 miles per gallon.</p>
+efficiency decreases by 0.0520.</p>
+<p>What would the other coefficients mean?</p>
+<p>The intercept indicates that if all predictor variables were 0, fuel
+efficiency would be -19.132 miles per gallon. Why doesn’t this number
+make any sense?</p>
 <p><em>Be careful not to imply that there is a direct causal link,
 especially without more evidence or studies.</em></p>
 </section>
-<section id="compare-this-to-the-regression-plot." class="slide level2">
-<h2>Compare this to the regression plot.</h2>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sns.lmplot(x<span class="op">=</span><span class="st">&quot;displacement&quot;</span>,y<span class="op">=</span><span class="st">&quot;mpg&quot;</span>,data<span class="op">=</span>cars)</span></code></pre></div>
-<p><img data-src="img/mpg_regression_py.png" /></p>
-</section>
 <section id="all-together-now." class="slide level2">
 <h2>All together now.</h2>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="st">&quot;mpg&quot;</span> <span class="co"># Our target variable</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>predictors <span class="op">=</span> [<span class="st">&quot;displacement&quot;</span>, <span class="st">&quot;model_year&quot;</span>, <span class="st">&quot;acceleration&quot;</span>] <span class="co"># A list of predictors</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> cars[predictors]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> cars[target]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the data</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    X, </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    y, </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.4</span>, </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>our_model <span class="op">=</span> LinearRegression()</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>our_model.fit(X_train, y_train)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># View coefficients</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Intercept: </span><span class="sc">{</span>our_model<span class="sc">.</span>intercept_<span class="sc">:.3f}</span><span class="ss">&quot;</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Coefficient (Slope): </span><span class="sc">{</span>our_model<span class="sc">.</span>coef_[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+</section></section>
+<section>
+<section id="how-to-choose-predictor-variables"
+class="title-slide slide level1">
+<h1>How to Choose Predictor Variables</h1>
+
+</section>
+<section
+id="theres-no-magic-solution-you-can-try-different-options-but-use-your-logic-and-dont-just-throw-everything-in-there."
+class="slide level2">
+<h2>There’s no magic solution! You can try different options, but use
+your logic and don’t just throw everything in there.</h2>
+</section>
+<section
+id="occams-razor-says-that-the-simplest-model-is-probably-the-best-one."
+class="slide level2">
+<h2>Occam’s Razor says that the simplest model is probably the best
+one.</h2>
+<figure>
+<img data-src="img/William_of_Ockham.png"
+alt="Think carefully about how many variables you add." />
+<figcaption aria-hidden="true">Think carefully about how many variables
+you add.</figcaption>
+</figure>
+</section>
+<section
+id="as-you-add-variables-r2-will-increase-and-rmse-will-decrease."
+class="slide level2">
+<h2>As you add variables, <span class="math inline">\(R^{2}\)</span>
+will increase and <code>RMSE</code> will decrease.</h2>
+<p>But think about <em>how much</em> it increases or decreases.</p>
+</section>
+<section
+id="avoid-multicollinearity-when-two-predictor-variables-correlate."
+class="slide level2">
+<h2>Avoid Multicollinearity: when two predictor variables
+correlate.</h2>
+<p>This will confuse the model and mess up your results! It could even
+result in <em>false</em> predictions.</p>
+<p><em>You must test for multicollinearity <strong>before</strong> you
+select your predictors and run your model.</em></p>
+</section>
+<section id="how-do-we-find-multicollinearity" class="slide level2">
+<h2>How do we find multicollinearity?</h2>
+<p>You can do a <em>pairwise</em> comparison of the variables you’re
+thinking about.</p>
 <div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="st">&quot;mpg&quot;</span> <span class="co"># Our target variable</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>predictors <span class="op">=</span> [<span class="st">&quot;displacement&quot;</span>] <span class="co"># A list of predictors</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> cars[predictors]</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> cars[target]</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the data</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    X, </span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    y, </span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.4</span>, </span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>our_model <span class="op">=</span> LinearRegression()</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>our_model.fit(X_train, y_train)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># View coefficients</span></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Intercept: </span><span class="sc">{</span>our_model<span class="sc">.</span>intercept_<span class="sc">:.3f}</span><span class="ss">&quot;</span>)</span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Coefficient (Slope): </span><span class="sc">{</span>our_model<span class="sc">.</span>coef_[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(cars[predictors], kind<span class="op">=</span><span class="st">&#39;reg&#39;</span>)</span></code></pre></div>
+<p>Compare this to the correlation matrix.</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cars[predictors].corr()</span></code></pre></div>
+</section>
+<section id="you-can-consider-categorical-variables-as-predictors-too."
+class="slide level2">
+<h2>You can consider categorical variables as predictors, too.</h2>
+<p>Reference coding converts categorical variables to a set of binary
+variables.</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.get_dummies(cars[predictors], drop_first<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<p>The first category should always be left out as the reference
+(<code>drop_first=True</code>). All the remaining slopes are relative to
+that reference!</p>
+</section>
+<section
+id="when-interpreting-coefficients-watch-out-for-confounding-variables"
+class="slide level2">
+<h2>When interpreting coefficients, watch out for <em>confounding
+variables</em>!</h2>
+<p>Ask yourself: is there an important variable that the data doesn’t
+account for?</p>
+</section></section>
+<section>
+<section id="challenge-seattle-housing-data"
+class="title-slide slide level1">
+<h1>Challenge: Seattle Housing Data</h1>
+
+</section>
+<section class="slide level2">
+
+<p>Try to make an effective multivariate linear model to predict housing
+prices in Seattle.</p>
+<p>Take a look at the dataset and logically choose some predictors.
+Check for multicollinearity before you run your model! When you’re done,
+try to predict housing price based on some new data points you
+create.</p>
+<p>Download <a href="../data/house_sales.tsv">house_sales.tsv</a>.
+You’ll need to open this with:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>housing <span class="op">=</span> pd.read_csv(<span class="st">&quot;house_sales.tsv&quot;</span>, sep<span class="op">=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
 </section></section>
 <section>
 <section id="assessing-your-model" class="title-slide slide level1">
@@ -388,24 +501,24 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a hr
 <h2>Let’s <em>predict</em> based on our model.</h2>
 <p>The <code>predict()</code> method uses coefficients to calculate new
 values.</p>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Today let&#39;s focus on in-sample prediction for validation</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>fitted <span class="op">=</span> our_model.predict(X_train)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>fitted</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s focus on out-of-sample prediction for validation</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> our_model.predict(X_test)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>predictions</span></code></pre></div>
 <p>We can predict with our training data (in-sample prediction) or with
 our test data (out-of-sample prediction).</p>
 </section>
 <section
-id="we-can-look-at-the-fitted-values-compared-to-the-residuals."
+id="we-can-look-at-the-predictions-fitted-values-compared-to-the-residuals."
 class="slide level2">
-<h2>We can look at the <em>fitted values</em> compared to the
-<em>residuals</em>.</h2>
+<h2>We can look at the <em>predictions</em> (fitted values) compared to
+the <em>residuals</em>.</h2>
 <p>Residuals are the differences between the actual observed values and
 the ones the model predicted.</p>
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Our in-sample residuals:</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>residuals <span class="op">=</span> y_train <span class="op">-</span> fitted</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>residuals</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Our out-of-sample residuals:</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>residuals <span class="op">=</span> y_test <span class="op">-</span> predictions</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>residuals</span></code></pre></div>
 <p><small>Think of these as the “errors” that the modeling method
 produced. If the residuals are symmetrically distributed with the median
 close to zero, the model may fit the data well.</small></p>
@@ -415,12 +528,12 @@ id="root-mean-squared-error-measures-how-much-the-residuals-stray-from-the-fitte
 class="slide level2">
 <h2>Root Mean Squared Error measures how much the residuals stray from
 the fitted values.</h2>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The raw value, in-sample</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>np.sqrt(mean_squared_error(y_train, fitted))</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Or neatly printed</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Root mean squared error: </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(mean_squared_error(y_train, fitted))<span class="sc">:.2f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The raw value, in-sample</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>np.sqrt(mean_squared_error(y_test, predictions))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Or neatly printed</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Root mean squared error: </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(mean_squared_error(y_test, predictions))<span class="sc">:.2f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
 <p>This is a good metric for comparing models.</p>
 </section>
 <section
@@ -429,8 +542,8 @@ class="slide level2">
 <h2><span class="math inline">\(R^{2}\)</span> shows the amount
 (proportion) of variation in <span class="math inline">\(Y\)</span> that
 is accounted for by <span class="math inline">\(X\)</span>.</h2>
-<div class="sourceCode" id="cb11"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Coefficient of determination: </span><span class="sc">{</span>r2_score(y_train, fitted)<span class="sc">:.2f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Coefficient of determination: </span><span class="sc">{</span>r2_score(y_test, predictions)<span class="sc">:.2f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
 <p>This is also called the “coefficient of determination.”</p>
 <p><small><span class="math inline">\(R^{2}\)</span> ranges from 0 to 1.
 If it were 1, the variables would make a straight line. If it were 0,
@@ -438,8 +551,8 @@ the x variable wouldn’t predict the y variable at all.</small></p>
 </section>
 <section class="slide level2">
 
-<p>In this example, <span class="math inline">\(R^{2}=0.64\)</span>, so
-engine displacement accounts for about 64% of the variation in fuel
+<p>In this example, <span class="math inline">\(R^{2}=0.74\)</span>, so
+our predictors account for about 74% of the variation in fuel
 efficiency.</p>
 <p>There’s no rule for what makes an <span
 class="math inline">\(R^{2}\)</span> “good.” Consider the context and
@@ -450,35 +563,37 @@ considered good. In an analysis predicting mechanical repairs, or
 recovery from medical procedures, an <span
 class="math inline">\(R^{2}\)</span> of 0.60 or 0.70 might be considered
 very poor.</p>
-</section></section>
-<section>
-<section id="you-try-it" class="title-slide slide level1">
-<h1>You Try It!</h1>
-
 </section>
-<section id="challenge" class="slide level2">
-<h2>Challenge</h2>
-<p>With a partner, perform a linear regression to determine how the
-number of years a worker is <em>exposed</em> to cotton dust is related
-to a measure of lung capacity: the peak expiratory flow rate.</p>
-<p>You can <a
-href="https://raw.githubusercontent.com/gedeck/practical-statistics-for-data-scientists/master/data/LungDisease.csv">download
-the data here</a>.</p>
+<section id="are-the-residuals-normally-distributed-with-a-mean-near-0"
+class="slide level2">
+<h2>Are the residuals normally distributed, with a mean near 0?</h2>
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>residuals <span class="op">=</span> y_test <span class="op">-</span> predictions</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>sns.displot(x<span class="op">=</span><span class="st">&quot;mpg&quot;</span>,data<span class="op">=</span>residuals).set_axis_labels(x<span class="op">=</span><span class="st">&quot;Residuals&quot;</span>)</span></code></pre></div>
+<p>You could also use a Q-Q plot for this!</p>
 </section>
-<section id="follow-these-steps" class="slide level2">
-<h2>Follow these steps:</h2>
-<ol type="1">
-<li>Determine which should be your dependent and which should be your
-independent variable.</li>
-<li>Create a scatter plot with a trend line to see if you think there is
-a linear relationship. Form a hypothesis with your partner!</li>
-<li>Using <code>sklearn</code>, create a linear regression model, split
-the data, and fit the model.</li>
-<li>Interpret the coefficents of the model <em>completely and accurately
-and in terms of the data</em>.</li>
-<li>Assess your model with <span class="math inline">\(R^2\)</span> and
-<code>RMSE</code>. How did your model do?</li>
-</ol>
+<section id="does-the-model-suggest-heteroskedasticity"
+class="slide level2">
+<h2>Does the model suggest heteroskedasticity?</h2>
+<p>Is the variance consistent across the range of predicted values?</p>
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the absolute value of residuals against the predicted values</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sns.regplot(x<span class="op">=</span>predictions, y<span class="op">=</span>np.<span class="bu">abs</span>(residuals.mpg), lowess<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<p>If the line is horizontal, there’s no heterskedasticity.</p>
+</section>
+<section id="other-validation-methods" class="slide level2">
+<h2>Other validation methods</h2>
+<ul>
+<li class="fragment">Finding Outliers</li>
+<li class="fragment">Cook’s Distance and Leverage</li>
+<li class="fragment">Check for independence of errors</li>
+<li class="fragment">Partial residual plots</li>
+</ul>
+</section>
+<section id="lets-try-this-again-with-your-seattle-housing-models"
+class="slide level2">
+<h2>Let’s try this again with your Seattle housing models!</h2>
 </section></section>
     </div>
   </div>

@@ -26,7 +26,7 @@
 
 ## And in this case, the target (dependent) variable is a function of the predictor (independent) variable. 
 
-## To define predictor and target variables, you need to *use your human brain*.
+## To define predictors and a target variable, you need to *use your human brain*.
 
 Come up with a *rationale* for why you think they would be related.
 
@@ -36,9 +36,9 @@ It's *not* a good idea to just try to regress any set of variables together.
 
 **Correlation does not mean causation!!**
 
-## Regression can be for *explanation* or *prediction*.
+## Regression can be for *explanation* or ***prediction***.
 
-# Calculating simple linear regression
+# Calculating linear regression
 
 ## $Y=mX+b$
 
@@ -48,21 +48,37 @@ Can also be written as: $Y=b_{1}X+b_{0}$
 
 $Y$ is your target (dependent) variable.
 
-$X$ is your predictor (independent) variable.
+$X$ is your predictor (independent) variable. (There will eventually be many predictors.)
 
 ## $Y=b_{1}X+b_{0}$
 
-Two coefficients:
+Coefficients:
 
 $b_{1}$ (or $m$) describes the *slope* of the line (and its direction).
 
 $b_{0}$ (or $b$) describes the height of the line when $X$ is 0. This is called the y-intercept or simply the intercept.
 
-## We can provide 2 numeric variables ($X$ and $Y$), and Python will calculate the $b_{0}$ and $b_{1}$ values.
+## We can provide numeric variables ($X$ and $Y$), and Python will calculate the $b_{0}$ and $b_{1}$ values.
 
 This is what it means to "fit" a linear model.
 
 ## In theory, if you know any $b_{0}$ and $b_{1}$, you can use any new X value to *predict* a Y value. Wow!
+
+## Bivariate regression is great at *explanation* but lousy at *prediction*.
+
+## Multiple Regression lets you add more independent variables.
+
+Bivariate regression:
+
+$Y=b_{0}+b_{1}x$
+
+Multivariate regression:
+
+$Y=b_{0}+b_{1}x_{1}+b_{2}x_{2}+b_{3}x_{3}+...$
+
+## You can add more variables as predictors.
+
+As many as you want, but make sure you *develop a rationale* (use your human brain)!
 
 # Linear regression in Python
 
@@ -83,7 +99,7 @@ sns.relplot(x="displacement",y="mpg",data=cars)
 
 ## It looks like there might be a linear relationship!
 
-We can see a general trend: as engine size goes up, fuel efficiency goes down. Now we're ready to try modeling this relationship.
+We can see a general trend: as engine size goes up, fuel efficiency goes down. Now we're ready to try modeling this relationship as part of a larger linear regression model.
 
 ## Beware!
 
@@ -102,10 +118,11 @@ from sklearn.metrics import mean_squared_error, r2_score
 ## The scikit-learn modeling workflow
 
 1. Choose your model
-2. Split the data into train and test portions
-3. Fit the model to your training data
-4. Summarize or predict based on the model
-5. Validate and assess the model
+2. Choose predictor and target variables, test for validity
+3. Split the data into train and test portions
+4. Fit the model to your training data
+5. Summarize or predict based on the model
+6. Validate and assess the model
 
 Full scikit-learn documentation [here](https://scikit-learn.org/stable/index.html)
 
@@ -122,7 +139,7 @@ That's why we imported the LinearRegression class above.
 ```python
 
 target = "mpg" # Our target variable
-predictors = ["displacement"] # A list of predictors
+predictors = ["displacement", "model_year", "acceleration"] # A list of predictors
 
 X = cars[predictors]
 y = cars[target]
@@ -146,33 +163,30 @@ our_model.fit(X_train, y_train) # Run the fit() method on training data
 
 ```python
 # We use f-strings to print complex things, with rounding
+# We can use a for loop to print multiple coefficients
 print(f"Intercept: {our_model.intercept_:.3f}")
-print(f"Coefficient (Slope): {our_model.coef_[0]:.4f}")
+print(f"Intercept: {our_model.intercept_:.3f}")
+for c,p in zip(our_model.coef_,X.columns):
+    print(f"Coefficient for {p}: {c:.4f}")
 ```
 
 ---
 
-With a slope of `-0.0597`, this linear regression provides evidence that as engine displacment increases, fuel efficiency decreases slightly!
+With a coefficient for displacement of `-0.0520`, this linear regression provides evidence that as engine displacment increases, fuel efficiency decreases slightly!
 
-For every additional unit of engine displacement, the expected fuel efficiency decreases by 0.0597.
+For every additional unit of engine displacement, the expected fuel efficiency decreases by 0.0520.
 
-The intercept indicates that if engine displacment were 0, fuel efficiency would be 34.829 miles per gallon.
+What would the other coefficients mean?
+
+The intercept indicates that if all predictor variables were 0, fuel efficiency would be -19.132 miles per gallon. Why doesn't this number make any sense?
 
 *Be careful not to imply that there is a direct causal link, especially without more evidence or studies.*
-
-## Compare this to the regression plot.
-
-```python
-sns.lmplot(x="displacement",y="mpg",data=cars)
-```
-
-![](img/mpg_regression_py.png)
 
 ## All together now.
 
 ```python
 target = "mpg" # Our target variable
-predictors = ["displacement"] # A list of predictors
+predictors = ["displacement", "model_year", "acceleration"] # A list of predictors
 X = cars[predictors]
 y = cars[target]
 # Split the data
@@ -189,6 +203,66 @@ print(f"Intercept: {our_model.intercept_:.3f}")
 print(f"Coefficient (Slope): {our_model.coef_[0]:.4f}")
 ```
 
+# How to Choose Predictor Variables
+
+## There's no magic solution! You can try different options, but use your logic and don't just throw everything in there.
+
+## Occam's Razor says that the simplest model is probably the best one.
+
+![Think carefully about how many variables you add.](img/William_of_Ockham.png)
+
+## As you add variables, $R^{2}$ will increase and `RMSE` will decrease.
+
+But think about *how much* it increases or decreases.
+
+## Avoid Multicollinearity: when two predictor variables correlate.
+
+This will confuse the model and mess up your results! It could even result in *false* predictions.
+
+*You must test for multicollinearity **before** you select your predictors and run your model.*
+
+## How do we find multicollinearity?
+
+You can do a *pairwise* comparison of the variables you're thinking about. 
+
+```python
+sns.pairplot(cars[predictors], kind='reg')
+```
+
+Compare this to the correlation matrix.
+
+```python
+cars[predictors].corr()
+```
+
+## You can consider categorical variables as predictors, too.
+
+Reference coding converts categorical variables to a set of binary variables.
+
+```python
+X = pd.get_dummies(cars[predictors], drop_first=True)
+```
+
+The first category should always be left out as the reference (`drop_first=True`). All the remaining slopes are relative to that reference!
+
+## When interpreting coefficients, watch out for *confounding variables*!
+
+Ask yourself: is there an important variable that the data doesn't account for?
+
+# Challenge: Seattle Housing Data
+
+---
+
+Try to make an effective multivariate linear model to predict housing prices in Seattle.
+
+Take a look at the dataset and logically choose some predictors. Check for multicollinearity before you run your model! When you're done, try to predict housing price based on some new data points you create.
+
+Download [house_sales.tsv](../data/house_sales.tsv). You'll need to open this with:
+
+```python
+housing = pd.read_csv("house_sales.tsv", sep="\t")
+```
+
 # Assessing Your Model
 
 ## Did our model do a good job?
@@ -198,20 +272,20 @@ print(f"Coefficient (Slope): {our_model.coef_[0]:.4f}")
 The `predict()` method uses coefficients to calculate new values.
 
 ```python
-# Today let's focus on in-sample prediction for validation
-fitted = our_model.predict(X_train)
-fitted
+# Let's focus on out-of-sample prediction for validation
+predictions = our_model.predict(X_test)
+predictions
 ```
 
 We can predict with our training data (in-sample prediction) or with our test data (out-of-sample prediction).
 
-## We can look at the *fitted values* compared to the *residuals*.
+## We can look at the *predictions* (fitted values) compared to the *residuals*.
 
 Residuals are the differences between the actual observed values and the ones the model predicted.
 
 ```python
-# Our in-sample residuals:
-residuals = y_train - fitted
+# Our out-of-sample residuals:
+residuals = y_test - predictions
 residuals
 ```
 
@@ -221,10 +295,10 @@ residuals
 
 ```python
 # The raw value, in-sample
-np.sqrt(mean_squared_error(y_train, fitted))
+np.sqrt(mean_squared_error(y_test, predictions))
 
 # Or neatly printed
-print(f"Root mean squared error: {np.sqrt(mean_squared_error(y_train, fitted)):.2f}")
+print(f"Root mean squared error: {np.sqrt(mean_squared_error(y_test, predictions)):.2f}")
 ```
 
 This is a good metric for comparing models.
@@ -232,7 +306,7 @@ This is a good metric for comparing models.
 ## $R^{2}$ shows the amount (proportion) of variation in $Y$ that is accounted for by $X$.
 
 ```python
-print(f"Coefficient of determination: {r2_score(y_train, fitted):.2f}")
+print(f"Coefficient of determination: {r2_score(y_test, predictions):.2f}")
 ```
 
 This is also called the "coefficient of determination."
@@ -241,24 +315,38 @@ This is also called the "coefficient of determination."
 
 ---
 
-In this example, $R^{2}=0.64$, so engine displacement accounts for about 64% of the variation in fuel efficiency.
+In this example, $R^{2}=0.74$, so our predictors account for about 74% of the variation in fuel efficiency.
 
 There's no rule for what makes an $R^{2}$ "good." Consider the context and purpose of your analysis!
 
 In an analysis of ecology or human behavior (very unpredictable) an $R^{2}$ of 0.20 or 0.30, might be considered good. In an analysis predicting mechanical repairs, or recovery from medical procedures, an $R^{2}$ of 0.60 or 0.70 might be considered very poor. 
 
-# You Try It!
+## Are the residuals normally distributed, with a mean near 0?
 
-## Challenge
+```python
+residuals = y_test - predictions
 
-With a partner, perform a linear regression to determine how the number of years a worker is *exposed* to cotton dust is related to a measure of lung capacity: the peak expiratory flow rate.
+sns.displot(x="mpg",data=residuals).set_axis_labels(x="Residuals")
+```
 
-You can [download the data here](https://raw.githubusercontent.com/gedeck/practical-statistics-for-data-scientists/master/data/LungDisease.csv).
+You could also use a Q-Q plot for this!
 
-## Follow these steps:
+## Does the model suggest heteroskedasticity?
 
-1. Determine which should be your dependent and which should be your independent variable.
-2. Create a scatter plot with a trend line to see if you think there is a linear relationship. Form a hypothesis with your partner!
-3. Using `sklearn`, create a linear regression model, split the data, and fit the model.
-4. Interpret the coefficents of the model *completely and accurately and in terms of the data*.
-5. Assess your model with $R^2$ and `RMSE`. How did your model do?
+Is the variance consistent across the range of predicted values?
+
+```python
+# Plot the absolute value of residuals against the predicted values
+sns.regplot(x=predictions, y=np.abs(residuals.mpg), lowess=True)
+```
+
+If the line is horizontal, there's no heterskedasticity.
+
+## Other validation methods
+
+- Finding Outliers
+- Cook's Distance and Leverage
+- Check for independence of errors
+- Partial residual plots
+
+## Let's try these validation steps with your Seattle housing models!
