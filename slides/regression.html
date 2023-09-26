@@ -362,9 +362,8 @@ class="slide level2">
 class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We use f-strings to print complex things, with rounding</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We can use a for loop to print multiple coefficients</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Intercept: </span><span class="sc">{</span>our_model<span class="sc">.</span>intercept_<span class="sc">:.3f}</span><span class="ss">&quot;</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Intercept: </span><span class="sc">{</span>our_model<span class="sc">.</span>intercept_<span class="sc">:.3f}</span><span class="ss">&quot;</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c,p <span class="kw">in</span> <span class="bu">zip</span>(our_model.coef_,X.columns):</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Coefficient for </span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>c<span class="sc">:.4f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c,p <span class="kw">in</span> <span class="bu">zip</span>(our_model.coef_,X.columns):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Coefficient for </span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>c<span class="sc">:.4f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
 </section>
 <section class="slide level2">
 
@@ -398,7 +397,8 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a hr
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>our_model.fit(X_train, y_train)</span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># View coefficients</span></span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Intercept: </span><span class="sc">{</span>our_model<span class="sc">.</span>intercept_<span class="sc">:.3f}</span><span class="ss">&quot;</span>)</span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;Coefficient (Slope): </span><span class="sc">{</span>our_model<span class="sc">.</span>coef_[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c,p <span class="kw">in</span> <span class="bu">zip</span>(our_model.coef_,X.columns):</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f&quot;Coefficient for </span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>c<span class="sc">:.4f}</span><span class="ss">&quot;</span>)</span></code></pre></div>
 </section></section>
 <section>
 <section id="how-to-choose-predictor-variables"
@@ -449,7 +449,7 @@ thinking about.</p>
 class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(cars[predictors], kind<span class="op">=</span><span class="st">&#39;reg&#39;</span>)</span></code></pre></div>
 <p>Compare this to the correlation matrix.</p>
 <div class="sourceCode" id="cb8"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cars[predictors].corr()</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cars[predictors].corr(numeric_only<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
 </section>
 <section id="you-can-consider-categorical-variables-as-predictors-too."
 class="slide level2">
@@ -570,7 +570,9 @@ class="slide level2">
 <div class="sourceCode" id="cb15"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>residuals <span class="op">=</span> y_test <span class="op">-</span> predictions</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>sns.displot(x<span class="op">=</span><span class="st">&quot;mpg&quot;</span>,data<span class="op">=</span>residuals).set_axis_labels(x<span class="op">=</span><span class="st">&quot;Residuals&quot;</span>)</span></code></pre></div>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>sns.displot(x<span class="op">=</span><span class="st">&quot;mpg&quot;</span>,data<span class="op">=</span>residuals).<span class="bu">set</span>(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="st">&quot;Residuals&quot;</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">&quot;Histogram of Residuals&quot;</span>)</span></code></pre></div>
 <p>You could also use a Q-Q plot for this!</p>
 </section>
 <section id="does-the-model-suggest-heteroskedasticity"
@@ -579,7 +581,10 @@ class="slide level2">
 <p>Is the variance consistent across the range of predicted values?</p>
 <div class="sourceCode" id="cb16"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the absolute value of residuals against the predicted values</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sns.regplot(x<span class="op">=</span>predictions, y<span class="op">=</span>np.<span class="bu">abs</span>(residuals.mpg), lowess<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sns.regplot(x<span class="op">=</span>predictions, y<span class="op">=</span>np.<span class="bu">abs</span>(residuals.mpg), lowess<span class="op">=</span><span class="va">True</span>).<span class="bu">set</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="st">&quot;Absolute Value of Residuals&quot;</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="st">&quot;Predicted Values&quot;</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">&quot;Testing for Heteroskedasticity&quot;</span>)</span></code></pre></div>
 <p>If the line is horizontal, there’s no heterskedasticity.</p>
 </section>
 <section id="other-validation-methods" class="slide level2">
@@ -591,9 +596,11 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a h
 <li class="fragment">Partial residual plots</li>
 </ul>
 </section>
-<section id="lets-try-this-again-with-your-seattle-housing-models"
+<section
+id="lets-try-these-validation-steps-with-your-seattle-housing-models"
 class="slide level2">
-<h2>Let’s try this again with your Seattle housing models!</h2>
+<h2>Let’s try these validation steps with your Seattle housing
+models!</h2>
 </section></section>
     </div>
   </div>

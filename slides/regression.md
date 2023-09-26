@@ -165,7 +165,6 @@ our_model.fit(X_train, y_train) # Run the fit() method on training data
 # We use f-strings to print complex things, with rounding
 # We can use a for loop to print multiple coefficients
 print(f"Intercept: {our_model.intercept_:.3f}")
-print(f"Intercept: {our_model.intercept_:.3f}")
 for c,p in zip(our_model.coef_,X.columns):
     print(f"Coefficient for {p}: {c:.4f}")
 ```
@@ -200,7 +199,8 @@ our_model = LinearRegression()
 our_model.fit(X_train, y_train)
 # View coefficients
 print(f"Intercept: {our_model.intercept_:.3f}")
-print(f"Coefficient (Slope): {our_model.coef_[0]:.4f}")
+for c,p in zip(our_model.coef_,X.columns):
+    print(f"Coefficient for {p}: {c:.4f}")
 ```
 
 # How to Choose Predictor Variables
@@ -232,7 +232,7 @@ sns.pairplot(cars[predictors], kind='reg')
 Compare this to the correlation matrix.
 
 ```python
-cars[predictors].corr()
+cars[predictors].corr(numeric_only=True)
 ```
 
 ## You can consider categorical variables as predictors, too.
@@ -326,7 +326,9 @@ In an analysis of ecology or human behavior (very unpredictable) an $R^{2}$ of 0
 ```python
 residuals = y_test - predictions
 
-sns.displot(x="mpg",data=residuals).set_axis_labels(x="Residuals")
+sns.displot(x="mpg",data=residuals).set(
+    xlabel="Residuals",
+    title="Histogram of Residuals")
 ```
 
 You could also use a Q-Q plot for this!
@@ -337,7 +339,10 @@ Is the variance consistent across the range of predicted values?
 
 ```python
 # Plot the absolute value of residuals against the predicted values
-sns.regplot(x=predictions, y=np.abs(residuals.mpg), lowess=True)
+sns.regplot(x=predictions, y=np.abs(residuals.mpg), lowess=True).set(
+    xlabel="Absolute Value of Residuals",
+    ylabel="Predicted Values",
+    title="Testing for Heteroskedasticity")
 ```
 
 If the line is horizontal, there's no heterskedasticity.
