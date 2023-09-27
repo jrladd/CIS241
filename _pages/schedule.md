@@ -18,7 +18,7 @@ Date|Topics & Slides|Workshops|Assignments
 5 & 7 Sept.|[Exploratory Data Analysis](/CIS241/slides/eda)|[Movies](/CIS241/resources/01_movies2.ipynb)|**[Documentation Assignment](/CIS241/assignments/documentation) Due 7 Sept. at 10:55am**
 12 & 14 Sept.|[Hypothesis Testing: Comparison of Means](/CIS241/slides/hypothesis)|[Sports](/CIS241/resources/02_tennis1.ipynb)|
 19 & 21 Sept.|[Hypothesis Testing: Correlation](/CIS241/slides/correlation)|[Sports](/CIS241/resources/02_tennis2.ipynb)|**Take-Home Quiz I**
-26 & 28 Sept.|[Linear Regression](/CIS241/slides/regression)|[Business](NONE/CIS241/resources/03_airbnb1.ipynb)|
+26 & 28 Sept.|[Linear Regression](/CIS241/slides/regression)|[Business](/CIS241/resources/03_airbnb1.ipynb)|
 3 & 5 Oct.|[Logistic Regression](/CIS241/slides/logit)|[Business](NONE/CIS241/resources/03_airbnb2.ipynb)
 10 & 12 Oct.|[K-Nearest Neighbors](/CIS241/slides/knn)|[Ecology](NONE/CIS241/resources/04_trees1.ipynb)|**[Tutorial Assignment](/CIS241/assignments/tutorial/) Due 12 Oct. at 10:55am**
 17 Oct.|NO CLASS: Fall Break
