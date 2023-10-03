@@ -64,15 +64,6 @@ from sklearn.neural_network import MLPClassifier
 - `max_iter`: the number of iterations or epochs until the model converges
 - `random_state`
 
-## Cross-validation lets you compare multiple runs of the model with different training data.
-
-```python
-scores = cross_val_score(neural_clf, X, y, cv=5)
-print(f"{scores.mean():.2} accuracy with standard deviation {scores.std():.2}")
-```
-
-You will need to standardize X first!
-
 ## Try it with the Titanic dataset!
 
 1. Load dataset and choose predictors.

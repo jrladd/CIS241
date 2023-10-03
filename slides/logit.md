@@ -113,6 +113,8 @@ So how do we assess our model instead?
 ## We need another set of metric functions
 
 ```python
+# Add cross_val_score to your train_test_split line
+from sklearn.model_selection import train_test_split, cross_val_score
 # These replace the r-squared score and RMSE
 # You could put these all on one line
 from sklearn.metrics import confusion_matrix, classification_report
@@ -159,13 +161,21 @@ print(classification_report(y_test, predictions))
 
 There are individual functions for these, too.
 
+## Cross-validation lets you compare multiple runs of the model with different training data.
+
+```python
+scores = cross_val_score(logit_model, X, y, cv=5)
+print(f"{scores.mean():.2} accuracy with standard deviation {scores.std():.2}")
+```
+
 ## Plot the model's recall with the ROC Curve.
 
+This only works for *binary* classifiers!
 ```python
 # Create our ROC Curve plot
 RocCurveDisplay.from_predictions(y_test,
-                                 probabilities[categories[0]],
-                                 pos_label=categories[0])
+                                 probabilities[categories[1]],
+                                 pos_label=categories[1])
 
 # Draw a green line for 0
 plt.plot([0, 1], [0, 1], color = 'g')

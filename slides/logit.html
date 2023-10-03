@@ -25,6 +25,7 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
@@ -192,15 +193,16 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a hr
 <section id="setting-model-parameters" class="slide level2">
 <h2>Setting model parameters</h2>
 <ul>
-<li><strong>penalty</strong>: By default, scikit-learn regularizes your
-predictors. This could lead to unpredictable results for non-normalized
-data! For now, always set this to ‘none’.</li>
-<li><strong>solver</strong>: This is the underlying algorithm
-scikit-learn will use to calculate the coefficients. The
+<li class="fragment"><strong>penalty</strong>: By default, scikit-learn
+regularizes your predictors. This could lead to unpredictable results
+for non-normalized data! For now, always set this to ‘none’.</li>
+<li class="fragment"><strong>solver</strong>: This is the underlying
+algorithm scikit-learn will use to calculate the coefficients. The
 <code>lbfgs</code> solver is the default and is good for small
 datasets.</li>
-<li><strong>random_state</strong>: As in <code>train_test_split</code>,
-this should always be set to ensure repeatability.</li>
+<li class="fragment"><strong>random_state</strong>: As in
+<code>train_test_split</code>, this should always be set to ensure
+repeatability.</li>
 </ul>
 <p><small>For more on this, read <a
 href="https://ryxcommar.com/2019/08/30/scikit-learns-defaults-are-wrong/">Scikit-learns
@@ -244,21 +246,24 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a hr
 </section>
 <section id="there-is-no-rmse-or-r2-for-logistic-regression."
 class="slide level2">
-<h2>There is no RMSE or <span class="math inline">\(R^{2}\)</span> for
-logistic regression.</h2>
+<h2>There is no RMSE or <span
+class="math inline"><em>R</em><sup>2</sup></span> for logistic
+regression.</h2>
 <p>So how do we assess our model instead?</p>
 </section>
 <section id="we-need-another-set-of-metric-functions"
 class="slide level2">
 <h2>We need another set of metric functions</h2>
 <div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># These replace the r-squared score and RMSE</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># You could put these all on one line</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, classification_report</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metric <span class="im">import</span> RocCurveDisplay</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># You&#39;ll also need matplotlib this time</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add cross_val_score to your train_test_split line</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split, cross_val_score</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># These replace the r-squared score and RMSE</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># You could put these all on one line</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, classification_report</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metric <span class="im">import</span> RocCurveDisplay</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># You&#39;ll also need matplotlib this time</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div>
 </section>
 <section id="assess-classification-models-with-the-confusion-matrix."
 class="slide level2">
@@ -288,14 +293,14 @@ model.</figcaption>
 class="slide level2">
 <h2>From the confusion matrix, we get scores for our model.</h2>
 <ul>
-<li><strong>accuracy</strong>: the proportion of cases classified
-correctly</li>
-<li><strong>precision</strong>: the proportion of predicted values that
-are correct</li>
-<li><strong>recall</strong>: the proportion of all values that are
-correctly classified</li>
-<li><strong>specificity</strong>: the recall score for the other
-category</li>
+<li class="fragment"><strong>accuracy</strong>: the proportion of cases
+classified correctly</li>
+<li class="fragment"><strong>precision</strong>: the proportion of
+predicted values that are correct</li>
+<li class="fragment"><strong>recall</strong>: the proportion of all
+values that are correctly classified</li>
+<li class="fragment"><strong>specificity</strong>: the recall score for
+the other category</li>
 </ul>
 </section>
 <section class="slide level2">
@@ -310,17 +315,27 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a hr
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, predictions))</span></code></pre></div>
 <p>There are individual functions for these, too.</p>
 </section>
+<section
+id="cross-validation-lets-you-compare-multiple-runs-of-the-model-with-different-training-data."
+class="slide level2">
+<h2>Cross-validation lets you compare multiple runs of the model with
+different training data.</h2>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cross_val_score(logit_model, X, y, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f&quot;</span><span class="sc">{</span>scores<span class="sc">.</span>mean()<span class="sc">:.2}</span><span class="ss"> accuracy with standard deviation </span><span class="sc">{</span>scores<span class="sc">.</span>std()<span class="sc">:.2}</span><span class="ss">&quot;</span>)</span></code></pre></div>
+</section>
 <section id="plot-the-models-recall-with-the-roc-curve."
 class="slide level2">
 <h2>Plot the model’s recall with the ROC Curve.</h2>
-<div class="sourceCode" id="cb10"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create our ROC Curve plot</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>RocCurveDisplay.from_predictions(y_test,</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                                 probabilities[categories[<span class="dv">0</span>]],</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                                 pos_label<span class="op">=</span>categories[<span class="dv">0</span>])</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw a green line for 0</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], color <span class="op">=</span> <span class="st">&#39;g&#39;</span>)</span></code></pre></div>
+<p>This only works for <em>binary</em> classifiers!</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create our ROC Curve plot</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>RocCurveDisplay.from_predictions(y_test,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                                 probabilities[categories[<span class="dv">1</span>]],</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                                 pos_label<span class="op">=</span>categories[<span class="dv">1</span>])</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw a green line for 0</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], color <span class="op">=</span> <span class="st">&#39;g&#39;</span>)</span></code></pre></div>
 <p>ROC: Receiver Operating Characteristics</p>
 </section>
 <section
@@ -338,7 +353,6 @@ class="slide level2">
   <script src="https://unpkg.com/reveal.js@^4//plugin/notes/notes.js"></script>
   <script src="https://unpkg.com/reveal.js@^4//plugin/search/search.js"></script>
   <script src="https://unpkg.com/reveal.js@^4//plugin/zoom/zoom.js"></script>
-  <script src="https://unpkg.com/reveal.js@^4//plugin/math/math.js"></script>
 
   <script>
 
@@ -485,26 +499,8 @@ class="slide level2">
         // viewDistance in order to save resources.
         mobileViewDistance: 2,
 
-        math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
         // reveal.js plugins
         plugins: [
-          RevealMath,
           RevealNotes,
           RevealSearch,
           RevealZoom
