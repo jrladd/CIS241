@@ -129,11 +129,12 @@ import matplotlib.pyplot as plt
 ```python
 conf_mat = confusion_matrix(y_test,predictions)
 (sns.heatmap(conf_mat, 
-            cmap='summer', 
+            cmap='Blues', 
             cbar=False, 
             annot=True, 
             xticklabels=categories, 
-            yticklabels=categories)
+            yticklabels=categories,
+	    fmt='0')
     .set(xlabel="Predicted Response",ylabel="True Response"))
 ```
 
@@ -174,8 +175,8 @@ This only works for *binary* classifiers!
 ```python
 # Create our ROC Curve plot
 RocCurveDisplay.from_predictions(y_test,
-                                 probabilities[categories[1]],
-                                 pos_label=categories[1])
+                                 probabilities[categories[0]],
+                                 pos_label=categories[0])
 
 # Draw a green line for 0
 plt.plot([0, 1], [0, 1], color = 'g')
