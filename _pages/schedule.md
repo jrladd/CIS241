@@ -20,10 +20,10 @@ Date|Topics & Slides|Workshops|Assignments
 19 & 21 Sept.|[Hypothesis Testing: Correlation](/CIS241/slides/correlation)|[Sports](/CIS241/resources/02_tennis2.ipynb)|**Take-Home Quiz I**
 26 & 28 Sept.|[Linear Regression](/CIS241/slides/regression)|[Business](/CIS241/resources/03_airbnb1.ipynb)|
 3 & 5 Oct.|[Logistic Regression](/CIS241/slides/logit)|[Business](/CIS241/resources/03_airbnb2.ipynb)
-10 & 12 Oct.|[K-Nearest Neighbors](/CIS241/slides/knn)|[Ecology](NONE/CIS241/resources/04_trees1.ipynb)|**[Tutorial Assignment](/CIS241/assignments/tutorial/) Due 12 Oct. at 10:55am**
+10 & 12 Oct.|[K-Nearest Neighbors](/CIS241/slides/knn)|[Ecology](/CIS241/resources/04_trees1.ipynb)|**[Tutorial Assignment](/CIS241/assignments/tutorial/) Due 12 Oct. at 10:55am**
 17 Oct.|NO CLASS: Fall Break
 19 Oct.|[Naive Bayes Classifier](/CIS241/slides/naivebayes)|[Ecology](/CIS241/resources/04_trees2.ipynb)|
-24 & 26 Oct.|[Decision Trees and the Random Forest](/CIS241/slides/randomforest)|[Health](NONE/CIS241/resources/05_health2.ipynb)|**Take-Home Quiz II**
+24 & 26 Oct.|[Decision Trees and the Random Forest](/CIS241/slides/randomforest)|[Health](/CIS241/resources/05_health2.ipynb)|**Take-Home Quiz II**
 31 Oct. & 2 Nov.|[Clustering and Unsupervised Approaches](/CIS241/slides/clustering)|[Literature](/CIS241/resources/06_lit1.ipynb)
 7 & 9 Nov.|[Neural Networks](/CIS241/slides/neuralnetworks)|[Literature](/CIS241/resources/06_lit2.ipynb)|**[Project Proposal](/CIS241/assignments/project-proposal/) Due 7 Nov. at 10:55am**
 14 & 16 Nov.|Project Discussion and Work
