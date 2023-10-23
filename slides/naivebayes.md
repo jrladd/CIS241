@@ -48,6 +48,7 @@ This time we use *one-hot encoding*. We don't need to `drop_first`.
 ```python
 X = pd.get_dummies(titanic[predictors]) # One-hot encoding
 y = titanic[target] # Creating a y to keep our code cleaner
+# No variable standardization needed. Why?
 
 X_train, X_test, y_train, y_test = train_test_split(
     X, 
@@ -78,42 +79,12 @@ predictions = naive_model.predict(X_test)
 
 ## We use exactly the same methods as every other classifier!
 
-Since we used the Titanic data, we already have our target variable expressed as 0s and 1s.
-
 Import all the same metric functions as last time.
 
-## Visualize the Confusion Matrix
-
-```python
-conf_mat = confusion_matrix(y_test,predictions)
-(sns.heatmap(conf_mat, 
-            cmap='summer', 
-            cbar=False, 
-            annot=True)
-    .set(xlabel="Predicted Response",ylabel="True Response"))
-```
-
-## Get Accuracy, Precision, Recall, and Specificity
-
-```python
-print(classification_report(y_test, predictions))
-```
-
-## Display the ROC Curve
-
-```python
-# Create our ROC Curve plot
-# This is simpler than last time because
-# the category labels are 0 and 1.
-# Check the logistic regression slides for
-# the more complex method.
-RocCurveDisplay.from_predictions(y_test, probabilities[1])
-
-# Draw a green line for 0
-plt.plot([0, 1], [0, 1], color = 'g')
-```
-
-Remember to pay attention to the AUC score!
+1. Confusion Matrix
+2. Classification Report
+3. Cross-validation
+4. ROC Curve & AUC Score (binary classifier only)
 
 ## Thanks, Thomas Bayes!
 
