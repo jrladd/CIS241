@@ -61,8 +61,14 @@ from sklearn.ensemble import RandomForestClassifier
 ## Create a Random Forest Classifier for the `penguins` dataset.
 
 1. Select features and prepare data: you will predict the `species` of the penguins.
-2. Fit a random forest classification model. Be thoughtful about the hyperparameters!
-3. Find the variable importances from your model.
-4. Do some out-of-sample validation of your model, using the usual metrics.
+2. To test the model, fit a decision tree classification model and create a tree diagram to match the one on the slide. (You don't need to use the same predictors, but the plot should be readable and have colors and labels.)
+
+(continued on next slide)
+
+## Random Forest Classifier cont.
+
+3. Fit a random forest classification model. Be thoughtful about the hyperparameters!
+4. Find the variable (or *feature*) importances from your model.
+5. Do some out-of-sample validation of your model, using the usual metrics.
 
 Good luck! 🌲🌳🌲🌳

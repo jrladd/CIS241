@@ -25,6 +25,7 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
     pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
@@ -174,10 +175,10 @@ decision trees’ skill at finding patterns in the data.</p>
 class="slide level2">
 <h2>Pay attention to your model’s <em>hyperparameters</em>.</h2>
 <ul>
-<li><code>min_samples_leaf</code>: the minimum number of records in a
-terminal node (leaf)</li>
-<li><code>max_leaf_nodes</code>: the maximum number of nodes in the
-entire tree</li>
+<li class="fragment"><code>min_samples_leaf</code>: the minimum number
+of records in a terminal node (leaf)</li>
+<li class="fragment"><code>max_leaf_nodes</code>: the maximum number of
+nodes in the entire tree</li>
 </ul>
 <p>Setting these can help you create smaller trees and avoid spurious
 results!</p>
@@ -202,13 +203,24 @@ class="slide level2">
 <h2>Create a Random Forest Classifier for the <code>penguins</code>
 dataset.</h2>
 <ol type="1">
-<li>Select features and prepare data: you will predict the
-<code>species</code> of the penguins.</li>
-<li>Fit a random forest classification model. Be thoughtful about the
-hyperparameters!</li>
-<li>Find the variable importances from your model.</li>
-<li>Do some out-of-sample validation of your model, using the usual
-metrics.</li>
+<li class="fragment">Select features and prepare data: you will predict
+the <code>species</code> of the penguins.</li>
+<li class="fragment">To test the model, fit a decision tree
+classification model and create a tree diagram to match the one one the
+slide. (You don’t need to use the same predictors, but the plot should
+be readable and have colors.)</li>
+</ol>
+<p>(continued on next slide)</p>
+</section>
+<section id="random-forest-classifier-cont." class="slide level2">
+<h2>Random Forest Classifier cont.</h2>
+<ol start="3" type="1">
+<li class="fragment">Fit a random forest classification model. Be
+thoughtful about the hyperparameters!</li>
+<li class="fragment">Find the variable (or <em>feature</em>) importances
+from your model.</li>
+<li class="fragment">Do some out-of-sample validation of your model,
+using the usual metrics.</li>
 </ol>
 <p>Good luck! 🌲🌳🌲🌳</p>
 </section></section>
@@ -221,7 +233,6 @@ metrics.</li>
   <script src="https://unpkg.com/reveal.js@^4//plugin/notes/notes.js"></script>
   <script src="https://unpkg.com/reveal.js@^4//plugin/search/search.js"></script>
   <script src="https://unpkg.com/reveal.js@^4//plugin/zoom/zoom.js"></script>
-  <script src="https://unpkg.com/reveal.js@^4//plugin/math/math.js"></script>
 
   <script>
 
@@ -368,26 +379,8 @@ metrics.</li>
         // viewDistance in order to save resources.
         mobileViewDistance: 2,
 
-        math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
         // reveal.js plugins
         plugins: [
-          RevealMath,
           RevealNotes,
           RevealSearch,
           RevealZoom
