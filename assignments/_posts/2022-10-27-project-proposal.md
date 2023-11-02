@@ -71,5 +71,7 @@ This 1-page proposal document will contain:
 
 * _your name_
 * _dataset you will use (and hyperlink to cite source)_
-* _a list of the big research question(s) you will investigate: these should be specific_
+* _a list of the big research question(s) you will investigate: these should be specific_. I recommend 2-4 questions that might guide you in different parts of the report.
 * _5-7 sentences explaining your rationale, why is this dataset and question interesting? How will the data dictate your process for problem solving? What possible approaches might you take to answer your research questions?_
+
+***n.b. Because we need to stay on track as the end of the semester approaches, you cannot receive an extension on any part of final project.***
