@@ -13,12 +13,14 @@ Roughly, 5-7 written pages (though this is hard to measure in a Jupyter notebook
 
 **Introduction**
 
-- Provide a one or two paragraph introduction, professionally written, that gives an overview of the essentials someone needs to know to make sense of the data you show. You **must** cite and link to your dataset, like so: `[text here](website)`.
+- Provide a one or two paragraph introduction, professionally written, that gives an overview of the essentials someone needs to know to make sense of the data you show.
+- Consider some of the ethical and logistical challenges that your data presents, and discuss this in your introduction.
+- You **must** cite and link to your dataset, like so: `[text here](website)`.
 
 **Data Explanation and Exploration**
 
 - Provide some details describing the data you are working with. What are the observations? The key variables you will be looking at? Are there any particular challenges in the data you will need to work through or be aware of during analysis?
-- Provide three polished visuals that describes the data in a way relevant to your question (descriptive, not related to your statistical model specifically--not a scatterplot). Write text that describes the data and what the visuals tell you about your data or decisions you will need to make for the analysis.
+- Provide four polished visuals that describe the data in a way relevant to your question (descriptive, not related to your statistical model specifically--not a regression plot). *No more than two of these should be the same visualization type*. Write text that describes the data and what the visuals tell you about your data or decisions you will need to make for the analysis.
 
 **Statistical Analysis and Interpretation**
 
@@ -29,4 +31,4 @@ Roughly, 5-7 written pages (though this is hard to measure in a Jupyter notebook
 **Conclusions**
 
 - Provide one or two paragraphs concluding about the data: what does it tell us, what are the limitations to this data/model, and what is one future direction you could envision for future data analysts or data collectors?
-- Find at least one reference that is relevant to or supports your insights, and cite it in this section. You may cite a reference by linking directly to it in your markdown `[text here](link here)`, and listing the full citation below the conclusions section. Please ask me if you aren’t sure how to cite references.
+- Find at least one secondary reference that is relevant to or supports your insights, and cite it in this section. You may cite a reference by linking directly to it in your markdown `[text here](link here)`, and listing the full citation below the conclusions section. Please ask me if you aren’t sure how to cite references.
