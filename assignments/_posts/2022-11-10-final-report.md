@@ -7,7 +7,7 @@ show_date: false
 
 **Please note that this final deadline is set by the college. I *cannot* accept any work past this deadline.**
 
-***Two* polished Jupyter Notebook HTML files reporting the results of your final data analysis project.** One file will contain only the output of your code and your writing, the other file will contain all of the code alongside the output and writing. We will go over how to do this in class, and you can refer to the examples for more info. 
+***Two* polished Jupyter Notebook HTML files reporting the results of your final data analysis project.** One file will contain only the output of your code and your writing, the other file will contain all of the code alongside the output and writing. We will go over how to do this in class, and you can refer to the examples for more info.^[1] 
 
 Roughly, 5-7 written pages (though this is hard to measure in a Jupyter notebook, so consider it a *guideline*). Think about this report as a “final takeaway” of all the skills you’ve learned in class over the semester. Below is a rough structure of your final written report. **This should be a ready-to-deliver report with clear section headers and interpretations of any statistical or graphical output (like several of our previous projects).**
 
@@ -32,3 +32,5 @@ Roughly, 5-7 written pages (though this is hard to measure in a Jupyter notebook
 
 - Provide one or two paragraphs concluding about the data: what does it tell us, what are the limitations to this data/model, and what is one future direction you could envision for future data analysts or data collectors?
 - Find at least one secondary reference that is relevant to or supports your insights, and cite it in this section. You may cite a reference by linking directly to it in your markdown `[text here](link here)`, and listing the full citation below the conclusions section. Please ask me if you aren’t sure how to cite references.
+
+[^1]: You can get an exported HTML file *with* code by exporting in the normal way. To export an HTML file *without* code, you'll use the Terminal feature in Jupyter notebook. Navigate to the correct subfolder with `cd` and use the following command to export your notebook: `jupyter nbconvert --to html --no-input YourFile.ipynb`. Once the HTML file shows up in your Jupyter file browser, you can right-click to download it.
