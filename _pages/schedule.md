@@ -29,6 +29,6 @@ Date|Topics & Slides|Workshops|Assignments
 14 & 16 Nov.|Project Discussion and Work
 21 Nov.|Project Meetings||**[Progress Report](/CIS241/assignments/progress-report) Due 21 Nov. at 10:55am**
 23 Nov.|NO CLASS: Thanksgiving Break
-28 & 30 Nov.|Project Work and Panel Presentations||**[Video Presentations](/CIS241/assignments/presentation/) Due 29 Nov. at 9am**
+28 & 30 Nov.|Project Work and Panel Presentations||**[Video Presentations](/CIS241/assignments/presentation/) Due 30 Nov. at 10:55am**
 5 Dec.|Panel Presentations & Wrap-Up||
 12 Dec. 9am-12pm|**NO MEETING**||**[Final Project](/CIS241/assignments/final-report) Due 12 Dec. at Noon**

@@ -3,7 +3,7 @@ title:  "Presentation"
 date:   2023-11-16 10:55:00 -0500
 show_date: false
 ---
-**Complete by: *Wednesday* 29 Nov. by 9am**
+**Complete by: *Thursday* 30 Nov. by 10:55am**
 
 *You will prepare a 3-5 minute “elevator pitch” video presentation about your project for your classmates. The goal of this video is not to summarize the entire content of your project, but rather to explain to your audience your chosen data set, the questions you have, and the approaches you plan to take it to it, in a way that will generate interest and allow others to offer suggestions.*
 
@@ -35,7 +35,7 @@ You will be assessed on the content of this video and how well it addresses the 
 
 ## Responding to Videos
 
-In addition to making a video presentation, you will watch and respond to the videos made by your peers. Before the final day of class (May 9), you will watch *all* the videos. After watching a video, you will write down the following for each one.
+In addition to making a video presentation, you will watch and respond to the videos made by your peers. Before the final day of class (Dec. 5), you will watch *all* the videos. After watching a video, you will write down the following for each one.
 
 1. One substantive similarity between the presenter's project and your own.
 2. One question you have about the project.
