@@ -33,6 +33,8 @@ Later in the semester, you'll choose a dataset to work on for your final project
 
 The Data page of the [CIS LibGuide](https://libguides.washjeff.edu/cis/data) has an extensive list of data resources, including general sites as well as repositories broken down by topic.
 
+**You *may not* choose any datasets from Kaggle or Data.world. These are general repositories that often make it more difficult to find the original collectors or purpose of the data.**
+
 ## Writing Your Documentation
 
 Below is a suggested format to use to make sure the useful information is communicated to a reader or potential data user (you too!) needed to interpret and understand it. As you edit, remove any instructional or template text and replace with your own. If you have questions particular to your dataset or another idea for how to present the codebook and documentation, please discuss in advance with me.
@@ -49,13 +51,16 @@ Below is a suggested format to use to make sure the useful information is commun
 
 **Special permissions:** Note if the data is freely available, published, or has restrictions for use.
 
-1-2 short paragraphs describing the data table(s) you plan to use. Your description should describe what each row represents, as well as any potentially “tricky” or difficult aspects of the dataset - for example, how is missing data denoted in the dataset? If the dataset already had a well-defined codebook or metadata provided that can give additional information, please link it here. You can also mention any potential ethical issues one should be aware of when using this data.
+1-2 short paragraphs describing the data table(s) you plan to use. Your description should describe what one row (observation) represents, as well as any potentially “tricky” or difficult aspects of the dataset - for example, how is missing data denoted in the dataset? If the dataset already had a well-defined codebook or metadata provided that can give additional information, please link to it here. You can also mention any potential ethical issues one should be aware of when using this data.
+
 
 [*n.b. You dataset may already have some written documentation when you find it. It's okay to read that and think about it as you work, but your final paragraphs should all be in **your own words**.*]
 
 **Name_of_your_datafile.csv**
 
-_Please note that if your data set has multiple data tables, you will need to provide more than one of these tables, one for each dataset. You should make a note about which column in each dataset contains common information, and represents the “link” or the “key” between them._
+**Data Dictionary**:
+
+_Please note that if your data set has multiple data tables, you will need to provide more than one of these data dictionary tables, one for each dataset. You should make a note about which column in each dataset contains common information, and represents the “link” or the “key” between them._
 
 Column Name|Variable Definition|Units|Data Type|Variable Codes and definitions|Missing value codes
 ---|---|---|---|---|---
@@ -66,6 +71,12 @@ Add more rows as needed... [n.b. *You only need to create a chart of 20 variable
 For **Variable Definition**, If you don’t know or don’t have information on how to interpret a variable, or want to give a word of caution, say so here. If the variable has any special considerations or challenges inherent to its measure, you may note that here, too.
 
 For **Variable Codes and Definitions**, If you don’t need to specify acceptable values, you can just fill this in with NA (for not applicable).
+
+**Data Wrangling**:
+
+Write a paragraph explaining the wrangling steps you will need to take in order to ensure that this data is **in tidy form and ready for analysis**.
+
+This may include: selecting a subset of the data, creating new columns, renaming existing columns, sorting data, grouping and summarizing, or even splitting columns and pivoting the table. Be sure to ask me if you have questions about what wrangling steps should be taken! You may find it easiest to attempt these wrangling steps yourself, but you do not need to submit the code for this assignment. **Be specific about exactly what columns, rows, and values you should change and why.**
 
 ---
 
