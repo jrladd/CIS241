@@ -22,7 +22,7 @@ excerpt: "CIS 241. Washington & Jefferson College. Fall 2023."
 
 **Meeting Time: TR 10:55-12:40pm**
 
-Dr. Ladd's Student Drop-In Hours: M 11:30am-1:30pm & Tu 2-4pm in TECH 201  
+Dr. Ladd's Student Drop-In Hours: M 11:30am-1:30pm & W 1-3pm in TECH 201  
 or email for appointment, <jladd@washjeff.edu>
 
 PAL Tutoring Hours: 7-10pm Sunday through Thursday on the 2nd floor of the Tech Center  

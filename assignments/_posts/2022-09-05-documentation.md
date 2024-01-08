@@ -3,7 +3,7 @@ title:  "Documentation Assignment"
 date:   2023-08-31 09:00:00 -0400
 show_date: false
 ---
-**Complete by: Thursday 7 Sept. by 10:55am**
+**Complete by: Thursday 8 Feb. by 9am**
 
 The goal of this assignment is to get you more familiar with finding, understanding, and documenting a data set. You'll find a dataset online and create documentation and metadata for it, using the guidelines below.
 

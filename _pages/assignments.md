@@ -16,7 +16,7 @@ Assignment|Percentage
 Weekly Workshops|20%
 Documentation Assignment|10%
 Tutorial Assignment|10%
-Quizzes|20%
+Tests|20%
 Final Presentation|10%
 Final Project (in 3 stages)|30%
 
