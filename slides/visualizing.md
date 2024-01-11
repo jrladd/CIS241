@@ -1,23 +1,22 @@
 % Visualizing Data
-% DA 101, Dr. Ladd
-% Week 4
+% CIS 241, Dr. Ladd
+
+# Why Do We Visualize Data?
+
+---
 
 ![xkcd.com/688](img/xkcd_self_description.png)
+
+## Visualization can be *exploratory*, *explanatory*, or both!
+
+- Exploratory viz helps *us* (the researchers or analysts) understand the data.
+- Explanatory viz helps *others* (the clients or audience) understand our analysis.
+- Many visualizations do both of these things at once!
 
 ## Some Good Resources on Visualization
 
 - Claus Wilke's [Fundamentals of Data Visualzation](https://clauswilke.com/dataviz/) (The illustrations in this slide show come from here!)
-- [Chapter 3](https://r4ds.had.co.nz/data-visualisation.html) of our course textbook, R for Data Science
-
-# Why Do We Visualize Data?
-
-## Visualization can be *exploratory*, *explanatory*, or both!
-
-## Exploratory viz helps *us* (the researchers or analysts) understand the data.
-
-## Explanatory viz helps *others* (the clients or audience) understand our analysis.
-
-## Many visualizations do both of these things at once!
+- [The Altair User Guide](https://altair-viz.github.io/user_guide/data.html)
 
 # What Does Visualization Help Us to See?
 
@@ -51,7 +50,7 @@
 
 ## You Try It!
 
-Look at the documentation for the `mpg` data set. What visualization type would you use to compare the counts of each type of car? Which variables would you use, and what *kind* of variables are they? Jot down your answers.
+Look at the `taxis` data set. What visualization type would you use to compare the counts of each destination Borough? Which variables would you use, and what *kind* of variables are they? Jot down your answers.
 
 ## Viz Can Help Us See *Proportions*.
 
@@ -69,7 +68,7 @@ Look at the documentation for the `mpg` data set. What visualization type would 
 
 ## You Try It!
 
-Look at the `mpg` documentation again. What visualization type would you use to compare the distribution of city fuel efficiency among different drive trains? Which variables would you use, and what *kind* of variables are they? Jot down your answers.
+Look at the `taxis` data again. What visualization type would you use to compare the distribution of tips among different taxi colors? Which variables would you use, and what *kind* of variables are they? Jot down your answers.
 
 ## Viz Helps Us See *Time*, *Location*, *Uncertainty*...
 
@@ -77,92 +76,71 @@ Look at the `mpg` documentation again. What visualization type would you use to 
 
 More on these viz types in future lessons!
 
-# Make Great Viz with `ggplot2`
+# Make Great Viz with `Altair`
 
-## Import on its own or with `tidyverse`
+## Altair is *declarative*.
 
-```r
-library(ggplot2)
+- You use the Grammar of Graphics approach to *declare* the parts of the visualization.
+- Focus on *what you want to show* rather than how to make it appear.
+- Builds on [Vega-Lite](https://vega.github.io/vega-lite/), works similarly to [ggplot2](https://ggplot2.tidyverse.org/) and [Tableau](https://www.tableau.com/why-tableau/what-is-tableau)
+
+## Anatomy of an Altair Plot
+
+## Import Seaborn and add default theme
+
+```python
+import seaborn as sns
 ```
 
-or 
-
-```r
-library(tidyverse)
+```python
+sns.set_theme()
+# It's a good idea to use this every time
 ```
 
-## The `ggplot()` function takes two arguments, data and a mapping
+## Each Seaborn function looks for a data parameter and variables
 
-```r
-ggplot(data = YourDataFrame, mapping = aes(x = FirstVariable, y = SecondVariable))
+```python
+# A scatter plot as an example
+sns.relplot(x="FirstVariable",y="SecondVariable",data=YourDataFrame)
 ```
 
-You can use this with or without the argument names `data =` and `mapping =`.
+In this example, `FirstVariable` becomes the x-axis and `SecondVariable` becomes the y-axis. You can also add a mapping for `hue` (i.e. color).
 
-## Aesthetic mapping defines what variables should be used.
+## Create different shapes and plot types with different functions.
 
-```r
-ggplot(data = YourDataFrame, mapping = aes(x = FirstVariable, y = SecondVariable, color = ThirdVariable))
-```
+- `sns.relplot()`: scatter plots and line plots (relationships)
+- `sns.displot()`: histograms and frequency polygons (distributions)
+- `sns.catplot()`: bar plots and boxplots (categories)
+- and more we'll cover later!
 
-In this example, `FirstVariable` becomes the x-axis and `SecondVariable` becomes the y-axis. You can also add a mapping for `color`.
-
-## Add different layers to your viz with the `+` sign.
-
-```r
-ggplot(data = YourDataFrame, mapping = aes(x = FirstVariable, y = SecondVariable)) +
-	geom_point() +
-	geom_smooth() +
-	facet_wrap(~ThirdVariable)
-```
-
-The `+` works sort of like the `%>%` in `dplyr`.
-
-## Create different shapes and plot types with `geom` layers.
-
-- `geom_point()`
-- `geom_bar()`
-- `geom_boxplot()`
-- `geom_histogram()`
-- and on and on!
-
-You can put aesthetic mappings inside geom layers if you prefer!
+Sometimes you'll use the `kind` parameter to set the type of plot!
 
 ## You Try It!
 
-Create a plot to compare the price of a diamond to its weight using `ggplot`'s built-in diamonds dataset. Then create the same plot but show color as the quality of the cut.
+Create a plot to compare the distance a taxi traveled to the total fare using the `taxis` DataFrame. Then create the same plot but show color as the type of payment.
 
-## Group your data by category with `facet` layers.
+## Use the `col` parameter to create side-by-side plots for different categories.
 
-`facet_wrap(~x)`: Use a single categorical variable.
-
-`facet_grid(x ~ y)`: Use two categorical variables.
-
-```r
-ggplot(YourDataFrame, aes(x = FirstVariable, y = SecondVariable)) +
-	geom_point() +
-	facet_wrap(~ThirdVariable)
+```python
+sns.displot(x="NumericalVariable", col="CategoricalVariable", data=YourDataFrame)
 ```
 
-## Statistically transform your data with `stat` layers.
+## Use `.set()` add your own title and axis label.
 
-- `stat_count()` counts up categories and works behind the scenes in `geom_bar()`.
-- `stat_bin()` creates countable segments of continuous data and works behind the scenes in `geom_histogram()`.
-- `stat_summary()` lets you summarize any aspect of your data.
+Never rely on the default column names! You can "chain" this function onto an existing Seaborn plot.
 
-## Use `?` to get more information about *any* ggplot layer.
-
-```r
-?facet_wrap
-?geom_histogram
-?stat_bin
+```python
+sns.catplot(...).set(
+    title="A Title for the Whole Plot",
+    xlabel="A Better Label for X",
+    ylabel="A Better Label for Y")
 ```
 
 ## You Try It!
 
-Create a plot showing the distribution of weight in the diamonds dataset. Then show the distributions according to each color of diamond. Finally, change the size of the bins in each distribution to show more detail.
+Create a plot showing the distribution of tips in the `taxis` dataset. Give the plot a title and labels for both axes. Then show the distributions according to each pickup borough, in different columns. Finally, change the size of the bins in each distribution to show less detail (wider bars).
 
-# Ugly, Bad, or Wrong 
+# Ugly, Bad, or Wrong
 
 ---
 
@@ -193,3 +171,4 @@ Create a plot showing the distribution of weight in the diamonds dataset. Then s
 [viz.wtf](https://viz.wtf/)
 
 [r/dataisugly](https://www.reddit.com/r/dataisugly/)
+
