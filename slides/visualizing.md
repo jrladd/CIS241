@@ -84,61 +84,21 @@ More on these viz types in future lessons!
 - Focus on *what you want to show* rather than how to make it appear.
 - Builds on [Vega-Lite](https://vega.github.io/vega-lite/), works similarly to [ggplot2](https://ggplot2.tidyverse.org/) and [Tableau](https://www.tableau.com/why-tableau/what-is-tableau)
 
-## Anatomy of an Altair Plot
+---
 
-## Import Seaborn and add default theme
-
-```python
-import seaborn as sns
-```
-
-```python
-sns.set_theme()
-# It's a good idea to use this every time
-```
-
-## Each Seaborn function looks for a data parameter and variables
-
-```python
-# A scatter plot as an example
-sns.relplot(x="FirstVariable",y="SecondVariable",data=YourDataFrame)
-```
-
-In this example, `FirstVariable` becomes the x-axis and `SecondVariable` becomes the y-axis. You can also add a mapping for `hue` (i.e. color).
-
-## Create different shapes and plot types with different functions.
-
-- `sns.relplot()`: scatter plots and line plots (relationships)
-- `sns.displot()`: histograms and frequency polygons (distributions)
-- `sns.catplot()`: bar plots and boxplots (categories)
-- and more we'll cover later!
-
-Sometimes you'll use the `kind` parameter to set the type of plot!
+![](img/altair_anatomy.png)
 
 ## You Try It!
 
-Create a plot to compare the distance a taxi traveled to the total fare using the `taxis` DataFrame. Then create the same plot but show color as the type of payment.
+Use the Altair Cheatsheet to create a plot comparing the high temperature in Seattle to the wind speed using the `seattle_weather` DataFrame. Then create the same plot but show color as the type of weather.
 
-## Use the `col` parameter to create side-by-side plots for different categories.
-
-```python
-sns.displot(x="NumericalVariable", col="CategoricalVariable", data=YourDataFrame)
-```
-
-## Use `.set()` add your own title and axis label.
-
-Never rely on the default column names! You can "chain" this function onto an existing Seaborn plot.
-
-```python
-sns.catplot(...).set(
-    title="A Title for the Whole Plot",
-    xlabel="A Better Label for X",
-    ylabel="A Better Label for Y")
-```
+<small>If this is hard to read, you might also show the types of weather as  separate *columns*.</small>
 
 ## You Try It!
 
-Create a plot showing the distribution of tips in the `taxis` dataset. Give the plot a title and labels for both axes. Then show the distributions according to each pickup borough, in different columns. Finally, change the size of the bins in each distribution to show less detail (wider bars).
+Create a plot showing the distribution of precipitation in the `seattle_weather` dataset. Give the plot a title and labels for both axes. Then show the distributions according to each pickup borough, in different columns. Finally, change the size or number of the bins in each distribution to show more detail (narrower bars).
+
+<small>Hint: you may need to use the [Altair User Guide](https://altair-viz.github.io/user_guide/data.html) as well as the cheatsheet to accomplish this!</small>
 
 # Ugly, Bad, or Wrong
 

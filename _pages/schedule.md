@@ -15,7 +15,7 @@ Date|Topics & Slides|Workshops|Assignments
 --|---|---|---
 25 Jan.|Introduction to the course, [What Is Data?](/CIS241/slides/whatisdata)|[JupyterHub](/CIS241/jupyterhub)|
 30 Jan. & 1 Feb.|[Python](/CIS241/slides/pythonbasics) and [Data Wrangling](/CIS241/slides/wrangling)|[Movies](/CIS241/resources/01_movies1.ipynb)|
-6 & 8 Feb.|[Exploratory Data Analysis](/CIS241/slides/eda)|[Movies](/CIS241/resources/01_movies2.ipynb)|**[Documentation Assignment](/CIS241/assignments/documentation) Due 8 Feb. at 9am**
+6 & 8 Feb.|[Exploratory Data Analysis](/CIS241/slides/eda) & [Visualization](/CIS241/slides/visualizing)|[Movies](/CIS241/resources/01_movies2.ipynb)|**[Documentation Assignment](/CIS241/assignments/documentation) Due 8 Feb. at 9am**
 13 & 15 Feb.|[Hypothesis Testing: Comparison of Means](/CIS241/slides/hypothesis)|[Sports](/CIS241/resources/02_tennis1.ipynb)|
 20 & 22 Feb.|[Hypothesis Testing: Correlation](/CIS241/slides/correlation)|[Sports](/CIS241/resources/02_tennis2.ipynb)|**Take-Home Test I**
 27 & 29 Feb.|[Linear Regression](/CIS241/slides/regression)|[Business](/CIS241/resources/03_airbnb1.ipynb)|
