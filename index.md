@@ -20,7 +20,7 @@ header:
 excerpt: "CIS 241. Washington & Jefferson College. Fall 2023."
 ---
 
-**Meeting Time: TR 10:55-12:40pm**
+**Meeting Time: TR 9:00-10:45am**
 
 Dr. Ladd's Student Drop-In Hours: M 11:30am-1:30pm & W 1-3pm in TECH 201  
 or email for appointment, <jladd@washjeff.edu>
