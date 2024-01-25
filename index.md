@@ -17,7 +17,7 @@ header:
       url: "https://sakai.washjeff.edu"
     - label: "JupyterHub"
       url: "https://jupyterhub.ciswashjeff.net/"
-excerpt: "CIS 241. Washington & Jefferson College. Fall 2023."
+excerpt: "CIS 241. Washington & Jefferson College. Spring 2024."
 ---
 
 **Meeting Time: TR 9:00-10:45am**
