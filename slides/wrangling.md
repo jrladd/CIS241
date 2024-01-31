@@ -9,15 +9,9 @@
 
 ```python
 # These are our standard imports
-import pandas as pd
-import numpy as np
-import seaborn as sns
-sns.set_theme()
-```
-
-```python
-taxis = sns.load_dataset('taxis')
-taxis
+import pandas as pd # Data analysis
+import numpy as np # Numerical Calculation
+import altair as alt # Visualization
 ```
 
 ## Normally, get data from CSV files.
@@ -26,7 +20,12 @@ taxis
 mydata = pd.read_csv("name_of_file.csv")
 ```
 
-For today, we're using the built-in taxis data set.
+```
+# Use the name of a file or a URL
+taxis = pd.read_csv('https://raw.githubusercontent.com/mwaskom/
+        seaborn-data/master/taxis.csv')
+taxis
+```
 
 ## Every variable (column) has a data type.
 
