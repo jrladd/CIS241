@@ -17,9 +17,9 @@ header:
       url: "https://sakai.washjeff.edu"
     - label: "JupyterHub"
       url: "https://jupyterhub.ciswashjeff.net/"
-excerpt: "CIS 241. Washington & Jefferson College. Spring 2024."
 ---
 
+CIS 241. Washington & Jefferson College. Spring 2024.  
 **Meeting Time: TR 9:00-10:45am**
 
 Dr. Ladd's Student Drop-In Hours: M 11:30am-1:30pm & W 1-3pm in TECH 201  
