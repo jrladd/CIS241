@@ -440,20 +440,16 @@ class="title-slide slide level1">
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sns.set_theme()</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> sns.load_dataset(<span class="st">&#39;penguins&#39;</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>penguins</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>sns.catplot(</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  x<span class="op">=</span><span class="st">&quot;species&quot;</span>,</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  y<span class="op">=</span><span class="st">&quot;bill_depth_mm&quot;</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  kind<span class="op">=</span><span class="st">&quot;box&quot;</span>,</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  data<span class="op">=</span>penguins).<span class="bu">set</span>(</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  xlabel<span class="op">=</span><span class="st">&quot;Species of Penguin&quot;</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  ylabel<span class="op">=</span><span class="st">&quot;Bill Depth (mm)&quot;</span>,</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  title<span class="op">=</span><span class="st">&quot;Comparing Penguins&#39; Bill Depth by Species&quot;</span>)</span></code></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> pd.read_csv(<span class="st">&#39;https://jrladd.com/CIS241/data/penguins.csv&#39;</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>penguins</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>alt.Chart(penguins,title<span class="op">=</span><span class="st">&quot;Comparing Penguins&#39; Bill Depth by Species&quot;</span>).mark_boxplot().encode(</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">&#39;species:N&#39;</span>).title(<span class="st">&quot;Species of Penguin&quot;</span>),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">&#39;bill_depth_mm:Q&#39;</span>).title(<span class="st">&quot;Bill Depth (mm)&quot;</span>).scale(zero<span class="op">=</span><span class="va">False</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(<span class="st">&#39;species:N&#39;</span>).legend(<span class="va">None</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>).properties(width<span class="op">=</span><span class="dv">200</span>)</span></code></pre></div>
 </section>
 <section id="whats-the-difference-in-means" class="slide level2">
 <h2>What’s the difference in means?</h2>
@@ -497,18 +493,26 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a hr
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># calculated confidence intervals</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>mean_perms <span class="op">=</span> ([simulate_two_groups(chinstrap_bill_depth, adelie_bill_depth)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>               <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5000</span>)])</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>mean_perms <span class="op">=</span> pd.Series(mean_perms)</span></code></pre></div>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>mean_perms <span class="op">=</span> pd.DataFrame({<span class="st">&#39;mean_perms&#39;</span>:mean_perms})</span></code></pre></div>
 </section>
 <section id="lets-look-at-the-results-in-a-histogram"
 class="slide level2">
 <h2>Let’s look at the results in a histogram</h2>
 <div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>plt <span class="op">=</span> sns.histplot(x<span class="op">=</span>mean_perms)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.<span class="bu">set</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  title<span class="op">=</span><span class="st">&quot;Permutation Distribution for Penguin Bill Depth&quot;</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  xlabel<span class="op">=</span><span class="st">&quot;Difference in Means between Adelie and Chinstrap Penguins&quot;</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>plt.axvline(x<span class="op">=</span>mean_diff, color<span class="op">=</span><span class="st">&quot;red&quot;</span>, ls<span class="op">=</span><span class="st">&quot;--&quot;</span>)</span></code></pre></div>
-<p>How is this different from previous Seaborn plots?</p>
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>alt.data_transformers.disable_max_rows() <span class="co"># Don&#39;t limit the data</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a histogram</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>histogram <span class="op">=</span> alt.Chart(mean_perms).mark_bar().encode(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">&quot;mean_perms:Q&quot;</span>).<span class="bu">bin</span>(maxbins<span class="op">=</span><span class="dv">20</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">&quot;count():Q&quot;</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>mean_perms <span class="op">=</span> mean_perms.assign(mean_diff<span class="op">=</span>mean_diff) <span class="co"># Add the mean to the dataframe</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a vertical line</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>observed_difference <span class="op">=</span> alt.Chart(mean_perms).mark_rule(color<span class="op">=</span><span class="st">&quot;red&quot;</span>, strokeDash<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">4</span>)).encode(</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">&quot;mean_diff&quot;</span>)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine the two plots</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>histogram <span class="op">+</span> observed_difference</span></code></pre></div>
+<p>How is this different from previous Altair plots?</p>
 </section>
 <section id="finally-we-can-calculate-a-p-value" class="slide level2">
 <h2>Finally, we can calculate a p-value:</h2>

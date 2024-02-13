@@ -201,20 +201,16 @@ Let's look at the steps of a permutation test that would replace a two-sample t-
 ```python
 import pandas as pd
 import numpy as np
-import seaborn as sns
-sns.set_theme()
+import altair as alt
 
-penguins = sns.load_dataset('penguins')
+penguins = pd.read_csv('https://jrladd.com/CIS241/data/penguins.csv')
 penguins
 
-sns.catplot(
-  x="species",
-  y="bill_depth_mm",
-  kind="box",
-  data=penguins).set(
-  xlabel="Species of Penguin",
-  ylabel="Bill Depth (mm)",
-  title="Comparing Penguins' Bill Depth by Species")
+alt.Chart(penguins,title="Comparing Penguins' Bill Depth by Species").mark_boxplot().encode(
+    x=alt.X('species:N').title("Species of Penguin"),
+    y=alt.Y('bill_depth_mm:Q').title("Bill Depth (mm)").scale(zero=False),
+    color=alt.Color('species:N').legend(None)
+).properties(width=200)
 ```
 
 ## What's the difference in means?
@@ -264,20 +260,28 @@ You can reuse this code!
 # calculated confidence intervals
 mean_perms = ([simulate_two_groups(chinstrap_bill_depth, adelie_bill_depth)
                for i in range(5000)])
-mean_perms = pd.Series(mean_perms)
+mean_perms = pd.DataFrame({'mean_perms':mean_perms})
 ```
 
 ## Let's look at the results in a histogram
 
 ```python
-plt = sns.histplot(x=mean_perms)
-plt.set(
-  title="Permutation Distribution for Penguin Bill Depth",
-  xlabel="Difference in Means between Adelie and Chinstrap Penguins")
-plt.axvline(x=mean_diff, color="red", ls="--")
+alt.data_transformers.disable_max_rows() # Don't limit the data
+# Create a histogram
+histogram = alt.Chart(mean_perms).mark_bar().encode(
+    x=alt.X("mean_perms:Q").bin(maxbins=20),
+    y=alt.Y("count():Q")
+)
+mean_perms = mean_perms.assign(mean_diff=mean_diff) # Add the mean to the dataframe
+# Add a vertical line
+observed_difference = alt.Chart(mean_perms).mark_rule(color="red", strokeDash=(8,4)).encode(
+    x=alt.X("mean_diff")
+)
+# Combine the two plots
+histogram + observed_difference
 ```
 
-How is this different from previous Seaborn plots?
+How is this different from previous Altair plots?
 
 ## Finally, we can calculate a p-value:
 
