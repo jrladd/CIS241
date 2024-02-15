@@ -517,7 +517,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a hr
 <section id="finally-we-can-calculate-a-p-value" class="slide level2">
 <h2>Finally, we can calculate a p-value:</h2>
 <div class="sourceCode" id="cb8"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="op">=</span> np.mean(mean_perms <span class="op">&gt;</span> mean_diff)</span>
+class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="op">=</span> np.mean(mean_perms.mean_perms <span class="op">&gt;</span> mean_diff)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>p_value</span></code></pre></div>
 <p>Why does this code work?</p>
 <p>Is our result statistically significant? Is it practically

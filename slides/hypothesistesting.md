@@ -286,7 +286,7 @@ How is this different from previous Altair plots?
 ## Finally, we can calculate a p-value:
 
 ```python
-p_value = np.mean(mean_perms > mean_diff)
+p_value = np.mean(mean_perms.mean_perms > mean_diff)
 p_value
 ```
 
