@@ -127,14 +127,14 @@ deviation.</p>
 class="slide level2">
 <h2>Pearson’s correlation, <em>r</em>, is the default in Pandas.</h2>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load mpg sample dataset</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>cars <span class="op">=</span> sns.load_dataset(<span class="st">&#39;mpg&#39;</span>)</span>
+class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load cars sample dataset</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>cars <span class="op">=</span> data.cars()</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate correlations between all columns in a dataframe </span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cars.corr()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>cars.corr(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate correlation between just two variables</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>cars.mpg.corr(cars.displacement)</span></code></pre></div>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>cars.Miles_per_Gallon.corr(cars.Displacement)</span></code></pre></div>
 </section></section>
 <section>
 <section id="visualizing-correlation" class="title-slide slide level1">
@@ -150,21 +150,24 @@ shows the <em>independent</em> variable.</p>
 </section>
 <section class="slide level2">
 
-<p><img data-src="img/mpg_scatter_py.png" /></p>
+<p><img data-src="img/cars_scatter_py.png" /></p>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(x<span class="op">=</span><span class="st">&#39;displacement&#39;</span>,y<span class="op">=</span><span class="st">&#39;mpg&#39;</span>,data<span class="op">=</span>cars)</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(cars, title<span class="op">=</span><span class="st">&quot;Fuel Efficiency and Engine Displacement&quot;</span>).mark_point().encode(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">&quot;Displacement:Q&quot;</span>, title<span class="op">=</span><span class="st">&quot;Engine Displacement (liters)&quot;</span>),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">&quot;Miles_per_Gallon:Q&quot;</span>, title<span class="op">=</span><span class="st">&quot;Fuel Efficiency (mpg)&quot;</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>).interactive()</span></code></pre></div>
 </section>
-<section id="regression-plots-add-a-line-of-best-fit"
-class="slide level2">
-<h2>Regression plots add a line of best fit</h2>
-<p><img data-src="img/mpg_regression_py.png" /></p>
+<section class="slide level2">
+
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sns.lmplot(x<span class="op">=</span><span class="st">&#39;displacement&#39;</span>,y<span class="op">=</span><span class="st">&#39;mpg&#39;</span>,data<span class="op">=</span>cars)</span></code></pre></div>
-</section>
-<section id="joint-plots-also-show-distributions" class="slide level2">
-<h2>Joint plots also show distributions</h2>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sns.jointplot(x<span class="op">=</span><span class="st">&#39;displacement&#39;</span>,y<span class="op">=</span><span class="st">&#39;mpg&#39;</span>,data<span class="op">=</span>cars,kind<span class="op">=</span><span class="st">&quot;reg&quot;</span>)</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a line of best fit to make a regression plot</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>scatter <span class="op">=</span> alt.Chart(cars, title<span class="op">=</span><span class="st">&quot;Fuel Efficiency and Engine Displacement&quot;</span>).mark_point().encode(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">&quot;Displacement:Q&quot;</span>, title<span class="op">=</span><span class="st">&quot;Engine Displacement (liters)&quot;</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">&quot;Miles_per_Gallon:Q&quot;</span>, title<span class="op">=</span><span class="st">&quot;Fuel Efficiency (mpg)&quot;</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>).interactive()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>scatter <span class="op">+</span> scatter.transform_regression(<span class="st">&#39;Displacement&#39;</span>,<span class="st">&#39;Miles_per_Gallon&#39;</span>).mark_line()</span></code></pre></div>
+<p><img data-src="img/cars_regression_py.png" /></p>
 </section>
 <section
 id="avoid-overplotting-with-heatmaps-or-kernel-density-estimation."
@@ -172,31 +175,53 @@ class="slide level2">
 <h2>Avoid overplotting with heatmaps or kernel density estimation.</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><img data-src="img/heatmap_py.png" /></p>
+<p><img data-src="img/cars_heatmap_py.png" /></p>
 </div><div class="column" style="width:50%;">
 <p><img data-src="img/kde_py.png" /></p>
 </div>
 </div>
 </section>
-<section id="make-these-with-displot-not-relplot." class="slide level2">
-<h2>Make these with <code>displot</code> (not
-<code>relplot</code>).</h2>
-<div class="sourceCode" id="cb5"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Heatmap by default</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sns.displot(x<span class="op">=</span><span class="st">&#39;displacement&#39;</span>,y<span class="op">=</span><span class="st">&#39;mpg&#39;</span>,data<span class="op">=</span>cars)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Special `kind` parameter for kernel density estimation</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>sns.displot(x<span class="op">=</span><span class="st">&#39;displacement&#39;</span>,y<span class="op">=</span><span class="st">&#39;mpg&#39;</span>,data<span class="op">=</span>cars, kind<span class="op">=</span><span class="st">&#39;kde&#39;</span>)</span></code></pre></div>
+<section id="make-these-with-different-marks-or-transforms."
+class="slide level2">
+<h2>Make these with different marks or transforms.</h2>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Heatmap example</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>alt.Chart(cars, title<span class="op">=</span><span class="st">&quot;Fuel Efficiency and Engine Displacement&quot;</span>).mark_rect().encode(</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">&quot;Displacement:Q&quot;</span>, title<span class="op">=</span><span class="st">&quot;Engine Displacement (liters)&quot;</span>).<span class="bu">bin</span>(),</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">&quot;Miles_per_Gallon:Q&quot;</span>, title<span class="op">=</span><span class="st">&quot;Fuel Efficiency (mpg)&quot;</span>).<span class="bu">bin</span>(),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(<span class="st">&quot;count():Q&quot;</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 </section>
 <section id="correlation-matrix-shows-all-possible-correlations."
 class="slide level2">
 <h2>Correlation matrix shows all possible correlations.</h2>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(sns.heatmap(cars.corr(), </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>             vmin<span class="op">=-</span><span class="dv">1</span>, </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>             vmax<span class="op">=</span><span class="dv">1</span>, </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>             cmap<span class="op">=</span>sns.diverging_palette(<span class="dv">20</span>, <span class="dv">220</span>, as_cmap<span class="op">=</span><span class="va">True</span>)))</span></code></pre></div>
-<p><img data-src="img/corr_matrix.png" /></p>
+<p><img data-src="img/cars_corr_matrix.png" /></p>
+</section>
+<section class="slide level2">
+
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-arrange correlation matrix data</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>cars_corr <span class="op">=</span> (cars.corr(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>             .stack()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>             .reset_index()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>             .rename(columns<span class="op">=</span>{<span class="dv">0</span>:<span class="st">&#39;corr&#39;</span>,<span class="st">&#39;level_0&#39;</span>:<span class="st">&#39;var1&#39;</span>,<span class="st">&#39;level_1&#39;</span>:<span class="st">&#39;var2&#39;</span>})</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create correlation heatmap</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> alt.Chart(cars_corr, title<span class="op">=</span><span class="st">&quot;Cars Correlation Matrix&quot;</span>).mark_rect().encode(</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">&quot;var1:N&quot;</span>,title<span class="op">=</span><span class="va">None</span>),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">&quot;var2:N&quot;</span>,title<span class="op">=</span><span class="va">None</span>),</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(<span class="st">&quot;corr&quot;</span>,title<span class="op">=</span><span class="st">&quot;Correlation coefficient&quot;</span>).scale(scheme<span class="op">=</span><span class="st">&#39;blueorange&#39;</span>)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>).properties(width<span class="op">=</span><span class="dv">300</span>,height<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add text labels for coefficients</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> base.mark_text(baseline<span class="op">=</span><span class="st">&#39;middle&#39;</span>).encode(</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    alt.Text(<span class="st">&#39;corr:Q&#39;</span>, <span class="bu">format</span><span class="op">=</span><span class="st">&quot;.2f&quot;</span>),</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.condition(</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        (alt.datum.corr <span class="op">&lt;</span> <span class="op">-</span><span class="fl">0.5</span>) <span class="op">|</span> (alt.datum.corr <span class="op">&gt;</span> <span class="fl">0.5</span>),</span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>        alt.value(<span class="st">&#39;white&#39;</span>),</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>        alt.value(<span class="st">&#39;black&#39;</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>base<span class="op">+</span>text <span class="co"># Display visualization</span></span></code></pre></div>
 </section></section>
 <section>
 <section id="hypothesis-tests-for-correlation"
@@ -217,11 +242,11 @@ id="instead-of-resampling-we-can-rearrange-the-variables-at-random."
 class="slide level2">
 <h2>Instead of resampling, we can <em>rearrange</em> the variables at
 random.</h2>
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate_correlation(df,var1,var2):</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    shuffled <span class="op">=</span> df[var1].sample(frac<span class="op">=</span><span class="dv">1</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    corr <span class="op">=</span> shuffled.corr(df[var2])</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> corr</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate_correlation(df,var1,var2):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    shuffled <span class="op">=</span> df[var1].sample(frac<span class="op">=</span><span class="dv">1</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    corr <span class="op">=</span> shuffled.corr(df[var2])</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> corr</span></code></pre></div>
 </section>
 <section id="lets-try-it" class="slide level2">
 <h2>Let’s Try It!</h2>
@@ -260,11 +285,11 @@ data sets to be similar…</h2>
 dataset in the
 <a href="/CIS241/data/DatasaurusDozen.tsv" download><code>datasaurus_dozen</code></a>.</p>
 <ul>
-<li>Find mean, standard deviation, and correlation for both x and y of
-each dataset. (You may need to group things by the “dataset”
-column.)</li>
-<li>When you’re done, try making scatter plots! (You may need to use the
-<code>col</code> parameter.)</li>
+<li class="fragment">Find mean, standard deviation, and correlation for
+both x and y of each dataset. (You may need to group things by the
+“dataset” column.)</li>
+<li class="fragment">When you’re done, try making scatter plots! (You
+may need to use the <code>column</code> encoding.)</li>
 </ul>
 </section></section>
     </div>
