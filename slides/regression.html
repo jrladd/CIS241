@@ -270,15 +270,12 @@ predictive model would help? Is there a relationship between variables
 that’s worth learning about?</p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s make a scatter plot of engine displacement and</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># fuel efficiency, in the mpg dataset.</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sns.relplot(x<span class="op">=</span><span class="st">&quot;displacement&quot;</span>,y<span class="op">=</span><span class="st">&quot;mpg&quot;</span>,data<span class="op">=</span>cars)</span></code></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># fuel efficiency, in the cars dataset.</span></span></code></pre></div>
 </section>
 <section class="slide level2">
 
 <figure>
-<img data-src="img/mpg_scatter_regression.png"
-alt="What do you think?" />
+<img data-src="img/cars_regression_py.png" alt="What do you think?" />
 <figcaption aria-hidden="true">What do you think?</figcaption>
 </figure>
 </section>
@@ -336,8 +333,8 @@ class="slide level2">
 <h2>Then we split the data.</h2>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="st">&quot;mpg&quot;</span> <span class="co"># Our target variable</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>predictors <span class="op">=</span> [<span class="st">&quot;displacement&quot;</span>, <span class="st">&quot;model_year&quot;</span>, <span class="st">&quot;acceleration&quot;</span>] <span class="co"># A list of predictors</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="st">&quot;Miles_per_Gallon&quot;</span> <span class="co"># Our target variable</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>predictors <span class="op">=</span> [<span class="st">&quot;Displacement&quot;</span>, <span class="st">&quot;Horsepower&quot;</span>, <span class="st">&quot;Acceleration&quot;</span>] <span class="co"># A list of predictors</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> cars[predictors]</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> cars[target]</span>
@@ -354,6 +351,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a hr
 <div class="sourceCode" id="cb4"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>our_model <span class="op">=</span> LinearRegression() <span class="co"># Make an instance of this class</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>our_model.fit(X_train, y_train) <span class="co"># Run the fit() method on training data</span></span></code></pre></div>
+<p>Why did we get an error?</p>
 </section>
 <section id="now-we-can-look-at-the-models-coefficients"
 class="slide level2">
@@ -367,14 +365,14 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a hr
 </section>
 <section class="slide level2">
 
-<p>With a coefficient for displacement of <code>-0.0520</code>, this
+<p>With a coefficient for displacement of <code>-0.0384</code>, this
 linear regression provides evidence that as engine displacment
 increases, fuel efficiency decreases slightly!</p>
 <p>For every additional unit of engine displacement, the expected fuel
-efficiency decreases by 0.0520.</p>
-<p>What would the other coefficients mean?</p>
+efficiency decreases by 0.0384.</p>
+<p><strong>What would the other coefficients mean?</strong></p>
 <p>The intercept indicates that if all predictor variables were 0, fuel
-efficiency would be -19.132 miles per gallon. Why doesn’t this number
+efficiency would be 45.392 miles per gallon. Why doesn’t this number
 make any sense?</p>
 <p><em>Be careful not to imply that there is a direct causal link,
 especially without more evidence or studies.</em></p>
@@ -382,8 +380,8 @@ especially without more evidence or studies.</em></p>
 <section id="all-together-now." class="slide level2">
 <h2>All together now.</h2>
 <div class="sourceCode" id="cb6"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="st">&quot;mpg&quot;</span> <span class="co"># Our target variable</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>predictors <span class="op">=</span> [<span class="st">&quot;displacement&quot;</span>, <span class="st">&quot;model_year&quot;</span>, <span class="st">&quot;acceleration&quot;</span>] <span class="co"># A list of predictors</span></span>
+class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="st">&quot;Miles_per_Gallon&quot;</span> <span class="co"># Our target variable</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>predictors <span class="op">=</span> [<span class="st">&quot;Displacement&quot;</span>, <span class="st">&quot;Horsepower&quot;</span>, <span class="st">&quot;Acceleration&quot;</span>] <span class="co"># A list of predictors</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> cars[predictors]</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> cars[target]</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the data</span></span>
@@ -446,8 +444,20 @@ select your predictors and run your model.</em></p>
 <p>You can do a <em>pairwise</em> comparison of the variables you’re
 thinking about.</p>
 <div class="sourceCode" id="cb7"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sns.pairplot(cars[predictors], kind<span class="op">=</span><span class="st">&#39;reg&#39;</span>)</span></code></pre></div>
-<p>Compare this to the correlation matrix.</p>
+class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(cars).mark_point().encode(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    alt.X(alt.repeat(<span class="st">&quot;column&quot;</span>), <span class="bu">type</span><span class="op">=</span><span class="st">&#39;quantitative&#39;</span>),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    alt.Y(alt.repeat(<span class="st">&quot;row&quot;</span>), <span class="bu">type</span><span class="op">=</span><span class="st">&#39;quantitative&#39;</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>).properties(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">150</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">150</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>).repeat(</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    row<span class="op">=</span>predictors,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    column<span class="op">=</span>predictors</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+</section>
+<section id="compare-your-pairplot-to-the-correlation-matrix."
+class="slide level2">
+<h2>Compare your pairplot to the correlation matrix.</h2>
 <div class="sourceCode" id="cb8"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cars[predictors].corr(numeric_only<span class="op">=</span><span class="va">True</span>)</span></code></pre></div>
 </section>
@@ -484,10 +494,10 @@ prices in Seattle.</p>
 Check for multicollinearity before you run your model! When you’re done,
 try to predict housing price based on some new data points you
 create.</p>
-<p>Download <a href="../data/house_sales.tsv">house_sales.tsv</a>.
-You’ll need to open this with:</p>
+<p>Load <a href="../data/house_sales.tsv">house_sales.tsv</a>. You’ll
+need to open this with:</p>
 <div class="sourceCode" id="cb10"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>housing <span class="op">=</span> pd.read_csv(<span class="st">&quot;house_sales.tsv&quot;</span>, sep<span class="op">=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>housing <span class="op">=</span> pd.read_csv(<span class="st">&quot;https://jrladd.com/CIS241/data/house_sales.tsv&quot;</span>, sep<span class="op">=</span><span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
 </section></section>
 <section>
 <section id="assessing-your-model" class="title-slide slide level1">
@@ -551,8 +561,8 @@ the x variable wouldn’t predict the y variable at all.</small></p>
 </section>
 <section class="slide level2">
 
-<p>In this example, <span class="math inline">\(R^{2}=0.74\)</span>, so
-our predictors account for about 74% of the variation in fuel
+<p>In this example, <span class="math inline">\(R^{2}=0.67\)</span>, so
+our predictors account for about 67% of the variation in fuel
 efficiency.</p>
 <p>There’s no rule for what makes an <span
 class="math inline">\(R^{2}\)</span> “good.” Consider the context and
@@ -568,11 +578,13 @@ very poor.</p>
 class="slide level2">
 <h2>Are the residuals normally distributed, with a mean near 0?</h2>
 <div class="sourceCode" id="cb15"><pre
-class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>residuals <span class="op">=</span> y_test <span class="op">-</span> predictions</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>sns.displot(x<span class="op">=</span><span class="st">&quot;mpg&quot;</span>,data<span class="op">=</span>residuals).<span class="bu">set</span>(</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="st">&quot;Residuals&quot;</span>,</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">&quot;Histogram of Residuals&quot;</span>)</span></code></pre></div>
+class="sourceCode python"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First put the results into a dataframe</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pd.DataFrame({<span class="st">&#39;Predictions&#39;</span>: predictions, <span class="st">&#39;Residuals&#39;</span>:residuals})</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>alt.Chart(results, title<span class="op">=</span><span class="st">&quot;Histogram of Residuals&quot;</span>).mark_bar().encode(</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">&#39;Residuals:Q&#39;</span>, title<span class="op">=</span><span class="st">&quot;Residuals&quot;</span>).<span class="bu">bin</span>(maxbins<span class="op">=</span><span class="dv">20</span>),</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">&#39;count():Q&#39;</span>, title<span class="op">=</span><span class="st">&quot;Value Counts&quot;</span>)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>You could also use a Q-Q plot for this!</p>
 </section>
 <section id="does-the-model-suggest-heteroskedasticity"
@@ -581,10 +593,12 @@ class="slide level2">
 <p>Is the variance consistent across the range of predicted values?</p>
 <div class="sourceCode" id="cb16"><pre
 class="sourceCode python"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the absolute value of residuals against the predicted values</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>sns.regplot(x<span class="op">=</span>predictions, y<span class="op">=</span>np.<span class="bu">abs</span>(residuals.mpg), lowess<span class="op">=</span><span class="va">True</span>).<span class="bu">set</span>(</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    xlabel<span class="op">=</span><span class="st">&quot;Absolute Value of Residuals&quot;</span>,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    ylabel<span class="op">=</span><span class="st">&quot;Predicted Values&quot;</span>,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span><span class="st">&quot;Testing for Heteroskedasticity&quot;</span>)</span></code></pre></div>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>chart <span class="op">=</span> alt.Chart(results, title<span class="op">=</span><span class="st">&quot;Testing for Heteroskedasticity&quot;</span>).mark_point().encode(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">&#39;Predictions:Q&#39;</span>).title(<span class="st">&quot;Predicted Values&quot;</span>),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">&#39;y:Q&#39;</span>).title(<span class="st">&quot;Absolute value of Residuals&quot;</span>) </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>).transform_calculate(y<span class="op">=</span><span class="st">&#39;abs(datum.Residuals)&#39;</span>)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>chart <span class="op">+</span> chart.transform_loess(<span class="st">&#39;Predictions&#39;</span>, <span class="st">&#39;y&#39;</span>).mark_line()</span></code></pre></div>
 <p>If the line is horizontal, there’s no heterskedasticity.</p>
 </section>
 <section id="other-validation-methods" class="slide level2">

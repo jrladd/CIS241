@@ -88,14 +88,12 @@ Do you have good reason to believe that a linear regression or predictive model 
 
 ```python
 # Let's make a scatter plot of engine displacement and
-# fuel efficiency, in the mpg dataset.
-
-sns.relplot(x="displacement",y="mpg",data=cars)
+# fuel efficiency, in the cars dataset.
 ```
 
 ---
 
-![What do you think?](img/mpg_scatter_regression.png)
+![What do you think?](img/cars_regression_py.png)
 
 ## It looks like there might be a linear relationship!
 
@@ -138,8 +136,8 @@ That's why we imported the LinearRegression class above.
 
 ```python
 
-target = "mpg" # Our target variable
-predictors = ["displacement", "model_year", "acceleration"] # A list of predictors
+target = "Miles_per_Gallon" # Our target variable
+predictors = ["Displacement", "Horsepower", "Acceleration"] # A list of predictors
 
 X = cars[predictors]
 y = cars[target]
@@ -159,6 +157,8 @@ our_model = LinearRegression() # Make an instance of this class
 our_model.fit(X_train, y_train) # Run the fit() method on training data
 ```
 
+Why did we get an error?
+
 ## Now we can look at the model's coefficients
 
 ```python
@@ -171,21 +171,21 @@ for c,p in zip(our_model.coef_,X.columns):
 
 ---
 
-With a coefficient for displacement of `-0.0520`, this linear regression provides evidence that as engine displacment increases, fuel efficiency decreases slightly!
+With a coefficient for displacement of `-0.0384`, this linear regression provides evidence that as engine displacment increases, fuel efficiency decreases slightly!
 
-For every additional unit of engine displacement, the expected fuel efficiency decreases by 0.0520.
+For every additional unit of engine displacement, the expected fuel efficiency decreases by 0.0384.
 
-What would the other coefficients mean?
+**What would the other coefficients mean?**
 
-The intercept indicates that if all predictor variables were 0, fuel efficiency would be -19.132 miles per gallon. Why doesn't this number make any sense?
+The intercept indicates that if all predictor variables were 0, fuel efficiency would be 45.392 miles per gallon. Why doesn't this number make any sense?
 
 *Be careful not to imply that there is a direct causal link, especially without more evidence or studies.*
 
 ## All together now.
 
 ```python
-target = "mpg" # Our target variable
-predictors = ["displacement", "model_year", "acceleration"] # A list of predictors
+target = "Miles_per_Gallon" # Our target variable
+predictors = ["Displacement", "Horsepower", "Acceleration"] # A list of predictors
 X = cars[predictors]
 y = cars[target]
 # Split the data
@@ -226,10 +226,19 @@ This will confuse the model and mess up your results! It could even result in *f
 You can do a *pairwise* comparison of the variables you're thinking about. 
 
 ```python
-sns.pairplot(cars[predictors], kind='reg')
+alt.Chart(cars).mark_point().encode(
+    alt.X(alt.repeat("column"), type='quantitative'),
+    alt.Y(alt.repeat("row"), type='quantitative')
+).properties(
+    width=150,
+    height=150
+).repeat(
+    row=predictors,
+    column=predictors
+)
 ```
 
-Compare this to the correlation matrix.
+## Compare your pairplot to the correlation matrix.
 
 ```python
 cars[predictors].corr(numeric_only=True)
@@ -257,10 +266,10 @@ Try to make an effective multivariate linear model to predict housing prices in 
 
 Take a look at the dataset and logically choose some predictors. Check for multicollinearity before you run your model! When you're done, try to predict housing price based on some new data points you create.
 
-Download [house_sales.tsv](../data/house_sales.tsv). You'll need to open this with:
+Load [house_sales.tsv](../data/house_sales.tsv). You'll need to open this with:
 
 ```python
-housing = pd.read_csv("house_sales.tsv", sep="\t")
+housing = pd.read_csv("https://jrladd.com/CIS241/data/house_sales.tsv", sep="\t")
 ```
 
 # Assessing Your Model
@@ -315,7 +324,7 @@ This is also called the "coefficient of determination."
 
 ---
 
-In this example, $R^{2}=0.74$, so our predictors account for about 74% of the variation in fuel efficiency.
+In this example, $R^{2}=0.67$, so our predictors account for about 67% of the variation in fuel efficiency.
 
 There's no rule for what makes an $R^{2}$ "good." Consider the context and purpose of your analysis!
 
@@ -324,11 +333,13 @@ In an analysis of ecology or human behavior (very unpredictable) an $R^{2}$ of 0
 ## Are the residuals normally distributed, with a mean near 0?
 
 ```python
-residuals = y_test - predictions
+# First put the results into a dataframe
+results = pd.DataFrame({'Predictions': predictions, 'Residuals':residuals})
 
-sns.displot(x="mpg",data=residuals).set(
-    xlabel="Residuals",
-    title="Histogram of Residuals")
+alt.Chart(results, title="Histogram of Residuals").mark_bar().encode(
+    x=alt.X('Residuals:Q', title="Residuals").bin(maxbins=20),
+    y=alt.Y('count():Q', title="Value Counts")
+)
 ```
 
 You could also use a Q-Q plot for this!
@@ -339,10 +350,12 @@ Is the variance consistent across the range of predicted values?
 
 ```python
 # Plot the absolute value of residuals against the predicted values
-sns.regplot(x=predictions, y=np.abs(residuals.mpg), lowess=True).set(
-    xlabel="Absolute Value of Residuals",
-    ylabel="Predicted Values",
-    title="Testing for Heteroskedasticity")
+chart = alt.Chart(results, title="Testing for Heteroskedasticity").mark_point().encode(
+    x=alt.X('Predictions:Q').title("Predicted Values"),
+    y=alt.Y('y:Q').title("Absolute value of Residuals") 
+).transform_calculate(y='abs(datum.Residuals)')
+
+chart + chart.transform_loess('Predictions', 'y').mark_line()
 ```
 
 If the line is horizontal, there's no heterskedasticity.
