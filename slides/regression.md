@@ -203,7 +203,25 @@ for c,p in zip(our_model.coef_,X.columns):
     print(f"Coefficient for {p}: {c:.4f}")
 ```
 
-# How to Choose Predictor Variables
+# Challenge: Seattle Housing Data
+
+---
+
+Try to make an effective multivariate linear model to predict housing prices in Seattle.
+
+Take a look at the dataset and logically choose some predictors. Check for multicollinearity before you run your model! When you're done, try to predict housing price based on some new data points you create.
+
+Load [house_sales.tsv](../data/house_sales.tsv). You'll need to open this with:
+
+```python
+housing = pd.read_csv("https://jrladd.com/CIS241/data/house_sales.tsv", sep="\t")
+```
+
+# Validation
+
+## At every step of the modeling process, we must *validate*.
+
+# How to Validate Predictor Variables
 
 ## There's no magic solution! You can try different options, but use your logic and don't just throw everything in there.
 
@@ -258,21 +276,7 @@ The first category should always be left out as the reference (`drop_first=True`
 
 Ask yourself: is there an important variable that the data doesn't account for?
 
-# Challenge: Seattle Housing Data
-
----
-
-Try to make an effective multivariate linear model to predict housing prices in Seattle.
-
-Take a look at the dataset and logically choose some predictors. Check for multicollinearity before you run your model! When you're done, try to predict housing price based on some new data points you create.
-
-Load [house_sales.tsv](../data/house_sales.tsv). You'll need to open this with:
-
-```python
-housing = pd.read_csv("https://jrladd.com/CIS241/data/house_sales.tsv", sep="\t")
-```
-
-# Assessing Your Model
+# Validating & Assessing Your Results
 
 ## Did our model do a good job?
 
