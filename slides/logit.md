@@ -29,7 +29,7 @@ Logistic Regression is our first **classification** method.
 First, load in the `penguins` dataset in Seaborn. 
 
 ```python
-penguins = sns.load_dataset('penguins')
+penguins = pd.read_csv("https://jrladd.com/CIS241/data/penguins.csv")
 ```
 
 Now create a scatter plot showing two numeric variables from this dataset, using the `species` variable as different colors for the dots.
@@ -59,7 +59,7 @@ from sklearn.linear_model import LogisticRegression
 
 ```python
 # See next slide for discussion of parameters
-logit_model = LogisticRegression(penalty='none', 
+logit_model = LogisticRegression(penalty=None, 
                                  solver='lbfgs', 
                                  random_state=42)
 logit_model.fit(X_train, y_train)
@@ -124,23 +124,35 @@ from sklearn.metric import RocCurveDisplay
 import matplotlib.pyplot as plt
 ```
 
-## Assess classification models with the *confusion matrix*.
+## Validate classifiers with the *confusion matrix*.
+
+![Confusion matrix for our penguin model.](img/confusion_altair.png)
+
+---
 
 ```python
+# Calculate confusion matrix and transform data
 conf_mat = confusion_matrix(y_test,predictions)
-(sns.heatmap(conf_mat, 
-            cmap='Blues', 
-            cbar=False, 
-            annot=True, 
-            xticklabels=categories, 
-            yticklabels=categories,
-	    fmt='0')
-    .set(xlabel="Predicted Response",ylabel="True Response"))
+conf_mat = pd.DataFrame(conf_mat,index=categories,columns=categories)
+conf_mat = conf_mat.melt(ignore_index=False).reset_index()
+# Create heatmap
+heatmap = alt.Chart(conf_mat).mark_rect().encode(
+    x=alt.X("variable:N").title("Predicted Response"),
+    y=alt.Y("index:N").title("True Response"),
+    color=alt.Color("value:Q", legend=None).scale(scheme="blues")
+).properties(
+    width=400,
+    height=400
+)
+# Add text labels for numbers
+text = heatmap.mark_text(baseline="middle").encode(
+    text=alt.Text("value:Q"),
+    color=alt.value("black"),
+    size=alt.value(50)
+)
+
+heatmap + text
 ```
-
-## The confusion matrix shows positive and negative results.
-
-![Confusion matrix for our penguin model.](img/confusion_matrix.png)
 
 ## From the confusion matrix, we get scores for our model.
 
