@@ -19,8 +19,8 @@ Date|Topics & Slides|Workshops|Assignments
 13 & 15 Feb.|[Hypothesis Testing: Comparison of Means](/CIS241/slides/hypothesis)|[Sports](/CIS241/resources/02_tennis1.ipynb)|
 20 & 22 Feb.|[Hypothesis Testing: Correlation](/CIS241/slides/correlation)|[Sports](/CIS241/resources/02_tennis2.ipynb)|**Take-Home Test I**
 27 & 29 Feb.|[Linear Regression](/CIS241/slides/regression)|[Business](/CIS241/resources/03_airbnb1.ipynb)|
-5 & 7 Mar.|[Logistic Regression](/CIS241/slides/logit)|[Business](/CIS241/resources/03_airbnb2.ipynb)|**[Tutorial Assignment](/CIS241/assignments/tutorial/) Due 7 Mar. at 9am**
-12 & 14 Mar.|[K-Nearest Neighbors](/CIS241/slides/knn)|[Ecology](/CIS241/resources/04_trees1.ipynb)
+5 & 7 Mar.|[Logistic Regression](/CIS241/slides/logit)|[Business](/CIS241/resources/03_airbnb2.ipynb)|
+12 & 14 Mar.|[K-Nearest Neighbors](/CIS241/slides/knn)|[Ecology](/CIS241/resources/04_trees1.ipynb)|**[Tutorial Assignment](/CIS241/assignments/tutorial/) Due 12 Mar. at 9am**
 19 & 21 Mar.|NO CLASS: Spring Break
 26 & 28 Mar.|[Naive Bayes Classifier](/CIS241/slides/naivebayes)|[Ecology](/CIS241/resources/04_trees2.ipynb)|**Take-Home Test II**
 2 & 4 Apr.|[Decision Trees and the Random Forest](/CIS241/slides/randomforest)|[Health](/CIS241/resources/05_health2.ipynb)|
