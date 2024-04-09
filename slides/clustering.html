@@ -124,18 +124,24 @@ labels.</p>
 class="slide level2">
 <h2>Unsupervised learning can have different uses.</h2>
 <ul>
-<li>Dimension reduction: get a more manageable set of variables.</li>
-<li>Clustering: identify meaningful categories in the data.</li>
-<li>Exploration: analyze variables and discover relationships.</li>
+<li class="fragment">Dimension reduction: get a more manageable set of
+variables.</li>
+<li class="fragment">Clustering: identify meaningful categories in the
+data.</li>
+<li class="fragment">Exploration: analyze variables and discover
+relationships.</li>
 </ul>
 </section>
 <section id="types-of-unsupervised-learning" class="slide level2">
 <h2>Types of unsupervised learning</h2>
 <ul>
-<li>Principal component analysis (PCA): dimension reduction</li>
-<li>Correspondence analysis: dimension reduction</li>
-<li><strong>K-Means Clustering: clustering and exploration</strong></li>
-<li>Hierarchical Clustering: clustering and exploration</li>
+<li class="fragment">Principal component analysis (PCA): dimension
+reduction</li>
+<li class="fragment">Correspondence analysis: dimension reduction</li>
+<li class="fragment"><strong>K-Means Clustering: clustering and
+exploration</strong></li>
+<li class="fragment">Hierarchical Clustering: clustering and
+exploration</li>
 </ul>
 </section></section>
 <section>
@@ -209,13 +215,14 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a hr
 class="slide level2">
 <h2>As always pay attention to the hyperparameters.</h2>
 <ul>
-<li><code>n_clusters</code>: the number of clusters the model will
-produce. This is “K”!</li>
-<li><code>n_init</code>: the total number of times the model will be
-run.</li>
-<li><code>max_iter</code>: the number of iterations the model will take
-to find centroids.</li>
-<li><code>random_state</code>: keeps the model the same every time.</li>
+<li class="fragment"><code>n_clusters</code>: the number of clusters the
+model will produce. This is “K”!</li>
+<li class="fragment"><code>n_init</code>: the total number of times the
+model will be run.</li>
+<li class="fragment"><code>max_iter</code>: the number of iterations the
+model will take to find centroids.</li>
+<li class="fragment"><code>random_state</code>: keeps the model the same
+every time.</li>
 </ul>
 </section>
 <section id="we-can-interpret-the-clusters-in-two-ways."
@@ -242,19 +249,18 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a hr
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidy our dataset with .melt() (the opposite of pivot):</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>centers <span class="op">=</span> centers.melt(ignore_index<span class="op">=</span><span class="va">False</span>).reset_index()</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create bar plots to compare the centers</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>sns.catplot(x<span class="op">=</span><span class="st">&#39;variable&#39;</span>,y<span class="op">=</span><span class="st">&#39;value&#39;</span>,col<span class="op">=</span><span class="st">&#39;index&#39;</span>,kind<span class="op">=</span><span class="st">&#39;bar&#39;</span>,data<span class="op">=</span>centers)</span></code></pre></div>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create bar plots to compare the centers</span></span></code></pre></div>
 </section>
 <section id="try-k-means-clustering-for-the-penguins-dataset."
 class="slide level2">
 <h2>Try K-Means Clustering for the <code>penguins</code> dataset.</h2>
 <ol type="1">
-<li>Select features and prepare data. Consider standardizations as well
-as null values.</li>
-<li>Run K-Means clustering. Be thoughtful about the hyperparameters,
-especially K (<code>n_clusters</code>)!</li>
-<li>Assess your model using the cluster sizes and a bar plot of the
-cluster means.</li>
+<li class="fragment">Select features and prepare data. Consider
+standardizations as well as null values.</li>
+<li class="fragment">Run K-Means clustering. Be thoughtful about the
+hyperparameters, especially K (<code>n_clusters</code>)!</li>
+<li class="fragment">Assess your model using the cluster sizes and a bar
+plot of the cluster means.</li>
 </ol>
 <p>Good luck! 🐧🐧🐧</p>
 </section></section>
@@ -284,12 +290,12 @@ id="if-youre-lost-when-choosing-k-you-can-try-the-elbow-method."
 class="slide level2">
 <h2>If you’re lost when choosing K, you can try the “elbow method.”</h2>
 <ol type="1">
-<li>Run K-Means multiple times, with a different value for K each
-time.</li>
-<li>Look at how close the values are to their centroid. (This is called
-inertia.)</li>
-<li>Create a graph to see at what value for K this inertia measure
-begins to settle.</li>
+<li class="fragment">Run K-Means multiple times, with a different value
+for K each time.</li>
+<li class="fragment">Look at how close the values are to their centroid.
+(This is called inertia.)</li>
+<li class="fragment">Create a graph to see at what value for K this
+inertia measure begins to settle.</li>
 </ol>
 </section>
 <section id="heres-what-the-elbow-method-looks-like-in-python."
@@ -304,7 +310,7 @@ class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a hr
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Put into a dataframe and create a line plot</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>inertia <span class="op">=</span> pd.DataFrame({<span class="st">&#39;n_clusters&#39;</span>: <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">14</span>), <span class="st">&#39;inertia&#39;</span>: inertia})</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>sns.relplot(x<span class="op">=</span><span class="st">&#39;n_clusters&#39;</span>,y<span class="op">=</span><span class="st">&#39;inertia&#39;</span>,kind<span class="op">=</span><span class="st">&#39;line&#39;</span>,data<span class="op">=</span>inertia)</span></code></pre></div>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Make your line plot here!</span></span></code></pre></div>
 </section>
 <section
 id="an-example-of-the-elbow-method-plot-for-the-penguins-dataset."

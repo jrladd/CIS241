@@ -99,7 +99,6 @@ centers = pd.DataFrame(kmeans.cluster_centers_, columns=predictors)
 centers = centers.melt(ignore_index=False).reset_index()
 
 # Create bar plots to compare the centers
-sns.catplot(x='variable',y='value',col='index',kind='bar',data=centers)
 ```
 
 ## Try K-Means Clustering for the `penguins` dataset.
@@ -137,7 +136,7 @@ for n_clusters in range(2,14):
 
 # Step 3: Put into a dataframe and create a line plot
 inertia = pd.DataFrame({'n_clusters': range(2,14), 'inertia': inertia})
-sns.relplot(x='n_clusters',y='inertia',kind='line',data=inertia)
+# Make your line plot here!
 ```
 
 ## An example of the elbow method plot for the penguins dataset.
