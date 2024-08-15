@@ -47,7 +47,9 @@ In general, when completing writing assignments, ensure all work is your own, an
 
 #### Academic Honesty & Coding
 
-These standards of academic integrity apply to coding as well as other kinds of classwork. Citation isn't just for papers! It's very common, and perfectly permissible, to borrow code snippets from a classmate or from somewhere online. When you do, make sure to include a note in your code's comments about where the code came from. Keep in mind that this includes the use of any automated writing or code assistants like ChatGPT—any use of such programs should be cited like any website, with a link to the chat record. (And keep in mind that these tools may not give you the best advice! It's always better to work from our course materials or ask a classmate for help.) Not only will this let you give appropriate intellectual credit and avoid plagiarism, it will also help you remember what you were trying to do when you revise your code later.
+These standards of academic integrity apply to coding as well as other kinds of classwork. Citation isn't just for papers! It's very common, and perfectly permissible, to borrow code snippets from a classmate or from somewhere online. When you do, make sure to include a note in your code's comments about where the code came from. Keep in mind that this includes the use of any automated writing or code assistants like ChatGPT—any use of such programs should be cited like any website, with a link to the chat record. Not only will this let you give appropriate intellectual credit and avoid plagiarism, it will also help you remember what you were trying to do when you revise your code later.
+
+With regard to ChatGPT, Gemini, GitHub Copilot, or any related generative AI systems, keep in mind that in this class *you are only permitted to use these systems to help with your code, **never** with your writing*. If you do use a code assistant to help, you **must** cite what you used in a comment and include a link to the chat record. **And keep in mind that these tools may not give you the best advice! It's always better to work from our course materials or ask a classmate for help.**
 
 ### Names and Pronouns
 
@@ -56,6 +58,10 @@ Everyone has the right to be addressed as they feel most comfortable. It’s har
 ### Class Technology
 
 Please be respectful with your use of laptops and technology in class. I request that you only use them for class related purposes, as I and others may find them distracting (For example, no email or social media should be open in your browser tabs!). Cell phones should be kept silent and put away, and you can expect the same from me.
+
+### Email Response Time
+
+I encourage you to email me anytime with questions or thoughts about the class. It can sometimes take me up to 24 hours to respond to your message, but I will do my best to get back to you within that period. This means that if you have a question about an assignment that you email to me the night before something is due, I may not be able to get back to you until after the assignment was due. In these cases, it’s best to plan ahead.
 
 ## Important Resources for this Class and Your College Journey
 

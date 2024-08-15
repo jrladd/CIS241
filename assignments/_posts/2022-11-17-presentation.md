@@ -3,7 +3,7 @@ title:  "Presentation"
 date:   2023-11-16 10:55:00 -0500
 show_date: false
 ---
-**Complete by: Thursday 2 May by 9am**
+**Complete by: Thursday 5 Dec. by 9am**
 
 *You will prepare a 3-5 minute “elevator pitch” video presentation about your project for your classmates. The goal of this video is not to summarize the entire content of your project, but rather to explain to your audience your chosen data set, the questions you have, and the approaches you plan to take it to it, in a way that will generate interest and allow others to offer suggestions.*
 
@@ -23,7 +23,7 @@ Your content must reflect the expected knowledge of your audience. This means ch
 
 You will be assessed on the content of this video and how well it addresses the Content requirements laid out above in an Audience aware manner. You will not be assessed on the production quality, so long as the audio and video are clear. Your video may simply be a recording of you talking taken through your webcam or phone camera. You may also provide an audio track over visuals if you prefer. However, your goal is to be compelling to a general student audience in an “elevator pitch” style, so ***do not narrate over a traditional PowerPoint with titles, bullet points, etc.***
 
-*Once videos are posted, you'll be expected to watch your classmate's videos and prepare to discuss them during the final day of class. More information on this step coming later.*
+*Once videos are posted, you'll be expected to watch your classmate's videos and prepare to discuss them during our class's final exam time. More information on this step coming later.*
 
 ## How to Submit a Video
 
@@ -34,7 +34,7 @@ You will be assessed on the content of this video and how well it addresses the 
 
 ## Responding to Videos
 
-In addition to making a video presentation, you will watch and respond to the videos made by your peers. Before the final day of class (May 7), you will watch *all* the videos. After watching a video, you will write down the following for each one.
+In addition to making a video presentation, you will watch and respond to the videos made by your peers. Before the final exam session (12 Dec.), you will watch *all* the videos. After watching a video, you will write down the following for each one.
 
 1. One substantive similarity between the presenter's project and your own.
 2. One question you have about the project.
