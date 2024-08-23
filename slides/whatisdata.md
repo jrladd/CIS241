@@ -83,7 +83,7 @@
 
 ---
 
-![](img/dac_small.png)
+![](img/data-analysis-cycle.png)
 
 ---
 
