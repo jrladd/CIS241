@@ -31,7 +31,7 @@ Attending class is not optional: regular attendance is necessary to succeed in t
 
 All assignments are due by the time listed on the prompt. I know that things don't always go according to plan. If you need an extension, simply ask for one (by email), and you'll almost always receive it. You don't need an excuse to receive an extension!
 
-However, you **must ask for the extension *at least* 24 hours before the assignment deadline**. When you email about an extension, please propose a new deadline for the assignment (a good rule of thumb is 2 or 3 days after the original deadline). Any work received late without an agreed-upon extension will be penalized one point per day.
+However, you **must ask for the extension *at least* 24 hours before the assignment deadline**. To request an extension, simply [fill out this form](https://forms.office.com/r/CvgQqWDz4B), where you will propose a new deadline for the assignment (a good rule of thumb is 2 or 3 days after the original deadline). Any work received late without an agreed-upon extension will receive a point deduction.
 
 But keep in mind: **I cannot accept any assignment more than one week late.** Assignments more than one week late will receive a 0.
 
@@ -61,7 +61,7 @@ Please be respectful with your use of laptops and technology in class. I request
 
 ### Email Response Time
 
-I encourage you to email me anytime with questions or thoughts about the class. It can sometimes take me up to 24 hours to respond to your message, but I will do my best to get back to you within that period. This means that if you have a question about an assignment that you email to me the night before something is due, I may not be able to get back to you until after the assignment was due. In these cases, it’s best to plan ahead.
+I encourage you to email me anytime with questions or thoughts about the class. It can sometimes take me up to 24 hours to respond to your message, but I will do my best to get back to you within that period. On the weekends (Friday 5pm–Monday 9am), the response time is 48 hours. This means that if you have a question about an assignment that you email to me the night before something is due, I may not be able to get back to you until after the assignment was due. In these cases, it’s best to plan ahead. But don't hesitate to email whenever you have a question, and I'll get back to you as soon as I can!
 
 ## Important Resources for this Class and Your College Journey
 
