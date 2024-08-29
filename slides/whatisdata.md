@@ -1,5 +1,17 @@
-% What Is Data?
-% CIS 241, Dr. Ladd
+---
+title: "What Is Data?"
+subtitle: "CIS 241, Dr. Ladd"
+author: "Hit the spacebar to go to the next slide"
+format:
+  revealjs:
+    theme: moon
+    controls: true
+    slide-level: 2
+    transition: slide
+    incremental: true
+    center: true
+    navigation-mode: vertical
+---
 
 # Data's Many Forms
 

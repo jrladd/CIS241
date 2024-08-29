@@ -62,7 +62,7 @@ Below is a suggested format to use to make sure the useful information is commun
 
 _Please note that if your data set has multiple data tables, you will need to provide more than one of these data dictionary tables, one for each dataset. You should make a note about which column in each dataset contains common information, and represents the “link” or the “key” between them._
 
-Column Name|Variable Definition|Units|Data Type|Variable Codes and definitions|Missing value codes
+Column Name|Variable Definition|Data Type|Units|Variable Codes and Ranges|Missing Value Codes
 ---|---|---|---|---|---
 The name of the column, exactly as it appears in your .csv file|Describe what each variable represents, and if known, how it was measured.|if units needed; grams, days…|Say whether the data is numerical or categorical, and give a subcategory (e.g. continuous)|if not a continuous variable, you could list the acceptable values|if there is missing data, indicate what is used, e.g. blank, NA, NULL, etc.
 
@@ -70,7 +70,7 @@ Add more rows as needed... [n.b. *You only need to create a chart of 20 variable
 
 For **Variable Definition**, If you don’t know or don’t have information on how to interpret a variable, or want to give a word of caution, say so here. If the variable has any special considerations or challenges inherent to its measure, you may note that here, too.
 
-For **Variable Codes and Definitions**, If you don’t need to specify acceptable values, you can just fill this in with NA (for not applicable).
+For **Variable Codes and Ranges**, If you don’t need to specify acceptable values, you can just fill this in with NA (for not applicable).
 
 **Data Wrangling**:
 
