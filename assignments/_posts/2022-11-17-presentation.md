@@ -3,7 +3,7 @@ title:  "Presentation"
 date:   2023-11-16 10:55:00 -0500
 show_date: false
 ---
-**Complete by: Thursday 5 Dec. by 9am**
+**Complete by: Thursday 5 Dec. by 10:55am**
 
 *You will prepare a 3-5 minute “elevator pitch” video presentation about your project for your classmates. The goal of this video is not to summarize the entire content of your project, but rather to explain to your audience your chosen data set, the questions you have, and the approaches you plan to take it to it, in a way that will generate interest and allow others to offer suggestions.*
 

@@ -3,7 +3,7 @@ title:  "Final Project Proposal"
 date:   2023-10-31 10:55:00 -0400
 show_date: false
 ---
-**Complete by: Thursday 7 Nov. by 9am**
+**Complete by: Thursday 7 Nov. by 10:55am**
 
 ## Description
 
