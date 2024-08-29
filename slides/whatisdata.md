@@ -11,6 +11,7 @@ format:
     incremental: true
     center: true
     navigation-mode: vertical
+    embed-resources: true
 ---
 
 # Data's Many Forms
