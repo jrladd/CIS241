@@ -1,5 +1,18 @@
-% Data Wrangling with pandas
-% CIS 241, Dr. Ladd
+---
+title: "Data Wrangling with Pandas"
+subtitle: "CIS 241, Dr. Ladd"
+author: "Hit the spacebar to go to the next slide"
+format:
+  revealjs:
+    theme: solarized
+    controls: true
+    slide-level: 2
+    transition: slide
+    incremental: true
+    center: true
+    navigation-mode: vertical
+    embed-resources: true
+---
 
 # Wrangling Data
 
@@ -7,7 +20,7 @@
 
 ## DataFrames are like spreadsheets for Python.
 
-```python
+```{.python code-line-numbers="2|3|4"}
 # These are our standard imports
 import pandas as pd # Data analysis
 import numpy as np # Numerical Calculation
@@ -20,7 +33,7 @@ import altair as alt # Visualization
 mydata = pd.read_csv("name_of_file.csv")
 ```
 
-```
+```python
 # Use the name of a file or a URL
 taxis = pd.read_csv('https://raw.githubusercontent.com/mwaskom/
         seaborn-data/master/taxis.csv')

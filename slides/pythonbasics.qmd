@@ -1,5 +1,18 @@
-% Python Basics
-% CIS 241, Dr. Ladd
+---
+title: "Python Basics"
+subtitle: "CIS 241, Dr. Ladd"
+author: "Hit the spacebar to go to the next slide"
+format:
+  revealjs:
+    theme: solarized
+    controls: true
+    slide-level: 2
+    transition: slide
+    incremental: true
+    center: true
+    navigation-mode: vertical
+    embed-resources: true
+---
 
 # [A Comprehensive Guide to Python Basics](https://melaniewalsh.github.io/Intro-Cultural-Analytics/02-Python/00-Python.html)
 
@@ -27,7 +40,7 @@ Files are organized in a *hierarchy* of directories.
 
 ## Variables store information
 
-```python
+```{.python code-line-numbers="1|3"}
 myvar = 5
 
 myvar #or print(myvar)
@@ -63,11 +76,15 @@ You should also use comments for citations!
 - Integer: a discrete numerical value (ex. `5`)
 - Float or Double: a continuous numerical value (ex. `5.0`)
 
-```python
+```{.python code-line-numbers="1|3"}
 stringvar = "five"
 
 type(stringvar)
 ```
+
+## You Try It!
+
+Find the type of the new variable you created in the last exercise. 
 
 ## You can put reusable code in Jupyter Notebooks.
 
@@ -98,6 +115,13 @@ mydictionary = {"pet_name": "Fido", "age": 5, "pet_type": "dog"}
 mydictionary["pet_name"]
 mydictionary["age"]
 ```
+
+## You Try It!
+
+- Create a list of 7 items of *different data types*.
+- Display the 4th item in the list.
+- Display the 2nd through 5th items.
+- Display the 3rd from last item.
 
 # Functions and Libraries store reusable code.
 
@@ -148,7 +172,7 @@ for item in mylist:
 
 ## You can use `if` and `else` to set conditions.
 
-```python
+```{.python code-line-numbers="|2|3|4|6|8"}
 # Let's use the range() function to make a list
 newlist = range(1,11) 
 for i in newlist:
@@ -159,6 +183,11 @@ for i in newlist:
   else:
     print("Nope, try again...")
 ```
+
+## You Try It!
+
+- Loop through the list you created in the last exercise.
+- Print each item one-by-one.
 
 ## Libraries/Packages contain reusable functions made by someone else.
 
