@@ -29,14 +29,15 @@ import altair as alt # Visualization
 
 ## Normally, get data from CSV files.
 
-```python
+```
 mydata = pd.read_csv("name_of_file.csv")
 ```
 
+. . .
+
 ```python
 # Use the name of a file or a URL
-taxis = pd.read_csv('https://raw.githubusercontent.com/mwaskom/
-        seaborn-data/master/taxis.csv')
+taxis = pd.read_csv('https://raw.githubusercontent.com/mwaskom/seaborn-data/master/taxis.csv')
 taxis
 ```
 
