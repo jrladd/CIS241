@@ -1,5 +1,18 @@
-% Exploratory Data Analysis
-% CIS 241, Dr. Ladd
+---
+title: "Exploratory Data Analysis"
+subtitle: "CIS 241, Dr. Ladd"
+author: "`spacebar` to go to the next slide, `esc`/menu to navigate"
+format:
+  revealjs:
+    theme: moon
+    controls: true
+    slide-level: 2
+    transition: slide
+    incremental: true
+    center: true
+    navigation-mode: vertical
+    embed-resources: true
+---
 
 # *Look* at the Data
 
@@ -94,7 +107,8 @@ $\dfrac{206^2+76^2+(-224)^2+36^2+(-94)^2}{5} = 21,704$
 
 ![It gives us a "standard" way of knowing what is normal, or what is extra large/extra small.](img/dogs4.gif)
 
-Rottweilers *are* tall, and dachsunds *are* short---compared to the standard deviation from the mean.
+- Rottweilers *are* tall, and dachsunds *are* short---compared to the standard deviation from the mean.
+- Outliers are often more than two standard deviations from the mean.
 
 ## Now calculate the variance and standard deviations in Python.
 
@@ -108,15 +122,20 @@ Were these the results you expected?
 
 ## Population vs. Sample
 
+- Population: the full data that exists (i.e. all the dogs in the world)
+- Sample: the actual data that was collected (i.e. our set of 5 dogs)
+
+## Population vs. Sample
+
 When you have "N" data values:
 
 - The Entire Population: divide by N when calculating variance (like we did)
 - A Sample: divide by N-1 when calculating variance
 
-Sample variance: $\dfrac{108,520}{4}=27,130$  
-Sample standard deviation: $\sqrt{27,130}=164$
+- Sample variance: $\dfrac{108,520}{4}=27,130$  
+- Sample standard deviation: $\sqrt{27,130}=164$
 
-Think of it as a "correction" when your data is only a sample. Pandas does this by default!
+- Think of it as a "correction" when your data is only a sample. Pandas does this by default!
 
 ## Neither the mean, variance, nor standard deviation are **robust**. They are all very sensitive to outliers!
 
@@ -169,22 +188,15 @@ Replacement means an item is returned to the sample before the next draw (i.e. y
 
 ## Confidence intervals with Pandas
 
-```python
-n_rows = dogs.shape[0] # First find the number of rows in the dataframe.
+<small>Work with a partner an try the following steps (remember to use your Pandas cheatsheet and past slideshows):
 
-# Then take a sample with replacement from your dataset, and
-# Calculate the mean each time. Do this 5000 times.
-bootstrap_samples = [dogs.sample(n=n_rows, replace=True).height.mean()
-                     for i in range(5000)]
-# Put the results into a pandas Series object
-bootstrap_samples = pd.Series(bootstrap_samples)
+1. Find the number of rows in the dataframe, assign to a variable `n_rows`.
+2. Create a `for` loop through a list of 5000 numbers using `range(5000)`.
+    a. In the loop, use the [`sample()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sample.html#pandas.DataFrame.sample) function where `n=` your number of rows and `replace=True`.
+    b. After sampling, use `append()` to add your samples to an empty list.
+3. Turn the list in to a Pandas Series with `pd.Series(your_list)`.
+4. Find the 95th percentile (quantile) and the 5th percentile (quantile) and assign each to a variable.
+5. `print()` your results using [f-strings](https://www.geeksforgeeks.org/formatted-string-literals-f-strings-python/).
+    a. The result should read: "The mean dog height in our data is \_\_\_\_\_\_\_, with a 90% confidence interval of \_\_\_\_\_ to \_\_\_\_\_."
 
-# Calculate the 95th percentile and the 5th percentile.
-top_percentile = bootstrap_samples.quantile(.95)
-bottom_percentile = bootstrap_samples.quantile(.05)
-
-# Print the results using nice f-strings.
-print(f"""The mean dog height in our data is {dogs.height.mean():.3f},
-      with a 90% confidence interval
-      of {bottom_percentile:.3f} to {top_percentile:.3f}.""")
-```
+</small>
