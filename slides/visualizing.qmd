@@ -1,5 +1,18 @@
-% Visualizing Data
-% CIS 241, Dr. Ladd
+---
+title: "Visualizing Data"
+subtitle: "CIS 241, Dr. Ladd"
+author: "`spacebar` to go to the next slide, `esc`/menu to navigate"
+format:
+  revealjs:
+    theme: serif
+    controls: true
+    slide-level: 2
+    transition: slide
+    incremental: true
+    center: true
+    navigation-mode: vertical
+    embed-resources: true
+---
 
 # Why Do We Visualize Data?
 
