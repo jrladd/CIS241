@@ -188,7 +188,7 @@ Replacement means an item is returned to the sample before the next draw (i.e. y
 
 ## Confidence intervals with Pandas
 
-<small>Work with a partner an try the following steps (remember to use your Pandas cheatsheet and past slideshows):
+<small>Work with a partner to calculate the confidence interval for the mean height in the `dogs` dataframe (remember to use your Pandas cheatsheet and past slideshows):
 
 1. Find the number of rows in the dataframe, assign to a variable `n_rows`.
 2. Create a `for` loop through a list of 5000 numbers using `range(5000)`.
@@ -200,3 +200,27 @@ Replacement means an item is returned to the sample before the next draw (i.e. y
     a. The result should read: "The mean dog height in our data is \_\_\_\_\_\_\_, with a 90% confidence interval of \_\_\_\_\_ to \_\_\_\_\_."
 
 </small>
+
+## Confidence intervals with Pandas
+
+```{.python code-line-numbers="|1|6|7|5,8|11|14,15|18|"}
+n_rows = dogs.shape[0] # First find the number of rows in the dataframe.
+
+# Then take a sample with replacement from your dataset, and
+# Calculate the mean each time. Do this 5000 times.
+bootstrap_samples = []
+for i in range(5000):
+    sample_mean = dogs.sample(n=n_rows, replace=True).height.mean()
+    bootstrap_samples.append(sample_mean)
+
+# Put the results into a pandas Series object
+bootstrap_samples = pd.Series(bootstrap_samples)
+
+# Calculate the 95th percentile and the 5th percentile.
+top_percentile = bootstrap_samples.quantile(.95)
+bottom_percentile = bootstrap_samples.quantile(.05)
+
+# Print the results using nice f-strings.
+print(f"The mean dog height in our data is {dogs.height.mean():.3f}, with a 90% confidence interval of {bottom_percentile:.3f} to {top_percentile:.3f}.")
+```
+      
