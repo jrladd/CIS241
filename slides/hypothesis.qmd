@@ -247,13 +247,13 @@ histogram = alt.Chart(permutations).mark_bar().encode(
     x=alt.X("permutations:Q").bin(maxbins=20),
     y=alt.Y("count():Q")
 )
-permutations = permutations.assign(observed_difference=mean_difference) # Add the mean to the dataframe
+permutations = permutations.assign(observed_difference=observed_difference) # Add the mean to the dataframe
 # Add a vertical line
-observed_difference = alt.Chart(permutations).mark_rule(color="red", strokeDash=(8,4)).encode(
+observed_line = alt.Chart(permutations).mark_rule(color="red", strokeDash=(8,4)).encode(
     x=alt.X("observed_difference")
 )
 # Combine the two plots
-histogram + observed_difference
+histogram + observed_line
 ```
 
 How is this different from previous Altair plots?
