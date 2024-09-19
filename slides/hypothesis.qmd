@@ -338,3 +338,7 @@ Determine if users spend significantly more time on Page B than they do on Page 
 4. Run 2000 permutations of randomly resampled groups.
 5. Make a histogram of permutation results and show the observed difference as a vertical line.
 6. Calculate the p-value for your permutation test.
+
+# Review This Topic
+
+For a good summary of what we discussed about hypothesis testing, you can watch this short YouTube video: <https://youtu.be/bf3egy7TQ2Q>.
