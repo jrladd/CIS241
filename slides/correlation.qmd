@@ -1,16 +1,28 @@
-% Correlation
-% CIS 241: Data Mining
-% Dr. Ladd
+---
+title: "Hypothesis Testing 2: Correlation"
+subtitle: "CIS 241, Dr. Ladd"
+author: "`spacebar` to go to the next slide, `esc`/menu to navigate"
+format:
+  revealjs:
+    theme: serif
+    controls: true
+    slide-level: 2
+    transition: slide
+    incremental: true
+    center: true
+    navigation-mode: vertical
+    embed-resources: true
+---
 
-# Are Two Variables Related?
+# Correlation answers the question: Are Two Variables Related?
 
 Not *how* they are related.
 
-## Our first form of bivariate analysis.
+## Our first form of *bivariate* analysis.
 
 Correlation always involves two or more variables (columns).
 
-## Correlation coefficient measures the extent to which two variables are related, from -1 to 1.
+## The *correlation coefficient* measures the extent to which two variables are related, from -1 to 1.
 
 Pearson’s correlation coefficient multiplies the deviations from the mean for two variables, and divides by the product of the standard deviation.
 
@@ -18,7 +30,7 @@ Tells us the *strength* of a correlation.
 
 ## Pearson's correlation, *r*, is the default in Pandas.
 
-```python
+```{.python code-line-numbers="|2|5|8"}
 # Load cars sample dataset
 cars = data.cars()
 
@@ -35,21 +47,33 @@ cars.Miles_per_Gallon.corr(cars.Displacement)
 
 The y-axis shows the *dependent* variable, while the x-axis shows the *independent* variable.
 
----
+## Make a scatterplot with Altair
 
-![](img/cars_scatter_py.png)
+```{python}
+#| echo: false
 
-```python
+import pandas as pd
+import numpy as np
+import altair as alt
+from vega_datasets import data
+
+cars = data.cars()
+```
+
+```{python}
+#| echo: true
+#| output-location: slide
 alt.Chart(cars, title="Fuel Efficiency and Engine Displacement").mark_point().encode(
     x=alt.X("Displacement:Q", title="Engine Displacement (liters)"),
     y=alt.Y("Miles_per_Gallon:Q", title="Fuel Efficiency (mpg)")
 ).interactive()
 ```
 
----
+## Add a line of best fit to make a regression plot
 
-```python
-# Add a line of best fit to make a regression plot
+```{python}
+#| echo: true
+#| output-location: slide
 scatter = alt.Chart(cars, title="Fuel Efficiency and Engine Displacement").mark_point().encode(
     x=alt.X("Displacement:Q", title="Engine Displacement (liters)"),
     y=alt.Y("Miles_per_Gallon:Q", title="Fuel Efficiency (mpg)")
@@ -58,22 +82,11 @@ scatter = alt.Chart(cars, title="Fuel Efficiency and Engine Displacement").mark_
 scatter + scatter.transform_regression('Displacement','Miles_per_Gallon').mark_line()
 ```
 
-![](img/cars_regression_py.png)
+## Avoid *overplotting* with heatmaps or kernel density estimation.
 
-## Avoid overplotting with heatmaps or kernel density estimation.
-
-:::::::::::::: {.columns}
-::: {.column width="50%"}
-![](img/cars_heatmap_py.png)
-:::
-::: {.column width="50%"}
-![](img/kde_py.png)
-:::
-::::::::::::::
-
-## Make these with different marks or transforms.
-
-```python
+```{python}
+#|echo: true
+#|output-location: slide
 # Heatmap example
 alt.Chart(cars, title="Fuel Efficiency and Engine Displacement").mark_rect().encode(
     x=alt.X("Displacement:Q", title="Engine Displacement (liters)").bin(),
@@ -84,11 +97,9 @@ alt.Chart(cars, title="Fuel Efficiency and Engine Displacement").mark_rect().enc
 
 ## Correlation matrix shows all possible correlations.
 
-![](img/cars_corr_matrix.png)
-
----
-
-```python
+```{python}
+#|echo: true
+#|output-location: slide
 # Re-arrange correlation matrix data
 cars_corr = (cars.corr(numeric_only=True)
              .stack()
@@ -119,7 +130,7 @@ base+text # Display visualization
 
 There are standard parametric approaches to this, but we can use permutation!
 
-## Instead of resampling, we can *rearrange* the variables at random.
+## We need a new simulation function for correlation.
 
 ```python
 def simulate_correlation(df,var1,var2):
