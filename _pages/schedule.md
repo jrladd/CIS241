@@ -17,7 +17,7 @@ Date|Topics & Slides|Workshops|Assignments
 3 & 5 Sept.|[Python](/CIS241/slides/pythonbasics) & [Data Wrangling](/CIS241/slides/wrangling)|[Movies](/CIS241/resources/01_movies1.ipynb)|
 10 & 12 Sept.|[Exploratory Data Analysis](/CIS241/slides/eda) & [Visualization](/CIS241/slides/visualizing)|[Movies](/CIS241/resources/01_movies2.ipynb)|**[Documentation Assignment](/CIS241/assignments/documentation) Due 12 Sept.**
 17 & 19 Sept.|[Hypothesis Testing: Comparison of Means](/CIS241/slides/hypothesis)|[Sports](/CIS241/resources/02_baseball1.ipynb)|
-24 & 26 Sept.|[Hypothesis Testing: Correlation](/CIS241/slides/correlation)|[Sports]()|**Take-Home Test I**
+24 & 26 Sept.|[Hypothesis Testing: Correlation](/CIS241/slides/correlation)|[Sports](/CIS241/resources/02_baseball2.ipynb)|**Take-Home Test I**
 1 & 3 Oct.|[Linear Regression](/CIS241/slides/regression)|[Business](/CIS241/resources/03_airbnb1.ipynb)|
 8 & 10 Oct.|[Logistic Regression](/CIS241/slides/logit)|[Business](/CIS241/resources/03_airbnb2.ipynb)|
 15 & 17 Oct.|[K-Nearest Neighbors](/CIS241/slides/knn)|[Ecology](/CIS241/resources/04_trees1.ipynb)|**[Tutorial Assignment](/CIS241/assignments/tutorial/) Due 17 Oct.**
