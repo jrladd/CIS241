@@ -1,8 +1,20 @@
-% Linear Regression
-% CIS 241
-% Dr. Ladd
+---
+title: "Linear Regression"
+subtitle: "CIS 241, Dr. Ladd"
+author: "`spacebar` to go to the next slide, `esc`/menu to navigate"
+format:
+  revealjs:
+    theme: serif
+    controls: true
+    slide-level: 2
+    transition: slide
+    incremental: true
+    center: true
+    navigation-mode: vertical
+    embed-resources: true
+---
 
-# Linear Regression
+# What is Linear Regression?
 
 ## We can use correlation coefficients and correlation tests to learn the *strength* of a relationship, but how do we learn the *nature* of a relationship?
 
@@ -16,7 +28,7 @@
 
 ## A **prediction model** analyzes data that the researcher (*you!*) supplies, and calculates numerical coefficients to help with prediction.
 
-## Linear regression is just one type of model!
+## Linear regression is just one type of prediction model!
 
 # How does linear regression work?
 
@@ -24,7 +36,9 @@
 
 ## That line represents the connection between an ________ (x-axis) and a ________ (y-axis) variable.
 
-## And in this case, the target (dependent) variable is a function of the predictor (independent) variable. 
+## And in this case, the target (dependent) variable is a function of the predictor (independent) variables. 
+
+When using linear regression for prediction, you typically have more than one $x$ (predictor) variable—sometimes you have hundreds!
 
 ## To define predictors and a target variable, you need to *use your human brain*.
 
@@ -86,14 +100,28 @@ As many as you want, but make sure you *develop a rationale* (use your human bra
 
 Do you have good reason to believe that a linear regression or predictive model would help? Is there a relationship between variables that's worth learning about?
 
-```python
-# Let's make a scatter plot of engine displacement and
-# fuel efficiency, in the cars dataset.
+*Let's make a scatter plot of engine displacement and fuel efficiency, in the cars dataset.*
+
+```{python}
+import pandas as pd
+import numpy as np
+import altair as alt
+from vega_datasets import data
+
+cars = data.cars()
 ```
 
 ---
 
-![What do you think?](img/cars_regression_py.png)
+```{python}
+chart = alt.Chart(cars, title="Relationship between fuel efficiency and enging displacement").mark_point().encode(
+    x=alt.X("Displacement:Q", title="Engine Displacement (liters)").scale(zero=False),
+    y=alt.Y("Miles_per_Gallon:Q", title="Fuel Efficiency (mpg)").scale(zero=False)
+)
+chart + chart.transform_regression("Displacement", "Miles_per_Gallon").mark_line(color="red")
+```
+
+What do you think?
 
 ## It looks like there might be a linear relationship!
 
@@ -103,9 +131,79 @@ We can see a general trend: as engine size goes up, fuel efficiency goes down. N
 
 ![xkcd.com/1725](img/xkcd_regression.png)
 
+## But wait! At every step of the modeling process, we must *validate*.
+
+## How do you choose and validate predictor variables?
+
+There's no magic solution! You can try different options, but use your logic and don't just throw everything in there.
+
+## Occam's Razor says that the simplest model is probably the best one.
+
+![Think carefully about how many variables you add.](img/William_of_Ockham.png)
+
+## Avoid Multicollinearity: when two predictor variables correlate.
+
+This will confuse the model and mess up your results! It could even result in *false* predictions.
+
+*You must test for multicollinearity **before** you select your predictors and run your model.*
+
+## How do we find multicollinearity?
+
+You can do a *pairwise* comparison of the variables you're thinking about. 
+
+```{python}
+#| echo: true
+#| output-location: slide
+
+potential_predictors = ['Cylinders', 'Displacement', 'Horsepower',
+       'Weight_in_lbs', 'Acceleration']
+alt.Chart(cars).mark_point().encode(
+    alt.X(alt.repeat("column"), type='quantitative'),
+    alt.Y(alt.repeat("row"), type='quantitative')
+).properties(
+    width=150,
+    height=150
+).repeat(
+    row=potential_predictors,
+    column=potential_predictors
+)
+```
+
+## Compare your pairplot to the correlation matrix.
+
+```{python}
+# Re-arrange correlation matrix data
+cars_corr = (cars.corr(numeric_only=True)
+             .stack()
+             .reset_index()
+             .rename(columns={0:'corr','level_0':'var1','level_1':'var2'})
+            )
+# Create correlation heatmap
+base = alt.Chart(cars_corr, title="Cars Correlation Matrix").mark_rect().encode(
+    x=alt.X("var1:N",title=None),
+    y=alt.Y("var2:N",title=None),
+    color=alt.Color("corr",title="Correlation coefficient").scale(scheme='blueorange')
+).properties(width=300,height=300)
+# Add text labels for coefficients
+text = base.mark_text(baseline='middle').encode(
+    alt.Text('corr:Q', format=".2f"),
+    color=alt.condition(
+        (alt.datum.corr < -0.5) | (alt.datum.corr > 0.5),
+        alt.value('white'),
+        alt.value('black')
+    )
+)
+base+text # Display visualization
+```
+
+
+## When interpreting coefficients, watch out for *confounding variables*!
+
+Ask yourself: is there an important variable that the data doesn't account for?
+
 ## For statistical modeling in Python, we can use `sklearn`.
 
-```python
+```{.python code-line-numbers="3|4|5|"}
 # You only need to import the functions you will use
 # This may be different every time
 from sklearn.linear_model import LinearRegression
@@ -132,44 +230,33 @@ A training set will determine the model's coefficients, and a test set will let 
 
 That's why we imported the LinearRegression class above.
 
-## Then we split the data.
+## The full model workflow
 
-```python
-
+```{.python code-line-numbers="1-3|5-12|14-16|18-21"}
+# Select target and predictors based on validation
 target = "Miles_per_Gallon" # Our target variable
 predictors = ["Displacement", "Horsepower", "Acceleration"] # A list of predictors
 
+# Create variables and split data
 X = cars[predictors]
 y = cars[target]
-
-# The train_test_split() function will create 4 variables
 X_train, X_test, y_train, y_test = train_test_split(
-    X, # The first argument is the X variable
-    y, # The second argument is the Y variable
-    test_size=0.4, # Proportion of the data in the test set
-    random_state=0) # Set a random state so it's the same every time
-```
+    X, 
+    y, 
+    test_size=0.4, 
+    random_state=0)
 
-## Then we can fit our model.
+# Fit the model
+our_model = LinearRegression()
+our_model.fit(X_train, y_train)
 
-```python
-our_model = LinearRegression() # Make an instance of this class
-our_model.fit(X_train, y_train) # Run the fit() method on training data
-```
-
-Why did we get an error?
-
-## Now we can look at the model's coefficients
-
-```python
-# We use f-strings to print complex things, with rounding
-# We can use a for loop to print multiple coefficients
+# View coefficients
 print(f"Intercept: {our_model.intercept_:.3f}")
 for c,p in zip(our_model.coef_,X.columns):
     print(f"Coefficient for {p}: {c:.4f}")
 ```
 
----
+## Interpreting the results
 
 With a coefficient for displacement of `-0.0384`, this linear regression provides evidence that as engine displacment increases, fuel efficiency decreases slightly!
 
@@ -181,86 +268,6 @@ The intercept indicates that if all predictor variables were 0, fuel efficiency 
 
 *Be careful not to imply that there is a direct causal link, especially without more evidence or studies.*
 
-## All together now.
-
-```python
-target = "Miles_per_Gallon" # Our target variable
-predictors = ["Displacement", "Horsepower", "Acceleration"] # A list of predictors
-X = cars[predictors]
-y = cars[target]
-# Split the data
-X_train, X_test, y_train, y_test = train_test_split(
-    X, 
-    y, 
-    test_size=0.4, 
-    random_state=0)
-# Fit the model
-our_model = LinearRegression()
-our_model.fit(X_train, y_train)
-# View coefficients
-print(f"Intercept: {our_model.intercept_:.3f}")
-for c,p in zip(our_model.coef_,X.columns):
-    print(f"Coefficient for {p}: {c:.4f}")
-```
-
-# Challenge: Seattle Housing Data
-
----
-
-Try to make an effective multivariate linear model to predict housing prices in Seattle.
-
-Take a look at the dataset and logically choose some predictors. Check for multicollinearity before you run your model! When you're done, try to predict housing price based on some new data points you create.
-
-Load [house_sales.tsv](../data/house_sales.tsv). You'll need to open this with:
-
-```python
-housing = pd.read_csv("https://jrladd.com/CIS241/data/house_sales.tsv", sep="\t")
-```
-
-# Validation
-
-## At every step of the modeling process, we must *validate*.
-
-# How to Validate Predictor Variables
-
-## There's no magic solution! You can try different options, but use your logic and don't just throw everything in there.
-
-## Occam's Razor says that the simplest model is probably the best one.
-
-![Think carefully about how many variables you add.](img/William_of_Ockham.png)
-
-## As you add variables, $R^{2}$ will increase and `RMSE` will decrease.
-
-But think about *how much* it increases or decreases.
-
-## Avoid Multicollinearity: when two predictor variables correlate.
-
-This will confuse the model and mess up your results! It could even result in *false* predictions.
-
-*You must test for multicollinearity **before** you select your predictors and run your model.*
-
-## How do we find multicollinearity?
-
-You can do a *pairwise* comparison of the variables you're thinking about. 
-
-```python
-alt.Chart(cars).mark_point().encode(
-    alt.X(alt.repeat("column"), type='quantitative'),
-    alt.Y(alt.repeat("row"), type='quantitative')
-).properties(
-    width=150,
-    height=150
-).repeat(
-    row=predictors,
-    column=predictors
-)
-```
-
-## Compare your pairplot to the correlation matrix.
-
-```python
-cars[predictors].corr(numeric_only=True)
-```
 
 ## You can consider categorical variables as predictors, too.
 
@@ -272,10 +279,17 @@ X = pd.get_dummies(cars[predictors], drop_first=True)
 
 The first category should always be left out as the reference (`drop_first=True`). All the remaining slopes are relative to that reference!
 
-## When interpreting coefficients, watch out for *confounding variables*!
+# Challenge: Seattle Housing Data
 
-Ask yourself: is there an important variable that the data doesn't account for?
+Try to make an effective multivariate linear model to predict housing prices in Seattle.
 
+Take a look at the dataset and logically choose some predictors. Check for multicollinearity before you run your model! When you're done, try to predict housing price based on some new data points you create.
+
+Load [house_sales.tsv](../data/house_sales.tsv). You'll need to open this with:
+
+```python
+housing = pd.read_csv("https://jrladd.com/CIS241/data/house_sales.tsv", sep="\t")
+```
 # Validating & Assessing Your Results
 
 ## Did our model do a good job?
@@ -326,13 +340,17 @@ This is also called the "coefficient of determination."
 
 <small>$R^{2}$ ranges from 0 to 1. If it were 1, the variables would make a straight line. If it were 0, the x variable wouldn't predict the y variable at all.</small>
 
----
+## Interpreting Validation Scores
 
 In this example, $R^{2}=0.67$, so our predictors account for about 67% of the variation in fuel efficiency.
 
 There's no rule for what makes an $R^{2}$ "good." Consider the context and purpose of your analysis!
 
 In an analysis of ecology or human behavior (very unpredictable) an $R^{2}$ of 0.20 or 0.30, might be considered good. In an analysis predicting mechanical repairs, or recovery from medical procedures, an $R^{2}$ of 0.60 or 0.70 might be considered very poor. 
+
+## As you add variables, $R^{2}$ will increase and `RMSE` will decrease.
+
+But think about *how much* it increases or decreases.
 
 ## Are the residuals normally distributed, with a mean near 0?
 
