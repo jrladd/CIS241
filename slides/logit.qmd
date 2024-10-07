@@ -1,6 +1,18 @@
-% Logistic Regression
-% CIS 241, Dr. Ladd
-
+---
+title: "Logistic Regression"
+subtitle: "CIS 241, Dr. Ladd"
+author: "`spacebar` to go to the next slide, `esc`/menu to navigate"
+format:
+  revealjs:
+    theme: white
+    controls: true
+    slide-level: 2
+    transition: slide
+    incremental: true
+    center: true
+    navigation-mode: vertical
+    embed-resources: true
+---
 
 # What is Logistic Regression?
 
@@ -40,7 +52,7 @@ We will learn to train a multiclass logistic regression later. For now, we shoul
 
 ## Now let's select some predictors.
 
-Make a pairplot showing the relationship between all the numerical variables in this dataset. Also show the correlation matrix for the same variables.
+Make a pairplot showing the relationship between all the numerical variables in this dataset. Also visualize the correlation matrix for the same variables.
 
 Do we have any multicollinearity here? What should we do about it?
 
@@ -52,12 +64,10 @@ Run the `train_test_split` function now. What should you use as a test size?
 
 ## Fit a logistic regression model
 
-```python
+```{.python code-line-numbers="1-2|4-7|8|"}
 # We need a different class from sklearn
 from sklearn.linear_model import LogisticRegression
-```
 
-```python
 # See next slide for discussion of parameters
 logit_model = LogisticRegression(penalty=None, 
                                  solver='lbfgs', 
@@ -75,7 +85,7 @@ Do you need to drop null values?
 
 <small>For more on this, read [Scikit-learns Defaults Are Wrong](https://ryxcommar.com/2019/08/30/scikit-learns-defaults-are-wrong/).</small>
 
-# Interpreting Logistic Regression Results
+# Interpreting and Validating Logistic Regression Results
 
 ## We can print the intercept and the coefficents, just like in linear regression.
 
@@ -90,19 +100,16 @@ How do *the odds* change for each unit of the predictor?
 
 ## Instead of predicting a value, we can predict the *probability* that our new data will fall into category.
 
-```python
+```{.python code-line-numbers="1-2|3-4|5-6|8-10"}
 # We can get prediction probabilities
 probabilities = logit_model.predict_proba(X_test)
 # We can get the predictions themselves
 predictions = logit_model.predict(X_test)
 # We can get the categories or classes we predicted
 categories = logit_model.classes_
-```
 
-```python
 # Let's make the probabilities look nicer
-probabilities = pd.DataFrame(probabilities, 
-                    columns=categories)
+probabilities = pd.DataFrame(probabilities, columns=categories)
 probabilities
 ```
 
@@ -130,7 +137,7 @@ import matplotlib.pyplot as plt
 
 ---
 
-```python
+```{.python code-line-numbers="1-4|5-13|14-19|21"}
 # Calculate confusion matrix and transform data
 conf_mat = confusion_matrix(y_test,predictions)
 conf_mat = pd.DataFrame(conf_mat,index=categories,columns=categories)
