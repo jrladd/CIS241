@@ -1,5 +1,18 @@
-% K-Nearest Neighbors
-% CIS 241, Dr. Ladd
+---
+title: "K-Nearest Neighbors"
+subtitle: "CIS 241, Dr. Ladd"
+author: "`spacebar` to go to the next slide, `esc`/menu to navigate"
+format:
+  revealjs:
+    theme: solarized
+    controls: true
+    slide-level: 2
+    transition: slide
+    incremental: true
+    center: true
+    navigation-mode: vertical
+    embed-resources: true
+---
 
 # What is K-Nearest Neighbors?
 
@@ -20,7 +33,17 @@ $$\sqrt[]{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$
 - In machine learning, *K* or *k* refers to any integer.
 - If K is too low, you may be *overfitting*.
 - If K is too high, you may be *oversmoothing*.
+- Usually between 1-20, and an odd number avoids ties.
 - You must decide based on the data!
+
+## The Bias-Variance Trade-Off
+
+- Variance: the error in your model due to the choice of training data (sensitivity to small changes in the training data)
+- Bias: the error in your model due to not accounting for the real-world scenario (bad assumptions in the learning algorithm)
+- As variance goes up, bias goes down and vice versa.
+- Overfitting leads to variance, Oversmoothing (underfitting) leads to bias
+- You're trying to find a *balance*
+
 
 ## You can use one-hot encoding to handle factor variables.
 
@@ -53,7 +76,7 @@ You will also need plenty of classes and functions that we've used previously!
 
 ## Standardizing with z-scores
 
-```python
+```{.python code-line-numbers="|17-20|"}
 # Using the penguins dataset
 predictors = ["bill_length_mm", "bill_depth_mm", "flipper_length_mm", "sex"]
 target = "body_mass_g" # A numerical target for now
@@ -78,7 +101,7 @@ X_train_std = scaler.transform(X_train)
 
 ## Predict a *value* with KNN
 
-```python
+```{.python code-line-numbers="|6-8|"}
 # Fit the KNN Regressor
 # Choose a sensible value for K (n_neighbors)
 knn = KNeighborsRegressor(n_neighbors=5)
@@ -88,6 +111,8 @@ knn.fit(X_train_std, y_train)
 X_test_std = scaler.transform(X_test)
 predictions = knn.predict(X_test_std)
 ```
+
+There are *no* coefficients in KNN!
 
 ## Predict a *category* with KNN
 
