@@ -20,9 +20,9 @@ Date|Topics & Slides|Workshops|Assignments
 24 & 26 Sept.|[Hypothesis Testing: Correlation](/CIS241/slides/correlation)|[Sports](/CIS241/resources/02_baseball2.ipynb)|**Take-Home Test I**
 1 & 3 Oct.|[Linear Regression](/CIS241/slides/regression)|[Business](/CIS241/resources/03_airbnb1.ipynb)|
 8 & 10 Oct.|[Logistic Regression](/CIS241/slides/logit)|[Business](/CIS241/resources/03_airbnb2.ipynb)|
-15 & 17 Oct.|[K-Nearest Neighbors](/CIS241/slides/knn)|[Ecology]()|**[Tutorial Assignment](/CIS241/assignments/tutorial/) Due 17 Oct.**
-24 Oct.|[Naive Bayes Classifier](/CIS241/slides/naivebayes)|[Ecology]()|**Take-Home Test II**
-29 & 31 Oct.|[Decision Trees and the Random Forest](/CIS241/slides/randomforest)|[Health]()|
+15 & 17 Oct.|[K-Nearest Neighbors](/CIS241/slides/knn)|[Health](/CIS241/resources/05_health1.ipynb)|**[Tutorial Assignment](/CIS241/assignments/tutorial/) Due 17 Oct.**
+24 Oct.|[Naive Bayes Classifier](/CIS241/slides/naivebayes)||**Take-Home Test II**
+29 & 31 Oct.|[Decision Trees and the Random Forest](/CIS241/slides/randomforest)|[Health](/CIS241/resources/05_health2.ipynb)|
 5 & 7 Nov.|[Clustering and Unsupervised Approaches](/CIS241/slides/clustering)|[Literature]()|**[Project Proposal](/CIS241/assignments/project-proposal/) Due 7 Nov.**
 12 & 14 Nov.|[Neural Networks](/CIS241/slides/neuralnetworks)|[Literature]()
 19 & 21 Nov.|Project Discussion & Ethical Data Science||**[Progress Report](/CIS241/assignments/progress-report) Due 21 Nov.**
