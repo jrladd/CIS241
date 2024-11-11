@@ -24,7 +24,7 @@ Date|Topics & Slides|Workshops|Assignments
 24 Oct.|[Naive Bayes Classifier](/CIS241/slides/naivebayes)||**Take-Home Test II**
 29 & 31 Oct.|[Decision Trees and the Random Forest](/CIS241/slides/randomforest)|[Health](/CIS241/resources/05_health2.ipynb)|
 5 & 7 Nov.|[Clustering and Unsupervised Approaches](/CIS241/slides/clustering)|[Literature](/CIS241/resources/06_lit1.ipynb)|**[Project Proposal](/CIS241/assignments/project-proposal/) Due 7 Nov.**
-12 & 14 Nov.|[Neural Networks](/CIS241/slides/neuralnetworks)|[Literature]()
+12 & 14 Nov.|[Neural Networks](/CIS241/slides/neuralnetworks)|[Literature](/CIS241/resources/06_lit2.ipynb)
 19 & 21 Nov.|Project Discussion & Ethical Data Science||**[Progress Report](/CIS241/assignments/progress-report) Due 21 Nov.**
 26 Nov.|Optional One-on-one Meetings
 3 & 5 Dec.|Project Work & Sample Final Project||**[Video Presentations](/CIS241/assignments/presentation/) Due 5 Dec.**
