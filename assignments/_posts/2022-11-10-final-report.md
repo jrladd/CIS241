@@ -11,9 +11,9 @@ show_date: false
 
 **Introduction**
 
-- Provide a one or two paragraph introduction, professionally written, that gives an overview of the essentials someone needs to know to make sense of the data you show.
-- Consider some of the ethical and logistical challenges that your data presents, and discuss this in your introduction.
-- You **must** cite and link to your dataset, like so: `[text here](website)`.
+- Provide a one-to-three paragraph introduction, professionally written, that gives an overview of the essentials someone needs to know to make sense of the data you show.
+- Consider some of the ethical and logistical challenges that your data presents, and discuss this in your introduction. Address the ethical issues in your project in terms of the [ADSA's four lenses](https://ethos.academicdatascience.org/lenses/).
+- You **must** cite and link to your dataset, and you can use Markdown to create contextual links like so: `[text here](website)`.
 
 **Data Explanation and Exploration**
 
