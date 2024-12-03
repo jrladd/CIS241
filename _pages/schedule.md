@@ -27,5 +27,5 @@ Date|Topics & Slides|Workshops|Assignments
 12 & 14 Nov.|[Neural Networks](/CIS241/slides/neuralnetworks)|[Literature](/CIS241/resources/06_lit2.ipynb)
 19 & 21 Nov.|[Ethical Data Science](/CIS241/slides/ethics) & Project Discussion||**[Progress Report](/CIS241/assignments/progress-report) Due 21 Nov.**
 26 Nov.|Optional One-on-one Meetings
-3 & 5 Dec.|Project Work & Sample Final Project||**[Video Presentations](/CIS241/assignments/presentation/) Due 5 Dec.**
+3 & 5 Dec.|Project Work & [Sample Final Project](/CIS241/resources/sample-final-project.html)||**[Video Presentations](/CIS241/assignments/presentation/) Due 5 Dec.**
 12 Dec. 9am-12pm|Panel Presentations||**[Final Project](/CIS241/assignments/final-report) Due 12 Dec. at 9am**
