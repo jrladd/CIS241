@@ -9,3 +9,4 @@ __pycache__/
 
 /.quarto/
 /_site/
+.DS_Store
