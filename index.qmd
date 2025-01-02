@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Data Science"
-subtitle: <a class="btn btn-outline-info" href="schedule.qmd">Schedule</a> <a class="btn btn-outline-info">Assignments</a> <a class="btn btn-outline-info">Course Policies</a> <a class="btn btn-outline-info">Sakai</a> <a class="btn btn-outline-info">JupyterHub</a>
+subtitle: <a class="btn btn-outline-info" href="schedule.qmd">Schedule</a> <a class="btn btn-outline-info" href="assignments.md">Assignments</a> <a class="btn btn-outline-info" href="policies.md">Course Policies</a> <a class="btn btn-outline-info" href="https://sakai.washjeff.edu">Sakai</a> <a class="btn btn-outline-info" href="https://jupyterhub.ciswashjeff.net/">JupyterHub</a>
 toc: false
 title-block-banner: images/startrek.jpg
 title-block-banner-color: white
