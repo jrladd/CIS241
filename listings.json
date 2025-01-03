@@ -1,0 +1,13 @@
+[
+  {
+    "listing": "/assignments.html",
+    "items": [
+      "/assignments/documentation.html",
+      "/assignments/tutorial.html",
+      "/assignments/project-proposal.html",
+      "/assignments/progress-report.html",
+      "/assignments/presentation.html",
+      "/assignments/final-report.html"
+    ]
+  }
+]
