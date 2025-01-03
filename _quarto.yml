@@ -1,0 +1,29 @@
+project:
+  type: website
+  render:
+    - "*.qmd"
+    - "*.ipynb"
+    - "*.md"
+    - "!resources/"
+
+website:
+  title: "CIS241 Intro to Data Science"
+  navbar:
+    right:
+      - href: index.qmd
+        text: Home
+      - schedule.qmd
+      - assignments.md
+      - policies.md
+      - groundrules.md
+      - href: https://jupyterhub.ciswashjeff.net/
+        text: JupyterHub
+
+format:
+  html:
+    theme: lumen
+    css: styles.css
+    toc: true
+
+
+

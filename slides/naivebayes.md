@@ -1,5 +1,18 @@
-% Naive Bayes Classifier
-% CIS 241, Dr. Ladd
+---
+title: "Naive Bayes Classifier"
+subtitle: "CIS 241, Dr. Ladd"
+author: "`spacebar` to go to the next slide, `esc`/menu to navigate"
+format:
+  revealjs:
+    theme: white
+    controls: true
+    slide-level: 2
+    transition: slide
+    incremental: true
+    center: true
+    navigation-mode: vertical
+    embed-resources: true
+---
 
 # What is the Naive Bayes Classifier?
 
@@ -35,7 +48,7 @@ Numerical variables would need to be "binned" into categories first.
 from sklearn.naive_bayes import MultinomialNB
 ```
 
-## Let's return to the Titanic dataset.
+## Let's look at the Titanic dataset.
 
 Can we predict who survived based on some *categorical* data?
 

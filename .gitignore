@@ -6,3 +6,7 @@ vendor
 .ipynb_checkpoints/
 .DS_Store/
 __pycache__/
+
+/.quarto/
+/_site/
+.DS_Store

@@ -1,6 +1,18 @@
-% Neural Networks
-% CIS 241, Dr. Ladd
-% 🧠🧠🧠
+---
+title: "Neural Networks 🧠🧠🧠"
+subtitle: "CIS 241, Dr. Ladd"
+author: "`spacebar` to go to the next slide, `esc`/menu to navigate"
+format:
+  revealjs:
+    theme: solarized
+    controls: true
+    slide-level: 2
+    transition: slide
+    incremental: true
+    center: true
+    navigation-mode: vertical
+    embed-resources: true
+---
 
 # What is a Neural Network?
 
