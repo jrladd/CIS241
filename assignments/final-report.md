@@ -3,7 +3,7 @@ title:  "Final Written Report"
 date:   2025-05-01
 show_date: false
 ---
-**Complete by: Thursday 1 May at 5pm**
+**Complete by: Thursday 1 May at 2pm**
 
 **Please note that I *cannot* accept any work past this deadline.**
 
