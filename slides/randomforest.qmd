@@ -30,7 +30,7 @@ from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
 
-penguins = pd.read_csv('https://jrladd.com/CIS241/data/penguins.csv')
+penguins = pd.read_csv('../data/penguins.csv')
 
 predictors = ["bill_depth_mm", "bill_length_mm", "flipper_length_mm", "body_mass_g", "sex"]
 target = "species"

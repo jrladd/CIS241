@@ -5,6 +5,12 @@ project:
     - "*.ipynb"
     - "*.md"
     - "!resources/"
+  resources:
+    - "*.csv"
+    - "*.tsv"
+    - "*.zip"
+    - "*.xlsx"
+    - "*.csv.gz"
 
 website:
   title: "CIS241 Intro to Data Science"

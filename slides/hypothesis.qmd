@@ -47,7 +47,7 @@ import pandas as pd
 import numpy as np
 import altair as alt
 
-penguins = pd.read_csv('https://jrladd.com/CIS241/data/penguins.csv')
+penguins = pd.read_csv('../data/penguins.csv')
 penguins = penguins[penguins.species != 'Gentoo']
 
 alt.Chart(penguins,title="Comparing Penguins' Bill Depth by Species").mark_boxplot(size=20).encode(
