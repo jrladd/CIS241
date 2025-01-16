@@ -2286,7 +2286,7 @@
     "href": "jupyterhub.html",
     "title": "Setting Up JupyterHub",
     "section": "",
-    "text": "This page will help you get set up to use Python and JupyterHub, a data science and programming interface. You will use the Jupyter Notebook file 00_getting_started.ipynb.\nhttps://jrladd.com/CIS241/resources/00_getting_started.ipynb"
+    "text": "This page will help you get set up to use Python and JupyterHub, a data science and programming interface. You will use the Jupyter Notebook file 00_getting_started.ipynb.\nhttps://jrladd.com/CIS241/resources/00_getting_started.ipynb\nOr click this link to download the file."
   },
   {
     "objectID": "jupyterhub.html#setting-up-jupyterhub",
