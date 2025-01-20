@@ -6,7 +6,7 @@ toc: false
 Date|Topics & Slides|Workshops|Assignments
 --|---|---|---
 14 & 16 Jan.|[What Is Data?](slides/whatisdata.md) & Responsible Data Collection|[Jupyter](jupyterhub.md)|
-21 & 23 Jan.|[Python](slides/pythonbasics.qmd) & [Data Wrangling](slides/wrangling.md)|[Movies](resources/01_movies1.ipynb)|
+21 & 23 Jan.|[Python & Data Wrangling](slides/wrangling.md)|[Movies](resources/01_movies1.ipynb)|
 28 & 30 Jan.|[Exploratory Data Analysis](slides/eda.md) & [Visualization](slides/visualizing.qmd)|[Movies](resources/01_movies2.ipynb)|**[Documentation Assignment](assignments/documentation.md) Due 30 Jan.**
 4 & 6 Feb.|[Hypothesis Testing: Comparison of Means](slides/hypothesis.qmd)|[Sports](resources/02_baseball1.ipynb)|
 11 & 13 Feb.|[Hypothesis Testing: Correlation](slides/correlation.qmd)|[Sports](resources/02_baseball2.ipynb)|
