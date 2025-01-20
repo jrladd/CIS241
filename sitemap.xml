@@ -1,139 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://jrladd.github.io/CIS241/slides/wrangling.html</loc>
-    <lastmod>2025-01-03T20:21:07.219Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jrladd.github.io/CIS241/slides/neuralnetworks.html</loc>
-    <lastmod>2025-01-03T20:21:07.217Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jrladd.github.io/CIS241/slides/multiple.html</loc>
-    <lastmod>2025-01-03T20:21:07.216Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jrladd.github.io/CIS241/slides/eda.html</loc>
-    <lastmod>2025-01-03T20:21:07.147Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jrladd.github.io/CIS241/policies.html</loc>
-    <lastmod>2025-01-03T20:21:07.130Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jrladd.github.io/CIS241/jupyter.html</loc>
-    <lastmod>2025-01-03T20:21:07.130Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jrladd.github.io/CIS241/criteria.html</loc>
-    <lastmod>2025-01-03T20:21:07.059Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jrladd.github.io/CIS241/assignments/project-proposal.html</loc>
-    <lastmod>2025-01-03T20:21:07.059Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jrladd.github.io/CIS241/assignments/presentation.html</loc>
-    <lastmod>2025-01-03T20:21:07.058Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jrladd.github.io/CIS241/assignments/documentation.html</loc>
-    <lastmod>2025-01-03T20:21:07.057Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jrladd.github.io/CIS241/sample-final-project.html</loc>
-    <lastmod>2025-01-03T20:21:07.144Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jrladd.github.io/CIS241/slides/visualizing.html</loc>
-    <lastmod>2025-01-03T20:21:07.218Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jrladd.github.io/CIS241/slides/randomforest.html</loc>
-    <lastmod>2025-01-03T20:26:09.195Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jrladd.github.io/CIS241/slides/logit.html</loc>
-    <lastmod>2025-01-03T20:21:07.216Z</lastmod>
+    <loc>https://jrladd.github.io/CIS241/slides/correlation.html</loc>
+    <lastmod>2025-01-20T15:29:21.115Z</lastmod>
   </url>
   <url>
     <loc>https://jrladd.github.io/CIS241/slides/hypothesis.html</loc>
-    <lastmod>2025-01-03T20:24:17.092Z</lastmod>
+    <lastmod>2025-01-20T15:29:21.116Z</lastmod>
   </url>
   <url>
-    <loc>https://jrladd.github.io/CIS241/slides/correlation.html</loc>
-    <lastmod>2025-01-03T20:21:07.146Z</lastmod>
+    <loc>https://jrladd.github.io/CIS241/slides/visualizing.html</loc>
+    <lastmod>2025-01-20T15:29:21.143Z</lastmod>
   </url>
   <url>
-    <loc>https://jrladd.github.io/CIS241/schedule.html</loc>
-    <lastmod>2025-01-03T20:21:07.145Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jrladd.github.io/CIS241/index.html</loc>
-    <lastmod>2025-01-03T20:21:07.129Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jrladd.github.io/CIS241/slides/clustering.html</loc>
-    <lastmod>2025-01-03T20:21:07.146Z</lastmod>
+    <loc>https://jrladd.github.io/CIS241/slides/logit.html</loc>
+    <lastmod>2025-01-20T15:29:21.143Z</lastmod>
   </url>
   <url>
     <loc>https://jrladd.github.io/CIS241/slides/ethics.html</loc>
-    <lastmod>2025-01-03T20:21:07.147Z</lastmod>
+    <lastmod>2025-01-20T15:29:21.115Z</lastmod>
   </url>
   <url>
-    <loc>https://jrladd.github.io/CIS241/slides/knn.html</loc>
-    <lastmod>2025-01-03T20:21:07.216Z</lastmod>
+    <loc>https://jrladd.github.io/CIS241/schedule.html</loc>
+    <lastmod>2025-01-20T18:26:20.588Z</lastmod>
   </url>
   <url>
-    <loc>https://jrladd.github.io/CIS241/slides/pythonbasics.html</loc>
-    <lastmod>2025-01-03T20:21:07.218Z</lastmod>
+    <loc>https://jrladd.github.io/CIS241/slides/wrangling.html</loc>
+    <lastmod>2025-01-20T18:04:00.558Z</lastmod>
   </url>
   <url>
-    <loc>https://jrladd.github.io/CIS241/slides/regression.html</loc>
-    <lastmod>2025-01-03T20:21:07.218Z</lastmod>
+    <loc>https://jrladd.github.io/CIS241/slides/neuralnetworks.html</loc>
+    <lastmod>2025-01-20T15:29:21.143Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jrladd.github.io/CIS241/slides/multiple.html</loc>
+    <lastmod>2025-01-20T15:29:21.143Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jrladd.github.io/CIS241/slides/eda.html</loc>
+    <lastmod>2025-01-20T15:29:21.115Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jrladd.github.io/CIS241/policies.html</loc>
+    <lastmod>2025-01-20T15:29:21.108Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jrladd.github.io/CIS241/jupyter.html</loc>
+    <lastmod>2025-01-20T15:29:21.108Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jrladd.github.io/CIS241/criteria.html</loc>
+    <lastmod>2025-01-20T15:29:21.079Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jrladd.github.io/CIS241/assignments/project-proposal.html</loc>
+    <lastmod>2025-01-20T15:29:21.079Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jrladd.github.io/CIS241/assignments/presentation.html</loc>
+    <lastmod>2025-01-20T15:29:21.079Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jrladd.github.io/CIS241/assignments/documentation.html</loc>
+    <lastmod>2025-01-20T15:29:21.079Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jrladd.github.io/CIS241/sample-final-project.html</loc>
+    <lastmod>2025-01-20T15:29:21.115Z</lastmod>
   </url>
   <url>
     <loc>https://jrladd.github.io/CIS241/how-to-explain.html</loc>
-    <lastmod>2025-01-03T20:21:07.127Z</lastmod>
+    <lastmod>2025-01-20T15:29:21.107Z</lastmod>
   </url>
   <url>
     <loc>https://jrladd.github.io/CIS241/assignments.html</loc>
-    <lastmod>2025-01-03T20:21:07.057Z</lastmod>
+    <lastmod>2025-01-20T15:29:21.079Z</lastmod>
   </url>
   <url>
     <loc>https://jrladd.github.io/CIS241/assignments/final-report.html</loc>
-    <lastmod>2025-01-03T20:21:07.058Z</lastmod>
+    <lastmod>2025-01-20T15:29:21.079Z</lastmod>
   </url>
   <url>
     <loc>https://jrladd.github.io/CIS241/assignments/progress-report.html</loc>
-    <lastmod>2025-01-03T20:21:07.059Z</lastmod>
+    <lastmod>2025-01-20T15:29:21.079Z</lastmod>
   </url>
   <url>
     <loc>https://jrladd.github.io/CIS241/assignments/tutorial.html</loc>
-    <lastmod>2025-01-03T20:21:07.059Z</lastmod>
+    <lastmod>2025-01-20T15:29:21.079Z</lastmod>
   </url>
   <url>
     <loc>https://jrladd.github.io/CIS241/groundrules.html</loc>
-    <lastmod>2025-01-03T20:21:07.125Z</lastmod>
+    <lastmod>2025-01-20T15:29:21.106Z</lastmod>
   </url>
   <url>
     <loc>https://jrladd.github.io/CIS241/jupyterhub.html</loc>
-    <lastmod>2025-01-16T16:00:24.414Z</lastmod>
+    <lastmod>2025-01-20T15:29:21.108Z</lastmod>
   </url>
   <url>
     <loc>https://jrladd.github.io/CIS241/slides/debugging.html</loc>
-    <lastmod>2025-01-03T20:21:07.146Z</lastmod>
+    <lastmod>2025-01-20T15:29:21.115Z</lastmod>
   </url>
   <url>
     <loc>https://jrladd.github.io/CIS241/slides/mapping.html</loc>
-    <lastmod>2025-01-03T20:21:07.216Z</lastmod>
+    <lastmod>2025-01-20T15:29:21.143Z</lastmod>
   </url>
   <url>
     <loc>https://jrladd.github.io/CIS241/slides/naivebayes.html</loc>
-    <lastmod>2025-01-03T20:21:07.217Z</lastmod>
+    <lastmod>2025-01-20T15:29:21.143Z</lastmod>
   </url>
   <url>
     <loc>https://jrladd.github.io/CIS241/slides/whatisdata.html</loc>
-    <lastmod>2025-01-03T20:21:07.219Z</lastmod>
+    <lastmod>2025-01-20T15:29:21.143Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jrladd.github.io/CIS241/index.html</loc>
+    <lastmod>2025-01-20T15:29:21.108Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jrladd.github.io/CIS241/slides/clustering.html</loc>
+    <lastmod>2025-01-20T15:29:21.115Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jrladd.github.io/CIS241/slides/knn.html</loc>
+    <lastmod>2025-01-20T15:29:21.142Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jrladd.github.io/CIS241/slides/pythonbasics.html</loc>
+    <lastmod>2025-01-20T15:29:21.143Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jrladd.github.io/CIS241/slides/randomforest.html</loc>
+    <lastmod>2025-01-20T15:29:21.143Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jrladd.github.io/CIS241/slides/regression.html</loc>
+    <lastmod>2025-01-20T15:29:21.143Z</lastmod>
   </url>
 </urlset>
