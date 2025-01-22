@@ -168,9 +168,12 @@ prices
 
 ```python
 mylist = [5,6,7,8]
+newlist = []
 for item in mylist:
   addone = item + 1
   print(addone)
+  newlist.append(addone)
+print(newlist)
 ```
 
 ## You can use `if` and `else` to set *conditions*.
@@ -220,8 +223,11 @@ extreme_fares
 
 ## You Try It!
 
-- Loop through the list you created in the last exercise, and print each item one-by-one.
 - Use a filter condition to create a dataframe of all the penguins in the Adelie species.
+- With a partner, do the following steps:
+  - Create a list of numbers from 1 to 100.
+  - Use a `for` loop and a conditional statement to create a new list of *only the even numbers*.
+  - Put these numbers into a new list using the `append()` method.
 
 # Wrangling Data
 

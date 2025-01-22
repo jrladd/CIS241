@@ -201,7 +201,8 @@ Replacement means an item is returned to the sample before the next draw (i.e. y
 
 </small>
 
-## Confidence intervals with Pandas
+::: {.notes}
+Confidence intervals with Pandas
 
 ```{.python code-line-numbers="|1|6|7|5,8|11|14,15|18|"}
 n_rows = dogs.shape[0] # First find the number of rows in the dataframe.
@@ -223,4 +224,4 @@ bottom_percentile = bootstrap_samples.quantile(.05)
 # Print the results using nice f-strings.
 print(f"The mean dog height in our data is {dogs.height.mean():.3f}, with a 90% confidence interval of {bottom_percentile:.3f} to {top_percentile:.3f}.")
 ```
-      
+:::
