@@ -64,7 +64,7 @@ _Please note that if your data set has multiple data tables, you will need to pr
 
 Column Name|Variable Definition|Data Type|Units|Variable Codes and Ranges|Missing Value Codes
 ---|---|---|---|---|---
-The name of the column, exactly as it appears in your .csv file|Describe what each variable represents, and if known, how it was measured.|if units needed; grams, days…|Say whether the data is numerical or categorical, and give a subcategory (e.g. continuous)|if not a continuous variable, you could list the acceptable values|if there is missing data, indicate what is used, e.g. blank, NA, NULL, etc.
+The name of the column, exactly as it appears in your .csv file|Describe what each variable represents, and if known, how it was measured.|Say whether the data is numerical or categorical, and give a subcategory (e.g. continuous)|if units needed; grams, days…|if not a continuous variable, you could list the acceptable values|if there is missing data, indicate what is used, e.g. blank, NA, NULL, etc.
 
 Add more rows as needed... [n.b. *You only need to create a chart of 20 variables. If your data set has more than 20 variables, just choose the 20 that seem the most relevant or interesting.*]
 
