@@ -12,6 +12,7 @@ format:
     center: true
     navigation-mode: vertical
     embed-resources: true
+    self-contained-math: true
 ---
 
 # *Look* at the Data
