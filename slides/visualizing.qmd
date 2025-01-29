@@ -97,6 +97,15 @@ More on these viz types in future lessons!
 - Focus on *what you want to show* rather than how to make it appear.
 - Builds on [Vega-Lite](https://vega.github.io/vega-lite/), works similarly to [ggplot2](https://ggplot2.tidyverse.org/) and [Tableau](https://www.tableau.com/why-tableau/what-is-tableau)
 
+## Importing Altair
+
+```python
+import altair as alt
+alt.data_transformers.enable("vegafusion")
+```
+
+In addition to importing, use the [VegaFusion Data Transformer](https://altair-viz.github.io/user_guide/large_datasets.html#vegafusion-data-transformer) for large datasets.
+
 ---
 
 ![](img/altair_anatomy.png)
@@ -104,6 +113,12 @@ More on these viz types in future lessons!
 ## You Try It!
 
 Use the Altair Cheatsheet to create a plot comparing the high temperature in Seattle to the wind speed using the `seattle_weather` DataFrame. Then create the same plot but show color as the type of weather.
+
+```python
+from vega_datasets import data
+
+seattle_weather = data.seattle_weather()
+```
 
 <small>If this is hard to read, you might also show the types of weather as  separate *columns*.</small>
 
