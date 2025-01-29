@@ -1104,7 +1104,7 @@ margin-right: 0; }
 </section>
 <section id="make-a-scatterplot-with-altair" class="slide level2 center">
 <h2>Make a scatterplot with Altair</h2>
-<div id="6f1550e6" class="cell" data-execution_count="2">
+<div id="680ac83c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a></a>alt.Chart(cars, title<span class="op">=</span><span class="st">&quot;Fuel Efficiency and Engine Displacement&quot;</span>).mark_point().encode(</span>
 <span id="cb2-2"><a></a>    x<span class="op">=</span>alt.X(<span class="st">&quot;Displacement:Q&quot;</span>, title<span class="op">=</span><span class="st">&quot;Engine Displacement (liters)&quot;</span>),</span>
 <span id="cb2-3"><a></a>    y<span class="op">=</span>alt.Y(<span class="st">&quot;Miles_per_Gallon:Q&quot;</span>, title<span class="op">=</span><span class="st">&quot;Fuel Efficiency (mpg)&quot;</span>)</span>
@@ -1116,22 +1116,22 @@ margin-right: 0; }
 <div class="cell-output cell-output-display" data-execution_count="2">
 
 <style>
-#altair-viz-5ce5ed4f9e4841df8026ec253bcac8ac.vega-embed {
+#altair-viz-4f867b16585241dbb598c202b5746ce7.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-5ce5ed4f9e4841df8026ec253bcac8ac.vega-embed details,
-#altair-viz-5ce5ed4f9e4841df8026ec253bcac8ac.vega-embed details summary {
+#altair-viz-4f867b16585241dbb598c202b5746ce7.vega-embed details,
+#altair-viz-4f867b16585241dbb598c202b5746ce7.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-5ce5ed4f9e4841df8026ec253bcac8ac"></div>
+<div id="altair-viz-4f867b16585241dbb598c202b5746ce7"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-5ce5ed4f9e4841df8026ec253bcac8ac") {
-      outputDiv = document.getElementById("altair-viz-5ce5ed4f9e4841df8026ec253bcac8ac");
+    if (outputDiv.id !== "altair-viz-4f867b16585241dbb598c202b5746ce7") {
+      outputDiv = document.getElementById("altair-viz-4f867b16585241dbb598c202b5746ce7");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1182,7 +1182,7 @@ position: relative;
 </div>
 </div></section><section id="add-a-line-of-best-fit-to-make-a-regression-plot" class="slide level2 center">
 <h2>Add a line of best fit to make a regression plot</h2>
-<div id="bbd4e726" class="cell" data-execution_count="3">
+<div id="21040d40" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>scatter <span class="op">=</span> alt.Chart(cars, title<span class="op">=</span><span class="st">&quot;Fuel Efficiency and Engine Displacement&quot;</span>).mark_point().encode(</span>
 <span id="cb3-2"><a></a>    x<span class="op">=</span>alt.X(<span class="st">&quot;Displacement:Q&quot;</span>, title<span class="op">=</span><span class="st">&quot;Engine Displacement (liters)&quot;</span>),</span>
 <span id="cb3-3"><a></a>    y<span class="op">=</span>alt.Y(<span class="st">&quot;Miles_per_Gallon:Q&quot;</span>, title<span class="op">=</span><span class="st">&quot;Fuel Efficiency (mpg)&quot;</span>)</span>
@@ -1196,22 +1196,22 @@ position: relative;
 <div class="cell-output cell-output-display" data-execution_count="3">
 
 <style>
-#altair-viz-820b3fed1490422aa4f61a038ba264a5.vega-embed {
+#altair-viz-0348db978b254e578affa7463847de3c.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-820b3fed1490422aa4f61a038ba264a5.vega-embed details,
-#altair-viz-820b3fed1490422aa4f61a038ba264a5.vega-embed details summary {
+#altair-viz-0348db978b254e578affa7463847de3c.vega-embed details,
+#altair-viz-0348db978b254e578affa7463847de3c.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-820b3fed1490422aa4f61a038ba264a5"></div>
+<div id="altair-viz-0348db978b254e578affa7463847de3c"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-820b3fed1490422aa4f61a038ba264a5") {
-      outputDiv = document.getElementById("altair-viz-820b3fed1490422aa4f61a038ba264a5");
+    if (outputDiv.id !== "altair-viz-0348db978b254e578affa7463847de3c") {
+      outputDiv = document.getElementById("altair-viz-0348db978b254e578affa7463847de3c");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1262,7 +1262,7 @@ position: relative;
 </div>
 </div></section><section id="avoid-overplotting-with-heatmaps-or-kernel-density-estimation." class="slide level2 center">
 <h2>Avoid <em>overplotting</em> with heatmaps or kernel density estimation.</h2>
-<div id="f6eb2a18" class="cell" data-execution_count="4">
+<div id="fd5a3a50" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a></a><span class="co"># Heatmap example</span></span>
 <span id="cb4-2"><a></a>alt.Chart(cars, title<span class="op">=</span><span class="st">&quot;Fuel Efficiency and Engine Displacement&quot;</span>).mark_rect().encode(</span>
 <span id="cb4-3"><a></a>    x<span class="op">=</span>alt.X(<span class="st">&quot;Displacement:Q&quot;</span>, title<span class="op">=</span><span class="st">&quot;Engine Displacement (liters)&quot;</span>).<span class="bu">bin</span>(),</span>
@@ -1276,22 +1276,22 @@ position: relative;
 <div class="cell-output cell-output-display" data-execution_count="4">
 
 <style>
-#altair-viz-0de2a1127dd24eb48348f9c2a3692798.vega-embed {
+#altair-viz-a6bbc317f1fa4dc2bb7a04b0be9bc9b5.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-0de2a1127dd24eb48348f9c2a3692798.vega-embed details,
-#altair-viz-0de2a1127dd24eb48348f9c2a3692798.vega-embed details summary {
+#altair-viz-a6bbc317f1fa4dc2bb7a04b0be9bc9b5.vega-embed details,
+#altair-viz-a6bbc317f1fa4dc2bb7a04b0be9bc9b5.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-0de2a1127dd24eb48348f9c2a3692798"></div>
+<div id="altair-viz-a6bbc317f1fa4dc2bb7a04b0be9bc9b5"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-0de2a1127dd24eb48348f9c2a3692798") {
-      outputDiv = document.getElementById("altair-viz-0de2a1127dd24eb48348f9c2a3692798");
+    if (outputDiv.id !== "altair-viz-a6bbc317f1fa4dc2bb7a04b0be9bc9b5") {
+      outputDiv = document.getElementById("altair-viz-a6bbc317f1fa4dc2bb7a04b0be9bc9b5");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -1342,7 +1342,7 @@ position: relative;
 </div>
 </div></section><section id="correlation-matrix-shows-all-possible-correlations." class="slide level2 center">
 <h2>Correlation matrix shows all possible correlations.</h2>
-<div id="b8af7508" class="cell" data-execution_count="5">
+<div id="a75cc673" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a></a><span class="co"># Re-arrange correlation matrix data</span></span>
 <span id="cb5-2"><a></a>cars_corr <span class="op">=</span> (cars.corr(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb5-3"><a></a>             .stack()</span>
@@ -1371,22 +1371,22 @@ position: relative;
 <div class="cell-output cell-output-display" data-execution_count="5">
 
 <style>
-#altair-viz-2dd1d014999c4b548c71262dc4c4d47c.vega-embed {
+#altair-viz-db0e59fb2bb0490b96078dd1fa363b6d.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-2dd1d014999c4b548c71262dc4c4d47c.vega-embed details,
-#altair-viz-2dd1d014999c4b548c71262dc4c4d47c.vega-embed details summary {
+#altair-viz-db0e59fb2bb0490b96078dd1fa363b6d.vega-embed details,
+#altair-viz-db0e59fb2bb0490b96078dd1fa363b6d.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-2dd1d014999c4b548c71262dc4c4d47c"></div>
+<div id="altair-viz-db0e59fb2bb0490b96078dd1fa363b6d"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-2dd1d014999c4b548c71262dc4c4d47c") {
-      outputDiv = document.getElementById("altair-viz-2dd1d014999c4b548c71262dc4c4d47c");
+    if (outputDiv.id !== "altair-viz-db0e59fb2bb0490b96078dd1fa363b6d") {
+      outputDiv = document.getElementById("altair-viz-db0e59fb2bb0490b96078dd1fa363b6d");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",

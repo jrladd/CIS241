@@ -648,7 +648,14 @@
     "href": "slides/eda.html#confidence-intervals-with-pandas",
     "title": "Exploratory Data Analysis",
     "section": "Confidence intervals with Pandas",
-    "text": "Confidence intervals with Pandas\nWork with a partner to calculate the confidence interval for the mean height in the dogs dataframe (remember to use your Pandas cheatsheet and past slideshows):\n\nFind the number of rows in the dataframe, assign to a variable n_rows.\nCreate a for loop through a list of 5000 numbers using range(5000).\n\nIn the loop, use the sample() function where n= your number of rows and replace=True.\nAfter sampling, use append() to add your samples to an empty list.\n\nTurn the list in to a Pandas Series with pd.Series(your_list).\nFind the 95th percentile (quantile) and the 5th percentile (quantile) and assign each to a variable.\nprint() your results using f-strings.\n\nThe result should read: “The mean dog height in our data is _______, with a 90% confidence interval of _____ to _____.”\n\n\n\n\nConfidence intervals with Pandas\nn_rows = dogs.shape[0] # First find the number of rows in the dataframe.\n\n# Then take a sample with replacement from your dataset, and\n# Calculate the mean each time. Do this 5000 times.\nbootstrap_samples = []\nfor i in range(5000):\n    sample_mean = dogs.sample(n=n_rows, replace=True).height.mean()\n    bootstrap_samples.append(sample_mean)\n\n# Put the results into a pandas Series object\nbootstrap_samples = pd.Series(bootstrap_samples)\n\n# Calculate the 95th percentile and the 5th percentile.\ntop_percentile = bootstrap_samples.quantile(.95)\nbottom_percentile = bootstrap_samples.quantile(.05)\n\n# Print the results using nice f-strings.\nprint(f\"The mean dog height in our data is {dogs.height.mean():.3f}, with a 90% confidence interval of {bottom_percentile:.3f} to {top_percentile:.3f}.\")"
+    "text": "Confidence intervals with Pandas\nWork with a partner to calculate the confidence interval for the mean height in the dogs dataframe (remember to use your Pandas cheatsheet and past slideshows):\n\nFind the number of rows in the dataframe, assign to a variable n_rows.\nCreate a for loop through a list of 5000 numbers using range(5000).\n\nIn the loop, use the sample() function where n= your number of rows and replace=True.\nGet the mean() of the height column of each sample, and assign it to a variable.\nUse append() to add your sample means to an empty list.\n\nTurn the list in to a Pandas Series with pd.Series(your_list).\nFind the 95th percentile (quantile) and the 5th percentile (quantile) and assign each to a variable.\nprint() your results using f-strings.\n\nThe result should read: “The mean dog height in our data is _______, with a 90% confidence interval of _____ to _____.”"
+  },
+  {
+    "objectID": "slides/eda.html#confidence-intervals-with-pandas-1",
+    "href": "slides/eda.html#confidence-intervals-with-pandas-1",
+    "title": "Exploratory Data Analysis",
+    "section": "Confidence intervals with Pandas",
+    "text": "Confidence intervals with Pandas\nn_rows = dogs.shape[0] # First find the number of rows in the dataframe.\n\n# Then take a sample with replacement from your dataset, and\n# Calculate the mean each time. Do this 5000 times.\nbootstrap_samples = []\nfor i in range(5000):\n    sample_mean = dogs.sample(n=n_rows, replace=True).height.mean()\n    bootstrap_samples.append(sample_mean)\n\n# Put the results into a pandas Series object\nbootstrap_samples = pd.Series(bootstrap_samples)\n\n# Calculate the 95th percentile and the 5th percentile.\ntop_percentile = bootstrap_samples.quantile(.95)\nbottom_percentile = bootstrap_samples.quantile(.05)\n\n# Print the results using nice f-strings.\nprint(f\"The mean dog height in our data is {dogs.height.mean():.3f}, with a 90% confidence interval of {bottom_percentile:.3f} to {top_percentile:.3f}.\")"
   },
   {
     "objectID": "policies.html",
@@ -889,11 +896,18 @@
     "text": "Altair is declarative.\n\nYou use the Grammar of Graphics approach to declare the parts of the visualization.\nFocus on what you want to show rather than how to make it appear.\nBuilds on Vega-Lite, works similarly to ggplot2 and Tableau"
   },
   {
+    "objectID": "slides/visualizing.html#importing-altair",
+    "href": "slides/visualizing.html#importing-altair",
+    "title": "Visualizing Data",
+    "section": "Importing Altair",
+    "text": "Importing Altair\nimport altair as alt\nalt.data_transformers.enable(\"vegafusion\")\nIn addition to importing, use the VegaFusion Data Transformer for large datasets."
+  },
+  {
     "objectID": "slides/visualizing.html#you-try-it-2",
     "href": "slides/visualizing.html#you-try-it-2",
     "title": "Visualizing Data",
     "section": "You Try It!",
-    "text": "You Try It!\nUse the Altair Cheatsheet to create a plot comparing the high temperature in Seattle to the wind speed using the seattle_weather DataFrame. Then create the same plot but show color as the type of weather.\nIf this is hard to read, you might also show the types of weather as separate columns."
+    "text": "You Try It!\nUse the Altair Cheatsheet to create a plot comparing the high temperature in Seattle to the wind speed using the seattle_weather DataFrame. Then create the same plot but show color as the type of weather.\nfrom vega_datasets import data\n\nseattle_weather = data.seattle_weather()\nIf this is hard to read, you might also show the types of weather as separate columns."
   },
   {
     "objectID": "slides/visualizing.html#you-try-it-3",
