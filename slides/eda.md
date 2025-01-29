@@ -194,7 +194,8 @@ Replacement means an item is returned to the sample before the next draw (i.e. y
 1. Find the number of rows in the dataframe, assign to a variable `n_rows`.
 2. Create a `for` loop through a list of 5000 numbers using `range(5000)`.
     a. In the loop, use the [`sample()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sample.html#pandas.DataFrame.sample) function where `n=` your number of rows and `replace=True`.
-    b. After sampling, use `append()` to add your samples to an empty list.
+    b. Get the `mean()` of the height column of each sample, and assign it to a variable.
+    c. Use `append()` to add your sample means to an empty list.
 3. Turn the list in to a Pandas Series with `pd.Series(your_list)`.
 4. Find the 95th percentile (quantile) and the 5th percentile (quantile) and assign each to a variable.
 5. `print()` your results using [f-strings](https://www.geeksforgeeks.org/formatted-string-literals-f-strings-python/).
@@ -202,8 +203,7 @@ Replacement means an item is returned to the sample before the next draw (i.e. y
 
 </small>
 
-::: {.notes}
-Confidence intervals with Pandas
+## Confidence intervals with Pandas
 
 ```{.python code-line-numbers="|1|6|7|5,8|11|14,15|18|"}
 n_rows = dogs.shape[0] # First find the number of rows in the dataframe.
@@ -225,4 +225,3 @@ bottom_percentile = bootstrap_samples.quantile(.05)
 # Print the results using nice f-strings.
 print(f"The mean dog height in our data is {dogs.height.mean():.3f}, with a 90% confidence interval of {bottom_percentile:.3f} to {top_percentile:.3f}.")
 ```
-:::
