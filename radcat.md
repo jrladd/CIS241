@@ -45,3 +45,4 @@ For your course, be aware of the various places that you might find information 
 - where/how to submit your assignment?
 - the assignment deadline and any late policies?
 
+[Image credit: [Vinayakvel, CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), via Wikimedia Commons]
