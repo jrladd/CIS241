@@ -2429,60 +2429,60 @@
     "text": "Grading Scale\n\n\n\nLetter Grade\nPoint Total\n\n\n\n\nA\n93-100\n\n\nA-\n90-92\n\n\nB+\n87-89\n\n\nB\n83-86\n\n\nB-\n80-82\n\n\nC+\n77-79\n\n\nC\n73-76\n\n\nC-\n70-72\n\n\nD+\n67-69\n\n\nD\n63-66\n\n\nD-\n60-62\n\n\nF\n&lt;60"
   },
   {
-    "objectID": "slides/debugging.html",
-    "href": "slides/debugging.html",
+    "objectID": "slides/debugging.html#but-here-are-some-steps-to-try",
+    "href": "slides/debugging.html#but-here-are-some-steps-to-try",
     "title": "Debugging Your Code",
-    "section": "",
-    "text": "Think about what you were trying to do vs. what happened instead. Create a hypothesis for what went wrong.\n\n\n\nLook for a line number where the error is occurring.\nSometimes the bug is in the line before the one that threw the error!\n\n\n\nSometimes you ran something out of order. Go back to the beginning of your code and re-run to see if that will fix it.\n\n\n\nTry your best to explain the problem out loud, preferably to a friend or teammate.\nPractice rubber duck debugging.\n\n\n\n\nIf you’re lost, refer to all the resources you have: cheatsheets, lab guides, online documentation.\nAnd when in doubt: Google the error message and see if someone else had the same problem!\n\n\n\nDon’t let a single bug frustrate you for too long. If none of the above strategies worked, ask a classmate, TA, or instructor for help with the problem."
+    "section": "But here are some steps to try:",
+    "text": "But here are some steps to try:"
   },
   {
     "objectID": "slides/debugging.html#step-1-define-the-problem",
     "href": "slides/debugging.html#step-1-define-the-problem",
     "title": "Debugging Your Code",
-    "section": "",
-    "text": "Think about what you were trying to do vs. what happened instead. Create a hypothesis for what went wrong."
+    "section": "Step 1: Define the Problem",
+    "text": "Step 1: Define the Problem\nThink about what you were trying to do vs. what happened instead. Create a hypothesis for what went wrong."
   },
   {
     "objectID": "slides/debugging.html#step-2-read-the-error-message.",
     "href": "slides/debugging.html#step-2-read-the-error-message.",
     "title": "Debugging Your Code",
-    "section": "",
-    "text": "Look for a line number where the error is occurring.\nSometimes the bug is in the line before the one that threw the error!"
+    "section": "Step 2: Read the Error Message.",
+    "text": "Step 2: Read the Error Message.\nLook for a line number where the error is occurring.\nSometimes the bug is in the line before the one that threw the error!"
   },
   {
     "objectID": "slides/debugging.html#step-3-re-run-code-from-the-beginning.",
     "href": "slides/debugging.html#step-3-re-run-code-from-the-beginning.",
     "title": "Debugging Your Code",
-    "section": "",
-    "text": "Sometimes you ran something out of order. Go back to the beginning of your code and re-run to see if that will fix it."
+    "section": "Step 3: Re-run code from the beginning.",
+    "text": "Step 3: Re-run code from the beginning.\nSometimes you ran something out of order. Go back to the beginning of your code and re-run to see if that will fix it."
   },
   {
     "objectID": "slides/debugging.html#step-4-talk-it-out",
     "href": "slides/debugging.html#step-4-talk-it-out",
     "title": "Debugging Your Code",
-    "section": "",
-    "text": "Try your best to explain the problem out loud, preferably to a friend or teammate.\nPractice rubber duck debugging."
+    "section": "Step 4: Talk it out!",
+    "text": "Step 4: Talk it out!\nTry your best to explain the problem out loud, preferably to a friend or teammate.\nPractice rubber duck debugging."
   },
   {
     "objectID": "slides/debugging.html#step-5-check-instructions-documentation-and-google.",
     "href": "slides/debugging.html#step-5-check-instructions-documentation-and-google.",
     "title": "Debugging Your Code",
-    "section": "",
-    "text": "If you’re lost, refer to all the resources you have: cheatsheets, lab guides, online documentation.\nAnd when in doubt: Google the error message and see if someone else had the same problem!"
+    "section": "Step 5: Check instructions, documentation, and Google.",
+    "text": "Step 5: Check instructions, documentation, and Google.\nIf you’re lost, refer to all the resources you have: cheatsheets, lab guides, online documentation. Don’t forget RAD CAT!\nAnd when in doubt: Google the error message and see if someone else had the same problem!"
   },
   {
     "objectID": "slides/debugging.html#step-6-ask-for-help",
     "href": "slides/debugging.html#step-6-ask-for-help",
     "title": "Debugging Your Code",
-    "section": "",
-    "text": "Don’t let a single bug frustrate you for too long. If none of the above strategies worked, ask a classmate, TA, or instructor for help with the problem."
+    "section": "Step 6: Ask for help!",
+    "text": "Step 6: Ask for help!\nDon’t let a single bug frustrate you for too long. If none of the above strategies worked, ask a classmate, PAL tutor, or instructor for help with the problem."
   },
   {
-    "objectID": "slides/debugging.html#save-andor-knit-often.",
-    "href": "slides/debugging.html#save-andor-knit-often.",
+    "objectID": "slides/debugging.html#save-andor-restart-and-run-all-often.",
+    "href": "slides/debugging.html#save-andor-restart-and-run-all-often.",
     "title": "Debugging Your Code",
-    "section": "Save and/or Knit Often.",
-    "text": "Save and/or Knit Often.\nRemember, your RMarkdown won’t knit if there are bugs. This is a great way to find them early."
+    "section": "Save and/or “Restart and Run All” Often.",
+    "text": "Save and/or “Restart and Run All” Often.\nIf you’re getting the same bug repeatedly in the same cell despite making changes, it could be that something is “stuck” in memory. Use the “restart and run all” button to try it again with a fresh kernel."
   },
   {
     "objectID": "slides/debugging.html#use-good-names.",
@@ -2511,34 +2511,6 @@
     "title": "Debugging Your Code",
     "section": "Leave yourself good annotations and comments!",
     "text": "Leave yourself good annotations and comments!\nUse # to leave comments: remind yourself what certain lines of code are doing."
-  },
-  {
-    "objectID": "slides/debugging.html#resources-for-avoiding-errors",
-    "href": "slides/debugging.html#resources-for-avoiding-errors",
-    "title": "Debugging Your Code",
-    "section": "Resources for Avoiding Errors",
-    "text": "Resources for Avoiding Errors\nPractice Defensive Programming\nFollow Style Guides:\nWickham’s Guide\nGoogle’s Guide"
-  },
-  {
-    "objectID": "slides/debugging.html#example-1",
-    "href": "slides/debugging.html#example-1",
-    "title": "Debugging Your Code",
-    "section": "Example 1",
-    "text": "Example 1\n# Get just three columns of mpg.\n\nsmall_mpg &lt;- mpg %&gt;%\n  filter(cyll, trans, cty)"
-  },
-  {
-    "objectID": "slides/debugging.html#example-2",
-    "href": "slides/debugging.html#example-2",
-    "title": "Debugging Your Code",
-    "section": "Example 2",
-    "text": "Example 2\n# Make a summary table of highway fuel efficiency\n# in different manufacturers.\n\ngroup_by(mpg) %&gt;%\n  summarize(hwy)"
-  },
-  {
-    "objectID": "slides/debugging.html#example-3",
-    "href": "slides/debugging.html#example-3",
-    "title": "Debugging Your Code",
-    "section": "Example 3",
-    "text": "Example 3\n# Make boxplot of city fuel efficiency\n# in different drive trains.\n\nggplot(aes(cty)) +\n  geom_boxplot(aes(fill=blue))"
   },
   {
     "objectID": "slides/mapping.html",
