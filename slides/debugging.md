@@ -1,6 +1,19 @@
-% Debugging Your Code
-% DA 101, Dr. Ladd
-% Week 7
+---
+title: "Debugging Your Code"
+subtitle: "CIS 241, Dr. Ladd"
+author: "`spacebar` to go to the next slide, `esc`/menu to navigate"
+format:
+  revealjs:
+    theme: moon
+    controls: true
+    slide-level: 2
+    transition: slide
+    incremental: true
+    center: true
+    navigation-mode: vertical
+    embed-resources: true
+    self-contained-math: true
+---
 
 # Errors in Your Code Can Be Frustrating! 
 
@@ -32,19 +45,19 @@ Practice [rubber duck debugging](https://en.wikipedia.org/wiki/Rubber_duck_debug
 
 ## Step 5: Check instructions, documentation, and Google.
 
-If you're lost, refer to all the resources you have: cheatsheets, lab guides, online documentation.
+If you're lost, refer to all the resources you have: cheatsheets, lab guides, online documentation. Don't forget [RAD CAT](https://jrladd.com/CIS241/radcat)!
 
 And when in doubt: Google the error message and see if someone else had the same problem!
 
 ## Step 6: Ask for help!
 
-Don't let a single bug frustrate you for too long. If none of the above strategies worked, ask a classmate, TA, or instructor for help with the problem.
+Don't let a single bug frustrate you for too long. If none of the above strategies worked, ask a classmate, PAL tutor, or instructor for help with the problem.
 
 # Avoid Bugs before they happen!
 
-## Save and/or Knit Often.
+## Save and/or "Restart and Run All" Often.
 
-Remember, your RMarkdown won't knit if there are bugs. This is a great way to find them early.
+If you're getting the same bug repeatedly in the same cell despite making changes, it could be that something is "stuck" in memory. Use the "restart and run all" button to try it again with a fresh kernel.
 
 ## Use good names.
 
@@ -62,43 +75,3 @@ Check that it works *as you go*.
 
 Use `#` to leave comments: remind yourself what certain lines of code are doing.
 
-## Resources for Avoiding Errors
-
-Practice [Defensive Programming](http://adv-r.had.co.nz/Exceptions-Debugging.html)
-
-Follow Style Guides:
-
-[Wickham's Guide](http://adv-r.had.co.nz/Style.html)
-
-[Google's Guide](https://google.github.io/styleguide/Rguide.html)
-
-# Let's Try It
-
-## Example 1
-
-```r
-# Get just three columns of mpg.
-
-small_mpg <- mpg %>%
-  filter(cyll, trans, cty)
-```
-
-## Example 2
-
-```r
-# Make a summary table of highway fuel efficiency
-# in different manufacturers.
-
-group_by(mpg) %>%
-  summarize(hwy)
-```
-
-## Example 3
-
-```r
-# Make boxplot of city fuel efficiency
-# in different drive trains.
-
-ggplot(aes(cty)) +
-  geom_boxplot(aes(fill=blue))
-```
