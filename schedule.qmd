@@ -19,7 +19,7 @@ Date|Topics & Slides|Workshops|Assignments
 1 & 3 Apr.|[Clustering and Unsupervised Approaches](/slides/clustering.qmd)|[Literature](resources/06_lit1.ipynb)|**[Project Proposal](assignments/project-proposal.md) Due 3 Apr.**
 8 & 10 Apr.|[Neural Networks](slides/neuralnetworks.md)|[Literature](resources/06_lit2.ipynb)
 15 & 17 Apr.|[Ethical Data Science](slides/ethics.qmd) & Project Discussion||**[Progress Report](assignments/progress-report.md) Due 15 Apr.**
-22 & 24 Apr.|[Sample Final Project](sample-final-project.ipynb) & Project Discussion||**[Video Presentations](assignments/presentation.md) Due 22 Apr.**
+22 & 24 Apr.|[Sample Final Project](sample-final-project.ipynb) & Project Discussion||**[Video Presentations](assignments/presentation.md) Due 24 Apr.**
 1 May 2-5pm|Panel Presentations||**[Final Project](assignments/final-report.md) Due 1 May at 2pm**
 
 : {.striped .hover}
