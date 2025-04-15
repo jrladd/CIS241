@@ -1173,27 +1173,28 @@ margin-right: 0; }
 </section>
 <section class="slide level2 center">
 
-<div id="af745665" class="cell" data-execution_count="2">
+<div id="d9fbe4c5" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display" data-execution_count="2">
 
 <style>
-#altair-viz-d0c6d029bfc6456db81dcf8e4dc19414.vega-embed {
+#altair-viz-0c6245101a1a46b3b9f5d68bfcdf0ba0.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-d0c6d029bfc6456db81dcf8e4dc19414.vega-embed details,
-#altair-viz-d0c6d029bfc6456db81dcf8e4dc19414.vega-embed details summary {
+#altair-viz-0c6245101a1a46b3b9f5d68bfcdf0ba0.vega-embed details,
+#altair-viz-0c6245101a1a46b3b9f5d68bfcdf0ba0.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-d0c6d029bfc6456db81dcf8e4dc19414"></div>
+<div id="altair-viz-0c6245101a1a46b3b9f5d68bfcdf0ba0"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-d0c6d029bfc6456db81dcf8e4dc19414") {
-      outputDiv = document.getElementById("altair-viz-d0c6d029bfc6456db81dcf8e4dc19414");
+    if (outputDiv.id !== "altair-viz-0c6245101a1a46b3b9f5d68bfcdf0ba0") {
+      outputDiv = document.getElementById("altair-viz-0c6245101a1a46b3b9f5d68bfcdf0ba0");
     }
+
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
       "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
@@ -1230,7 +1231,8 @@ position: relative;
 
     if(typeof define === "function" && define.amd) {
       requirejs.config({paths});
-      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+      let deps = ["vega-embed"];
+      require(deps, displayChart, err => showError(`Error loading script: ${err.message}`));
     } else {
       maybeLoadScript("vega", "5")
         .then(() => maybeLoadScript("vega-lite", "5.20.1"))
@@ -1271,7 +1273,7 @@ position: relative;
 <section id="how-do-we-find-multicollinearity" class="slide level2 center">
 <h2>How do we find multicollinearity?</h2>
 <p>You can do a <em>pairwise</em> comparison of the variables you’re thinking about.</p>
-<div id="3f5a4c84" class="cell" data-execution_count="3">
+<div id="04b3634a" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a></a>potential_predictors <span class="op">=</span> [<span class="st">&#39;Cylinders&#39;</span>, <span class="st">&#39;Displacement&#39;</span>, <span class="st">&#39;Horsepower&#39;</span>,</span>
 <span id="cb1-2"><a></a>       <span class="st">&#39;Weight_in_lbs&#39;</span>, <span class="st">&#39;Acceleration&#39;</span>]</span>
 <span id="cb1-3"><a></a>alt.Chart(cars).mark_point().encode(</span>
@@ -1291,23 +1293,24 @@ position: relative;
 <div class="cell-output cell-output-display" data-execution_count="3">
 
 <style>
-#altair-viz-5168fc73befb4a86a186e087e32795c0.vega-embed {
+#altair-viz-c05a2df035df40d196a7e012f6ff1e17.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-5168fc73befb4a86a186e087e32795c0.vega-embed details,
-#altair-viz-5168fc73befb4a86a186e087e32795c0.vega-embed details summary {
+#altair-viz-c05a2df035df40d196a7e012f6ff1e17.vega-embed details,
+#altair-viz-c05a2df035df40d196a7e012f6ff1e17.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-5168fc73befb4a86a186e087e32795c0"></div>
+<div id="altair-viz-c05a2df035df40d196a7e012f6ff1e17"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-5168fc73befb4a86a186e087e32795c0") {
-      outputDiv = document.getElementById("altair-viz-5168fc73befb4a86a186e087e32795c0");
+    if (outputDiv.id !== "altair-viz-c05a2df035df40d196a7e012f6ff1e17") {
+      outputDiv = document.getElementById("altair-viz-c05a2df035df40d196a7e012f6ff1e17");
     }
+
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
       "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
@@ -1344,7 +1347,8 @@ position: relative;
 
     if(typeof define === "function" && define.amd) {
       requirejs.config({paths});
-      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+      let deps = ["vega-embed"];
+      require(deps, displayChart, err => showError(`Error loading script: ${err.message}`));
     } else {
       maybeLoadScript("vega", "5")
         .then(() => maybeLoadScript("vega-lite", "5.20.1"))
@@ -1357,27 +1361,28 @@ position: relative;
 </div>
 </div></section><section id="compare-your-pairplot-to-the-correlation-matrix." class="slide level2 center">
 <h2>Compare your pairplot to the correlation matrix.</h2>
-<div id="1477b4b3" class="cell" data-execution_count="4">
+<div id="18cf1ea4" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display" data-execution_count="4">
 
 <style>
-#altair-viz-6cf40441e41946d6b93396ae352face2.vega-embed {
+#altair-viz-1e34fdad31844eae8aa5de2f91ea54c0.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-6cf40441e41946d6b93396ae352face2.vega-embed details,
-#altair-viz-6cf40441e41946d6b93396ae352face2.vega-embed details summary {
+#altair-viz-1e34fdad31844eae8aa5de2f91ea54c0.vega-embed details,
+#altair-viz-1e34fdad31844eae8aa5de2f91ea54c0.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-6cf40441e41946d6b93396ae352face2"></div>
+<div id="altair-viz-1e34fdad31844eae8aa5de2f91ea54c0"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-6cf40441e41946d6b93396ae352face2") {
-      outputDiv = document.getElementById("altair-viz-6cf40441e41946d6b93396ae352face2");
+    if (outputDiv.id !== "altair-viz-1e34fdad31844eae8aa5de2f91ea54c0") {
+      outputDiv = document.getElementById("altair-viz-1e34fdad31844eae8aa5de2f91ea54c0");
     }
+
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
       "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
@@ -1414,7 +1419,8 @@ position: relative;
 
     if(typeof define === "function" && define.amd) {
       requirejs.config({paths});
-      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+      let deps = ["vega-embed"];
+      require(deps, displayChart, err => showError(`Error loading script: ${err.message}`));
     } else {
       maybeLoadScript("vega", "5")
         .then(() => maybeLoadScript("vega-lite", "5.20.1"))
