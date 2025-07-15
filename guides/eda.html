@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="spacebar to go to the next slide, esc/menu to navigate">
+
+<title>13&nbsp; Exploratory Data Analysis – CIS241 Intro to Data Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="../guides/hypothesis.html" rel="next">
+<link href="../guides/altair.html" rel="prev">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-2d053c8a602df91ec61aa3379e601c1a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">CIS241 Intro to Data Science</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Course Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../assignments.html"> 
+<span class="menu-text">Assignments</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../policies.html"> 
+<span class="menu-text">Course Policies</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../groundrules.html"> 
+<span class="menu-text">Ground Rules</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://jupyterhub.ciswashjeff.net/"> 
+<span class="menu-text">JupyterHub</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/jupyterhub.html">Guides</a></li><li class="breadcrumb-item"><a href="../guides/eda.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/startrek.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Homepage</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Information</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Course Schedule</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../policies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Course Policies</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../groundrules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ground Rules</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../assignments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/documentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Documentation Assignment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/project-planning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Project Planning Document</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/presentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Presentation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/final-report.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Final Written Report</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Guides</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/jupyterhub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Setting Up JupyterHub</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Pandas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/altair.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Altair</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/eda.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/hypothesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hypothesis Testing 1: Comparison of Means</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Hypothesis Testing 2: Correlation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Linear Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/ethics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Ethics, Bias, and Diversity in Data Science</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/logit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/clustering.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Unsupervised Learning &amp; Clustering 🪁🪁🪁</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Other Key Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../how-to-explain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">How to Explain in CIS241</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../radcat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">R.A.D. C.A.T.</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sample-final-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Work Acquistion and Gender in the Museum of Modern Art</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/jupyter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Advanced Jupyter Setup</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#look-at-the-data" id="toc-look-at-the-data" class="nav-link active" data-scroll-target="#look-at-the-data"><span class="header-section-number">14</span> <em>Look</em> at the Data</a>
+  <ul class="collapse">
+  <li><a href="#john-tukey-1962" id="toc-john-tukey-1962" class="nav-link" data-scroll-target="#john-tukey-1962"><span class="header-section-number">14.1</span> John Tukey (1962)</a></li>
+  </ul></li>
+  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics"><span class="header-section-number">15</span> Summary Statistics</a>
+  <ul class="collapse">
+  <li><a href="#summary-statistics-are-focused-on-the-location-variability-and-distribution-of-data." id="toc-summary-statistics-are-focused-on-the-location-variability-and-distribution-of-data." class="nav-link" data-scroll-target="#summary-statistics-are-focused-on-the-location-variability-and-distribution-of-data."><span class="header-section-number">15.1</span> Summary Statistics are focused on the <strong>location</strong>, <strong>variability</strong>, and <strong>distribution</strong> of data.</a></li>
+  </ul></li>
+  <li><a href="#location-what-is-the-datas-typical-value" id="toc-location-what-is-the-datas-typical-value" class="nav-link" data-scroll-target="#location-what-is-the-datas-typical-value"><span class="header-section-number">16</span> Location: What is the data’s “typical value”?</a>
+  <ul class="collapse">
+  <li><a href="#lets-imagine-a-variable-showing-the-heights-of-different-dogs." id="toc-lets-imagine-a-variable-showing-the-heights-of-different-dogs." class="nav-link" data-scroll-target="#lets-imagine-a-variable-showing-the-heights-of-different-dogs."><span class="header-section-number">16.1</span> Let’s imagine a variable showing the heights of different dogs.</a></li>
+  <li><a href="#mean-is-the-sum-of-all-values-divided-by-the-number-of-values." id="toc-mean-is-the-sum-of-all-values-divided-by-the-number-of-values." class="nav-link" data-scroll-target="#mean-is-the-sum-of-all-values-divided-by-the-number-of-values."><span class="header-section-number">16.2</span> Mean is the sum of all values divided by the number of values.</a></li>
+  <li><a href="#we-can-calculate-the-mean-easily-in-python." id="toc-we-can-calculate-the-mean-easily-in-python." class="nav-link" data-scroll-target="#we-can-calculate-the-mean-easily-in-python."><span class="header-section-number">16.3</span> We can calculate the mean easily in Python.</a></li>
+  <li><a href="#median-is-the-value-such-that-half-of-the-data-lies-above-and-below." id="toc-median-is-the-value-such-that-half-of-the-data-lies-above-and-below." class="nav-link" data-scroll-target="#median-is-the-value-such-that-half-of-the-data-lies-above-and-below."><span class="header-section-number">16.4</span> Median is the value such that half of the data lies above and below.</a></li>
+  <li><a href="#percentile-is-a-value-such-that-p-percent-of-the-data-lies-below." id="toc-percentile-is-a-value-such-that-p-percent-of-the-data-lies-below." class="nav-link" data-scroll-target="#percentile-is-a-value-such-that-p-percent-of-the-data-lies-below."><span class="header-section-number">16.5</span> Percentile is a value such that <em>P</em> percent of the data lies below.</a></li>
+  <li><a href="#the-25th-percentile-is-the-1st-quartile." id="toc-the-25th-percentile-is-the-1st-quartile." class="nav-link" data-scroll-target="#the-25th-percentile-is-the-1st-quartile."><span class="header-section-number">16.6</span> The 25th Percentile is the 1st Quartile.</a></li>
+  <li><a href="#the-75th-percentile-is-the-3rd-quartile." id="toc-the-75th-percentile-is-the-3rd-quartile." class="nav-link" data-scroll-target="#the-75th-percentile-is-the-3rd-quartile."><span class="header-section-number">16.7</span> The 75th Percentile is the 3rd Quartile.</a></li>
+  <li><a href="#the-median-is-the-2nd-quartile" id="toc-the-median-is-the-2nd-quartile" class="nav-link" data-scroll-target="#the-median-is-the-2nd-quartile"><span class="header-section-number">16.8</span> The median is the 2nd Quartile!!</a></li>
+  <li><a href="#an-outlier-is-a-data-value-thats-different-from-most-of-the-data." id="toc-an-outlier-is-a-data-value-thats-different-from-most-of-the-data." class="nav-link" data-scroll-target="#an-outlier-is-a-data-value-thats-different-from-most-of-the-data."><span class="header-section-number">16.9</span> An <strong>outlier</strong> is a data value that’s different from most of the data.</a></li>
+  <li><a href="#a-robust-variable-is-not-sensitive-to-extreme-values." id="toc-a-robust-variable-is-not-sensitive-to-extreme-values." class="nav-link" data-scroll-target="#a-robust-variable-is-not-sensitive-to-extreme-values."><span class="header-section-number">16.10</span> A <strong>robust</strong> variable is not sensitive to extreme values.</a></li>
+  </ul></li>
+  <li><a href="#variability-is-the-data-tightly-clustered-or-spread-out" id="toc-variability-is-the-data-tightly-clustered-or-spread-out" class="nav-link" data-scroll-target="#variability-is-the-data-tightly-clustered-or-spread-out"><span class="header-section-number">17</span> Variability: Is the data tightly clustered or spread out?</a>
+  <ul class="collapse">
+  <li><a href="#the-interquartile-range-is-the-difference-between-the-1st-and-3rd-quartiles." id="toc-the-interquartile-range-is-the-difference-between-the-1st-and-3rd-quartiles." class="nav-link" data-scroll-target="#the-interquartile-range-is-the-difference-between-the-1st-and-3rd-quartiles."><span class="header-section-number">17.1</span> The <strong>interquartile range</strong> is the difference between the 1st and 3rd quartiles.</a></li>
+  <li><a href="#a-deviation-is-the-difference-between-an-actual-value-and-an-estimate-of-location-like-the-mean." id="toc-a-deviation-is-the-difference-between-an-actual-value-and-an-estimate-of-location-like-the-mean." class="nav-link" data-scroll-target="#a-deviation-is-the-difference-between-an-actual-value-and-an-estimate-of-location-like-the-mean."><span class="header-section-number">17.2</span> A <strong>deviation</strong> is the difference between an actual value and an estimate of location (like the mean).</a></li>
+  <li><a href="#the-variance-is-the-sum-of-the-squared-deviations-divided-by-the-number-of-values." id="toc-the-variance-is-the-sum-of-the-squared-deviations-divided-by-the-number-of-values." class="nav-link" data-scroll-target="#the-variance-is-the-sum-of-the-squared-deviations-divided-by-the-number-of-values."><span class="header-section-number">17.3</span> The <strong>variance</strong> is the sum of the squared deviations, divided by the number of values.</a></li>
+  <li><a href="#the-standard-deviation-is-the-square-root-of-the-variance." id="toc-the-standard-deviation-is-the-square-root-of-the-variance." class="nav-link" data-scroll-target="#the-standard-deviation-is-the-square-root-of-the-variance."><span class="header-section-number">17.4</span> The <strong>standard deviation</strong> is the square root of the variance.</a></li>
+  <li><a href="#now-calculate-the-variance-and-standard-deviations-in-python." id="toc-now-calculate-the-variance-and-standard-deviations-in-python." class="nav-link" data-scroll-target="#now-calculate-the-variance-and-standard-deviations-in-python."><span class="header-section-number">17.5</span> Now calculate the variance and standard deviations in Python.</a></li>
+  <li><a href="#population-vs.-sample" id="toc-population-vs.-sample" class="nav-link" data-scroll-target="#population-vs.-sample"><span class="header-section-number">17.6</span> Population vs.&nbsp;Sample</a></li>
+  <li><a href="#population-vs.-sample-1" id="toc-population-vs.-sample-1" class="nav-link" data-scroll-target="#population-vs.-sample-1"><span class="header-section-number">17.7</span> Population vs.&nbsp;Sample</a></li>
+  <li><a href="#neither-the-mean-variance-nor-standard-deviation-are-robust.-they-are-all-very-sensitive-to-outliers" id="toc-neither-the-mean-variance-nor-standard-deviation-are-robust.-they-are-all-very-sensitive-to-outliers" class="nav-link" data-scroll-target="#neither-the-mean-variance-nor-standard-deviation-are-robust.-they-are-all-very-sensitive-to-outliers"><span class="header-section-number">17.8</span> Neither the mean, variance, nor standard deviation are <strong>robust</strong>. They are all very sensitive to outliers!</a></li>
+  </ul></li>
+  <li><a href="#distributions-how-many-of-each-value-are-there" id="toc-distributions-how-many-of-each-value-are-there" class="nav-link" data-scroll-target="#distributions-how-many-of-each-value-are-there"><span class="header-section-number">18</span> Distributions: How many of each value are there?</a>
+  <ul class="collapse">
+  <li><a href="#histograms-show-distributions-based-on-frequency-counts." id="toc-histograms-show-distributions-based-on-frequency-counts." class="nav-link" data-scroll-target="#histograms-show-distributions-based-on-frequency-counts."><span class="header-section-number">18.1</span> Histograms show distributions based on frequency counts.</a></li>
+  <li><a href="#the-normal-distribution-has-most-values-in-the-middle." id="toc-the-normal-distribution-has-most-values-in-the-middle." class="nav-link" data-scroll-target="#the-normal-distribution-has-most-values-in-the-middle."><span class="header-section-number">18.2</span> The normal distribution has most values in the middle.</a></li>
+  <li><a href="#boxplots-show-distribution-based-on-the-median." id="toc-boxplots-show-distribution-based-on-the-median." class="nav-link" data-scroll-target="#boxplots-show-distribution-based-on-the-median."><span class="header-section-number">18.3</span> Boxplots show distribution based on the median.</a></li>
+  </ul></li>
+  <li><a href="#correlation-are-two-variables-related" id="toc-correlation-are-two-variables-related" class="nav-link" data-scroll-target="#correlation-are-two-variables-related"><span class="header-section-number">19</span> Correlation: Are two variables related?</a>
+  <ul class="collapse">
+  <li><a href="#location-variability-and-distribution-are-for-one-variable-at-a-time-univariate-analysis.-correlation-is-for-two-variables-bivariate-analysis." id="toc-location-variability-and-distribution-are-for-one-variable-at-a-time-univariate-analysis.-correlation-is-for-two-variables-bivariate-analysis." class="nav-link" data-scroll-target="#location-variability-and-distribution-are-for-one-variable-at-a-time-univariate-analysis.-correlation-is-for-two-variables-bivariate-analysis."><span class="header-section-number">19.1</span> Location, Variability, and Distribution are for one variable at a time (univariate analysis). Correlation is for <em>two</em> variables (bivariate analysis).</a></li>
+  <li><a href="#scatter-plots-and-correlation-coefficients-are-used-to-determine-correlation." id="toc-scatter-plots-and-correlation-coefficients-are-used-to-determine-correlation." class="nav-link" data-scroll-target="#scatter-plots-and-correlation-coefficients-are-used-to-determine-correlation."><span class="header-section-number">19.2</span> Scatter plots and correlation coefficients are used to determine correlation.</a></li>
+  </ul></li>
+  <li><a href="#resampling-and-confidence-intervals" id="toc-resampling-and-confidence-intervals" class="nav-link" data-scroll-target="#resampling-and-confidence-intervals"><span class="header-section-number">20</span> Resampling and Confidence Intervals</a>
+  <ul class="collapse">
+  <li><a href="#resampling-is-simply-drawing-multiple-random-samples-from-observed-data." id="toc-resampling-is-simply-drawing-multiple-random-samples-from-observed-data." class="nav-link" data-scroll-target="#resampling-is-simply-drawing-multiple-random-samples-from-observed-data."><span class="header-section-number">20.1</span> Resampling is simply drawing multiple random samples from observed data.</a></li>
+  <li><a href="#first-proposed-in-the-1960s-resampling-procedures-werent-practical-until-computing-took-off-in-the-1980s." id="toc-first-proposed-in-the-1960s-resampling-procedures-werent-practical-until-computing-took-off-in-the-1980s." class="nav-link" data-scroll-target="#first-proposed-in-the-1960s-resampling-procedures-werent-practical-until-computing-took-off-in-the-1980s."><span class="header-section-number">20.2</span> First proposed in the 1960s, resampling procedures weren’t practical until computing took off in the 1980s.</a></li>
+  <li><a href="#resampling-is-an-umbrella-term.-it-can-include" id="toc-resampling-is-an-umbrella-term.-it-can-include" class="nav-link" data-scroll-target="#resampling-is-an-umbrella-term.-it-can-include"><span class="header-section-number">20.3</span> Resampling is an umbrella term. It can include:</a></li>
+  <li><a href="#you-can-resample-with-or-without-replacement." id="toc-you-can-resample-with-or-without-replacement." class="nav-link" data-scroll-target="#you-can-resample-with-or-without-replacement."><span class="header-section-number">20.4</span> You can resample with or without <em>replacement</em>.</a></li>
+  <li><a href="#using-bootstrap-sampling-we-can-estimate-a-confidence-interval-for-any-summary-statistic." id="toc-using-bootstrap-sampling-we-can-estimate-a-confidence-interval-for-any-summary-statistic." class="nav-link" data-scroll-target="#using-bootstrap-sampling-we-can-estimate-a-confidence-interval-for-any-summary-statistic."><span class="header-section-number">20.5</span> Using bootstrap sampling, we can estimate a confidence interval for any summary statistic.</a></li>
+  <li><a href="#confidence-intervals-with-pandas" id="toc-confidence-intervals-with-pandas" class="nav-link" data-scroll-target="#confidence-intervals-with-pandas"><span class="header-section-number">20.6</span> Confidence intervals with Pandas</a></li>
+  <li><a href="#confidence-intervals-with-pandas-1" id="toc-confidence-intervals-with-pandas-1" class="nav-link" data-scroll-target="#confidence-intervals-with-pandas-1"><span class="header-section-number">20.7</span> Confidence intervals with Pandas</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/jupyterhub.html">Guides</a></li><li class="breadcrumb-item"><a href="../guides/eda.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis</span></h1>
+<p class="subtitle lead">CIS 241, Dr.&nbsp;Ladd</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><code>spacebar</code> to go to the next slide, <code>esc</code>/menu to navigate </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="look-at-the-data" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> <em>Look</em> at the Data</h1>
+<section id="john-tukey-1962" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="john-tukey-1962"><span class="header-section-number">14.1</span> John Tukey (1962)</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/tukey.png" class="img-fluid figure-img"></p>
+<figcaption>John Tukey pioneered Exploratory Data Analysis starting in 1962 and again with a book in 1977.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="summary-statistics" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Summary Statistics</h1>
+<section id="summary-statistics-are-focused-on-the-location-variability-and-distribution-of-data." class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="summary-statistics-are-focused-on-the-location-variability-and-distribution-of-data."><span class="header-section-number">15.1</span> Summary Statistics are focused on the <strong>location</strong>, <strong>variability</strong>, and <strong>distribution</strong> of data.</h2>
+</section>
+</section>
+<section id="location-what-is-the-datas-typical-value" class="level1" data-number="16">
+<h1 data-number="16"><span class="header-section-number">16</span> Location: What is the data’s “typical value”?</h1>
+<section id="lets-imagine-a-variable-showing-the-heights-of-different-dogs." class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="lets-imagine-a-variable-showing-the-heights-of-different-dogs."><span class="header-section-number">16.1</span> Let’s imagine a variable showing the heights of different dogs.</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dogs1.gif" class="img-fluid figure-img"></p>
+<figcaption>The dog’s heights (in mm) are: 600, 470, 170, 430, and 300</figcaption>
+</figure>
+</div>
+</section>
+<section id="mean-is-the-sum-of-all-values-divided-by-the-number-of-values." class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="mean-is-the-sum-of-all-values-divided-by-the-number-of-values."><span class="header-section-number">16.2</span> Mean is the sum of all values divided by the number of values.</h2>
+<p>AKA “average”</p>
+<p><img src="img/dogs2.gif" class="img-fluid"></p>
+<p><span class="math inline">\(\dfrac{600+470+170+430+300}{5} = 394\)</span></p>
+</section>
+<section id="we-can-calculate-the-mean-easily-in-python." class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="we-can-calculate-the-mean-easily-in-python."><span class="header-section-number">16.3</span> We can calculate the mean easily in Python.</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Put the dog heights into a dataframe</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dogs <span class="op">=</span> pd.DataFrame({<span class="st">"height"</span>: [<span class="dv">600</span>, <span class="dv">470</span>, <span class="dv">170</span>, <span class="dv">430</span>, <span class="dv">300</span>]})</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>dogs.height.mean() <span class="co"># Calculate the mean</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="median-is-the-value-such-that-half-of-the-data-lies-above-and-below." class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="median-is-the-value-such-that-half-of-the-data-lies-above-and-below."><span class="header-section-number">16.4</span> Median is the value such that half of the data lies above and below.</h2>
+<p>AKA “50th percentile”</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dogs1.gif" class="img-fluid figure-img"></p>
+<figcaption>600, 470, 170, 430, 300</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dogs.height.median()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="percentile-is-a-value-such-that-p-percent-of-the-data-lies-below." class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="percentile-is-a-value-such-that-p-percent-of-the-data-lies-below."><span class="header-section-number">16.5</span> Percentile is a value such that <em>P</em> percent of the data lies below.</h2>
+<p>AKA “quantile”</p>
+</section>
+<section id="the-25th-percentile-is-the-1st-quartile." class="level2" data-number="16.6">
+<h2 data-number="16.6" class="anchored" data-anchor-id="the-25th-percentile-is-the-1st-quartile."><span class="header-section-number">16.6</span> The 25th Percentile is the 1st Quartile.</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dogs1.gif" class="img-fluid figure-img"></p>
+<figcaption>600, 470, 170, 430, 300</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dogs.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="the-75th-percentile-is-the-3rd-quartile." class="level2" data-number="16.7">
+<h2 data-number="16.7" class="anchored" data-anchor-id="the-75th-percentile-is-the-3rd-quartile."><span class="header-section-number">16.7</span> The 75th Percentile is the 3rd Quartile.</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dogs1.gif" class="img-fluid figure-img"></p>
+<figcaption>600, 470, 170, 430, 300</figcaption>
+</figure>
+</div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dogs.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="the-median-is-the-2nd-quartile" class="level2" data-number="16.8">
+<h2 data-number="16.8" class="anchored" data-anchor-id="the-median-is-the-2nd-quartile"><span class="header-section-number">16.8</span> The median is the 2nd Quartile!!</h2>
+</section>
+<section id="an-outlier-is-a-data-value-thats-different-from-most-of-the-data." class="level2" data-number="16.9">
+<h2 data-number="16.9" class="anchored" data-anchor-id="an-outlier-is-a-data-value-thats-different-from-most-of-the-data."><span class="header-section-number">16.9</span> An <strong>outlier</strong> is a data value that’s different from most of the data.</h2>
+<p>AKA “extreme value”</p>
+</section>
+<section id="a-robust-variable-is-not-sensitive-to-extreme-values." class="level2" data-number="16.10">
+<h2 data-number="16.10" class="anchored" data-anchor-id="a-robust-variable-is-not-sensitive-to-extreme-values."><span class="header-section-number">16.10</span> A <strong>robust</strong> variable is not sensitive to extreme values.</h2>
+</section>
+</section>
+<section id="variability-is-the-data-tightly-clustered-or-spread-out" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> Variability: Is the data tightly clustered or spread out?</h1>
+<section id="the-interquartile-range-is-the-difference-between-the-1st-and-3rd-quartiles." class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="the-interquartile-range-is-the-difference-between-the-1st-and-3rd-quartiles."><span class="header-section-number">17.1</span> The <strong>interquartile range</strong> is the difference between the 1st and 3rd quartiles.</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dogs.height.quantile(<span class="fl">.75</span>)<span class="op">-</span>dogs.height.quantile(<span class="fl">.25</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="a-deviation-is-the-difference-between-an-actual-value-and-an-estimate-of-location-like-the-mean." class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="a-deviation-is-the-difference-between-an-actual-value-and-an-estimate-of-location-like-the-mean."><span class="header-section-number">17.2</span> A <strong>deviation</strong> is the difference between an actual value and an estimate of location (like the mean).</h2>
+<p><img src="img/dogs3.gif" class="img-fluid"></p>
+</section>
+<section id="the-variance-is-the-sum-of-the-squared-deviations-divided-by-the-number-of-values." class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="the-variance-is-the-sum-of-the-squared-deviations-divided-by-the-number-of-values."><span class="header-section-number">17.3</span> The <strong>variance</strong> is the sum of the squared deviations, divided by the number of values.</h2>
+<p><img src="img/dogs3.gif" class="img-fluid"></p>
+<p><span class="math inline">\(\dfrac{206^2+76^2+(-224)^2+36^2+(-94)^2}{5} = 21,704\)</span></p>
+</section>
+<section id="the-standard-deviation-is-the-square-root-of-the-variance." class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="the-standard-deviation-is-the-square-root-of-the-variance."><span class="header-section-number">17.4</span> The <strong>standard deviation</strong> is the square root of the variance.</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/dogs4.gif" class="img-fluid figure-img"></p>
+<figcaption>It gives us a “standard” way of knowing what is normal, or what is extra large/extra small.</figcaption>
+</figure>
+</div>
+<ul>
+<li>Rottweilers <em>are</em> tall, and dachsunds <em>are</em> short—compared to the standard deviation from the mean.</li>
+<li>Outliers are often more than two standard deviations from the mean.</li>
+</ul>
+</section>
+<section id="now-calculate-the-variance-and-standard-deviations-in-python." class="level2" data-number="17.5">
+<h2 data-number="17.5" class="anchored" data-anchor-id="now-calculate-the-variance-and-standard-deviations-in-python."><span class="header-section-number">17.5</span> Now calculate the variance and standard deviations in Python.</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dogs.height.var()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>dogs.height.std()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Were these the results you expected?</p>
+</section>
+<section id="population-vs.-sample" class="level2" data-number="17.6">
+<h2 data-number="17.6" class="anchored" data-anchor-id="population-vs.-sample"><span class="header-section-number">17.6</span> Population vs.&nbsp;Sample</h2>
+<ul>
+<li>Population: the full data that exists (i.e.&nbsp;all the dogs in the world)</li>
+<li>Sample: the actual data that was collected (i.e.&nbsp;our set of 5 dogs)</li>
+</ul>
+</section>
+<section id="population-vs.-sample-1" class="level2" data-number="17.7">
+<h2 data-number="17.7" class="anchored" data-anchor-id="population-vs.-sample-1"><span class="header-section-number">17.7</span> Population vs.&nbsp;Sample</h2>
+<p>When you have “N” data values:</p>
+<ul>
+<li><p>The Entire Population: divide by N when calculating variance (like we did)</p></li>
+<li><p>A Sample: divide by N-1 when calculating variance</p></li>
+<li><p>Sample variance: <span class="math inline">\(\dfrac{108,520}{4}=27,130\)</span><br>
+</p></li>
+<li><p>Sample standard deviation: <span class="math inline">\(\sqrt{27,130}=164\)</span></p></li>
+<li><p>Think of it as a “correction” when your data is only a sample. Pandas does this by default!</p></li>
+</ul>
+</section>
+<section id="neither-the-mean-variance-nor-standard-deviation-are-robust.-they-are-all-very-sensitive-to-outliers" class="level2" data-number="17.8">
+<h2 data-number="17.8" class="anchored" data-anchor-id="neither-the-mean-variance-nor-standard-deviation-are-robust.-they-are-all-very-sensitive-to-outliers"><span class="header-section-number">17.8</span> Neither the mean, variance, nor standard deviation are <strong>robust</strong>. They are all very sensitive to outliers!</h2>
+</section>
+</section>
+<section id="distributions-how-many-of-each-value-are-there" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> Distributions: How many of each value are there?</h1>
+<section id="histograms-show-distributions-based-on-frequency-counts." class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="histograms-show-distributions-based-on-frequency-counts."><span class="header-section-number">18.1</span> Histograms show distributions based on frequency counts.</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/mpg_hwy_hist.png" class="img-fluid figure-img"></p>
+<figcaption>The histogram for miles per gallon highway in the mpg dataset.</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-normal-distribution-has-most-values-in-the-middle." class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="the-normal-distribution-has-most-values-in-the-middle."><span class="header-section-number">18.2</span> The normal distribution has most values in the middle.</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/normal.png" class="img-fluid figure-img"></p>
+<figcaption>In a normal distribution, 95% of the values lie within 2 standard deviations of the mean.</figcaption>
+</figure>
+</div>
+<p>Be careful: normal distributions are assumed for many statistical analyses!</p>
+</section>
+<section id="boxplots-show-distribution-based-on-the-median." class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="boxplots-show-distribution-based-on-the-median."><span class="header-section-number">18.3</span> Boxplots show distribution based on the median.</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/eda-boxplot.png" class="img-fluid figure-img"></p>
+<figcaption>You can see how the box plot and the histogram are similar but different.</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="correlation-are-two-variables-related" class="level1" data-number="19">
+<h1 data-number="19"><span class="header-section-number">19</span> Correlation: Are two variables related?</h1>
+<section id="location-variability-and-distribution-are-for-one-variable-at-a-time-univariate-analysis.-correlation-is-for-two-variables-bivariate-analysis." class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="location-variability-and-distribution-are-for-one-variable-at-a-time-univariate-analysis.-correlation-is-for-two-variables-bivariate-analysis."><span class="header-section-number">19.1</span> Location, Variability, and Distribution are for one variable at a time (univariate analysis). Correlation is for <em>two</em> variables (bivariate analysis).</h2>
+</section>
+<section id="scatter-plots-and-correlation-coefficients-are-used-to-determine-correlation." class="level2" data-number="19.2">
+<h2 data-number="19.2" class="anchored" data-anchor-id="scatter-plots-and-correlation-coefficients-are-used-to-determine-correlation."><span class="header-section-number">19.2</span> Scatter plots and correlation coefficients are used to determine correlation.</h2>
+<p>We’ll talk more about correlation in a couple weeks!</p>
+</section>
+</section>
+<section id="resampling-and-confidence-intervals" class="level1" data-number="20">
+<h1 data-number="20"><span class="header-section-number">20</span> Resampling and Confidence Intervals</h1>
+<section id="resampling-is-simply-drawing-multiple-random-samples-from-observed-data." class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="resampling-is-simply-drawing-multiple-random-samples-from-observed-data."><span class="header-section-number">20.1</span> Resampling is simply drawing multiple random samples from observed data.</h2>
+<p>I can grab a sample of 5 observations. Then I can “resample” 5 more. Then 5 more, and so on and so on.</p>
+</section>
+<section id="first-proposed-in-the-1960s-resampling-procedures-werent-practical-until-computing-took-off-in-the-1980s." class="level2" data-number="20.2">
+<h2 data-number="20.2" class="anchored" data-anchor-id="first-proposed-in-the-1960s-resampling-procedures-werent-practical-until-computing-took-off-in-the-1980s."><span class="header-section-number">20.2</span> First proposed in the 1960s, resampling procedures weren’t practical until computing took off in the 1980s.</h2>
+</section>
+<section id="resampling-is-an-umbrella-term.-it-can-include" class="level2" data-number="20.3">
+<h2 data-number="20.3" class="anchored" data-anchor-id="resampling-is-an-umbrella-term.-it-can-include"><span class="header-section-number">20.3</span> Resampling is an umbrella term. It can include:</h2>
+<ul>
+<li>The Bootstrap, used to assess the reliability of an estimated statistic</li>
+<li>Permutation Tests, used as an alternative to parametric hypothesis tests</li>
+</ul>
+</section>
+<section id="you-can-resample-with-or-without-replacement." class="level2" data-number="20.4">
+<h2 data-number="20.4" class="anchored" data-anchor-id="you-can-resample-with-or-without-replacement."><span class="header-section-number">20.4</span> You can resample with or without <em>replacement</em>.</h2>
+<p>Replacement means an item is returned to the sample before the next draw (i.e.&nbsp;you could wind up with the same observation multiple times).</p>
+</section>
+<section id="using-bootstrap-sampling-we-can-estimate-a-confidence-interval-for-any-summary-statistic." class="level2" data-number="20.5">
+<h2 data-number="20.5" class="anchored" data-anchor-id="using-bootstrap-sampling-we-can-estimate-a-confidence-interval-for-any-summary-statistic."><span class="header-section-number">20.5</span> Using bootstrap sampling, we can estimate a confidence interval for any summary statistic.</h2>
+<ul>
+<li>Remember: bootstrap sampling is sampling <em>with</em> replacement.</li>
+<li>The 90% confidence interval tells us where 90% of the data is likely to fall, if the data were random.</li>
+<li>Confidence intervals are used to gauge <em>uncertainty</em>.</li>
+</ul>
+</section>
+<section id="confidence-intervals-with-pandas" class="level2" data-number="20.6">
+<h2 data-number="20.6" class="anchored" data-anchor-id="confidence-intervals-with-pandas"><span class="header-section-number">20.6</span> Confidence intervals with Pandas</h2>
+<p><small>Work with a partner to calculate the confidence interval for the mean height in the <code>dogs</code> dataframe (remember to use your Pandas cheatsheet and past slideshows):</small></p><small>
+<ol type="1">
+<li>Find the number of rows in the dataframe, assign to a variable <code>n_rows</code>.</li>
+<li>Create a <code>for</code> loop through a list of 5000 numbers using <code>range(5000)</code>.
+<ol type="a">
+<li>In the loop, use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sample.html#pandas.DataFrame.sample"><code>sample()</code></a> function where <code>n=</code> your number of rows and <code>replace=True</code>.</li>
+<li>Get the <code>mean()</code> of the height column of each sample, and assign it to a variable.</li>
+<li>Use <code>append()</code> to add your sample means to an empty list.</li>
+</ol></li>
+<li>Turn the list in to a Pandas Series with <code>pd.Series(your_list)</code>.</li>
+<li>Find the 95th percentile (quantile) and the 5th percentile (quantile) and assign each to a variable.</li>
+<li><code>print()</code> your results using <a href="https://www.geeksforgeeks.org/formatted-string-literals-f-strings-python/">f-strings</a>.
+<ol type="a">
+<li>The result should read: “The mean dog height in our data is _______, with a 90% confidence interval of _____ to _____.”</li>
+</ol></li>
+</ol>
+</small><p><small></small></p>
+</section>
+<section id="confidence-intervals-with-pandas-1" class="level2" data-number="20.7">
+<h2 data-number="20.7" class="anchored" data-anchor-id="confidence-intervals-with-pandas-1"><span class="header-section-number">20.7</span> Confidence intervals with Pandas</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>n_rows <span class="op">=</span> dogs.shape[<span class="dv">0</span>] <span class="co"># First find the number of rows in the dataframe.</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co"># Then take a sample with replacement from your dataset, and</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co"># Calculate the mean each time. Do this 5000 times.</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>bootstrap_samples <span class="op">=</span> []</span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5000</span>):</span>
+<span id="cb7-7"><a href="#cb7-7"></a>    sample_mean <span class="op">=</span> dogs.sample(n<span class="op">=</span>n_rows, replace<span class="op">=</span><span class="va">True</span>).height.mean()</span>
+<span id="cb7-8"><a href="#cb7-8"></a>    bootstrap_samples.append(sample_mean)</span>
+<span id="cb7-9"><a href="#cb7-9"></a></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="co"># Put the results into a pandas Series object</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a>bootstrap_samples <span class="op">=</span> pd.Series(bootstrap_samples)</span>
+<span id="cb7-12"><a href="#cb7-12"></a></span>
+<span id="cb7-13"><a href="#cb7-13"></a><span class="co"># Calculate the 95th percentile and the 5th percentile.</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>top_percentile <span class="op">=</span> bootstrap_samples.quantile(<span class="fl">.95</span>)</span>
+<span id="cb7-15"><a href="#cb7-15"></a>bottom_percentile <span class="op">=</span> bootstrap_samples.quantile(<span class="fl">.05</span>)</span>
+<span id="cb7-16"><a href="#cb7-16"></a></span>
+<span id="cb7-17"><a href="#cb7-17"></a><span class="co"># Print the results using nice f-strings.</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a><span class="bu">print</span>(<span class="ss">f"The mean dog height in our data is </span><span class="sc">{</span>dogs<span class="sc">.</span>height<span class="sc">.</span>mean()<span class="sc">:.3f}</span><span class="ss">, with a 90% confidence interval of </span><span class="sc">{</span>bottom_percentile<span class="sc">:.3f}</span><span class="ss"> to </span><span class="sc">{</span>top_percentile<span class="sc">:.3f}</span><span class="ss">."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../guides/altair.html" class="pagination-link" aria-label="Altair">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Altair</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../guides/hypothesis.html" class="pagination-link" aria-label="Hypothesis Testing 1: Comparison of Means">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hypothesis Testing 1: Comparison of Means</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="spacebar to go to the next slide, esc/menu to navigate">
+
+<title>16&nbsp; Unsupervised Learning &amp; Clustering 🪁🪁🪁 – CIS241 Intro to Data Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="../how-to-explain.html" rel="next">
+<link href="../guides/logit.html" rel="prev">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-2d053c8a602df91ec61aa3379e601c1a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">CIS241 Intro to Data Science</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Course Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../assignments.html"> 
+<span class="menu-text">Assignments</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../policies.html"> 
+<span class="menu-text">Course Policies</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../groundrules.html"> 
+<span class="menu-text">Ground Rules</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://jupyterhub.ciswashjeff.net/"> 
+<span class="menu-text">JupyterHub</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/jupyterhub.html">Guides</a></li><li class="breadcrumb-item"><a href="../guides/clustering.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Unsupervised Learning &amp; Clustering 🪁🪁🪁</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/startrek.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Homepage</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Information</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Course Schedule</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../policies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Course Policies</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../groundrules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ground Rules</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../assignments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/documentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Documentation Assignment</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Guides</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/jupyterhub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Setting Up JupyterHub</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/whatisdata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">What Is Data?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/eda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Exploratory Data Analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data Wrangling with Python &amp; Pandas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/visualizing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Visualizing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/hypothesis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Hypothesis Testing 1: Comparison of Means</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hypothesis Testing 2: Correlation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Linear Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/ethics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Ethics, Bias, and Diversity in Data Science</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/logit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/clustering.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Unsupervised Learning &amp; Clustering 🪁🪁🪁</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Other Key Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../how-to-explain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">How to Explain in CIS241</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../radcat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">R.A.D. C.A.T.</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sample-final-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Work Acquistion and Gender in the Museum of Modern Art</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/jupyter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Advanced Jupyter Setup</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-unsupervised-learning" id="toc-what-is-unsupervised-learning" class="nav-link active" data-scroll-target="#what-is-unsupervised-learning"><span class="header-section-number">17</span> What is Unsupervised Learning?</a>
+  <ul class="collapse">
+  <li><a href="#so-far-we-have-learned-supervised-learning-techniques." id="toc-so-far-we-have-learned-supervised-learning-techniques." class="nav-link" data-scroll-target="#so-far-we-have-learned-supervised-learning-techniques."><span class="header-section-number">17.1</span> So far we have learned <em>supervised learning</em> techniques.</a></li>
+  <li><a href="#unsupervised-learning-has-no-target-variables." id="toc-unsupervised-learning-has-no-target-variables." class="nav-link" data-scroll-target="#unsupervised-learning-has-no-target-variables."><span class="header-section-number">17.2</span> Unsupervised learning has <em>no target variables</em>.</a></li>
+  <li><a href="#unsupervised-learning-can-have-different-uses." id="toc-unsupervised-learning-can-have-different-uses." class="nav-link" data-scroll-target="#unsupervised-learning-can-have-different-uses."><span class="header-section-number">17.3</span> Unsupervised learning can have different uses.</a></li>
+  <li><a href="#types-of-unsupervised-learning" id="toc-types-of-unsupervised-learning" class="nav-link" data-scroll-target="#types-of-unsupervised-learning"><span class="header-section-number">17.4</span> Types of unsupervised learning</a></li>
+  </ul></li>
+  <li><a href="#k-means-clustering" id="toc-k-means-clustering" class="nav-link" data-scroll-target="#k-means-clustering"><span class="header-section-number">18</span> K-Means Clustering</a>
+  <ul class="collapse">
+  <li><a href="#like-knn-this-method-is-based-on-distance." id="toc-like-knn-this-method-is-based-on-distance." class="nav-link" data-scroll-target="#like-knn-this-method-is-based-on-distance."><span class="header-section-number">18.1</span> Like KNN, this method is based on <em>distance</em>.</a></li>
+  <li><a href="#k-means-attempts-to-minimize-the-distance-of-each-point-to-the-centroid-mean-of-its-assigned-cluster." id="toc-k-means-attempts-to-minimize-the-distance-of-each-point-to-the-centroid-mean-of-its-assigned-cluster." class="nav-link" data-scroll-target="#k-means-attempts-to-minimize-the-distance-of-each-point-to-the-centroid-mean-of-its-assigned-cluster."><span class="header-section-number">18.2</span> K-Means attempts to minimize the distance of each point to the <em>centroid</em> (mean) of its assigned cluster.</a></li>
+  <li><a href="#k-means-is-typically-used-to-locate-natural-clusters-in-the-data." id="toc-k-means-is-typically-used-to-locate-natural-clusters-in-the-data." class="nav-link" data-scroll-target="#k-means-is-typically-used-to-locate-natural-clusters-in-the-data."><span class="header-section-number">18.3</span> K-Means is typically used to locate “natural” clusters in the data.</a></li>
+  <li><a href="#k-refers-to-the-number-of-clusterscentroids-that-the-method-will-find." id="toc-k-refers-to-the-number-of-clusterscentroids-that-the-method-will-find." class="nav-link" data-scroll-target="#k-refers-to-the-number-of-clusterscentroids-that-the-method-will-find."><span class="header-section-number">18.4</span> K refers to the number of clusters/centroids that the method will find.</a></li>
+  </ul></li>
+  <li><a href="#what-about-k" id="toc-what-about-k" class="nav-link" data-scroll-target="#what-about-k"><span class="header-section-number">19</span> What! About! K!</a>
+  <ul class="collapse">
+  <li><a href="#the-best-way-to-choose-k-is-based-on-your-knowledge-of-the-data." id="toc-the-best-way-to-choose-k-is-based-on-your-knowledge-of-the-data." class="nav-link" data-scroll-target="#the-best-way-to-choose-k-is-based-on-your-knowledge-of-the-data."><span class="header-section-number">19.1</span> The best way to choose K is based on your knowledge of the data.</a></li>
+  <li><a href="#you-might-also-have-a-procedural-reason-for-choosing-a-number." id="toc-you-might-also-have-a-procedural-reason-for-choosing-a-number." class="nav-link" data-scroll-target="#you-might-also-have-a-procedural-reason-for-choosing-a-number."><span class="header-section-number">19.2</span> You might also have a procedural reason for choosing a number.</a></li>
+  <li><a href="#if-youre-lost-when-choosing-k-you-can-try-the-elbow-method." id="toc-if-youre-lost-when-choosing-k-you-can-try-the-elbow-method." class="nav-link" data-scroll-target="#if-youre-lost-when-choosing-k-you-can-try-the-elbow-method."><span class="header-section-number">19.3</span> If you’re lost when choosing K, you can try the “elbow method.”</a></li>
+  <li><a href="#heres-what-the-elbow-method-looks-like-in-python." id="toc-heres-what-the-elbow-method-looks-like-in-python." class="nav-link" data-scroll-target="#heres-what-the-elbow-method-looks-like-in-python."><span class="header-section-number">19.4</span> Here’s what the elbow method looks like in Python.</a></li>
+  <li><a href="#an-example-of-the-elbow-method-plot-for-the-penguins-dataset." id="toc-an-example-of-the-elbow-method-plot-for-the-penguins-dataset." class="nav-link" data-scroll-target="#an-example-of-the-elbow-method-plot-for-the-penguins-dataset."><span class="header-section-number">19.5</span> An example of the elbow method plot for the penguins dataset.</a></li>
+  </ul></li>
+  <li><a href="#k-means-clustering-in-python" id="toc-k-means-clustering-in-python" class="nav-link" data-scroll-target="#k-means-clustering-in-python"><span class="header-section-number">20</span> K-Means Clustering in Python</a>
+  <ul class="collapse">
+  <li><a href="#just-like-knn-you-must-scale-your-data" id="toc-just-like-knn-you-must-scale-your-data" class="nav-link" data-scroll-target="#just-like-knn-you-must-scale-your-data"><span class="header-section-number">20.1</span> Just like KNN, you must scale your data!</a></li>
+  <li><a href="#you-dont-need-to-split-your-data." id="toc-you-dont-need-to-split-your-data." class="nav-link" data-scroll-target="#you-dont-need-to-split-your-data."><span class="header-section-number">20.2</span> You don’t need to split your data.</a></li>
+  <li><a href="#code-for-running-k-means." id="toc-code-for-running-k-means." class="nav-link" data-scroll-target="#code-for-running-k-means."><span class="header-section-number">20.3</span> Code for running K-Means.</a></li>
+  <li><a href="#as-always-pay-attention-to-the-hyperparameters." id="toc-as-always-pay-attention-to-the-hyperparameters." class="nav-link" data-scroll-target="#as-always-pay-attention-to-the-hyperparameters."><span class="header-section-number">20.4</span> As always pay attention to the hyperparameters.</a></li>
+  <li><a href="#we-can-interpret-the-clusters-in-two-ways." id="toc-we-can-interpret-the-clusters-in-two-ways." class="nav-link" data-scroll-target="#we-can-interpret-the-clusters-in-two-ways."><span class="header-section-number">20.5</span> We can interpret the clusters in two ways.</a></li>
+  <li><a href="#we-can-interpret-the-clusters-in-two-ways.-cont." id="toc-we-can-interpret-the-clusters-in-two-ways.-cont." class="nav-link" data-scroll-target="#we-can-interpret-the-clusters-in-two-ways.-cont."><span class="header-section-number">20.6</span> We can interpret the clusters in two ways. (cont.)</a></li>
+  <li><a href="#try-k-means-clustering-for-the-penguins-dataset." id="toc-try-k-means-clustering-for-the-penguins-dataset." class="nav-link" data-scroll-target="#try-k-means-clustering-for-the-penguins-dataset."><span class="header-section-number">20.7</span> Try K-Means Clustering for the <code>penguins</code> dataset.</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/jupyterhub.html">Guides</a></li><li class="breadcrumb-item"><a href="../guides/clustering.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Unsupervised Learning &amp; Clustering 🪁🪁🪁</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Unsupervised Learning &amp; Clustering 🪁🪁🪁</span></h1>
+<p class="subtitle lead">CIS 241, Dr.&nbsp;Ladd</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p><code>spacebar</code> to go to the next slide, <code>esc</code>/menu to navigate </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="what-is-unsupervised-learning" class="level1" data-number="17">
+<h1 data-number="17"><span class="header-section-number">17</span> What is Unsupervised Learning?</h1>
+<section id="so-far-we-have-learned-supervised-learning-techniques." class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="so-far-we-have-learned-supervised-learning-techniques."><span class="header-section-number">17.1</span> So far we have learned <em>supervised learning</em> techniques.</h2>
+<p>Predicting a known target from a set of predictor variables.</p>
+<p>e.g.&nbsp;Logistic Regression, Naive Bayes, KNN, Random Forest, etc.</p>
+</section>
+<section id="unsupervised-learning-has-no-target-variables." class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="unsupervised-learning-has-no-target-variables."><span class="header-section-number">17.2</span> Unsupervised learning has <em>no target variables</em>.</h2>
+<p>It constructs a model of the data without learning from existing labels.</p>
+</section>
+<section id="unsupervised-learning-can-have-different-uses." class="level2" data-number="17.3">
+<h2 data-number="17.3" class="anchored" data-anchor-id="unsupervised-learning-can-have-different-uses."><span class="header-section-number">17.3</span> Unsupervised learning can have different uses.</h2>
+<ul>
+<li>Dimension reduction: get a more manageable set of variables.</li>
+<li>Clustering: identify meaningful categories in the data.</li>
+<li>Exploration: analyze variables and discover relationships.</li>
+</ul>
+</section>
+<section id="types-of-unsupervised-learning" class="level2" data-number="17.4">
+<h2 data-number="17.4" class="anchored" data-anchor-id="types-of-unsupervised-learning"><span class="header-section-number">17.4</span> Types of unsupervised learning</h2>
+<ul>
+<li>Principal component analysis (PCA): dimension reduction</li>
+<li>Correspondence analysis: dimension reduction</li>
+<li><strong>K-Means Clustering: clustering and exploration</strong></li>
+<li>Hierarchical Clustering: clustering and exploration</li>
+</ul>
+</section>
+</section>
+<section id="k-means-clustering" class="level1" data-number="18">
+<h1 data-number="18"><span class="header-section-number">18</span> K-Means Clustering</h1>
+<section id="like-knn-this-method-is-based-on-distance." class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="like-knn-this-method-is-based-on-distance."><span class="header-section-number">18.1</span> Like KNN, this method is based on <em>distance</em>.</h2>
+</section>
+<section id="k-means-attempts-to-minimize-the-distance-of-each-point-to-the-centroid-mean-of-its-assigned-cluster." class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="k-means-attempts-to-minimize-the-distance-of-each-point-to-the-centroid-mean-of-its-assigned-cluster."><span class="header-section-number">18.2</span> K-Means attempts to minimize the distance of each point to the <em>centroid</em> (mean) of its assigned cluster.</h2>
+<hr>
+<p><img src="img/kmeans.png" class="img-fluid" style="width:70.0%"></p>
+<p><a href="https://www.naftaliharris.com/blog/visualizing-k-means-clustering/">Visualizing K-Means Clustering</a></p>
+</section>
+<section id="k-means-is-typically-used-to-locate-natural-clusters-in-the-data." class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="k-means-is-typically-used-to-locate-natural-clusters-in-the-data."><span class="header-section-number">18.3</span> K-Means is typically used to locate “natural” clusters in the data.</h2>
+<p>It can’t find clusters that aren’t there!</p>
+</section>
+<section id="k-refers-to-the-number-of-clusterscentroids-that-the-method-will-find." class="level2" data-number="18.4">
+<h2 data-number="18.4" class="anchored" data-anchor-id="k-refers-to-the-number-of-clusterscentroids-that-the-method-will-find."><span class="header-section-number">18.4</span> K refers to the number of clusters/centroids that the method will find.</h2>
+<p>Just like in KNN, you have to choose K <em>based on the data</em>! (More on this later.)</p>
+</section>
+</section>
+<section id="what-about-k" class="level1" data-number="19">
+<h1 data-number="19"><span class="header-section-number">19</span> What! About! K!</h1>
+<section id="the-best-way-to-choose-k-is-based-on-your-knowledge-of-the-data." class="level2" data-number="19.1">
+<h2 data-number="19.1" class="anchored" data-anchor-id="the-best-way-to-choose-k-is-based-on-your-knowledge-of-the-data."><span class="header-section-number">19.1</span> The best way to choose K is based on your knowledge of the data.</h2>
+<p>You can review the documentation and use every exploratory tool in the book to get a sense of how many clusters there might be in the data.</p>
+</section>
+<section id="you-might-also-have-a-procedural-reason-for-choosing-a-number." class="level2" data-number="19.2">
+<h2 data-number="19.2" class="anchored" data-anchor-id="you-might-also-have-a-procedural-reason-for-choosing-a-number."><span class="header-section-number">19.2</span> You might also have a procedural reason for choosing a number.</h2>
+<p>Maybe your company needs to split customers into exactly 4 categories, for instance.</p>
+</section>
+<section id="if-youre-lost-when-choosing-k-you-can-try-the-elbow-method." class="level2" data-number="19.3">
+<h2 data-number="19.3" class="anchored" data-anchor-id="if-youre-lost-when-choosing-k-you-can-try-the-elbow-method."><span class="header-section-number">19.3</span> If you’re lost when choosing K, you can try the “elbow method.”</h2>
+<ol type="1">
+<li>Run K-Means multiple times, with a different value for K each time.</li>
+<li>Look at how close the values are to their centroid. (This is called inertia.)</li>
+<li>Create a graph to see at what value for K this inertia measure begins to settle.</li>
+</ol>
+</section>
+<section id="heres-what-the-elbow-method-looks-like-in-python." class="level2" data-number="19.4">
+<h2 data-number="19.4" class="anchored" data-anchor-id="heres-what-the-elbow-method-looks-like-in-python."><span class="header-section-number">19.4</span> Here’s what the elbow method looks like in Python.</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Steps 1 &amp; 2: Run K-means with different K and get inertia</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>inertia <span class="op">=</span> []</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n_clusters <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">14</span>):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span>n_clusters, n_init<span class="op">=</span><span class="st">'auto'</span>, random_state<span class="op">=</span><span class="dv">0</span>).fit(X_std)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    inertia.append(kmeans.inertia_ <span class="op">/</span> n_clusters)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Put into a dataframe and create a line plot</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>inertia <span class="op">=</span> pd.DataFrame({<span class="st">'n_clusters'</span>: <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">14</span>), <span class="st">'inertia'</span>: inertia})</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Make your line plot here!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="an-example-of-the-elbow-method-plot-for-the-penguins-dataset." class="level2" data-number="19.5">
+<h2 data-number="19.5" class="anchored" data-anchor-id="an-example-of-the-elbow-method-plot-for-the-penguins-dataset."><span class="header-section-number">19.5</span> An example of the elbow method plot for the penguins dataset.</h2>
+<p><img src="img/elbow.png" class="img-fluid"></p>
+<p>See how the “elbow” bends around 3 or 4 clusters? 💪</p>
+</section>
+</section>
+<section id="k-means-clustering-in-python" class="level1" data-number="20">
+<h1 data-number="20"><span class="header-section-number">20</span> K-Means Clustering in Python</h1>
+<section id="just-like-knn-you-must-scale-your-data" class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="just-like-knn-you-must-scale-your-data"><span class="header-section-number">20.1</span> Just like KNN, you must scale your data!</h2>
+<p>For a dataset of all quantitative variables, use <code>StandardScaler()</code> as usual.</p>
+<p>It is best to stick with numerical variables for clustering, but if you must use categorical variables, remember to use one-hot encoding before scaling. A <code>MinMaxScaler()</code> may also be useful in this case.</p>
+</section>
+<section id="you-dont-need-to-split-your-data." class="level2" data-number="20.2">
+<h2 data-number="20.2" class="anchored" data-anchor-id="you-dont-need-to-split-your-data."><span class="header-section-number">20.2</span> You don’t need to split your data.</h2>
+<p>Because this is an unsupervised method, there’s no need to reserve a test set. There would be nothing to test on!</p>
+</section>
+<section id="code-for-running-k-means." class="level2" data-number="20.3">
+<h2 data-number="20.3" class="anchored" data-anchor-id="code-for-running-k-means."><span class="header-section-number">20.3</span> Code for running K-Means.</h2>
+<p>This isn’t the whole workflow, it’s just the model code.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters<span class="op">=</span><span class="dv">3</span>, n_init<span class="op">=</span><span class="st">'auto'</span>, max_iter<span class="op">=</span><span class="dv">300</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>kmeans.fit(X_std)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Before running this, you should try the elbow method to determine a good K value!</p>
+</section>
+<section id="as-always-pay-attention-to-the-hyperparameters." class="level2" data-number="20.4">
+<h2 data-number="20.4" class="anchored" data-anchor-id="as-always-pay-attention-to-the-hyperparameters."><span class="header-section-number">20.4</span> As always pay attention to the hyperparameters.</h2>
+<ul>
+<li><code>n_clusters</code>: the number of clusters the model will produce. This is “K”!</li>
+<li><code>n_init</code>: the total number of times the model will be run.</li>
+<li><code>max_iter</code>: the number of iterations the model will take to find centroids.</li>
+<li><code>random_state</code>: keeps the model the same every time.</li>
+</ul>
+</section>
+<section id="we-can-interpret-the-clusters-in-two-ways." class="level2" data-number="20.5">
+<h2 data-number="20.5" class="anchored" data-anchor-id="we-can-interpret-the-clusters-in-two-ways."><span class="header-section-number">20.5</span> We can interpret the clusters in two ways.</h2>
+<p>First, we can look at the relative size of the clusters. Are they relatively balanced? Unbalanced clusters may mean we need to try again.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the .labels_ attribute of our model</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pd.Series(kmeans.labels_).value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="we-can-interpret-the-clusters-in-two-ways.-cont." class="level2" data-number="20.6">
+<h2 data-number="20.6" class="anchored" data-anchor-id="we-can-interpret-the-clusters-in-two-ways.-cont."><span class="header-section-number">20.6</span> We can interpret the clusters in two ways. (cont.)</h2>
+<p>Next, we can look at the cluster means for each cluster. This tells us where the centroid is and gives us a sense of how the different variables interact.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using the .cluster_centers_ attribute of our model</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the centers into a dataframe:</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>centers <span class="op">=</span> pd.DataFrame(kmeans.cluster_centers_, columns<span class="op">=</span>predictors)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidy our dataset with .melt() (the opposite of pivot):</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>centers <span class="op">=</span> centers.melt(ignore_index<span class="op">=</span><span class="va">False</span>).reset_index()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create bar plots to compare the centers</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="try-k-means-clustering-for-the-penguins-dataset." class="level2" data-number="20.7">
+<h2 data-number="20.7" class="anchored" data-anchor-id="try-k-means-clustering-for-the-penguins-dataset."><span class="header-section-number">20.7</span> Try K-Means Clustering for the <code>penguins</code> dataset.</h2>
+<ol type="1">
+<li>Select features and prepare data. Consider standardizations as well as null values.</li>
+<li>Use the elbow method to determine a good value for K.</li>
+<li>Run K-Means clustering. Be thoughtful about the hyperparameters, especially K (<code>n_clusters</code>)!</li>
+<li>Assess your model using the cluster sizes and a bar plot of the cluster means.</li>
+</ol>
+<p>Good luck! 🐧🐧🐧</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../guides/logit.html" class="pagination-link" aria-label="Logistic Regression">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Logistic Regression</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../how-to-explain.html" class="pagination-link" aria-label="How to Explain in CIS241">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">How to Explain in CIS241</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
