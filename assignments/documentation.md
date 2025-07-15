@@ -1,17 +1,19 @@
 ---
 title:  "Documentation Assignment"
-date:   2025-01-30
+date:   2025-09-11
 show_date: false
 ---
-**Complete by: Thursday 30 Jan. at class time**
+**Complete by: Thursday 11 Sept. at class time**
 
-The goal of this assignment is to get you more familiar with finding, understanding, and documenting a data set. You'll find a dataset online and create documentation and metadata for it, using the guidelines below.
+The goal of this assignment is to get you more familiar with finding, understanding, and documenting a data set. You'll find three datasets online and create documentation and metadata for one of them, using the guidelines below.
 
-## Finding a Dataset
+## Choosing Datasets
 
-You can choose whatever data set you want so long as it comes from a reputable source (see the links below) and it's large enough for you to write about. This should be a *rectangular dataset* with rows and columns, ideally available as a CSV or spreadsheet file. Try to find a data set that has a mix of numerical and categorical variables. **You will turn in the original data file along with your documentation.**
+You can choose whatever datasets you want so long as they come from reputable sources (see the links below) and they're large enough for you to write about. These should be *rectangular datasets* with rows and columns, ideally available as CSV or spreadsheet files. Try to find datasets that have a mix of numerical and categorical variables. **You will turn in the three original data files along with your documentation.**
 
-You can choose data from whatever topic you like. Remember that there are data sets out there from almost every area of study that you can imagine! Here are some ideas to get you started:
+You can choose data from whatever topics you like. **For this project, you'll find three datasets, each from a different domain or subject.** For example, this means that if your first dataset is about baseball, the other two should not be sports datasets.
+
+Remember that there are data sets out there from almost every area of study that you can imagine! Here are some ideas to get you started:
 
 * **Anthropology and Sociology**
 * **Biology**
@@ -23,25 +25,33 @@ You can choose data from whatever topic you like. Remember that there are data s
 * **Sports Analytics**
 * **Arts & Humanities**
 
-Don't just settle for the very first dataset you find: look around a bit for interesting or unexpected ones!
+Don't just settle for the very first datasets you find: look around a bit for interesting or unexpected ones!
 
 Later in the semester, you'll choose a dataset to work on for your final project. This assignment is unrelated, so you can decide to stick with this dataset later on or choose something completely new: it's entirely up to you.
 
-**Mostly, choose something that you are curious about and will allow you to demonstrate the listed concepts for the assignment. *Have some fun with it!***
+**Mostly, choose data that you are curious about and will allow you to demonstrate the listed concepts for the assignment. *Have some fun with it!***
 
 ### Where can I find datasets?
 
-The Data page of the [CIS LibGuide](https://libguides.washjeff.edu/cis/data) has an extensive list of data resources, including general sites as well as repositories broken down by topic.
+The Data Resources and Repositories page of the [DS LibGuide](https://libguides.washjeff.edu/c.php?g=1446593&p=10950215) has an extensive list of data resources, including general sites as well as repositories broken down by topic.
 
 **You *may not* choose any datasets from Kaggle or Data.world. These are general repositories that often make it more difficult to find the original collectors or purpose of the data.**
 
 ## Writing Your Documentation
 
-Below is a suggested format to use to make sure the useful information is communicated to a reader or potential data user (you too!) needed to interpret and understand it. As you edit, remove any instructional or template text and replace with your own. If you have questions particular to your dataset or another idea for how to present the codebook and documentation, please discuss in advance with me.
+You will find three datasets and list them (with links) at the top of the document, and then you'll choose *just one* for which you'll complete full documentation.
+
+Below is a suggested format to use to make sure the useful information is communicated to a reader or potential data user (you too!) needed to interpret and understand it. As you edit, remove any instructional or template text and replace with your own. If you have questions particular to your dataset or another idea for how to present the data dictionary and documentation, please discuss in advance with me.
 
 ---
 
-**Dataset Name**
+1. **Name of Dataset 1**: Name of collectors, and link to data source
+
+2. **Name of Dataset 2**: Name of collectors, and link to data source
+
+3. The dataset you chose to fully document:
+
+**Dataset 3 Name**
 
 **Data source:** Name of data provider, website, and link
 
@@ -76,12 +86,10 @@ For **Variable Codes and Ranges**, If you don’t need to specify acceptable val
 
 Write a paragraph explaining the wrangling steps you will need to take in order to ensure that this data is **in tidy form and ready for analysis**.
 
-This may include: selecting a subset of the data, creating new columns, renaming existing columns, sorting data, grouping and summarizing, or even splitting columns and pivoting the table. Be sure to ask me if you have questions about what wrangling steps should be taken! You may find it easiest to attempt these wrangling steps yourself, but you do not need to submit the code for this assignment. **Be specific about exactly what columns, rows, and values you should change and why.**
+This may include: selecting a subset of the data, creating new columns, renaming existing columns, sorting data, grouping and summarizing, or even splitting columns and pivoting the table. Be sure to ask me if you have questions about what wrangling steps should be taken! You may find it easiest to attempt these wrangling steps yourself, but *you do not need to submit the code for this assignment*. **Be specific about exactly what columns, rows, and values you should change and why.**
 
----
-
-**Requirements**:
+## Requirements
 
 - Turn in your documentation (as a PDF) via Sakai
 - Format the documentation according to the template above
-- Also turn in the original data file that you found online (ideally a CSV)
+- Also turn in *all 3* original data files that you found online (ideally in CSV format)

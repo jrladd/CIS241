@@ -1,28 +1,40 @@
 ---
 title: Course Schedule 
 toc: false
+format:
+  html:
+    page-layout: full
 ---
 
-Date|Topics & Slides|Workshops|Assignments
---|---|---|---
-14 & 16 Jan.|[What Is Data?](slides/whatisdata.md) & Responsible Data Collection|[Jupyter](jupyterhub.md)|
-21 & 23 Jan.|[Python & Data Wrangling](slides/wrangling.md)|[Movies](resources/01_movies1.ipynb)|
-28 & 30 Jan.|[Exploratory Data Analysis](slides/eda.md) & [Visualization](slides/visualizing.qmd)|[Movies](resources/01_movies2.ipynb)|**[Documentation Assignment](assignments/documentation.md) Due 30 Jan.**
-4 & 6 Feb.|[Hypothesis Testing: Comparison of Means](slides/hypothesis.qmd)|[Sports](resources/02_baseball1.ipynb)|
-11 & 13 Feb.|[Hypothesis Testing: Correlation](slides/correlation.qmd)|[Sports](resources/02_baseball2.ipynb)|
-18 & 20 Feb.|[Linear Regression](slides/regression.qmd)|[Business](resources/03_airbnb1.ipynb)|**Take-Home Test I** Due 20 Feb.
-25 & 27 Feb.|[Logistic Regression](slides/logit.qmd)|[Business](resources/03_airbnb2.ipynb)|
-4 & 6 Mar.|[K-Nearest Neighbors](slides/knn.qmd)|[Health](resources/05_health1.ipynb)|**[Tutorial Assignment](assignments/tutorial.md) Due 6 Mar.**
-11 & 13 Mar.|SPRING BREAK
-18 & 20 Mar.|[Naive Bayes Classifier](slides/naivebayes.md)||
-25 & 27 Mar.|[Decision Trees and the Random Forest](slides/randomforest.qmd)|[Health](resources/05_health2.ipynb)|**Take-Home Test II** Due 25 Mar.
-1 & 3 Apr.|[Clustering and Unsupervised Approaches](/slides/clustering.qmd)|[Literature](resources/06_lit1.ipynb)|**[Project Proposal](assignments/project-proposal.md) Due 3 Apr.**
-8 & 10 Apr.|[Neural Networks](slides/neuralnetworks.md)|[Literature](resources/06_lit2.ipynb)
-15 & 17 Apr.|[Ethical Data Science](slides/ethics.qmd) & Project Discussion||**[Progress Report](assignments/progress-report.md) Due 15 Apr.**
-22 & 24 Apr.|[Sample Final Project](sample-final-project.ipynb) & Project Discussion||**[Video Presentations](assignments/presentation.md) Due 24 Apr.**
-1 May 2-5pm|Panel Presentations||**[Final Project](assignments/final-report.md) Due 1 May at 2pm**
+Date|Topics & Slides|Workshops|Assignments|Supplemental Reading
+--|---|---|---|---
+26 & 28 Aug.|What Is Data? & Responsible Data Collection|[Jupyter](guides/jupyterhub.md)||Bruce Ch. 1 (Sakai)
+2 & 4 Sept.|[Python & Data Wrangling](slides/wrangling.html)|HW||McKinney, Ch. [3](https://wesmckinney.com/book/python-builtin), [5](https://wesmckinney.com/book/pandas-basics), and [8](https://wesmckinney.com/book/data-wrangling); Downey Ch. [7](https://allendowney.github.io/ElementsOfDataScience/07_dataframes.html)
+9 & 11 Sept.|Exploratory Data Analysis & Data Types|<a href="resources/01_movies1.ipynb" download>Movies 1</a>|**[Documentation Assignment](assignments/documentation.md) Due 11 Sept.**|Downey Ch. [2](https://allendowney.github.io/ElementsOfDataScience/02_times.html); McKinney Ch. [11](https://wesmckinney.com/book/time-series)
+16 & 18 Sept.|Visualization|<a href="resources/01_movies2.ipynb" download>Movies 2</a>||UW Ch. [1, 2, 3, & 6](https://idl.uw.edu/visualization-curriculum/intro.html)
+23 & 25 Sept.|Hypothesis Testing: Comparison of Means|<a href="resources/02_baseball1.ipynb" download>Sports 1</a>|(Begin Test 1)|Downey Ch. [11](https://allendowney.github.io/ElementsOfDataScience/11_resampling.html) and [13](https://allendowney.github.io/ElementsOfDataScience/13_hypothesis.html)
+30 Sept. & 2 Oct.|NO CLASS TUESDAY; Hypothesis Testing: Correlation|<a href="resources/02_baseball2.ipynb" download>Sports 2</a>|**Test 1** 2 Oct.|Downey Ch. [9](https://allendowney.github.io/ElementsOfDataScience/09_relationships.html)
+7 & 9 Oct.|Supervised Learning: Regression|<a href="resources/03_airbnb1.ipynb" download>Business 1</a>||Downey Ch. [10](https://allendowney.github.io/ElementsOfDataScience/10_regression.html); McKinney Ch. [12.4](https://wesmckinney.com/book/modeling#modeling-scikit-learn)
+14 & 16 Oct.|Supervised Learning: Regression|<a href="resources/03_airbnb2.ipynb" download>Business 2</a>|
+23 Oct.|NO CLASS TUESDAY (FALL BREAK); Ethical Data Science|HW|
+28 & 30 Oct.|Supervised Learning: Classification|<a href="resources/05_health1.ipynb" download>Health 1</a>|**[Project Planning Assignment](assignments/project-planning.md) Due 30 Oct.**
+4 & 6 Nov.|Supervised learning: Classification|<a href="resources/05_health2.ipynb" download>Health 2</a>|(Begin Test 2)
+11 & 13 Nov.|Unsupervised Learning: Clustering|<a href="resources/06_lit1.ipynb" download>Literature 1</a>|**Test 2** 13 Nov.
+18 & 20 Nov.|Unsupervised Learning: Dimension Reduction|<a href="resources/06_lit2.ipynb" download>Literature 2</a>
+25 Nov.|Work on Final Projects; NO CLASS THURSDAY (THANKSGIVING)||**[Video Presentations](assignments/presentation.md) Due 25 Nov.**
+2 & 4 Dec.|Discuss Projects & Videos, [Sample Final Project](sample-final-project.ipynb)||
+Saturday 13 Dec. 2-5pm|Panel Discussions||**[Final Project](assignments/final-report.md) Due 13 Dec. at 2pm**
 
 : {.striped .hover}
+
+## Textbooks:
+
+There are no required textbooks for this course. All textbooks are free online or made available to you on Sakai.
+
+- McKinney, *[Python for Data Analysis](https://wesmckinney.com/book/)*
+- UW, *[Visualization Curriculum for Altair](https://idl.uw.edu/visualization-curriculum/intro.html)*
+- Downey, *[Elements of Data Science](https://allendowney.github.io/ElementsOfDataScience/)*
+- Bruce, Bruce, and Gedeck, *Practical Statistics for Data Scientists* 2nd ed.
 
 ### Note on the schedule
 

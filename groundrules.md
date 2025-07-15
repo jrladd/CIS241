@@ -5,7 +5,7 @@ subtitle: for Learning Tech Together
 
 *These rules are taken almost verbatim from Miriam Posner, and her original version can be found [in this tweet](https://twitter.com/miriamkp/status/1349095892700205057).*
 
-**THIS IS NOT A CONTEST.** The only way to win is for everyone to win. If anyone has a question in the chat or on the discussion board, don't hesitate to help.
+**THIS IS NOT A CONTEST.** The only way to win is for everyone to win. If anyone has a question during class or outside of it, don't hesitate to help (while upholding with the Academic Honesty policy).
 
 **YOU ARE NOT BAD AT TECHNOLOGY.** That doesn't even make sense, because technology is not any one thing; it's a whole bunch of different skills, and it's really unlikely that you're bad at all of them.
 

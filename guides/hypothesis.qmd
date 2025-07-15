@@ -1,0 +1,344 @@
+---
+title: "Hypothesis Testing 1: Comparison of Means"
+subtitle: "CIS 241, Dr. Ladd"
+author: "`spacebar` to go to the next slide, `esc`/menu to navigate"
+format:
+  revealjs:
+    theme: serif
+    controls: true
+    slide-level: 2
+    transition: slide
+    incremental: true
+    center: true
+    navigation-mode: vertical
+    embed-resources: true
+---
+
+# Why Do We Need a Hypothesis?
+
+## Sample & Population
+
+- A **sample** is the data we actually have, some subset of all possible data.
+- The **population** is the full data, the entire thing. (It's usually impossible to collect it all.)
+
+## Hypothesis tests help us to know if the *observed statistic* in the sample is the result of random chance.
+
+Hypothesis tests protect researchers from being fooled by random chance!
+
+## Hypothesis tests can be used to test many different statistics and relationships in your data.
+
+- **Means**: is the average you calculated in the sample representative of the full population?
+- **Correlation**: is the relationship between two variables in the sample the same in the full population?
+- You can use virtually any *test statistic* that you want, if you set up your test correctly.
+- Today we're working on **means**, and next week we'll work on **correlation**.
+
+## Let's consider an example for comparison of means:
+
+1. You have two species of penguin, and you want to know which species has "deeper" (i.e. taller) bills.
+2. You get a sample of penguins from both species, and you calculate the mean "bill depth" for each. Now you know what the *difference in means* is, and which penguins have deeper bills in your sample.
+
+## Looking at the sample distribution in means, the *observed difference*:
+
+:::: {.columns}
+
+::: {.column width="40%"}
+```{python}
+import pandas as pd
+import numpy as np
+import altair as alt
+
+penguins = pd.read_csv('../data/penguins.csv')
+penguins = penguins[penguins.species != 'Gentoo']
+
+alt.Chart(penguins,title="Comparing Penguins' Bill Depth by Species").mark_boxplot(size=20).encode(
+    x=alt.X('species:N').title("Species of Penguin"),
+    y=alt.Y('bill_depth_mm:Q').title("Bill Depth (mm)").scale(zero=False),
+    color=alt.Color('species:N').legend(None)
+).properties(width=200)
+```
+:::
+
+::: {.column width="60%"}
+The mean depth of Chinstrap penguin bills is 18.42mm, and the mean depth of Adelie penguin bills is 18.35mm. The observed difference in means is 0.074mm. Does that mean Chinstrap penguins *really* have taller bills?
+:::
+
+::::
+
+## Example (cont.)
+
+3. But you're not sure whether this is true in the population, so you want to compare your difference in means to a *random model* that makes assumptions about what bill depth should look like.
+4. If your *observed difference of means* from the sample is *significantly different* from the random model's means, then you know your initial result holds up, and you have a better idea of what the population will look like.
+
+## Comparing the observed difference to a *random model*:
+:::: {.columns}
+
+::: {.column width="50%"}
+```{python}
+# Get two groups
+chinstrap_bill_depth = penguins[penguins.species == "Chinstrap"].bill_depth_mm
+adelie_bill_depth = penguins[penguins.species == "Adelie"].bill_depth_mm
+
+# Calculate the difference in means
+mean_diff = chinstrap_bill_depth.mean() - adelie_bill_depth.mean()
+
+def simulate_two_groups(data1, data2):
+    n = len(data1) #Get length of first group
+    data = pd.concat([data1, data2]) #Get all data
+    data = data.sample(frac=1) #Reshuffle all data
+    group1 = data.iloc[:n] #Get random first group
+    group2 = data.iloc[n:] #Get random second group
+    return group1.mean() - group2.mean() #Calculate mean difference
+
+# This is similar to how we
+# calculated confidence intervals
+mean_perms = ([simulate_two_groups(chinstrap_bill_depth, adelie_bill_depth)
+               for i in range(5000)])
+mean_perms = pd.DataFrame({'mean_perms':mean_perms})
+
+alt.data_transformers.disable_max_rows() # Don't limit the data
+# Create a histogram
+histogram = alt.Chart(mean_perms).mark_bar().encode(
+    x=alt.X("mean_perms:Q").bin(maxbins=20),
+    y=alt.Y("count():Q")
+)
+mean_perms = mean_perms.assign(mean_diff=mean_diff) # Add the mean to the dataframe
+# Add a vertical line
+observed_difference = alt.Chart(mean_perms).mark_rule(color="red", strokeDash=(8,4)).encode(
+    x=alt.X("mean_diff")
+)
+# Combine the two plots
+histogram + observed_difference
+```
+:::
+
+::: {.column width="50%"}
+If we assume there's no difference between the two species' bills in our *random model*, then we can see that our observed difference is not far from the assumed mean of 0. In this case, more than 30% of our data could be "more extreme" than this result!
+:::
+
+::::
+
+
+# Step 1: Creating a Null and Alternative Hypotheses
+
+## The **Null Hypothesis** is a baseline assumption that the result is due to chance.
+
+## The Null Hypothesis often assumes *equality*.
+
+In a comparison of means test, the null hypothesis would assume that the means of Adelie and Chinstrap bill depth are *equal*, that there is no difference between them, and that any observed difference we see is the result of randomness.
+
+## In a hypothesis test, we try to prove the null hypothesis *wrong*.
+
+We attempt to disprove the null hypothesis by showing that the observed data **isn't** the result of randomness. This is a **reductio ad absurdum**.
+
+## The **Alternative Hypothesis** accounts for all possibilities that *aren't* the Null Hypothesis.
+
+If there's a null hypothesis, there has to be an alternative hypothesis.
+
+If the null hypothesis is that A and B are equal, then the alternative hypothesis would be that A and B are *not* equal (either smaller or bigger).
+
+## The Alternative Hypothesis can be One- or Two-Tailed.
+
+- One-tailed: We only care about a non-equal result in one direction, i.e. if A > B but **not** if A < B.
+
+- Two-tailed: We care about differences in both directions, i.e. A != B but could be larger or smaller.
+
+Different research questions lead to different alternative hypotheses.
+
+# Let's consider some examples
+
+## What are the Null and Alternative Hypotheses?
+
+1. Is the median house price in Pittsburgh larger than the median price in Washington?
+
+2. Is the mean number of mountain lions per 100 km^2 equal in North and South America?
+
+3. NHANES reports the average starting age of smoking is 19. Is this correct, or is the true mean lower than this?
+
+4. Is the bill depth of Chinstrap penguins greater than the bill depth of Adelie penguins?
+
+# Step 2: Create a random model using permutation.
+
+## In data science, we often do create our models using *resampling*.
+
+- In traditional statistics, you would do this with a parametric significance test, like a T-test.
+- The permutation approach for hypothesis testing is like the bootstrap sampling we did last week, but now we'll resample *without replacement*.
+
+## *Permute* means to change the order of a set of values.
+
+In a permutation test, you rearrange groups randomly to determine a permutation distribution.
+
+## A permutation distribution embodies the *null hypothesis*.
+
+It shows you what the distribution would look like if the difference between the groups was the result of random variation.
+
+## The steps of a permutation test:
+
+1. Randomly resample (without replacement) a group the same size at the first group.
+2. From the remaining data, randomly resample (without replacement) a group the same size as the second group.
+3. Calculate the difference in means between the two resamples. This is one permutation.
+4. Repeat these steps as many times as you want to create a permutation distribution.
+5. Compare the observed difference in the real groups to the permutation distribution.
+
+## You can use the permutation distribution to calculate a p-value.
+
+# Step 2 (cont.): Permutation Tests in Python
+
+## Let's look at the `penguins` dataset.
+
+```python
+import pandas as pd
+import numpy as np
+import altair as alt
+
+penguins = pd.read_csv('https://jrladd.com/CIS241/data/penguins.csv')
+penguins
+
+alt.Chart(penguins,title="Comparing Penguins' Bill Depth by Species").mark_boxplot().encode(
+    x=alt.X('species:N').title("Species of Penguin"),
+    y=alt.Y('bill_depth_mm:Q').title("Bill Depth (mm)").scale(zero=False),
+    color=alt.Color('species:N').legend(None)
+).properties(width=200)
+```
+
+## What's the difference in means?
+
+```python
+# Get two groups
+chinstrap_bill_depth = penguins[penguins.species == "Chinstrap"].bill_depth_mm
+adelie_bill_depth = penguins[penguins.species == "Adelie"].bill_depth_mm
+
+# Calculate the difference in means
+observed_difference = chinstrap_bill_depth.mean() - adelie_bill_depth.mean()
+observed_difference
+```
+## Let's create a function for permutation!
+
+```python
+def simulate_two_groups(data1, data2):
+    n = len(data1) #Get length of first group
+    data = pd.concat([data1, data2]) #Get all data
+    data = data.sample(frac=1) #Reshuffle all data
+    group1 = data.iloc[:n] #Get random first group
+    group2 = data.iloc[n:] #Get random second group
+    return group1.mean() - group2.mean() #Calculate mean difference
+```
+
+You can reuse this code!
+
+## Now we can make 5000 permutations.
+
+```python
+# This is similar to how we
+# calculated confidence intervals
+permutations = []
+for i in range(5000):
+    one_perm = simulate_two_groups(chinstrap_bill_depth, adelie_bill_depth)
+    permutations.append(one_perm)
+
+permutations = pd.DataFrame({'permutations':permutations})
+```
+
+## Let's look at the results in a histogram
+
+```python
+alt.data_transformers.disable_max_rows() # Don't limit the data
+# Create a histogram
+histogram = alt.Chart(permutations).mark_bar().encode(
+    x=alt.X("permutations:Q").bin(maxbins=20),
+    y=alt.Y("count():Q")
+)
+permutations = permutations.assign(observed_difference=observed_difference) # Add the mean to the dataframe
+# Add a vertical line
+observed_line = alt.Chart(permutations).mark_rule(color="red", strokeDash=(8,4)).encode(
+    x=alt.X("observed_difference")
+)
+# Combine the two plots
+histogram + observed_line
+```
+
+How is this different from previous Altair plots?
+
+## Finally, we can calculate a p-value:
+
+```python
+p_value = np.mean(permutations.permutations > observed_difference)
+p_value
+```
+
+Why does this code work?
+
+Is our result statistically significant? Is it practically significant?
+
+# Step 3: Statistical Significance and the P-value
+
+## We could keep looking at graphs like these, but that's imprecise.
+
+Instead, we can measure the probability of obtaining results as unusual as the observed result.
+
+This probability is called the p-value!
+
+## The p-value's formal definition:
+
+Given a random model that embodies the null hypothesis, the p-value is the probability of obtaining results as unusual or extreme as the observed result.
+
+In our example, our 32% was a p-value of .32!
+
+## .05 is a common *alpha*, or pre-determined cutoff for significance.
+
+If the p-value is lower than .05 (5%), we can reject the null hypothesis and our result is *statistically significant*.
+
+If the p-value is higher than .05 (5%), we fail to reject the null hypothesis and our result is *not statistically significant*. 
+
+This is just a rule of thumb!
+
+---
+
+![xkcd.com/1478](img/p_values.png)
+
+---
+
+## We calculated a p-value for a difference in means.
+
+Different permutation tests calculate p-values for other kinds of differences.
+
+## All other things being equal...
+
+- The observed difference increasing will decrease the p-value (more likely to find significance)
+- The sample size increasing will decrease the p-value (more likely to find significance)
+- The variability increasing will increase the p-value (less likely to find significance)
+
+## Don't *only* consider the p-value!
+
+Consider results that are:
+
+- **Statistically significant and practically significant (i.e. useful)**
+- Statistically significant and *not* practically significant (i.e. not useful)
+- Statistically insignificant and practically significant 
+- Marginally significant and practically significant
+
+## Error in Hypothesis Testing
+
+![](img/errorht.png)
+
+- Type I Error (alpha-error) is rejecting the null hypothesis when it is true.
+
+- Type II Error (beta-error) is failing to reject the null hypothesis when it is false.
+
+Misreading or overemphasizing the p-value can lead us to error!
+
+# You Try It!
+
+## Permutation Exercise
+
+Determine if users spend significantly more time on Page B than they do on Page A.
+
+1. Copy the URL for <a href="https://jrladd.com/CIS241/data/web_page_data.csv" download>web_page_data.csv</a>.
+2. Make a boxplot of session times for Pages A and B.
+3. Calculate the observed difference in means.
+4. Run 2000 permutations of randomly resampled groups.
+5. Make a histogram of permutation results and show the observed difference as a vertical line.
+6. Calculate the p-value for your permutation test.
+
+# Review This Topic
+
+For a good summary of what we discussed about hypothesis testing, you can watch this short YouTube video: <https://youtu.be/bf3egy7TQ2Q>.

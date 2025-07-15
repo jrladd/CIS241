@@ -1,5 +1,5 @@
 ---
-title: "Introduction to Data Science"
+title: "Homepage"
 subtitle: <a class="btn btn-outline-info" href="schedule.qmd">Schedule</a> <a class="btn btn-outline-info" href="assignments.md">Assignments</a> <a class="btn btn-outline-info" href="policies.md">Course Policies</a> <a class="btn btn-outline-info" href="https://sakai.washjeff.edu">Sakai</a> <a class="btn btn-outline-info" href="https://jupyterhub.ciswashjeff.net/">JupyterHub</a>
 toc: false
 title-block-banner: images/startrek.jpg
@@ -10,11 +10,11 @@ title-block-banner-color: white
 
 :::: {.card-body}
 
-CIS 241. Washington & Jefferson College. Spring 2025.
+CIS 241. Washington & Jefferson College. Fall 2025.
 
 **Meeting Time: TR 9:00-10:45pm**
 
-**Dr. Ladd’s Student Drop-In Hours: MW 10am–12pm TECH 201**  
+**Dr. Ladd’s Student Drop-In Hours: Mon. 11:30am–1:30pm, Thurs. 1–3pm  TECH 201**  
 **or email for appointment, jladd@washjeff.edu**
 
 **PAL Tutoring Hours: 7-10pm Sunday–Thursday in the CIS Lounge (TECH 217)**  

@@ -1,19 +1,48 @@
 project:
-  type: website
+  type: book
   render:
     - "*.qmd"
     - "*.ipynb"
     - "*.md"
     - "!resources/"
+    - "!slides/"
   resources:
     - "*.csv"
     - "*.tsv"
     - "*.zip"
     - "*.xlsx"
     - "*.csv.gz"
-
-website:
+    - "slides/*.html"
+book:
   title: "CIS241 Intro to Data Science"
+  sidebar:
+    logo: images/startrek.jpg
+  chapters:
+  - index.qmd
+  - part: "Course Information"
+    chapters:
+    - schedule.qmd
+    - policies.md
+    - groundrules.md
+  - part: assignments.md
+    chapters:
+      - assignments/documentation.md  
+      - assignments/project-planning.md
+      - assignments/presentation.md
+      - assignments/final-report.md
+  - part: "Guides"
+    chapters:
+      - guides/jupyterhub.md
+      - guides/python.ipynb
+      - guides/pandas.ipynb
+      - guides/altair.ipynb
+  - part: "Other Key Info"
+    chapters:
+    - how-to-explain.ipynb
+    - radcat.md
+    - sample-final-project.ipynb
+    - guides/jupyter.md
+  search: false
   navbar:
     right:
       - href: index.qmd
@@ -30,6 +59,3 @@ format:
     theme: lumen
     css: styles.css
     toc: true
-
-
-

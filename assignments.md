@@ -15,11 +15,12 @@ Some of these assignments, especially the Weekly Workshops, the Final Project an
 
 Assignment|Percentage
 ---|--
-Weekly Workshops|20%
+Weekly Workshops & Homework|25%
 Documentation Assignment|10%
-Tutorial Assignment|10%
-Tests|20%
-Final Presentation|10%
-Final Project (in 3 stages)|30%
+Project Planning Document|10%
+Test 1|10%
+Test 2|10%
+Video Presentation|10%
+Final Project|25%
 
 : {.striped .hover}
