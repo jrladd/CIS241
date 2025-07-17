@@ -1,0 +1,77 @@
+manufacturer,model,year,class
+audi,a4,1999,compact
+audi,a4,2008,compact
+audi,a4 quattro,1999,compact
+audi,a4 quattro,2008,compact
+audi,a6 quattro,1999,midsize
+audi,a6 quattro,2008,midsize
+chevrolet,c1500 suburban 2wd,2008,suv
+chevrolet,c1500 suburban 2wd,1999,suv
+chevrolet,corvette,1999,2seater
+chevrolet,corvette,2008,2seater
+chevrolet,k1500 tahoe 4wd,2008,suv
+chevrolet,k1500 tahoe 4wd,1999,suv
+chevrolet,malibu,1999,midsize
+chevrolet,malibu,2008,midsize
+dodge,caravan 2wd,1999,minivan
+dodge,caravan 2wd,2008,minivan
+dodge,dakota pickup 4wd,2008,pickup
+dodge,dakota pickup 4wd,1999,pickup
+dodge,durango 4wd,1999,suv
+dodge,durango 4wd,2008,suv
+dodge,ram 1500 pickup 4wd,2008,pickup
+dodge,ram 1500 pickup 4wd,1999,pickup
+ford,expedition 2wd,1999,suv
+ford,expedition 2wd,2008,suv
+ford,explorer 4wd,1999,suv
+ford,explorer 4wd,2008,suv
+ford,f150 pickup 4wd,1999,pickup
+ford,f150 pickup 4wd,2008,pickup
+ford,mustang,1999,subcompact
+ford,mustang,2008,subcompact
+honda,civic,1999,subcompact
+honda,civic,2008,subcompact
+hyundai,sonata,1999,midsize
+hyundai,sonata,2008,midsize
+hyundai,tiburon,1999,subcompact
+hyundai,tiburon,2008,subcompact
+jeep,grand cherokee 4wd,2008,suv
+jeep,grand cherokee 4wd,1999,suv
+land rover,range rover,1999,suv
+land rover,range rover,2008,suv
+lincoln,navigator 2wd,1999,suv
+lincoln,navigator 2wd,2008,suv
+mercury,mountaineer 4wd,1999,suv
+mercury,mountaineer 4wd,2008,suv
+nissan,altima,1999,compact
+nissan,altima,2008,midsize
+nissan,maxima,1999,midsize
+nissan,maxima,2008,midsize
+nissan,pathfinder 4wd,1999,suv
+nissan,pathfinder 4wd,2008,suv
+pontiac,grand prix,1999,midsize
+pontiac,grand prix,2008,midsize
+subaru,forester awd,1999,suv
+subaru,forester awd,2008,suv
+subaru,impreza awd,1999,subcompact
+subaru,impreza awd,2008,compact
+toyota,4runner 4wd,1999,suv
+toyota,4runner 4wd,2008,suv
+toyota,camry,1999,midsize
+toyota,camry,2008,midsize
+toyota,camry solara,1999,compact
+toyota,camry solara,2008,compact
+toyota,corolla,1999,compact
+toyota,corolla,2008,compact
+toyota,land cruiser wagon 4wd,1999,suv
+toyota,land cruiser wagon 4wd,2008,suv
+toyota,toyota tacoma 4wd,1999,pickup
+toyota,toyota tacoma 4wd,2008,pickup
+volkswagen,gti,1999,compact
+volkswagen,gti,2008,compact
+volkswagen,jetta,1999,compact
+volkswagen,jetta,2008,compact
+volkswagen,new beetle,1999,subcompact
+volkswagen,new beetle,2008,subcompact
+volkswagen,passat,1999,midsize
+volkswagen,passat,2008,midsize

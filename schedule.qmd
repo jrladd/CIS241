@@ -18,7 +18,7 @@ Date|Topics & Slides|Workshops|Assignments|Supplemental Reading
 14 & 16 Oct.|Supervised Learning: Regression|<a href="resources/03_airbnb2.ipynb" download>Business 2</a>|
 23 Oct.|NO CLASS TUESDAY (FALL BREAK); Ethical Data Science|HW|
 28 & 30 Oct.|Supervised Learning: Classification|<a href="resources/05_health1.ipynb" download>Health 1</a>|**[Project Planning Assignment](assignments/project-planning.md) Due 30 Oct.**
-4 & 6 Nov.|Supervised learning: Classification|<a href="resources/05_health2.ipynb" download>Health 2</a>|(Begin Test 2)
+4 & 6 Nov.|Supervised Learning: Classification|<a href="resources/05_health2.ipynb" download>Health 2</a>|(Begin Test 2)
 11 & 13 Nov.|Unsupervised Learning: Clustering|<a href="resources/06_lit1.ipynb" download>Literature 1</a>|**Test 2** 13 Nov.
 18 & 20 Nov.|Unsupervised Learning: Dimension Reduction|<a href="resources/06_lit2.ipynb" download>Literature 2</a>
 25 Nov.|Work on Final Projects; NO CLASS THURSDAY (THANKSGIVING)||**[Video Presentations](assignments/presentation.md) Due 25 Nov.**

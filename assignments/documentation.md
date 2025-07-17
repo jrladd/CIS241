@@ -27,7 +27,7 @@ Remember that there are data sets out there from almost every area of study that
 
 Don't just settle for the very first datasets you find: look around a bit for interesting or unexpected ones!
 
-Later in the semester, you'll choose a dataset to work on for your final project. This assignment is unrelated, so you can decide to stick with this dataset later on or choose something completely new: it's entirely up to you.
+Later in the semester, you'll choose a dataset to work on for your final project. This assignment is unrelated, so you can decide to stick with one of these datasets later on or choose something completely new: it's entirely up to you.
 
 **Mostly, choose data that you are curious about and will allow you to demonstrate the listed concepts for the assignment. *Have some fun with it!***
 
@@ -45,9 +45,9 @@ Below is a suggested format to use to make sure the useful information is commun
 
 ---
 
-1. **Name of Dataset 1**: Name of collectors, and link to data source
+1. **Name of Dataset 1**: Name of collectors, and link to data source. Briefly describe the dataset (rows and columns) and any ethical/logistical considerations.
 
-2. **Name of Dataset 2**: Name of collectors, and link to data source
+2. **Name of Dataset 2**: Name of collectors, and link to data source. Briefly describe the dataset (rows and columns) and any ethical/logistical considerations.
 
 3. The dataset you chose to fully document:
 
@@ -93,3 +93,4 @@ This may include: selecting a subset of the data, creating new columns, renaming
 - Turn in your documentation (as a PDF) via Sakai
 - Format the documentation according to the template above
 - Also turn in *all 3* original data files that you found online (ideally in CSV format)
+- If you run into any problems with Sakai's file size limits, you can email the files to me

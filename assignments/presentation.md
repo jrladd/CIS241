@@ -58,7 +58,7 @@ In addition to making a video presentation, you will watch and respond to the vi
 
 Bring these similarities, questions, and suggestions with you to class, and you will use them as the basis to discuss the projects in your groups. You'll also use these as the start of our Q&A session for the panel presentations.
 
-**At the end of the panel discussions (see below), you can post your three items as a comment attached to your classmate's video on Stream.** *I'll read over each response and will include this as part of your presentation grade.*
+**At the end of the class, you can post your three items as a comment attached to your classmate's video on Stream.** *I'll read over each response and will include this as part of your presentation grade.*
 
 **Remember**: the best comments are ones that are substantive and move the conversation forward. So not just "We are both working on golf data," but "In my project, I found that one challenge with golf data was that it had mostly quantitative variables. You're dealing with a similar challenge." And not just "What do you plan to do next?" but "When you model your data with a random forest classifier, do you plan to limit the size of your decision trees?" These comments can be genuinely helpful feedback for your classmates, so give the feedback that you would like to receive!
 
@@ -66,9 +66,9 @@ Bring these similarities, questions, and suggestions with you to class, and you 
 
 During our final exam session, we'll have panel discussions about your final projects. Your final projects will be due before this session begins, and all of your classmates will have watched your video presentation.
 
-You do *not* need to prepare a separate presentation for this session, and there is no final exam. Each group will take questions from the rest of the class about their videos and their final projects. I will explain more about the format in class. *Participation in the panel discussion is part of the presentation grade.*
+You do *not* need to prepare a separate presentation for this session, and there is no final exam. Each group will take questions from the rest of the class about their videos and their final projects. You can use the responses you already wrote for the videos as questions for the Q&A portion. I will explain more about the format in class. *Participation in the panel discussion is part of the presentation grade.*
 
-The goal of these discussions is to reflect on what you accomplished in your project and compare that to what you had initially planned. At the end of the session, you'll post all your video comments to Stream.
+The goal of these discussions is to reflect on what you accomplished in your project and compare that to what you had initially planned.
 
 ## Requirements
 
