@@ -6,7 +6,7 @@ This page will help you get set up to use Python and JupyterHub, a data science 
 
 `https://jrladd.com/CIS241/resources/00_getting_started.ipynb`
 
-Or [click this link](resources/00_getting_started.ipynb) to download the file.
+Or [click this link](/resources/00_getting_started.ipynb) to download the file.
 
 ## Setting Up JupyterHub
 

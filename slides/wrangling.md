@@ -330,3 +330,20 @@ taxis.groupby(["dropoff_borough"]).mean(numeric_only=True)
 ## You try it!
 
 Create a summary table showing the average bill depth of penguins for each species.
+
+# Combining and Transforming Datasets
+
+## There are 2 types of combining you should know.
+
+1. Stack datasets with `pd.concat()`. (Datasets must have the same columns.)
+2. Join datasets with `pd.merge()`. (There must be a unique column or set of columns to join on. This is just like a JOIN in SQL!)
+
+## Fix Un-tidy datasets with pivot and melt
+
+The `.pivot()` and `.melt()` methods are used when your dataset doesn't have one observation per row or one attribute per column.
+
+## You try it!
+
+Refer to the diagrams on the [Pandas Cheat Sheet](https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf) and complete the examples in our [Pandas Guide](https://jrladd.com/CIS241/guides/pandas.html#combining-datasets).
+
+To import the datasets, use <http://jrladd.com/CIS241/data/name-of-file.csv>

@@ -7,7 +7,7 @@ show_date: false
 
 **Please note that I *cannot* accept any work past this deadline.**
 
-**A polished Jupyter Notebook HTML file reporting the results of your final data analysis project, as outlined in your [Project Planning Document](assignments/project-planning.md).** Roughly, 5-7 written pages (though this is hard to measure in a Jupyter notebook, so consider it a *guideline*). Think about this report as a “final takeaway” of all the skills you’ve learned in class over the semester. Below is a rough structure of your final written report.
+**A polished Jupyter Notebook HTML file reporting the results of your final data analysis project, as outlined in your [Project Planning Document](/assignments/project-planning.md).** Roughly, 5-7 written pages (though this is hard to measure in a Jupyter notebook, so consider it a *guideline*). Think about this report as a “final takeaway” of all the skills you’ve learned in class over the semester. Below is a rough structure of your final written report.
 
 **This should be a ready-to-deliver report with clear section headers and interpretations of any statistical or graphical output (like several of our previous projects).** You can review the [Sample Final Project](/sample-final-project.ipynb) to get a sense of what you'll need to accomplish.
 

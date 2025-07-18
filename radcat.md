@@ -15,7 +15,7 @@ For your course, be aware of the various places that you might find information 
 - Teams, Emails or Sakai announcements or messages
 - Instructions delivered verbally during class
 
-# Let's get started
+## Let's get started
 
 1. Before **beginning**, when planning your work, have you...
 
