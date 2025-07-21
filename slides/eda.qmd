@@ -189,21 +189,23 @@ Replacement means an item is returned to the sample before the next draw (i.e. y
 
 ## Confidence intervals with Pandas
 
-<small>Work with a partner to calculate the confidence interval for the mean height in the `dogs` dataframe (remember to use your Pandas cheatsheet and past slideshows):
+<small>Work with a partner to calculate the confidence interval for the mean height in the `dogs` dataframe (remember to use your Pandas cheatsheet and the Guides on our course site):
 
 1. Find the number of rows in the dataframe, assign to a variable `n_rows`.
 2. Create a `for` loop through a list of 5000 numbers using `range(5000)`.
     a. In the loop, use the [`sample()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sample.html#pandas.DataFrame.sample) function where `n=` your number of rows and `replace=True`.
     b. Get the `mean()` of the height column of each sample, and assign it to a variable.
     c. Use `append()` to add your sample means to an empty list.
-3. Turn the list in to a Pandas Series with `pd.Series(your_list)`.
+3. Turn the list into a Pandas Series with `pd.Series(your_list)`.
 4. Find the 95th percentile (quantile) and the 5th percentile (quantile) and assign each to a variable.
 5. `print()` your results using [f-strings](https://www.geeksforgeeks.org/formatted-string-literals-f-strings-python/).
     a. The result should read: "The mean dog height in our data is \_\_\_\_\_\_\_, with a 90% confidence interval of \_\_\_\_\_ to \_\_\_\_\_."
 
 </small>
 
-## Confidence intervals with Pandas
+::: {.notes}
+
+Confidence intervals with Pandas
 
 ```{.python code-line-numbers="|1|6|7|5,8|11|14,15|18|"}
 n_rows = dogs.shape[0] # First find the number of rows in the dataframe.
@@ -225,3 +227,46 @@ bottom_percentile = bootstrap_samples.quantile(.05)
 # Print the results using nice f-strings.
 print(f"The mean dog height in our data is {dogs.height.mean():.3f}, with a 90% confidence interval of {bottom_percentile:.3f} to {top_percentile:.3f}.")
 ```
+
+:::
+
+# Special Data Types
+
+## Date and Time Data
+
+- `datetime` is useful for duration, change, and time series plots
+- Often converting from a string format to a `datetime` and vice versa
+- You can select out specific parts of the date and time
+
+```{python}
+import pandas as pd
+```
+
+```{python}
+#| echo: true
+
+pd.to_datetime('2025-05-30')
+```
+
+## Text Data
+
+- Data can be a text string but not a category!
+- Use the `str` namespace to manipulate strings in Pandas like you would in Python 
+
+```{.python}
+# Strings that aren't categories
+"Luke Skywalker"
+"$50.00"
+"It is a truth universally acknowledged..."
+```
+
+## Location Data
+
+- Geographic Information Systems (GIS)
+- Latitude and longitude are the most common kind of location data
+- Addresses and place names are also location data!
+- GIS data often comes in special files and needs special libraries (like Geopandas)
+
+## You Try It!
+
+Work through the examples on different [data types](https://jrladd.com/CIS241/guides/pandas.html#data-types) in the Pandas Guide. Pay special attention to changing a column's data type!
