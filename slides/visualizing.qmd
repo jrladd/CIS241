@@ -30,6 +30,7 @@ format:
 
 - Claus Wilke's [Fundamentals of Data Visualzation](https://clauswilke.com/dataviz/) (The illustrations in this slide show come from here!)
 - [The Altair User Guide](https://altair-viz.github.io/user_guide/data.html)
+- [Visualization Curriculum for Altair](https://idl.uw.edu/visualization-curriculum/intro.html)
 
 # What Does Visualization Help Us to See?
 
@@ -77,7 +78,7 @@ Look at the `taxis` data set. What visualization type would you use to compare t
 ![](img/basic-scatter.png)
 
 - Variable types: 2 continuous (numerical), (3 in a bubble chart)
-- Common graph types: Scatter plot, Bubble Chart, Hex bins, Density contours
+- Common graph types: Scatter plot, Bubble Chart, Line plot, Hex bins, Density contours
 
 ## You Try It!
 
@@ -126,7 +127,7 @@ seattle_weather = data.seattle_weather()
 
 Create a plot showing the distribution of precipitation in the `seattle_weather` dataset. Give the plot a title and labels for both axes. Then show the distributions according to each pickup borough, in different columns. Finally, change the size or number of the bins in each distribution to show more detail (narrower bars).
 
-<small>Hint: you may need to use the [Altair User Guide](https://altair-viz.github.io/user_guide/data.html) as well as the cheatsheet to accomplish this!</small>
+<small>Hint: you may need to use the [Altair User Guide](https://altair-viz.github.io/user_guide/data.html) as well as the cheatsheet, our Altair Guide, and the Visualization Curriculum to accomplish this!</small>
 
 # Ugly, Bad, or Wrong
 
