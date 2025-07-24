@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>9&nbsp; JupyterHub – CIS241 Intro to Data Science</title>
+<title>13&nbsp; Hypothesis Testing – CIS241 Intro to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,13 +20,48 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<link href="../guides/python.html" rel="next">
-<link href="../assignments/final-report.html" rel="prev">
+<link href="../how-to-explain.html" rel="next">
+<link href="../guides/altair.html" rel="prev">
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -54,6 +89,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../styles.css">
 </head>
@@ -109,7 +173,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/jupyterhub.html">Guides</a></li><li class="breadcrumb-item"><a href="../guides/jupyterhub.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">JupyterHub</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/jupyterhub.html">Guides</a></li><li class="breadcrumb-item"><a href="../guides/hypothesis-testing.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -207,7 +271,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../guides/jupyterhub.html" class="sidebar-item-text sidebar-link active">
+  <a href="../guides/jupyterhub.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">JupyterHub</span></span></a>
   </div>
 </li>
@@ -231,7 +295,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../guides/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+  <a href="../guides/hypothesis-testing.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
   </div>
 </li>
@@ -282,17 +346,26 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#setting-up-jupyterhub" id="toc-setting-up-jupyterhub" class="nav-link active" data-scroll-target="#setting-up-jupyterhub"><span class="header-section-number">9.1</span> Setting Up JupyterHub</a></li>
-  <li><a href="#managing-files" id="toc-managing-files" class="nav-link" data-scroll-target="#managing-files"><span class="header-section-number">9.2</span> Managing Files</a></li>
+  <li><a href="#the-steps-of-a-permutation-test" id="toc-the-steps-of-a-permutation-test" class="nav-link active" data-scroll-target="#the-steps-of-a-permutation-test"><span class="header-section-number">13.1</span> The Steps of a Permutation Test</a></li>
+  <li><a href="#simulation-functions" id="toc-simulation-functions" class="nav-link" data-scroll-target="#simulation-functions"><span class="header-section-number">13.2</span> Simulation Functions</a>
+  <ul class="collapse">
+  <li><a href="#function-for-simulating-difference-in-means" id="toc-function-for-simulating-difference-in-means" class="nav-link" data-scroll-target="#function-for-simulating-difference-in-means"><span class="header-section-number">13.2.1</span> Function for Simulating Difference in Means</a></li>
+  <li><a href="#function-for-simulating-correlation" id="toc-function-for-simulating-correlation" class="nav-link" data-scroll-target="#function-for-simulating-correlation"><span class="header-section-number">13.2.2</span> Function for Simulating Correlation</a></li>
+  </ul></li>
+  <li><a href="#calculating-a-p-value" id="toc-calculating-a-p-value" class="nav-link" data-scroll-target="#calculating-a-p-value"><span class="header-section-number">13.3</span> Calculating a p-value</a>
+  <ul class="collapse">
+  <li><a href="#one-tailed-alternative-hypothesis" id="toc-one-tailed-alternative-hypothesis" class="nav-link" data-scroll-target="#one-tailed-alternative-hypothesis"><span class="header-section-number">13.3.1</span> One-tailed alternative hypothesis</a></li>
+  <li><a href="#two-tailed-alternative-hypothesis" id="toc-two-tailed-alternative-hypothesis" class="nav-link" data-scroll-target="#two-tailed-alternative-hypothesis"><span class="header-section-number">13.3.2</span> Two-tailed alternative hypothesis</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/jupyterhub.html">Guides</a></li><li class="breadcrumb-item"><a href="../guides/jupyterhub.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">JupyterHub</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/jupyterhub.html">Guides</a></li><li class="breadcrumb-item"><a href="../guides/hypothesis-testing.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">JupyterHub</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></h1>
 </div>
 
 
@@ -309,30 +382,162 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This page will help you get set up to use Python and JupyterHub, a data science and programming interface. You will use the Jupyter Notebook file <code>00_getting_started.ipynb</code>.</p>
-<p><code>https://jrladd.com/CIS241/resources/00_getting_started.ipynb</code></p>
-<p>Or <a href="../resources/00_getting_started.ipynb">click this link</a> to download the file.</p>
-<section id="setting-up-jupyterhub" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="setting-up-jupyterhub"><span class="header-section-number">9.1</span> Setting Up JupyterHub</h2>
+<p>The goal of a hypothesis test is to determine whether the data in your <em>sample</em> accurately reflects the full <em>population</em>. This guide won’t get into detail about how hypothesis tests work statistically, but it will give you an outline for how to perform permutation tests with Python and Pandas.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This guide will not show you how to conduct traditional parametric hypothesis tests such as the T-test! This is only for the non-parametric <strong>permutation tests</strong> that we covered in class.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For a refresher on hypothesis tests and how they work, you can refer back to our slides from class, <a href="https://allendowney.github.io/ElementsOfDataScience/13_hypothesis.html">Ch. 13</a> of Downey’s <em>Elements of Data Science</em>, or the <a href="https://youtu.be/bf3egy7TQ2Q">Crash Course video</a> on the subject.</p>
+</div>
+</div>
+<section id="the-steps-of-a-permutation-test" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="the-steps-of-a-permutation-test"><span class="header-section-number">13.1</span> The Steps of a Permutation Test</h2>
+<p>No matter what your test statistic is, here are the steps you need to follow each time you want to run a permutation test. At each step, you should <em>fully explain and interpret</em> what you are doing.</p>
 <ol type="1">
-<li>Navigate to the <a href="https://jupyterhub.ciswashjeff.net/">CIS JupyterHub</a>.</li>
-<li>Log in with your W&amp;J username (the part of your email address before the @). <strong><em>Whatever password you enter for the first time will become your password. KEEP TRACK OF WHAT YOU ENTERED SO THAT YOU DON’T GET LOCKED OUT!</em></strong></li>
-<li>Bookmark this page so you can always get back to JupyterHub.</li>
-<li>That’s it! You can use this site from any machine, and as long as you save your work, your files will follow you everywhere.</li>
+<li>Run some Exploratory Data Analysis on your dataset. Typically it’s helpful to make a visualization that lets you see the potential difference, correlation, or other phenomenon you want to test.</li>
+<li>Calculate your <strong>observed test statistic</strong>. In our case, this will usually either be a difference in means between two groups, or a Pearson’s correlation coefficient.</li>
+<li>Based on your exploratory analysis and test statistic, write out your null and alternative hypothesis.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can use the <a href="https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference">MathJax</a> markdown syntax to produce a nicely-formatted hypothesis, so <code>$H_0 : \bar A = \bar C$</code> will become <span class="math inline">\(H_0 : \bar A = \bar C\)</span> and <code>$H_1 : \bar A \gt \bar C$</code> will become <span class="math inline">\(H_1 : \bar A \gt \bar C\)</span>.</p>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Choose the appropriate simulation function for the hypothesis test you’re running. Make sure you have a basic understanding of how the code works in these simulations—you may have to filter or adjust your data to prepare it for the function. (See below for the functions you can choose from.)</li>
+<li>In a <code>for</code> loop, run the simulation many times (1000 is a good minimum) and put the resulting <em>permutations</em> into a list. This is similar to how we conducted bootstrap sampling. Convert that list to a dataframe with two columns: the permutation and the observed statistic.</li>
+<li>Create a histogram that shows your permutation distribution and your observed statistic. This is a standard histogram plus a <code>mark_rule()</code> layer that draws a vertical line for the observed statistic.</li>
+<li>Calculate the p-value (see below) and interpret the p-value and histogram together.</li>
 </ol>
 </section>
-<section id="managing-files" class="level2" data-number="9.2">
-<h2 data-number="9.2" class="anchored" data-anchor-id="managing-files"><span class="header-section-number">9.2</span> Managing Files</h2>
-<ol type="1">
-<li>On the left side of the screen you’ll see a list of all the files in your JupyterHub. This won’t show anything yet because you don’t have any files yet.</li>
-<li>To add a new file, copy this link to our file for today: <a href="https://jrladd.com/CIS241/resources/00_getting_started.ipynb" class="uri">https://jrladd.com/CIS241/resources/00_getting_started.ipynb</a>. In JupyterHub, select File -&gt; Open from URL at the top of the screen. Paste the URL into the box that appears. The file should now appear in your list! (You could also download the file to your computer and upload it to JupyterHub with the upload button, an upward pointing arrow next to the blue <code>+</code> button.)</li>
-<li>To create a new blank Notebook file, you can always click the blue <code>+</code> button and select <code>Python 3</code> under Notebook.</li>
-<li>The button with a folder and a <code>+</code> on it will let you create a new subfolder. You can then drag files into or out of the various folders. You can organize things however you want, but I recommend developing an organization strategy early that works for you. By the end of the term we’ll have a lot of files! You might create a folder for “workshops” and a folder for “class”, for example.</li>
-</ol>
-<p>Now you’re ready to begin! Read through the Getting Started notebook and follow the instructions. You don’t need to code anything yourself today—just follow the examples and get a feel for how Jupyter works.</p>
-<p><em>n.b.&nbsp;We’re still experimenting with JupyterHub. If you experience any problems with how it works (e.g.&nbsp;it runs really slowly, files go missing, really anything that seems odd), let me know right away. You can always run Jupyter locally on your own laptop or on any of our classroom or lab computers. See this page for <a href="../CIS241/jupyter">instructions on working with Jupyter locally</a>.</em></p>
+<section id="simulation-functions" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="simulation-functions"><span class="header-section-number">13.2</span> Simulation Functions</h2>
+<p>Permutation tests use simulation and resampling to create a random permutation as a point of comparison. Here are two simulation functions that apply to different test statistics. These functions use the same sampling techniques we learned about when we calculated confidence intervals with bootstrap sampling, but they use sampling <em>without</em> replacement. You’ll use these as part of steps 4 and 5 in the instructions above.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that these functions take specific kinds of arguments and will require the right inputs to work properly!</p>
+</div>
+</div>
+<section id="function-for-simulating-difference-in-means" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="function-for-simulating-difference-in-means"><span class="header-section-number">13.2.1</span> Function for Simulating Difference in Means</h3>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This function will typically require two steps before it can be run. You will need to filter your dataframe so it includes only the two groups you are testing, and you will need to calculate the number of rows in the first group.</p>
+</div>
+</div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate_two_groups(df, group1_len, stat_var):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">    This simulation function takes the following arguments:</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">    - df: the name of your dataframe, limited to only the two groups you care about</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">    - group1_len (int): the length (number of rows) in the first of your two groups of data</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    - stat_var (str): the name of the column (numerical variable) for the mean you want to test</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> df[stat_var].sample(frac<span class="op">=</span><span class="dv">1</span>) <span class="co">#Reshuffle all data</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    group1 <span class="op">=</span> data.iloc[:group1_len] <span class="co">#Get random first group</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    group2 <span class="op">=</span> data.iloc[group1_len:] <span class="co">#Get random second group</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> group1.mean() <span class="op">-</span> group2.mean() <span class="co">#Calculate mean difference</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="function-for-simulating-correlation" class="level3" data-number="13.2.2">
+<h3 data-number="13.2.2" class="anchored" data-anchor-id="function-for-simulating-correlation"><span class="header-section-number">13.2.2</span> Function for Simulating Correlation</h3>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> simulate_correlation(df,var1,var2):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">    This simulation function takes the following arguments:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">    - df: the name of your dataframe</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">    - var1 (str): the name of the first column (numerical variable) you want to compare</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">    - var2 (str): the name of the second column (numerical variable) you want to compare</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    shuffled <span class="op">=</span> df[var1].sample(frac<span class="op">=</span><span class="dv">1</span>).reset_index(drop<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    corr <span class="op">=</span> shuffled.corr(df[var2])</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> corr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="calculating-a-p-value" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="calculating-a-p-value"><span class="header-section-number">13.3</span> Calculating a p-value</h2>
+<p>In addition to the histogram of the permutation distribution, the p-value can tell you what percentage of your randomly simulated data was more extreme than your observed result. There are a few different formulas you can use to achieve this.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In a p-value calculation, you need all the permutations you calculated as well as your observed statistic. The different calculations below assume your dataframe of results is called <code>results</code>, the permutation column of that dataframe is called <code>permutations</code>, and the observed statistic variable is called <code>obs_stat</code>. Your own variable and column names may be different!</p>
+</div>
+</div>
+<section id="one-tailed-alternative-hypothesis" class="level3" data-number="13.3.1">
+<h3 data-number="13.3.1" class="anchored" data-anchor-id="one-tailed-alternative-hypothesis"><span class="header-section-number">13.3.1</span> One-tailed alternative hypothesis</h3>
+<p>If you have a one-tailed alternative hypothesis, simply calculate the mean of the permutations that are either greater than or equal to your observed statistic.</p>
+<p>If your observed statistic is positive, you are looking for permutations <em>greater</em> than the observed statistic, like so:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="op">=</span> (results.permutations <span class="op">&gt;=</span> obs_stat).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If your observed statistic is negative, you are looking for permutations <em>less</em> than the observed statistic:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="op">=</span> (results.permutations <span class="op">&lt;=</span> obs_stat).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A great rule of thumb here is: the comparison symbol (greater than or less than) should always go in the <strong>same direction</strong> as the comparison symbol in your alternative hypothesis.</p>
+</div>
+</div>
+</section>
+<section id="two-tailed-alternative-hypothesis" class="level3" data-number="13.3.2">
+<h3 data-number="13.3.2" class="anchored" data-anchor-id="two-tailed-alternative-hypothesis"><span class="header-section-number">13.3.2</span> Two-tailed alternative hypothesis</h3>
+<p>If you have a two-tailed hypothesis, you should compare the <em>absolute values</em> of your permutations to the absolute value of your observed statistic. In this case, you are always looking for permutations <em>greater</em> than your observed statistic. You can use the <code>numpy</code> function <code>np.abs()</code> to get the absolute values.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>p_value <span class="op">=</span> (np.<span class="bu">abs</span>(results.permutations) <span class="op">&gt;=</span> np.<span class="bu">abs</span>(observed_difference)).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -737,13 +942,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../assignments/final-report.html" class="pagination-link" aria-label="Final Project">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Final Project</span></span>
+      <a href="../guides/altair.html" class="pagination-link" aria-label="Altair">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Altair</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../guides/python.html" class="pagination-link" aria-label="Python">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../how-to-explain.html" class="pagination-link" aria-label="How to Explain in CIS241">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">How to Explain in CIS241</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
