@@ -61,8 +61,7 @@ cars = data.cars()
 ```
 
 ```{python}
-#| echo: true
-#| output-location: slide
+#| echo: false
 alt.Chart(cars, title="Fuel Efficiency and Engine Displacement").mark_point().encode(
     x=alt.X("Displacement:Q", title="Engine Displacement (liters)"),
     y=alt.Y("Miles_per_Gallon:Q", title="Fuel Efficiency (mpg)")
@@ -72,8 +71,7 @@ alt.Chart(cars, title="Fuel Efficiency and Engine Displacement").mark_point().en
 ## Add a line of best fit to make a regression plot
 
 ```{python}
-#| echo: true
-#| output-location: slide
+#| echo: false
 scatter = alt.Chart(cars, title="Fuel Efficiency and Engine Displacement").mark_point().encode(
     x=alt.X("Displacement:Q", title="Engine Displacement (liters)"),
     y=alt.Y("Miles_per_Gallon:Q", title="Fuel Efficiency (mpg)")
@@ -85,8 +83,7 @@ scatter + scatter.transform_regression('Displacement','Miles_per_Gallon').mark_l
 ## Avoid *overplotting* with heatmaps or kernel density estimation.
 
 ```{python}
-#|echo: true
-#|output-location: slide
+#|echo: false
 # Heatmap example
 alt.Chart(cars, title="Fuel Efficiency and Engine Displacement").mark_rect().encode(
     x=alt.X("Displacement:Q", title="Engine Displacement (liters)").bin(),
@@ -98,8 +95,7 @@ alt.Chart(cars, title="Fuel Efficiency and Engine Displacement").mark_rect().enc
 ## Correlation matrix shows all possible correlations.
 
 ```{python}
-#|echo: true
-#|output-location: slide
+#|echo: false
 # Re-arrange correlation matrix data
 cars_corr = (cars.corr(numeric_only=True)
              .stack()

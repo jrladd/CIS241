@@ -1,0 +1,107 @@
+# Hypothesis Testing
+
+The goal of a hypothesis test is to determine whether the data in your *sample* accurately reflects the full *population*. This guide won't get into detail about how hypothesis tests work statistically, but it will give you an outline for how to perform permutation tests with Python and Pandas.
+
+::: {.callout-important}
+This guide will not show you how to conduct traditional parametric hypothesis tests such as the T-test! This is only for the non-parametric **permutation tests** that we covered in class.
+:::
+
+::: {.callout-note}
+For a refresher on hypothesis tests and how they work, you can refer back to our slides from class, [Ch. 13](https://allendowney.github.io/ElementsOfDataScience/13_hypothesis.html) of Downey's *Elements of Data Science*, or the [Crash Course video](https://youtu.be/bf3egy7TQ2Q) on the subject.
+:::
+
+## The Steps of a Permutation Test
+
+No matter what your test statistic is, here are the steps you need to follow each time you want to run a permutation test. At each step, you should *fully explain and interpret* what you are doing.
+
+1. Run some Exploratory Data Analysis on your dataset. Typically it's helpful to make a visualization that lets you see the potential difference, correlation, or other phenomenon you want to test.
+2. Calculate your **observed test statistic**. In our case, this will usually either be a difference in means between two groups, or a Pearson's correlation coefficient.
+3. Based on your exploratory analysis and test statistic, write out your null and alternative hypothesis. 
+
+::: {.callout-tip}
+You can use the [MathJax](https://math.meta.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference) markdown syntax to produce a nicely-formatted hypothesis, so `$H_0 : \bar A = \bar C$` will become $H_0 : \bar A = \bar C$ and `$H_1 : \bar A \gt \bar C$` will become $H_1 : \bar A \gt \bar C$.
+:::
+
+4. Choose the appropriate simulation function for the hypothesis test you're running. Make sure you have a basic understanding of how the code works in these simulations---you may have to filter or adjust your data to prepare it for the function. (See below for the functions you can choose from.)
+5. In a `for` loop, run the simulation many times (1000 is a good minimum) and put the resulting *permutations* into a list. This is similar to how we conducted bootstrap sampling. Convert that list to a dataframe with two columns: the permutation and the observed statistic.
+6. Create a histogram that shows your permutation distribution and your observed statistic. This is a standard histogram plus a `mark_rule()` layer that draws a vertical line for the observed statistic.
+7. Calculate the p-value (see below) and interpret the p-value and histogram together.
+
+## Simulation Functions
+
+Permutation tests use simulation and resampling to create a random permutation as a point of comparison. Here are two simulation functions that apply to different test statistics. These functions use the same sampling techniques we learned about when we calculated confidence intervals with bootstrap sampling, but they use sampling *without* replacement. You'll use these as part of steps 4 and 5 in the instructions above.
+
+:::{.callout-caution}
+Note that these functions take specific kinds of arguments and will require the right inputs to work properly!
+:::
+
+### Function for Simulating Difference in Means
+
+:::{.callout-important}
+This function will typically require two steps before it can be run. You will need to filter your dataframe so it includes only the two groups you are testing, and you will need to calculate the number of rows in the first group.
+:::
+
+```{.python}
+def simulate_two_groups(df, group1_len, stat_var):
+    """
+    This simulation function takes the following arguments:
+    - df: the name of your dataframe, limited to only the two groups you care about
+    - group1_len (int): the length (number of rows) in the first of your two groups of data
+    - stat_var (str): the name of the column (numerical variable) for the mean you want to test
+    """
+    data = df[stat_var].sample(frac=1) #Reshuffle all data
+    group1 = data.iloc[:group1_len] #Get random first group
+    group2 = data.iloc[group1_len:] #Get random second group
+    return group1.mean() - group2.mean() #Calculate mean difference
+```
+
+### Function for Simulating Correlation
+
+```{.python}
+def simulate_correlation(df,var1,var2):
+    """
+    This simulation function takes the following arguments:
+    - df: the name of your dataframe
+    - var1 (str): the name of the first column (numerical variable) you want to compare
+    - var2 (str): the name of the second column (numerical variable) you want to compare
+    """
+    shuffled = df[var1].sample(frac=1).reset_index(drop=True)
+    corr = shuffled.corr(df[var2])
+    return corr
+```
+
+## Calculating a p-value
+
+In addition to the histogram of the permutation distribution, the p-value can tell you what percentage of your randomly simulated data was more extreme than your observed result. There are a few different formulas you can use to achieve this.
+
+:::{.callout-caution}
+In a p-value calculation, you need all the permutations you calculated as well as your observed statistic. The different calculations below assume your dataframe of results is called `results`, the permutation column of that dataframe is called `permutations`, and the observed statistic variable is called `obs_stat`. Your own variable and column names may be different!
+:::
+
+### One-tailed alternative hypothesis
+
+If you have a one-tailed alternative hypothesis, simply calculate the mean of the permutations that are either greater than or equal to your observed statistic.
+
+If your observed statistic is positive, you are looking for permutations *greater* than the observed statistic, like so:
+
+```{.python}
+p_value = (results.permutations >= obs_stat).mean()
+```
+
+If your observed statistic is negative, you are looking for permutations *less* than the observed statistic:
+
+```{.python}
+p_value = (results.permutations <= obs_stat).mean()
+```
+
+:::{.callout-tip}
+A great rule of thumb here is: the comparison symbol (greater than or less than) should always go in the **same direction** as the comparison symbol in your alternative hypothesis.
+:::
+
+### Two-tailed alternative hypothesis
+
+If you have a two-tailed hypothesis, you should compare the *absolute values* of your permutations to the absolute value of your observed statistic. In this case, you are always looking for permutations *greater* than your observed statistic. You can use the `numpy` function `np.abs()` to get the absolute values.
+
+```{.python}
+p_value = (np.abs(results.permutations) >= np.abs(observed_difference)).mean()
+```

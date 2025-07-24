@@ -36,6 +36,7 @@ book:
       - guides/python.ipynb
       - guides/pandas.ipynb
       - guides/altair.ipynb
+      - guides/hypothesis-testing.qmd
   - part: "Other Key Info"
     chapters:
     - how-to-explain.ipynb

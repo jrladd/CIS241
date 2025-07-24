@@ -158,7 +158,7 @@ Different research questions lead to different alternative hypotheses.
 
 # Step 2: Create a random model using permutation.
 
-## In data science, we often do create our models using *resampling*.
+## In data science, we often create our models using *resampling*.
 
 - In traditional statistics, you would do this with a parametric significance test, like a T-test.
 - The permutation approach for hypothesis testing is like the bootstrap sampling we did last week, but now we'll resample *without replacement*.
@@ -181,93 +181,9 @@ It shows you what the distribution would look like if the difference between the
 
 ## You can use the permutation distribution to calculate a p-value.
 
-# Step 2 (cont.): Permutation Tests in Python
+## You Try It!
 
-## Let's look at the `penguins` dataset.
-
-```python
-import pandas as pd
-import numpy as np
-import altair as alt
-
-penguins = pd.read_csv('https://jrladd.com/CIS241/data/penguins.csv')
-penguins
-
-alt.Chart(penguins,title="Comparing Penguins' Bill Depth by Species").mark_boxplot().encode(
-    x=alt.X('species:N').title("Species of Penguin"),
-    y=alt.Y('bill_depth_mm:Q').title("Bill Depth (mm)").scale(zero=False),
-    color=alt.Color('species:N').legend(None)
-).properties(width=200)
-```
-
-## What's the difference in means?
-
-```python
-# Get two groups
-chinstrap_bill_depth = penguins[penguins.species == "Chinstrap"].bill_depth_mm
-adelie_bill_depth = penguins[penguins.species == "Adelie"].bill_depth_mm
-
-# Calculate the difference in means
-observed_difference = chinstrap_bill_depth.mean() - adelie_bill_depth.mean()
-observed_difference
-```
-## Let's create a function for permutation!
-
-```python
-def simulate_two_groups(data1, data2):
-    n = len(data1) #Get length of first group
-    data = pd.concat([data1, data2]) #Get all data
-    data = data.sample(frac=1) #Reshuffle all data
-    group1 = data.iloc[:n] #Get random first group
-    group2 = data.iloc[n:] #Get random second group
-    return group1.mean() - group2.mean() #Calculate mean difference
-```
-
-You can reuse this code!
-
-## Now we can make 5000 permutations.
-
-```python
-# This is similar to how we
-# calculated confidence intervals
-permutations = []
-for i in range(5000):
-    one_perm = simulate_two_groups(chinstrap_bill_depth, adelie_bill_depth)
-    permutations.append(one_perm)
-
-permutations = pd.DataFrame({'permutations':permutations})
-```
-
-## Let's look at the results in a histogram
-
-```python
-alt.data_transformers.disable_max_rows() # Don't limit the data
-# Create a histogram
-histogram = alt.Chart(permutations).mark_bar().encode(
-    x=alt.X("permutations:Q").bin(maxbins=20),
-    y=alt.Y("count():Q")
-)
-permutations = permutations.assign(observed_difference=observed_difference) # Add the mean to the dataframe
-# Add a vertical line
-observed_line = alt.Chart(permutations).mark_rule(color="red", strokeDash=(8,4)).encode(
-    x=alt.X("observed_difference")
-)
-# Combine the two plots
-histogram + observed_line
-```
-
-How is this different from previous Altair plots?
-
-## Finally, we can calculate a p-value:
-
-```python
-p_value = np.mean(permutations.permutations > observed_difference)
-p_value
-```
-
-Why does this code work?
-
-Is our result statistically significant? Is it practically significant?
+Together, let's follow the steps in the [Hypothesis Testing Guide](https://jrladd.com/CIS241/guides/hypothesis-testing.html) to perform a test to compare the mean bill depth between Chinstrap and Adelie penguins. 
 
 # Step 3: Statistical Significance and the P-value
 
@@ -335,9 +251,10 @@ Determine if users spend significantly more time on Page B than they do on Page 
 1. Copy the URL for <a href="https://jrladd.com/CIS241/data/web_page_data.csv" download>web_page_data.csv</a>.
 2. Make a boxplot of session times for Pages A and B.
 3. Calculate the observed difference in means.
-4. Run 2000 permutations of randomly resampled groups.
-5. Make a histogram of permutation results and show the observed difference as a vertical line.
-6. Calculate the p-value for your permutation test.
+4. Determine your null and alternative hypothesis.
+5. Run 2000 permutations of randomly resampled groups.
+6. Make a histogram of permutation results and show the observed difference as a vertical line.
+7. Calculate the p-value for your permutation test.
 
 # Review This Topic
 
