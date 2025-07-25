@@ -94,7 +94,7 @@ $Y=b_{0}+b_{1}x_{1}+b_{2}x_{2}+b_{3}x_{3}+...$
 
 As many as you want, but make sure you *develop a rationale* (use your human brain)!
 
-# Linear regression in Python
+# Running a linear regression model
 
 ## Always start with exploratory analysis.
 
@@ -149,13 +149,12 @@ This will confuse the model and mess up your results! It could even result in *f
 
 ## How do we find multicollinearity?
 
-You can do a *pairwise* comparison of the variables you're thinking about. 
+You can do a *pairwise* comparison of the variables you're thinking about.
 
 ```{python}
-#| echo: true
 #| output-location: slide
 
-potential_predictors = ['Cylinders', 'Displacement', 'Horsepower',
+potential_predictors = ['Cylinders', 'Displacement', 'Horsepower', 
        'Weight_in_lbs', 'Acceleration']
 alt.Chart(cars).mark_point().encode(
     alt.X(alt.repeat("column"), type='quantitative'),
@@ -173,7 +172,7 @@ alt.Chart(cars).mark_point().encode(
 
 ```{python}
 # Re-arrange correlation matrix data
-cars_corr = (cars.corr(numeric_only=True)
+cars_corr = (cars[potential_predictors].corr(numeric_only=True)
              .stack()
              .reset_index()
              .rename(columns={0:'corr','level_0':'var1','level_1':'var2'})
@@ -203,22 +202,18 @@ Ask yourself: is there an important variable that the data doesn't account for?
 
 ## For statistical modeling in Python, we can use `sklearn`.
 
-```{.python code-line-numbers="3|4|5|"}
-# You only need to import the functions you will use
-# This may be different every time
-from sklearn.linear_model import LinearRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error, r2_score
-```
+See our course site's [Modeling with Scikit-learn](https://jrladd.com/CIS241/guides/sklearn.html) guide.
 
-## The scikit-learn modeling workflow
+## The scikit-learn modeling workflow:
 
 1. Choose your model
 2. Choose predictor and target variables, test for validity
-3. Split the data into train and test portions
-4. Fit the model to your training data
-5. Summarize or predict based on the model
-6. Validate and assess the model
+3. Prepare the data
+4. Split the data into train and test portions
+5. Initialize the model
+6. Fit the model to your training data
+7. Summarize or predict based on the model
+8. Validate and assess the model
 
 Full scikit-learn documentation [here](https://scikit-learn.org/stable/index.html)
 
@@ -226,37 +221,9 @@ Full scikit-learn documentation [here](https://scikit-learn.org/stable/index.htm
 
 A training set will determine the model's coefficients, and a test set will let us see how well it works on *new* data that it *hasn't already seen*.
 
-## First we select our model: linear regression
+## Linear models have an equation with *coefficients* that we can interpret
 
-That's why we imported the LinearRegression class above.
-
-## The full model workflow
-
-```{.python code-line-numbers="1-3|5-12|14-16|18-21"}
-# Select target and predictors based on validation
-target = "Miles_per_Gallon" # Our target variable
-predictors = ["Displacement", "Horsepower", "Acceleration"] # A list of predictors
-
-# Create variables and split data
-X = cars[predictors]
-y = cars[target]
-X_train, X_test, y_train, y_test = train_test_split(
-    X, 
-    y, 
-    test_size=0.4, 
-    random_state=0)
-
-# Fit the model
-our_model = LinearRegression()
-our_model.fit(X_train, y_train)
-
-# View coefficients
-print(f"Intercept: {our_model.intercept_:.3f}")
-for c,p in zip(our_model.coef_,X.columns):
-    print(f"Coefficient for {p}: {c:.4f}")
-```
-
-## Interpreting the results
+## Interpreting the coefficients
 
 With a coefficient for displacement of `-0.0384`, this linear regression provides evidence that as engine displacment increases, fuel efficiency decreases slightly!
 
@@ -267,17 +234,6 @@ For every additional unit of engine displacement, the expected fuel efficiency d
 The intercept indicates that if all predictor variables were 0, fuel efficiency would be 45.392 miles per gallon. Why doesn't this number make any sense?
 
 *Be careful not to imply that there is a direct causal link, especially without more evidence or studies.*
-
-
-## You can consider categorical variables as predictors, too.
-
-Reference coding converts categorical variables to a set of binary variables.
-
-```python
-X = pd.get_dummies(cars[predictors], drop_first=True)
-```
-
-The first category should always be left out as the reference (`drop_first=True`). All the remaining slopes are relative to that reference!
 
 # Challenge: Seattle Housing Data
 
@@ -298,43 +254,19 @@ housing = pd.read_csv("https://jrladd.com/CIS241/data/house_sales.tsv", sep="\t"
 
 The `predict()` method uses coefficients to calculate new values.
 
-```python
-# Let's focus on out-of-sample prediction for validation
-predictions = our_model.predict(X_test)
-predictions
-```
-
 We can predict with our training data (in-sample prediction) or with our test data (out-of-sample prediction).
 
 ## We can look at the *predictions* (fitted values) compared to the *residuals*.
 
 Residuals are the differences between the actual observed values and the ones the model predicted.
 
-```python
-# Our out-of-sample residuals:
-residuals = y_test - predictions
-residuals
-```
-
 <small>Think of these as the "errors" that the modeling method produced. If the residuals are symmetrically distributed with the median close to zero, the model may fit the data well.</small>
 
 ## Root Mean Squared Error measures how much the residuals stray from the fitted values.
 
-```python
-# The raw value, in-sample
-np.sqrt(mean_squared_error(y_test, predictions))
-
-# Or neatly printed
-print(f"Root mean squared error: {np.sqrt(mean_squared_error(y_test, predictions)):.2f}")
-```
-
 This is a good metric for comparing models.
 
 ## $R^{2}$ shows the amount (proportion) of variation in $Y$ that is accounted for by $X$.
-
-```python
-print(f"Coefficient of determination: {r2_score(y_test, predictions):.2f}")
-```
 
 This is also called the "coefficient of determination."
 
@@ -354,15 +286,7 @@ But think about *how much* it increases or decreases.
 
 ## Are the residuals normally distributed, with a mean near 0?
 
-```python
-# First put the results into a dataframe
-results = pd.DataFrame({'Predictions': predictions, 'Residuals':residuals})
-
-alt.Chart(results, title="Histogram of Residuals").mark_bar().encode(
-    x=alt.X('Residuals:Q', title="Residuals").bin(maxbins=20),
-    y=alt.Y('count():Q', title="Value Counts")
-)
-```
+Let's create a histogram of residuals.
 
 You could also use a Q-Q plot for this!
 
@@ -370,15 +294,7 @@ You could also use a Q-Q plot for this!
 
 Is the variance consistent across the range of predicted values?
 
-```python
-# Plot the absolute value of residuals against the predicted values
-chart = alt.Chart(results, title="Testing for Heteroskedasticity").mark_point().encode(
-    x=alt.X('Predictions:Q').title("Predicted Values"),
-    y=alt.Y('y:Q').title("Absolute value of Residuals") 
-).transform_calculate(y='abs(datum.Residuals)')
-
-chart + chart.transform_loess('Predictions', 'y').mark_line()
-```
+Let's plot the absolute value of residuals against the predicted values
 
 If the line is horizontal, there's no heterskedasticity.
 
