@@ -1,0 +1,2317 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>14&nbsp; Modeling with Scikit-learn – CIS241 Intro to Data Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<link href="../how-to-explain.html" rel="next">
+<link href="../guides/hypothesis-testing.html" rel="prev">
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-2d053c8a602df91ec61aa3379e601c1a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">CIS241 Intro to Data Science</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../schedule.html"> 
+<span class="menu-text">Course Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../assignments.html"> 
+<span class="menu-text">Assignments</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../policies.html"> 
+<span class="menu-text">Course Policies</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../groundrules.html"> 
+<span class="menu-text">Ground Rules</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://jupyterhub.ciswashjeff.net/"> 
+<span class="menu-text">JupyterHub</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/jupyterhub.html">Guides</a></li><li class="breadcrumb-item"><a href="../guides/sklearn.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Modeling with Scikit-learn</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/startrek.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Homepage</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Course Information</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../schedule.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Course Schedule</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../policies.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Course Policies</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../groundrules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ground Rules</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../assignments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/documentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Documentation Assignment</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/project-planning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Project Planning Document</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/presentation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Presentation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments/final-report.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Guides</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/jupyterhub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">JupyterHub</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Pandas</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/altair.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Altair</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/sklearn.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Modeling with Scikit-learn</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Other Key Info</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../how-to-explain.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">How to Explain in CIS241</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../radcat.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">R.A.D. C.A.T.</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../sample-final-project.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Work Acquistion and Gender in the Museum of Modern Art</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/jupyter.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Advanced Jupyter Setup</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-scikit-learn-modeling-workflow" id="toc-the-scikit-learn-modeling-workflow" class="nav-link active" data-scroll-target="#the-scikit-learn-modeling-workflow"><span class="header-section-number">14.1</span> The scikit-learn modeling workflow</a></li>
+  <li><a href="#choose-a-model-and-import-functions" id="toc-choose-a-model-and-import-functions" class="nav-link" data-scroll-target="#choose-a-model-and-import-functions"><span class="header-section-number">14.2</span> Choose a model and import functions</a></li>
+  <li><a href="#choose-predictor-and-target-variables" id="toc-choose-predictor-and-target-variables" class="nav-link" data-scroll-target="#choose-predictor-and-target-variables"><span class="header-section-number">14.3</span> Choose predictor and target variables</a></li>
+  <li><a href="#prepare-the-data" id="toc-prepare-the-data" class="nav-link" data-scroll-target="#prepare-the-data"><span class="header-section-number">14.4</span> Prepare the data</a>
+  <ul class="collapse">
+  <li><a href="#remove-null-values" id="toc-remove-null-values" class="nav-link" data-scroll-target="#remove-null-values"><span class="header-section-number">14.4.1</span> Remove null values</a></li>
+  <li><a href="#encode-categorical-variables" id="toc-encode-categorical-variables" class="nav-link" data-scroll-target="#encode-categorical-variables"><span class="header-section-number">14.4.2</span> Encode categorical variables</a></li>
+  <li><a href="#normalizescale-variables" id="toc-normalizescale-variables" class="nav-link" data-scroll-target="#normalizescale-variables"><span class="header-section-number">14.4.3</span> Normalize/Scale variables</a></li>
+  </ul></li>
+  <li><a href="#split-the-data" id="toc-split-the-data" class="nav-link" data-scroll-target="#split-the-data"><span class="header-section-number">14.5</span> Split the data</a></li>
+  <li><a href="#initialize-the-model" id="toc-initialize-the-model" class="nav-link" data-scroll-target="#initialize-the-model"><span class="header-section-number">14.6</span> Initialize the model</a></li>
+  <li><a href="#fit-the-model" id="toc-fit-the-model" class="nav-link" data-scroll-target="#fit-the-model"><span class="header-section-number">14.7</span> Fit the model</a></li>
+  <li><a href="#summarize-andor-predict" id="toc-summarize-andor-predict" class="nav-link" data-scroll-target="#summarize-andor-predict"><span class="header-section-number">14.8</span> Summarize and/or predict</a>
+  <ul class="collapse">
+  <li><a href="#display-and-interpret-coefficients" id="toc-display-and-interpret-coefficients" class="nav-link" data-scroll-target="#display-and-interpret-coefficients"><span class="header-section-number">14.8.1</span> Display and interpret coefficients</a></li>
+  <li><a href="#tree-diagrams-and-feature-importances" id="toc-tree-diagrams-and-feature-importances" class="nav-link" data-scroll-target="#tree-diagrams-and-feature-importances"><span class="header-section-number">14.8.2</span> Tree diagrams and feature importances</a></li>
+  <li><a href="#get-predictions" id="toc-get-predictions" class="nav-link" data-scroll-target="#get-predictions"><span class="header-section-number">14.8.3</span> Get predictions</a></li>
+  </ul></li>
+  <li><a href="#validate-and-assess-your-model" id="toc-validate-and-assess-your-model" class="nav-link" data-scroll-target="#validate-and-assess-your-model"><span class="header-section-number">14.9</span> Validate and assess your model</a>
+  <ul class="collapse">
+  <li><a href="#cross-validation" id="toc-cross-validation" class="nav-link" data-scroll-target="#cross-validation"><span class="header-section-number">14.9.1</span> Cross-validation</a></li>
+  <li><a href="#validation-for-regression" id="toc-validation-for-regression" class="nav-link" data-scroll-target="#validation-for-regression"><span class="header-section-number">14.9.2</span> Validation for Regression</a></li>
+  <li><a href="#validation-for-classification" id="toc-validation-for-classification" class="nav-link" data-scroll-target="#validation-for-classification"><span class="header-section-number">14.9.3</span> Validation for Classification</a></li>
+  <li><a href="#validation-for-unsupervised-models" id="toc-validation-for-unsupervised-models" class="nav-link" data-scroll-target="#validation-for-unsupervised-models"><span class="header-section-number">14.9.4</span> Validation for Unsupervised Models</a></li>
+  </ul></li>
+  <li><a href="#examples-of-model-code" id="toc-examples-of-model-code" class="nav-link" data-scroll-target="#examples-of-model-code"><span class="header-section-number">14.10</span> Examples of model code</a>
+  <ul class="collapse">
+  <li><a href="#linear-regression" id="toc-linear-regression" class="nav-link" data-scroll-target="#linear-regression"><span class="header-section-number">14.10.1</span> Linear regression</a></li>
+  <li><a href="#knn-classification" id="toc-knn-classification" class="nav-link" data-scroll-target="#knn-classification"><span class="header-section-number">14.10.2</span> KNN Classification</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/jupyterhub.html">Guides</a></li><li class="breadcrumb-item"><a href="../guides/sklearn.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Modeling with Scikit-learn</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Modeling with Scikit-learn</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><a href="https://scikit-learn.org/stable/index.html">Scikit-learn</a>, or <code>sklearn</code>, is an all-purpose Python library for statistical modeling and machine learning. It gives you access to many different kinds of models and approaches, and we will just scratch the surface in this class. You’ll use <code>scikit-learn</code> any time you create a model, whether it’s a supervised regression or classification, or an unsupervised approach. This guide will walk you through the general aspects of modeling in <code>scikit-learn</code>, but the specifics will be up to you!</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Scikit-learn’s <a href="https://scikit-learn.org/stable/user_guide.html">User Guide</a> and Documentation are very detailed, and we’ll practice using them together in class. That’s a good place to start if you want more information about anything you find here.</p>
+</div>
+</div>
+<section id="the-scikit-learn-modeling-workflow" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="the-scikit-learn-modeling-workflow"><span class="header-section-number">14.1</span> The scikit-learn modeling workflow</h2>
+<p>No matter what kind of modeling you’re doing, here are the general steps you will follow:</p>
+<ol type="1">
+<li>Choose your model based on your data and research questions</li>
+<li>Choose predictor and target variables appropriate to the model, test for validity if necessary</li>
+<li>Prepare the data: removing any null values, scaling/normalizing variables, or using one-hot encoding or reference coding as necessary.</li>
+<li>Split the data into train and test portions (n.b.: You will skip this step for unsupervised approaches!)</li>
+<li>Initialize the model, paying special attention to hyperparameters</li>
+<li>Fit the model to your training data</li>
+<li>Summarize and/or predict based on the model</li>
+<li>Validate and assess the model based on your results</li>
+</ol>
+</section>
+<section id="choose-a-model-and-import-functions" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="choose-a-model-and-import-functions"><span class="header-section-number">14.2</span> Choose a model and import functions</h2>
+<p>Unlike the other libraries we’ve used so far, you’d never simply run <code>import sklearn</code>: the library is too big and would import way more than you need, potentially slowing down your code! Instead, you’ll import just the parts you need for a particular model.</p>
+<p>In the first step of the modeling workflow, you need to use the <em>model selection</em> principles we’ll discuss in class to determine the right model for your data and research questions. That will give you a good idea of what functions and methods you’ll need. You’ll import them with code that looks like this:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You only need to import the functions you will use</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This may be different every time</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split, cross_val_score</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error, r2_score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is the example of what you’d need if you were going to run a linear regression. Note that you’re importing a <strong>class</strong>, the capitalized <code>LinearRegression</code> in the first line, that has your model itself. And you’re also importing all the additional functions you need to validate and explain that model.</p>
+</section>
+<section id="choose-predictor-and-target-variables" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="choose-predictor-and-target-variables"><span class="header-section-number">14.3</span> Choose predictor and target variables</h2>
+<p>Next you’ll choose what predictors and target variables you use. The process of choosing predictors (i.e.&nbsp;features) is called <em>feature selection</em>, and the kind of model you chose will often help you determine which predictors you use. The reverse is also true: the kind of features/predictors you have access to might help you determine which model to use.</p>
+<p>Typically you’d first identify the variables and then use them to select the specific <code>X</code> (predictors) and <code>y</code> (target) data you’ll use in the model.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>predictors <span class="op">=</span> [<span class="st">"your_first_predictor"</span>, <span class="st">"your_second_predictor"</span>, <span class="st">"your_third_predictor"</span>, ...]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="st">"your_target_variable"</span> <span class="co">#Note there are no brackets here</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> your_dataframe[predictors]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> your_dataframe[target]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Sometimes you will want to test your predictors for validity before selecting them. In this case, you might create a <code>potential_predictors</code> list and use that before narrowing down to your official predictors. This is especially true for linear models like Linear Regression or Logistic Regression, when you often want to check for multicollinearity using a pairplot or correlation matrix at this stage.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In an unsupervised model, there is no target variable, so you would only need to set up predictors and an <code>X</code>. And in some cases, you would run your model on the entire dataset without selecting specific features as predictors.</p>
+</div>
+</div>
+</section>
+<section id="prepare-the-data" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="prepare-the-data"><span class="header-section-number">14.4</span> Prepare the data</h2>
+<p>There are a few steps you might take at this stage. <strong>Some of these steps might happen before or during the previous step.</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>YOU WILL NOT DO EVERY ONE OF THESE STEPS EVERY TIME YOU RUN A MODEL. IT WILL ALWAYS DEPEND ON YOUR MODEL AND YOUR DATA.</p>
+</div>
+</div>
+<section id="remove-null-values" class="level3" data-number="14.4.1">
+<h3 data-number="14.4.1" class="anchored" data-anchor-id="remove-null-values"><span class="header-section-number">14.4.1</span> Remove null values</h3>
+<p>If your data has null values, this will cause errors in most models. It is helpful to remove null values from your data <em>before</em> you create your <code>X</code> and <code>y</code> variables. Use <code>subset=</code> to avoid dropping rows unnecesarily.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>your_dataframe <span class="op">=</span> your_dataframe.dropna(subset<span class="op">=</span>predictors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If there are null values in the target, you may need to add the target to the <code>subset</code> list.</p>
+</section>
+<section id="encode-categorical-variables" class="level3" data-number="14.4.2">
+<h3 data-number="14.4.2" class="anchored" data-anchor-id="encode-categorical-variables"><span class="header-section-number">14.4.2</span> Encode categorical variables</h3>
+<p>If you have categorical variables in your predictors, you may need to change them to numerical 1s and 0s in order to run your model. You may be able to skip this for certain tree models, like the random forest.</p>
+<p>For linear models (linear and logistic regression), use <strong>reference coding</strong> by dropping one of your category columns. This code will got <strong>in place of</strong> the code where you defined <code>X</code> in the previos section.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.get_dummies(your_dataframe[predictors], drop_first<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For almost all other models, use <strong>one-hot encoding</strong> and don’t drop any of the reference columns.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.get_dummies(your_dataframe[predictors])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you have a categorical variable with lots of individual classes, this process will create too many columns in your code. This could slow down your code, cause your kernel crash, and/or make your model unreliable. Make sure you’ve inspected the categorical variables you want to use.</p>
+</div>
+</div>
+</section>
+<section id="normalizescale-variables" class="level3" data-number="14.4.3">
+<h3 data-number="14.4.3" class="anchored" data-anchor-id="normalizescale-variables"><span class="header-section-number">14.4.3</span> Normalize/Scale variables</h3>
+<p>If your predictors are at very different scales, this could affect the results of your model. Especially in the case of distance-based models like K-nearest neighbors or K-means clustering, it’s important to scale your variables.</p>
+<p>The process of scaling works like using a model class in <code>sklearn</code>. First you import the scaler. There are many different ways to scale data, but we’ll typically standardize with z-scores.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong><em>After</em> you split the data</strong> (see below) you should standardize the training data.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>scaler.fit(X_train)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>X_train_std <span class="op">=</span> scaler.transform(X_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then you would use <code>X_train_std</code> in place of <code>X_train</code> in any subsequent code.</p>
+<p><strong><em>Before</em> you validate on your test data</strong>, you need to scale the test data with the same scaler.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>X_test_std <span class="op">=</span> scaler.transform(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Notice that you don’t re-fit the scaler at this step. After this you would use <code>X_test_std</code> in place of <code>X_test</code> in any subsequent code.</p>
+<p><strong><em>Before</em> you cross-validate (or before you fit an unsupervised model)</strong>, you will need to standardize the entirety of the unsplit data.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>scaler.fit(X)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>X_std <span class="op">=</span> scaler.transform(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then you would use <code>X_std</code> in place of <code>X</code> in any subsequent code.</p>
+</section>
+</section>
+<section id="split-the-data" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="split-the-data"><span class="header-section-number">14.5</span> Split the data</h2>
+<p>For all <strong><em>supervised</em></strong> models, you will split the data into training and test sets. A training set will determine the model’s coefficients, and a test set will let us see how well it works on <em>new</em> data that it <em>hasn’t already seen</em>. (For <em>unsupervised</em> models, since there is no training, you will skip this step and work on the <em>entire</em> dataset.)</p>
+<p>You use the <code>train_test_split</code> function that we imported above to split your data.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    X, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    y, </span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.3</span>, </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>test_size</code> parameter determines what percentage of the data will be reserved for testing (in this case, 30%). If your dataset is very small, you may want to reserve a smaller test set so that you can use as much data as possible for training, but it’s unadvisable to choose a test set smaller than 20%.</p>
+<p>The <code>random_state</code> parameter ensures that data split is the same every time. It doesn’t matter what number you use here, so long as it’s the same every time you run the function.</p>
+</section>
+<section id="initialize-the-model" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="initialize-the-model"><span class="header-section-number">14.6</span> Initialize the model</h2>
+<p>In order to run a model, you must initialize the model class by assigning it to a variable. For a simple model like linear regression, it would look like this:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>your_model_name <span class="op">=</span> LinearRegression()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Many models have hyperparameters and other settings you need to select at the time of initialization. Refer to your notes from class and the <code>sklearn</code> documentation for details about specific hyperparameters. As an example, initialization of a Naive Bayes model might look like:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>naive_model <span class="op">=</span> MultinomialNB(alpha<span class="op">=</span><span class="fl">0.01</span>, fit_prior<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this case, the <code>MultinomialNB</code> class has two hyperparamters, <code>alpha</code> and <code>fit_prior</code>.</p>
+</section>
+<section id="fit-the-model" class="level2" data-number="14.7">
+<h2 data-number="14.7" class="anchored" data-anchor-id="fit-the-model"><span class="header-section-number">14.7</span> Fit the model</h2>
+<p><strong>In a supervised model</strong>, you will take the model variable that you initialized in the previous step and <code>fit</code>, i.e.&nbsp;run, it on your split training data.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>your_model_name.fit(X_train_std, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>In an unsupervised model</strong>, you will fit directly to the full data, and there is no target <code>y</code> variable.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>your_model_name.fit(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Or sometimes:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> your_model_name.fit_transform(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The last option will fit and get results in the same function, but we’ll typically only use it for our PCA model.</p>
+</section>
+<section id="summarize-andor-predict" class="level2" data-number="14.8">
+<h2 data-number="14.8" class="anchored" data-anchor-id="summarize-andor-predict"><span class="header-section-number">14.8</span> Summarize and/or predict</h2>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This step is only for <em>supervised</em> models. For unsupervised models, you will often use the fit data to generate a transformation or retrieve attributes.</p>
+</div>
+</div>
+<section id="display-and-interpret-coefficients" class="level3" data-number="14.8.1">
+<h3 data-number="14.8.1" class="anchored" data-anchor-id="display-and-interpret-coefficients"><span class="header-section-number">14.8.1</span> Display and interpret coefficients</h3>
+<p>This option is only for linear models: linear and logistic regression. You can display the intercept and coefficients to better interpret the relationships in your data.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You'll use loops and string formatting here</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Intercept: </span><span class="sc">{</span>your_model_name<span class="sc">.</span>intercept_<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c,p <span class="kw">in</span> <span class="bu">zip</span>(your_model_name.coef_,X.columns):</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Coefficient for </span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>c<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="tree-diagrams-and-feature-importances" class="level3" data-number="14.8.2">
+<h3 data-number="14.8.2" class="anchored" data-anchor-id="tree-diagrams-and-feature-importances"><span class="header-section-number">14.8.2</span> Tree diagrams and feature importances</h3>
+<p>This option is only for tree models: decision trees and the random forest.</p>
+<ol type="1">
+<li><p>You can use the <code>plot_tree()</code> function to create an informative tree diagram. See the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.plot_tree.html#sklearn.tree.plot_tree">Scikit-learn documentation</a> for details.</p></li>
+<li><p>You can display the feature importances from these models in order to interpret the results more accurately. Listing feature importances will use the <code>your_model_name.feature_importances_</code> attribute and the same looping procedure as displaying coefficients (above).</p></li>
+</ol>
+</section>
+<section id="get-predictions" class="level3" data-number="14.8.3">
+<h3 data-number="14.8.3" class="anchored" data-anchor-id="get-predictions"><span class="header-section-number">14.8.3</span> Get predictions</h3>
+<p>Supervised models always produce predictions. In regression models, you produce numerical predictions with <code>.predict()</code>. We will always run these functions on the <strong>test data</strong> to get <em>out of sample predictions</em>.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For regression</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> your_model_name.predict(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In classification models, you produce categorical predictions with <code>.predict()</code> and numerical probabilities with <code>.predict_proba()</code>. You should also get the <em>target classes</em> at this stage.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For classification</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> your_model_name.classes_</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>probabilities <span class="op">=</span> your_model_name.predict_proba(X_test_std)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> your_model_name.predict(X_test_std)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># It's helpful to put the probabilities into a dataframe</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>probabilities <span class="op">=</span> pd.DataFrame(probabilities, columns<span class="op">=</span>categories)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+</section>
+<section id="validate-and-assess-your-model" class="level2" data-number="14.9">
+<h2 data-number="14.9" class="anchored" data-anchor-id="validate-and-assess-your-model"><span class="header-section-number">14.9</span> Validate and assess your model</h2>
+<p>For every kind of model, there are distinct validation and assessment steps that help you interpret your results.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There are many different validation methods, and this guide will go through a few of the ones we’ll use in this class. The <code>sklearn</code> documentation lists many more possibilities for different kinds of models.</p>
+</div>
+</div>
+<section id="cross-validation" class="level3" data-number="14.9.1">
+<h3 data-number="14.9.1" class="anchored" data-anchor-id="cross-validation"><span class="header-section-number">14.9.1</span> Cross-validation</h3>
+<p>All supervised models should be cross-validated. This runs the model multiple times over different splits of the data, to verify that your results weren’t skewed by a random split of the data.</p>
+<p>At the top of your code, you should have the <code>cross_val_score</code> function imported. Then, no matter the model, you run the function on the entire unsplit dataset.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cv is the number of folds, or the repeated runs of the model</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cross_val_score(your_model name, X, y, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Use f-strings to print the mean and standard deviation of your result</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>scores<span class="sc">.</span>mean()<span class="sc">:.2}</span><span class="ss"> score with standard deviation </span><span class="sc">{</span>scores<span class="sc">.</span>std()<span class="sc">:.2}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For regression models, <code>cross_val_score</code> will generate an <span class="math inline">\(R^2\)</span> score for each run of your model. For classification models, it will generate an accuracy score.</p>
+</section>
+<section id="validation-for-regression" class="level3" data-number="14.9.2">
+<h3 data-number="14.9.2" class="anchored" data-anchor-id="validation-for-regression"><span class="header-section-number">14.9.2</span> Validation for Regression</h3>
+<p>Regression validation is based on <em>residuals</em>. Here are the <code>sklearn</code> functions you need to validate a regression. You would add these at the top of your notebook with your other imports.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error, r2_score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You first step in regression validation is to calculate the residuals.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Out-of-sample residuals:</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>residuals <span class="op">=</span> y_test <span class="op">-</span> predictions</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># It's helpful to put them into a dataframe with your predictions</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pd.DataFrame({<span class="st">'Predictions'</span>: predictions, <span class="st">'Residuals'</span>:residuals})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can use the predictions you generated in the previous step to calculate Root Mean Squared Error (RMSE).</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Root mean squared error: </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(mean_squared_error(y_test, predictions))<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can also display the <span class="math inline">\(R^2\)</span> score, aka the coefficient of determination.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Coefficient of determination: </span><span class="sc">{</span>r2_score(y_test, predictions)<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In addition to these two values, you can also create visualizations for validation.</p>
+<p>A histogram of residuals will show you if the residuals are normally distributed.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(results, title<span class="op">=</span><span class="st">"Histogram of Residuals"</span>).mark_bar().encode(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'Residuals:Q'</span>, title<span class="op">=</span><span class="st">"Residuals"</span>).<span class="bu">bin</span>(maxbins<span class="op">=</span><span class="dv">20</span>),</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'count():Q'</span>, title<span class="op">=</span><span class="st">"Value Counts"</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And you can plot the absolute value of residuals against the predictions to test for heteroskedasticity. You will <strong>only</strong> use this plot for linear regression.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the absolute value of residuals against the predicted values</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>chart <span class="op">=</span> alt.Chart(results, title<span class="op">=</span><span class="st">"Testing for Heteroskedasticity"</span>).mark_point().encode(</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'Predictions:Q'</span>).title(<span class="st">"Predicted Values"</span>),</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'y:Q'</span>).title(<span class="st">"Absolute value of Residuals"</span>) </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>).transform_calculate(y<span class="op">=</span><span class="st">'abs(datum.Residuals)'</span>)</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>chart <span class="op">+</span> chart.transform_loess(<span class="st">'Predictions'</span>, <span class="st">'y'</span>).mark_line()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="validation-for-classification" class="level3" data-number="14.9.3">
+<h3 data-number="14.9.3" class="anchored" data-anchor-id="validation-for-classification"><span class="header-section-number">14.9.3</span> Validation for Classification</h3>
+<p>Classification validation is based on the confusion matrix, which tallies the number of categories correctly predicted by the model. Here are the <code>sklearn</code> functions you need to validate a classifier. You would add these at the top of your notebook with your other imports.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, classification_report, RocCurveDisplay</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># You won't always need matplotlib, but it's good to have</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>confusion_matrix</code> function generates the results, and you can turn this into a confusion matrix visualization: a special kind of heatmap with text overlayed.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate confusion matrix and transform data</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>conf_mat <span class="op">=</span> confusion_matrix(y_test,predictions)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>conf_mat <span class="op">=</span> pd.DataFrame(conf_mat,index<span class="op">=</span>categories,columns<span class="op">=</span>categories)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>conf_mat <span class="op">=</span> conf_mat.melt(ignore_index<span class="op">=</span><span class="va">False</span>).reset_index()</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Create heatmap</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>heatmap <span class="op">=</span> alt.Chart(conf_mat).mark_rect().encode(</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">"variable:N"</span>).title(<span class="st">"Predicted Response"</span>),</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">"index:N"</span>).title(<span class="st">"True Response"</span>),</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(<span class="st">"value:Q"</span>, legend<span class="op">=</span><span class="va">None</span>).scale(scheme<span class="op">=</span><span class="st">"blues"</span>)</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>).properties(</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">400</span>,</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">400</span></span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add text labels for numbers</span></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> heatmap.mark_text(baseline<span class="op">=</span><span class="st">"middle"</span>).encode(</span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span>alt.Text(<span class="st">"value:Q"</span>),</span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.value(<span class="st">"black"</span>),</span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>alt.value(<span class="dv">50</span>)</span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>heatmap <span class="op">+</span> text</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can calculate the accuracy, precision, and recall scores with the classification report.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You must use print() to make this readable</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, predictions))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Don’t forget that you must also use cross-validation for a classifier!</p>
+<p>You can also create an ROC Curve if you have a <strong>binary classifer</strong> (just two target classes).</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create our ROC Curve plot</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>RocCurveDisplay.from_predictions(y_test,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                                 probabilities[categories[<span class="dv">0</span>]],</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                                 pos_label<span class="op">=</span>categories[<span class="dv">0</span>])</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw a green line for 0</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], color <span class="op">=</span> <span class="st">'g'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="validation-for-unsupervised-models" class="level3" data-number="14.9.4">
+<h3 data-number="14.9.4" class="anchored" data-anchor-id="validation-for-unsupervised-models"><span class="header-section-number">14.9.4</span> Validation for Unsupervised Models</h3>
+<p>Validation steps for unsupervised models are specific to the model. For example, in K-means clustering, you could show the labels of your clustering and a bar plot of the cluster means. Refer back to our class notes and supplementary readings for validation steps for K-means clustering and PCA.</p>
+</section>
+</section>
+<section id="examples-of-model-code" class="level2" data-number="14.10">
+<h2 data-number="14.10" class="anchored" data-anchor-id="examples-of-model-code"><span class="header-section-number">14.10</span> Examples of model code</h2>
+<section id="linear-regression" class="level3" data-number="14.10.1">
+<h3 data-number="14.10.1" class="anchored" data-anchor-id="linear-regression"><span class="header-section-number">14.10.1</span> Linear regression</h3>
+<p>Here’s an example of the full model workflow for a linear regression of the cars data.</p>
+<p>First import libraries and data. In a real scenario, you’d also do some exploratory data analysis here.</p>
+<div id="11fdebd2" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> vega_datasets <span class="im">import</span> data</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split, cross_val_score</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error, r2_score</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>alt.data_transformers.enable(<span class="st">"vegafusion"</span>)</span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>cars <span class="op">=</span> data.cars()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Because this is a linear model, you should also validate any potential predictors by testing for multicollinearity. One way to do that is to use a correlation matrix of potential predictors. (You might also use a pair plot here.)</p>
+<div id="26195d5a" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>potential_predictors <span class="op">=</span> [<span class="st">'Cylinders'</span>, <span class="st">'Displacement'</span>, <span class="st">'Horsepower'</span>,</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">'Weight_in_lbs'</span>, <span class="st">'Acceleration'</span>]</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-arrange correlation matrix data</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>cars_corr <span class="op">=</span> (cars[potential_predictors].corr(numeric_only<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>             .stack()</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>             .reset_index()</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>             .rename(columns<span class="op">=</span>{<span class="dv">0</span>:<span class="st">'corr'</span>,<span class="st">'level_0'</span>:<span class="st">'var1'</span>,<span class="st">'level_1'</span>:<span class="st">'var2'</span>})</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create correlation heatmap</span></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>base <span class="op">=</span> alt.Chart(cars_corr, title<span class="op">=</span><span class="st">"Cars Correlation Matrix"</span>).mark_rect().encode(</span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">"var1:N"</span>,title<span class="op">=</span><span class="va">None</span>),</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">"var2:N"</span>,title<span class="op">=</span><span class="va">None</span>),</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(<span class="st">"corr"</span>,title<span class="op">=</span><span class="st">"Correlation coefficient"</span>).scale(scheme<span class="op">=</span><span class="st">'blueorange'</span>)</span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>).properties(width<span class="op">=</span><span class="dv">300</span>,height<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Add text labels for coefficients</span></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> base.mark_text(baseline<span class="op">=</span><span class="st">'middle'</span>).encode(</span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>    alt.Text(<span class="st">'corr:Q'</span>, <span class="bu">format</span><span class="op">=</span><span class="st">".2f"</span>),</span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.condition(</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>        (alt.datum.corr <span class="op">&lt;</span> <span class="op">-</span><span class="fl">0.5</span>) <span class="op">|</span> (alt.datum.corr <span class="op">&gt;</span> <span class="fl">0.5</span>),</span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>        alt.value(<span class="st">'white'</span>),</span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>        alt.value(<span class="st">'black'</span>)</span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>base<span class="op">+</span>text <span class="co"># Display visualization</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+
+<style>
+  #altair-viz-da318a55fc994a0c8f77bcca684ea988.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-da318a55fc994a0c8f77bcca684ea988.vega-embed details,
+  #altair-viz-da318a55fc994a0c8f77bcca684ea988.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-da318a55fc994a0c8f77bcca684ea988"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-da318a55fc994a0c8f77bcca684ea988") {
+      outputDiv = document.getElementById("altair-viz-da318a55fc994a0c8f77bcca684ea988");
+    }
+
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.20.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      let deps = ["vega-embed"];
+      require(deps, displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.20.1"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"$schema": "https://vega.github.io/schema/vega/v5.json", "data": [{"name": "source_0", "values": [{"corr": 1.0, "var1": "Cylinders", "var2": "Cylinders"}, {"corr": 0.9517870386276704, "var1": "Cylinders", "var2": "Displacement"}, {"corr": 0.8441582976660664, "var1": "Cylinders", "var2": "Horsepower"}, {"corr": 0.8952204775128874, "var1": "Cylinders", "var2": "Weight_in_lbs"}, {"corr": -0.5224515124210515, "var1": "Cylinders", "var2": "Acceleration"}, {"corr": 0.9517870386276704, "var1": "Displacement", "var2": "Cylinders"}, {"corr": 1.0, "var1": "Displacement", "var2": "Displacement"}, {"corr": 0.8983263139804297, "var1": "Displacement", "var2": "Horsepower"}, {"corr": 0.9324746504807486, "var1": "Displacement", "var2": "Weight_in_lbs"}, {"corr": -0.5579836330725129, "var1": "Displacement", "var2": "Acceleration"}, {"corr": 0.8441582976660664, "var1": "Horsepower", "var2": "Cylinders"}, {"corr": 0.8983263139804297, "var1": "Horsepower", "var2": "Displacement"}, {"corr": 1.0, "var1": "Horsepower", "var2": "Horsepower"}, {"corr": 0.8665862223908412, "var1": "Horsepower", "var2": "Weight_in_lbs"}, {"corr": -0.6971244438551875, "var1": "Horsepower", "var2": "Acceleration"}, {"corr": 0.8952204775128874, "var1": "Weight_in_lbs", "var2": "Cylinders"}, {"corr": 0.9324746504807486, "var1": "Weight_in_lbs", "var2": "Displacement"}, {"corr": 0.8665862223908412, "var1": "Weight_in_lbs", "var2": "Horsepower"}, {"corr": 1.0, "var1": "Weight_in_lbs", "var2": "Weight_in_lbs"}, {"corr": -0.43008580509162647, "var1": "Weight_in_lbs", "var2": "Acceleration"}, {"corr": -0.5224515124210515, "var1": "Acceleration", "var2": "Cylinders"}, {"corr": -0.5579836330725129, "var1": "Acceleration", "var2": "Displacement"}, {"corr": -0.6971244438551875, "var1": "Acceleration", "var2": "Horsepower"}, {"corr": -0.43008580509162647, "var1": "Acceleration", "var2": "Weight_in_lbs"}, {"corr": 1.0, "var1": "Acceleration", "var2": "Acceleration"}]}, {"name": "data_0", "values": [{"corr": 1.0, "var1": "Cylinders", "var2": "Cylinders"}, {"corr": 0.9517870386276704, "var1": "Cylinders", "var2": "Displacement"}, {"corr": 0.8441582976660664, "var1": "Cylinders", "var2": "Horsepower"}, {"corr": 0.8952204775128874, "var1": "Cylinders", "var2": "Weight_in_lbs"}, {"corr": -0.5224515124210515, "var1": "Cylinders", "var2": "Acceleration"}, {"corr": 0.9517870386276704, "var1": "Displacement", "var2": "Cylinders"}, {"corr": 1.0, "var1": "Displacement", "var2": "Displacement"}, {"corr": 0.8983263139804297, "var1": "Displacement", "var2": "Horsepower"}, {"corr": 0.9324746504807486, "var1": "Displacement", "var2": "Weight_in_lbs"}, {"corr": -0.5579836330725129, "var1": "Displacement", "var2": "Acceleration"}, {"corr": 0.8441582976660664, "var1": "Horsepower", "var2": "Cylinders"}, {"corr": 0.8983263139804297, "var1": "Horsepower", "var2": "Displacement"}, {"corr": 1.0, "var1": "Horsepower", "var2": "Horsepower"}, {"corr": 0.8665862223908412, "var1": "Horsepower", "var2": "Weight_in_lbs"}, {"corr": -0.6971244438551875, "var1": "Horsepower", "var2": "Acceleration"}, {"corr": 0.8952204775128874, "var1": "Weight_in_lbs", "var2": "Cylinders"}, {"corr": 0.9324746504807486, "var1": "Weight_in_lbs", "var2": "Displacement"}, {"corr": 0.8665862223908412, "var1": "Weight_in_lbs", "var2": "Horsepower"}, {"corr": 1.0, "var1": "Weight_in_lbs", "var2": "Weight_in_lbs"}, {"corr": -0.43008580509162647, "var1": "Weight_in_lbs", "var2": "Acceleration"}, {"corr": -0.5224515124210515, "var1": "Acceleration", "var2": "Cylinders"}, {"corr": -0.5579836330725129, "var1": "Acceleration", "var2": "Displacement"}, {"corr": -0.6971244438551875, "var1": "Acceleration", "var2": "Horsepower"}, {"corr": -0.43008580509162647, "var1": "Acceleration", "var2": "Weight_in_lbs"}, {"corr": 1.0, "var1": "Acceleration", "var2": "Acceleration"}]}, {"name": "data_0_x_domain_var1_0", "values": [{"var1": "Cylinders"}, {"var1": "Displacement"}, {"var1": "Horsepower"}, {"var1": "Weight_in_lbs"}, {"var1": "Acceleration"}]}, {"name": "source_0_x_domain_var1_1", "values": [{"var1": "Cylinders"}, {"var1": "Displacement"}, {"var1": "Horsepower"}, {"var1": "Weight_in_lbs"}, {"var1": "Acceleration"}]}, {"name": "data_0_y_domain_var2_0", "values": [{"var2": "Cylinders"}, {"var2": "Displacement"}, {"var2": "Horsepower"}, {"var2": "Weight_in_lbs"}, {"var2": "Acceleration"}]}, {"name": "source_0_y_domain_var2_1", "values": [{"var2": "Cylinders"}, {"var2": "Displacement"}, {"var2": "Horsepower"}, {"var2": "Weight_in_lbs"}, {"var2": "Acceleration"}]}, {"name": "data_0_color_domain_corr", "values": [{"min": -0.6971244438551875, "max": 1.0}]}], "marks": [{"type": "rect", "name": "layer_0_marks", "from": {"data": "data_0"}, "encode": {"update": {"fill": {"field": "corr", "scale": "color"}, "width": {"signal": "max(0.25, bandwidth('x'))"}, "y": {"field": "var2", "scale": "y"}, "height": {"signal": "max(0.25, bandwidth('y'))"}, "x": {"field": "var1", "scale": "x"}}}, "style": ["rect"]}, {"type": "text", "name": "layer_1_marks", "from": {"data": "source_0"}, "encode": {"update": {"text": {"signal": "format(datum[\"corr\"], \".2f\")"}, "align": {"value": "center"}, "y": {"field": "var2", "scale": "y", "band": 0.5}, "fill": [{"value": "white", "test": "((datum.corr < -0.5) || (datum.corr > 0.5))"}, {"value": "black"}], "x": {"field": "var1", "scale": "x", "band": 0.5}, "baseline": {"value": "middle"}}}, "style": ["text"]}], "scales": [{"name": "x", "type": "band", "domain": {"fields": [{"data": "data_0_x_domain_var1_0", "field": "var1"}, {"data": "source_0_x_domain_var1_1", "field": "var1"}], "sort": true}, "range": [0, {"signal": "width"}], "paddingInner": 0, "paddingOuter": 0}, {"name": "y", "type": "band", "domain": {"fields": [{"data": "data_0_y_domain_var2_0", "field": "var2"}, {"data": "source_0_y_domain_var2_1", "field": "var2"}], "sort": true}, "range": [0, {"signal": "height"}], "paddingOuter": 0, "paddingInner": 0}, {"name": "color", "type": "linear", "domain": [{"signal": "(data(\"data_0_color_domain_corr\")[0] || {}).min"}, {"signal": "(data(\"data_0_color_domain_corr\")[0] || {}).max"}], "range": {"scheme": "blueorange"}, "zero": false, "interpolate": "hcl"}], "axes": [{"scale": "x", "labelBaseline": "middle", "labelAlign": "right", "orient": "bottom", "labelAngle": 270, "grid": false, "zindex": 1}, {"scale": "y", "grid": false, "orient": "left", "zindex": 1}], "title": {"text": "Cars Correlation Matrix", "frame": "group"}, "background": "white", "width": 300, "height": 300, "style": "cell", "padding": 5, "legends": [{"title": "Correlation coefficient", "fill": "color", "gradientLength": {"signal": "clamp(height, 64, 200)"}}]}, {"mode": "vega"});
+</script>
+</div>
+</div>
+<p>Then set up and run your model. Since this is a linear model, you also should display and interpret the coefficients.</p>
+<div id="c61785d4" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select target and predictors based on validation</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="st">"Miles_per_Gallon"</span> <span class="co"># Our target variable</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>predictors <span class="op">=</span> [<span class="st">"Displacement"</span>, <span class="st">"Horsepower"</span>, <span class="st">"Acceleration"</span>] <span class="co"># A list of predictors</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove null values</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>cars <span class="op">=</span> cars.dropna(subset<span class="op">=</span>predictors<span class="op">+</span>[target])</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create variables and split data</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> cars[predictors]</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> cars[target]</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    X, </span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    y, </span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.4</span>, </span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model</span></span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>linreg <span class="op">=</span> LinearRegression()</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>linreg.fit(X_train, y_train)</span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a><span class="co"># View coefficients</span></span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Intercept: </span><span class="sc">{</span>linreg<span class="sc">.</span>intercept_<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c,p <span class="kw">in</span> <span class="bu">zip</span>(linreg.coef_,X.columns):</span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Coefficient for </span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>c<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Intercept: 45.819
+Coefficient for Displacement: -0.0364
+Coefficient for Horsepower: -0.0968
+Coefficient for Acceleration: -0.3074</code></pre>
+</div>
+</div>
+<p>Finally, predict with the model, then display and interpret the validation steps.</p>
+<div id="03fa25f1" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> linreg.predict(X_test)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Our out-of-sample residuals:</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>residuals <span class="op">=</span> y_test <span class="op">-</span> predictions</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pd.DataFrame({<span class="st">'Predictions'</span>: predictions, <span class="st">'Residuals'</span>:residuals})</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Root mean squared error: </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(mean_squared_error(y_test, predictions))<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Coefficient of determination: </span><span class="sc">{</span>r2_score(y_test, predictions)<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Root mean squared error: 4.71
+Coefficient of determination: 0.59</code></pre>
+</div>
+</div>
+<div id="85cd4cce" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Histogram of residuals</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>alt.Chart(results, title<span class="op">=</span><span class="st">"Histogram of Residuals"</span>).mark_bar().encode(</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'Residuals:Q'</span>, title<span class="op">=</span><span class="st">"Residuals"</span>).<span class="bu">bin</span>(maxbins<span class="op">=</span><span class="dv">20</span>),</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'count():Q'</span>, title<span class="op">=</span><span class="st">"Value Counts"</span>)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+
+<style>
+  #altair-viz-354151417a994fb89296fdc5b1d29da9.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-354151417a994fb89296fdc5b1d29da9.vega-embed details,
+  #altair-viz-354151417a994fb89296fdc5b1d29da9.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-354151417a994fb89296fdc5b1d29da9"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-354151417a994fb89296fdc5b1d29da9") {
+      outputDiv = document.getElementById("altair-viz-354151417a994fb89296fdc5b1d29da9");
+    }
+
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.20.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      let deps = ["vega-embed"];
+      require(deps, displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.20.1"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"$schema": "https://vega.github.io/schema/vega/v5.json", "data": [{"name": "source_0", "values": [{"__count": 25, "bin_maxbins_20_Residuals": -6.0, "bin_maxbins_20_Residuals_end": -4.0}, {"__count": 29, "bin_maxbins_20_Residuals": -4.0, "bin_maxbins_20_Residuals_end": -2.0}, {"__count": 7, "bin_maxbins_20_Residuals": 4.0, "bin_maxbins_20_Residuals_end": 6.0}, {"__count": 25, "bin_maxbins_20_Residuals": -2.0, "bin_maxbins_20_Residuals_end": 0.0}, {"__count": 19, "bin_maxbins_20_Residuals": 0.0, "bin_maxbins_20_Residuals_end": 2.0}, {"__count": 17, "bin_maxbins_20_Residuals": 2.0, "bin_maxbins_20_Residuals_end": 4.0}, {"__count": 9, "bin_maxbins_20_Residuals": 6.0, "bin_maxbins_20_Residuals_end": 8.0}, {"__count": 1, "bin_maxbins_20_Residuals": 14.0, "bin_maxbins_20_Residuals_end": 16.0}, {"__count": 15, "bin_maxbins_20_Residuals": -8.0, "bin_maxbins_20_Residuals_end": -6.0}, {"__count": 1, "bin_maxbins_20_Residuals": -14.0, "bin_maxbins_20_Residuals_end": -12.0}, {"__count": 5, "bin_maxbins_20_Residuals": -10.0, "bin_maxbins_20_Residuals_end": -8.0}, {"__count": 2, "bin_maxbins_20_Residuals": 8.0, "bin_maxbins_20_Residuals_end": 10.0}, {"__count": 2, "bin_maxbins_20_Residuals": 10.0, "bin_maxbins_20_Residuals_end": 12.0}]}, {"name": "source_0_y_domain___count", "values": [{"min": 1, "max": 29}]}], "signals": [{"name": "bin_maxbins_20_Residuals_bins", "value": {"fields": ["Residuals"], "fname": "bin_Residuals", "start": -14.0, "step": 2.0, "stop": 16.0}}], "marks": [{"type": "rect", "name": "marks", "from": {"data": "source_0"}, "encode": {"update": {"fill": {"value": "#4c78a8"}, "x2": {"field": "bin_maxbins_20_Residuals", "scale": "x", "offset": {"signal": "0.5 + (abs(scale(\"x\", datum[\"bin_maxbins_20_Residuals_end\"]) - scale(\"x\", datum[\"bin_maxbins_20_Residuals\"])) < 0.25 ? -0.5 * (0.25 - (abs(scale(\"x\", datum[\"bin_maxbins_20_Residuals_end\"]) - scale(\"x\", datum[\"bin_maxbins_20_Residuals\"])))) : 0.5)"}}, "x": {"field": "bin_maxbins_20_Residuals_end", "scale": "x", "offset": {"signal": "0.5 + (abs(scale(\"x\", datum[\"bin_maxbins_20_Residuals_end\"]) - scale(\"x\", datum[\"bin_maxbins_20_Residuals\"])) < 0.25 ? 0.5 * (0.25 - (abs(scale(\"x\", datum[\"bin_maxbins_20_Residuals_end\"]) - scale(\"x\", datum[\"bin_maxbins_20_Residuals\"])))) : -0.5)"}}, "y": {"field": "__count", "scale": "y"}, "y2": {"value": 0, "scale": "y"}}}, "style": ["bar"]}], "scales": [{"name": "x", "type": "linear", "domain": {"signal": "[bin_maxbins_20_Residuals_bins.start, bin_maxbins_20_Residuals_bins.stop]"}, "range": [0, {"signal": "width"}], "bins": {"signal": "bin_maxbins_20_Residuals_bins"}, "zero": false}, {"name": "y", "type": "linear", "domain": [{"signal": "(data(\"source_0_y_domain___count\")[0] || {}).min"}, {"signal": "(data(\"source_0_y_domain___count\")[0] || {}).max"}], "range": [{"signal": "height"}, 0], "nice": true, "zero": true}], "axes": [{"scale": "y", "labels": false, "orient": "left", "domain": false, "tickCount": {"signal": "ceil(height/40)"}, "gridScale": "x", "minExtent": 0, "zindex": 0, "grid": true, "aria": false, "ticks": false, "maxExtent": 0}, {"scale": "x", "orient": "bottom", "tickCount": {"signal": "ceil(width/10)"}, "zindex": 0, "title": "Residuals", "labelFlush": true, "grid": false, "labelOverlap": true}, {"scale": "y", "grid": false, "tickCount": {"signal": "ceil(height/40)"}, "title": "Value Counts", "orient": "left", "labelOverlap": true, "zindex": 0}], "title": {"text": "Histogram of Residuals", "frame": "group"}, "padding": 5, "width": 300, "style": "cell", "height": 300, "background": "white"}, {"mode": "vega"});
+</script>
+</div>
+</div>
+<div id="09298a83" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test for heteroskedasticity</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the absolute value of residuals against the predicted values</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>chart <span class="op">=</span> alt.Chart(results, title<span class="op">=</span><span class="st">"Testing for Heteroskedasticity"</span>).mark_point().encode(</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'Predictions:Q'</span>).title(<span class="st">"Predicted Values"</span>),</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'y:Q'</span>).title(<span class="st">"Absolute value of Residuals"</span>) </span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>).transform_calculate(y<span class="op">=</span><span class="st">'abs(datum.Residuals)'</span>)</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>chart <span class="op">+</span> chart.transform_loess(<span class="st">'Predictions'</span>, <span class="st">'y'</span>).mark_line()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+
+<style>
+  #altair-viz-5ce885b0573c43adb762dfa81b2f4991.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-5ce885b0573c43adb762dfa81b2f4991.vega-embed details,
+  #altair-viz-5ce885b0573c43adb762dfa81b2f4991.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-5ce885b0573c43adb762dfa81b2f4991"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-5ce885b0573c43adb762dfa81b2f4991") {
+      outputDiv = document.getElementById("altair-viz-5ce885b0573c43adb762dfa81b2f4991");
+    }
+
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.20.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      let deps = ["vega-embed"];
+      require(deps, displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.20.1"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"$schema": "https://vega.github.io/schema/vega/v5.json", "data": [{"name": "source_0", "values": [{"Predictions": 30.11354790582689, "Residuals": -4.113547905826891, "__index_level_0__": 86, "y": 4.113547905826891}, {"Predictions": 25.458210519470065, "Residuals": -3.858210519470063, "__index_level_0__": 283, "y": 3.858210519470063}, {"Predictions": 31.65853697525351, "Residuals": 4.44146302474649, "__index_level_0__": 255, "y": 4.44146302474649}, {"Predictions": 29.430090421720607, "Residuals": -3.4300904217206067, "__index_level_0__": 63, "y": 3.4300904217206067}, {"Predictions": 27.605051545548452, "Residuals": -0.6050515455484522, "__index_level_0__": 401, "y": 0.6050515455484522}, {"Predictions": 29.988220880068752, "Residuals": -1.9882208800687522, "__index_level_0__": 212, "y": 1.9882208800687522}, {"Predictions": 11.121921577639256, "Residuals": 1.878078422360744, "__index_level_0__": 50, "y": 1.878078422360744}, {"Predictions": 29.43486749920664, "Residuals": -3.4348674992066393, "__index_level_0__": 242, "y": 3.4348674992066393}, {"Predictions": 23.51869384783953, "Residuals": -4.518693847839529, "__index_level_0__": 159, "y": 4.518693847839529}, {"Predictions": 32.60707593590241, "Residuals": -3.607075935902408, "__index_level_0__": 124, "y": 3.607075935902408}, {"Predictions": 10.625609306450954, "Residuals": 4.374390693549046, "__index_level_0__": 9, "y": 4.374390693549046}, {"Predictions": 24.924072081039345, "Residuals": -5.924072081039345, "__index_level_0__": 217, "y": 5.924072081039345}, {"Predictions": 13.501372877750875, "Residuals": 3.398627122249124, "__index_level_0__": 296, "y": 3.398627122249124}, {"Predictions": 30.11118829803811, "Residuals": -1.1111882980381083, "__index_level_0__": 174, "y": 1.1111882980381083}, {"Predictions": 22.1571215170032, "Residuals": -5.957121517003202, "__index_level_0__": 284, "y": 5.957121517003202}, {"Predictions": 27.20036607075211, "Residuals": 0.7996339292478893, "__index_level_0__": 375, "y": 0.7996339292478893}, {"Predictions": 24.347200998117085, "Residuals": -4.347200998117085, "__index_level_0__": 132, "y": 4.347200998117085}, {"Predictions": 29.465091215798214, "Residuals": 2.9349087842017845, "__index_level_0__": 363, "y": 2.9349087842017845}, {"Predictions": 29.061510318630894, "Residuals": -1.6615103186308957, "__index_level_0__": 303, "y": 1.6615103186308957}, {"Predictions": 28.219965662633587, "Residuals": 6.780034337366413, "__index_level_0__": 342, "y": 6.780034337366413}, {"Predictions": 24.65461954304048, "Residuals": -2.6546195430404786, "__index_level_0__": 21, "y": 2.6546195430404786}, {"Predictions": 29.693859006194984, "Residuals": 14.306140993805016, "__index_level_0__": 402, "y": 14.306140993805016}, {"Predictions": 31.007079977745278, "Residuals": 3.0929200222547237, "__index_level_0__": 356, "y": 3.0929200222547237}, {"Predictions": 18.377233555573515, "Residuals": -0.3772335555735147, "__index_level_0__": 0, "y": 0.3772335555735147}, {"Predictions": 31.694132934470232, "Residuals": -5.6941329344702325, "__index_level_0__": 149, "y": 5.6941329344702325}, {"Predictions": 28.776473405451945, "Residuals": -2.776473405451945, "__index_level_0__": 121, "y": 2.776473405451945}, {"Predictions": 27.036883888960112, "Residuals": -6.036883888960112, "__index_level_0__": 85, "y": 6.036883888960112}, {"Predictions": 22.704372600954237, "Residuals": -6.704372600954237, "__index_level_0__": 41, "y": 6.704372600954237}, {"Predictions": 31.381384079527397, "Residuals": -5.381384079527397, "__index_level_0__": 109, "y": 5.381384079527397}, {"Predictions": 28.526466891599505, "Residuals": -6.5264668915995045, "__index_level_0__": 84, "y": 6.5264668915995045}, {"Predictions": 14.746080087528917, "Residuals": 0.25391991247108336, "__index_level_0__": 164, "y": 0.25391991247108336}, {"Predictions": 23.37915815141329, "Residuals": -3.9791581514132908, "__index_level_0__": 264, "y": 3.9791581514132908}, {"Predictions": 19.394128621572015, "Residuals": -0.19412862157201616, "__index_level_0__": 298, "y": 0.19412862157201616}, {"Predictions": 28.664225818019265, "Residuals": 2.9357741819807366, "__index_level_0__": 365, "y": 2.9357741819807366}, {"Predictions": 13.057982616333227, "Residuals": -0.0579826163332271, "__index_level_0__": 98, "y": 0.0579826163332271}, {"Predictions": 31.0423993206953, "Residuals": 6.957600679304701, "__index_level_0__": 393, "y": 6.957600679304701}, {"Predictions": 16.361420786669846, "Residuals": -2.3614207866698464, "__index_level_0__": 146, "y": 2.3614207866698464}, {"Predictions": 29.30156530042753, "Residuals": -4.30156530042753, "__index_level_0__": 65, "y": 4.30156530042753}, {"Predictions": 16.361420786669846, "Residuals": -3.3614207866698464, "__index_level_0__": 81, "y": 3.3614207866698464}, {"Predictions": 7.606082591826208, "Residuals": 2.3939174081737917, "__index_level_0__": 31, "y": 2.3939174081737917}, {"Predictions": 17.762396465726724, "Residuals": -4.762396465726724, "__index_level_0__": 80, "y": 4.762396465726724}, {"Predictions": 30.519546272691464, "Residuals": -6.519546272691464, "__index_level_0__": 154, "y": 6.519546272691464}, {"Predictions": 30.132157243200147, "Residuals": 5.867842756799853, "__index_level_0__": 383, "y": 5.867842756799853}, {"Predictions": 30.281906959619104, "Residuals": -4.2819069596191035, "__index_level_0__": 150, "y": 4.2819069596191035}, {"Predictions": 14.573001818159138, "Residuals": -0.5730018181591383, "__index_level_0__": 166, "y": 0.5730018181591383}, {"Predictions": 5.618067344406015, "Residuals": 7.381932655593985, "__index_level_0__": 101, "y": 7.381932655593985}, {"Predictions": 22.43263748240494, "Residuals": -3.432637482404939, "__index_level_0__": 54, "y": 3.432637482404939}, {"Predictions": 31.309921034210994, "Residuals": 5.990078965789003, "__index_level_0__": 311, "y": 5.990078965789003}, {"Predictions": 27.761361947432995, "Residuals": -6.761361947432995, "__index_level_0__": 116, "y": 6.761361947432995}, {"Predictions": 31.40320564076537, "Residuals": -2.4032056407653712, "__index_level_0__": 204, "y": 2.4032056407653712}, {"Predictions": 14.088986558485644, "Residuals": -0.08898655848564374, "__index_level_0__": 47, "y": 0.08898655848564374}, {"Predictions": 27.746782355367756, "Residuals": -3.746782355367756, "__index_level_0__": 64, "y": 3.746782355367756}, {"Predictions": 27.248581192301998, "Residuals": 0.751418807698002, "__index_level_0__": 36, "y": 0.751418807698002}, {"Predictions": 28.47717356164238, "Residuals": 7.522826438357619, "__index_level_0__": 388, "y": 7.522826438357619}, {"Predictions": 22.018037371158407, "Residuals": -0.018037371158406756, "__index_level_0__": 397, "y": 0.018037371158406756}, {"Predictions": 20.251324240068726, "Residuals": -4.251324240068726, "__index_level_0__": 141, "y": 4.251324240068726}, {"Predictions": 21.489194148114485, "Residuals": -1.4891941481144855, "__index_level_0__": 172, "y": 1.4891941481144855}, {"Predictions": 22.78002988597438, "Residuals": -2.780029885974379, "__index_level_0__": 176, "y": 2.780029885974379}, {"Predictions": 27.459350739767384, "Residuals": -2.459350739767384, "__index_level_0__": 28, "y": 2.459350739767384}, {"Predictions": 28.207910172752847, "Residuals": -3.2079101727528467, "__index_level_0__": 37, "y": 3.2079101727528467}, {"Predictions": 4.104361034648335, "Residuals": 7.895638965351665, "__index_level_0__": 102, "y": 7.895638965351665}, {"Predictions": 23.25619073344393, "Residuals": -0.7561907334439297, "__index_level_0__": 201, "y": 0.7561907334439297}, {"Predictions": 24.427306371831826, "Residuals": 2.372693628168175, "__index_level_0__": 314, "y": 2.372693628168175}, {"Predictions": 27.708627199333897, "Residuals": -4.708627199333897, "__index_level_0__": 185, "y": 4.708627199333897}, {"Predictions": 27.198029230239158, "Residuals": -6.098029230239156, "__index_level_0__": 277, "y": 6.098029230239156}, {"Predictions": 28.562503961478647, "Residuals": -3.5625039614786473, "__index_level_0__": 190, "y": 3.5625039614786473}, {"Predictions": 27.47292915066373, "Residuals": -2.3729291506637296, "__index_level_0__": 262, "y": 2.3729291506637296}, {"Predictions": 31.46468934975005, "Residuals": -2.4646893497500493, "__index_level_0__": 182, "y": 2.4646893497500493}, {"Predictions": 20.947113830322454, "Residuals": -1.0471138303224556, "__index_level_0__": 256, "y": 1.0471138303224556}, {"Predictions": 7.971300018520466, "Residuals": 7.028699981479534, "__index_level_0__": 5, "y": 7.028699981479534}, {"Predictions": 27.915071219894692, "Residuals": -5.915071219894692, "__index_level_0__": 53, "y": 5.915071219894692}, {"Predictions": 12.14940707441135, "Residuals": 0.85059292558865, "__index_level_0__": 92, "y": 0.85059292558865}, {"Predictions": 26.660108057518222, "Residuals": -4.660108057518222, "__index_level_0__": 248, "y": 4.660108057518222}, {"Predictions": 30.40990530406537, "Residuals": -12.409905304065369, "__index_level_0__": 118, "y": 12.409905304065369}, {"Predictions": 24.30227324023248, "Residuals": -6.702273240232479, "__index_level_0__": 374, "y": 6.702273240232479}, {"Predictions": 29.89821319726063, "Residuals": -1.898213197260631, "__index_level_0__": 90, "y": 1.898213197260631}, {"Predictions": 15.05349863245231, "Residuals": -0.053498632452310346, "__index_level_0__": 122, "y": 0.053498632452310346}, {"Predictions": 16.55030767496168, "Residuals": -0.5503076749616795, "__index_level_0__": 3, "y": 0.5503076749616795}, {"Predictions": 29.313876440272118, "Residuals": -2.313876440272118, "__index_level_0__": 24, "y": 2.313876440272118}, {"Predictions": 21.236617997525883, "Residuals": -2.6366179975258817, "__index_level_0__": 267, "y": 2.6366179975258817}, {"Predictions": 27.239426215386636, "Residuals": -2.2394262153866364, "__index_level_0__": 191, "y": 2.2394262153866364}, {"Predictions": 25.75064840683373, "Residuals": -7.750648406833729, "__index_level_0__": 181, "y": 7.750648406833729}, {"Predictions": 15.579882453193271, "Residuals": -0.5798824531932709, "__index_level_0__": 71, "y": 0.5798824531932709}, {"Predictions": 31.453216697651612, "Residuals": 7.546783302348388, "__index_level_0__": 351, "y": 7.546783302348388}, {"Predictions": 9.124376829960596, "Residuals": 6.375623170039404, "__index_level_0__": 238, "y": 6.375623170039404}, {"Predictions": 31.875848042854606, "Residuals": -2.075848042854606, "__index_level_0__": 339, "y": 2.075848042854606}, {"Predictions": 23.5443296360544, "Residuals": 1.4556703639456003, "__index_level_0__": 394, "y": 1.4556703639456003}, {"Predictions": 21.54881361993531, "Residuals": -0.048813619935309305, "__index_level_0__": 287, "y": 0.048813619935309305}, {"Predictions": 19.871148923090573, "Residuals": -2.8711489230905727, "__index_level_0__": 229, "y": 2.8711489230905727}, {"Predictions": 21.817800392558148, "Residuals": -5.817800392558148, "__index_level_0__": 140, "y": 5.817800392558148}, {"Predictions": 26.888833915309284, "Residuals": -4.588833915309284, "__index_level_0__": 289, "y": 4.588833915309284}, {"Predictions": 27.161515955064964, "Residuals": 3.5384840449350357, "__index_level_0__": 368, "y": 3.5384840449350357}, {"Predictions": 30.762645295546342, "Residuals": -0.7626452955463421, "__index_level_0__": 246, "y": 0.7626452955463421}, {"Predictions": 28.535998279295747, "Residuals": 2.4640017207042533, "__index_level_0__": 378, "y": 2.4640017207042533}, {"Predictions": 21.348653668573398, "Residuals": -2.148653668573399, "__index_level_0__": 259, "y": 2.148653668573399}, {"Predictions": 22.95699257158633, "Residuals": -6.45699257158633, "__index_level_0__": 218, "y": 6.45699257158633}, {"Predictions": 26.117521929182235, "Residuals": -8.117521929182235, "__index_level_0__": 83, "y": 8.117521929182235}, {"Predictions": 12.269638473811042, "Residuals": 0.7303615261889576, "__index_level_0__": 112, "y": 0.7303615261889576}, {"Predictions": 27.382480357193195, "Residuals": 0.11751964280680482, "__index_level_0__": 274, "y": 0.11751964280680482}, {"Predictions": 24.424635053143703, "Residuals": -6.424635053143703, "__index_level_0__": 22, "y": 6.424635053143703}, {"Predictions": 6.6958509542500835, "Residuals": 4.3041490457499165, "__index_level_0__": 74, "y": 4.3041490457499165}, {"Predictions": 20.311285028037794, "Residuals": -3.311285028037794, "__index_level_0__": 167, "y": 3.311285028037794}, {"Predictions": 6.386613706714499, "Residuals": 7.613386293285501, "__index_level_0__": 7, "y": 7.613386293285501}, {"Predictions": 31.535093351989094, "Residuals": -5.535093351989094, "__index_level_0__": 25, "y": 5.535093351989094}, {"Predictions": 31.16494839527807, "Residuals": 3.0350516047219323, "__index_level_0__": 308, "y": 3.0350516047219323}, {"Predictions": 30.98135672237304, "Residuals": 3.418643277626959, "__index_level_0__": 358, "y": 3.418643277626959}, {"Predictions": 32.114546399004325, "Residuals": 2.985453600995676, "__index_level_0__": 352, "y": 2.985453600995676}, {"Predictions": 28.558743994464265, "Residuals": -8.558743994464265, "__index_level_0__": 126, "y": 8.558743994464265}, {"Predictions": 27.47276465626802, "Residuals": -5.472764656268019, "__index_level_0__": 186, "y": 5.472764656268019}, {"Predictions": 16.509316705843982, "Residuals": 1.6906832941560168, "__index_level_0__": 295, "y": 1.6906832941560168}, {"Predictions": 31.196108593156996, "Residuals": 0.8038914068430039, "__index_level_0__": 392, "y": 0.8038914068430039}, {"Predictions": 31.404264683842733, "Residuals": 0.4957353161572655, "__index_level_0__": 300, "y": 0.4957353161572655}, {"Predictions": 27.983185803610233, "Residuals": -6.983185803610233, "__index_level_0__": 68, "y": 6.983185803610233}, {"Predictions": 28.13689507607193, "Residuals": -6.13689507607193, "__index_level_0__": 87, "y": 6.13689507607193}, {"Predictions": 31.356413645716916, "Residuals": 5.843586354283087, "__index_level_0__": 319, "y": 5.843586354283087}, {"Predictions": 27.25968976097636, "Residuals": 5.640310239023638, "__index_level_0__": 364, "y": 5.640310239023638}, {"Predictions": 16.640138536017275, "Residuals": 2.7598614639827233, "__index_level_0__": 257, "y": 2.7598614639827233}, {"Predictions": 23.759739484421225, "Residuals": -8.759739484421225, "__index_level_0__": 162, "y": 8.759739484421225}, {"Predictions": 27.718058792515958, "Residuals": -5.718058792515958, "__index_level_0__": 117, "y": 5.718058792515958}, {"Predictions": 25.396184017871008, "Residuals": -4.396184017871008, "__index_level_0__": 23, "y": 4.396184017871008}, {"Predictions": 27.972630467469273, "Residuals": 9.027369532530727, "__index_level_0__": 327, "y": 9.027369532530727}, {"Predictions": 25.25596568914829, "Residuals": -4.25596568914829, "__index_level_0__": 30, "y": 4.25596568914829}, {"Predictions": 21.817800392558148, "Residuals": -6.817800392558148, "__index_level_0__": 135, "y": 6.817800392558148}, {"Predictions": 30.515210305867846, "Residuals": 0.48478969413215367, "__index_level_0__": 385, "y": 0.48478969413215367}, {"Predictions": 27.827734855774693, "Residuals": -4.827734855774693, "__index_level_0__": 184, "y": 4.827734855774693}, {"Predictions": 26.888315777408522, "Residuals": -2.388315777408522, "__index_level_0__": 241, "y": 2.388315777408522}, {"Predictions": 30.86820414633969, "Residuals": -1.8682041463396892, "__index_level_0__": 202, "y": 1.8682041463396892}, {"Predictions": 30.404874377588463, "Residuals": 0.09512562241153688, "__index_level_0__": 247, "y": 0.09512562241153688}, {"Predictions": 23.298611667036134, "Residuals": -8.298611667036134, "__index_level_0__": 161, "y": 8.298611667036134}, {"Predictions": 31.31995823245119, "Residuals": 3.380041767548814, "__index_level_0__": 357, "y": 3.380041767548814}, {"Predictions": 27.507784615675504, "Residuals": -0.5077846156755044, "__index_level_0__": 376, "y": 0.5077846156755044}, {"Predictions": 28.836280138944325, "Residuals": -0.8362801389443248, "__index_level_0__": 189, "y": 0.8362801389443248}, {"Predictions": 25.81010338425884, "Residuals": -6.810103384258841, "__index_level_0__": 127, "y": 6.810103384258841}, {"Predictions": 30.377650968476445, "Residuals": 11.122349031523555, "__index_level_0__": 316, "y": 11.122349031523555}, {"Predictions": 16.844235276146094, "Residuals": 0.6557647238539062, "__index_level_0__": 228, "y": 0.6557647238539062}, {"Predictions": 29.14667622407144, "Residuals": -0.14667622407144165, "__index_level_0__": 148, "y": 0.14667622407144165}, {"Predictions": 28.122280389374055, "Residuals": -2.1222803893740547, "__index_level_0__": 157, "y": 2.1222803893740547}, {"Predictions": 30.53202010595879, "Residuals": 1.2679798940412113, "__index_level_0__": 310, "y": 1.2679798940412113}, {"Predictions": 22.933739158436076, "Residuals": -4.933739158436076, "__index_level_0__": 44, "y": 4.933739158436076}, {"Predictions": 15.633257900983146, "Residuals": 0.8667420990168537, "__index_level_0__": 294, "y": 0.8667420990168537}, {"Predictions": 15.360917177375704, "Residuals": -2.360917177375704, "__index_level_0__": 220, "y": 2.360917177375704}, {"Predictions": 22.512067061796266, "Residuals": -3.512067061796266, "__index_level_0__": 234, "y": 3.512067061796266}, {"Predictions": 27.320044237618404, "Residuals": 2.6799557623815957, "__index_level_0__": 335, "y": 2.6799557623815957}, {"Predictions": 26.018907012608416, "Residuals": -6.018907012608416, "__index_level_0__": 67, "y": 6.018907012608416}, {"Predictions": 27.465151765698142, "Residuals": -8.465151765698142, "__index_level_0__": 119, "y": 8.465151765698142}, {"Predictions": 26.07987258369233, "Residuals": 0.9201274163076683, "__index_level_0__": 380, "y": 0.9201274163076683}, {"Predictions": 27.487962180748198, "Residuals": -4.487962180748198, "__index_level_0__": 177, "y": 4.487962180748198}, {"Predictions": 5.239591770195993, "Residuals": 8.760408229804007, "__index_level_0__": 6, "y": 8.760408229804007}, {"Predictions": 21.88219694186501, "Residuals": -1.2821969418650099, "__index_level_0__": 291, "y": 1.2821969418650099}, {"Predictions": 25.552641636259175, "Residuals": 2.347358363740824, "__index_level_0__": 330, "y": 2.347358363740824}, {"Predictions": 12.355191229951501, "Residuals": 2.644808770048499, "__index_level_0__": 15, "y": 2.644808770048499}, {"Predictions": 30.724325645116764, "Residuals": 1.275674354883236, "__index_level_0__": 211, "y": 1.275674354883236}, {"Predictions": 11.258621460981644, "Residuals": 0.7413785390183563, "__index_level_0__": 111, "y": 0.7413785390183563}, {"Predictions": 27.605946094230095, "Residuals": -4.605946094230095, "__index_level_0__": 89, "y": 4.605946094230095}, {"Predictions": 30.785809354101445, "Residuals": 2.7141906458985545, "__index_level_0__": 227, "y": 2.7141906458985545}, {"Predictions": 27.253158680759675, "Residuals": -1.7531586807596753, "__index_level_0__": 243, "y": 1.7531586807596753}, {"Predictions": 30.53202010595879, "Residuals": 10.267979894041208, "__index_level_0__": 331, "y": 10.267979894041208}]}, {"name": "data_0", "values": [{"Predictions": 30.11354790582689, "y": 4.113547905826891}, {"Predictions": 25.458210519470065, "y": 3.858210519470063}, {"Predictions": 31.65853697525351, "y": 4.44146302474649}, {"Predictions": 29.430090421720607, "y": 3.4300904217206067}, {"Predictions": 27.605051545548452, "y": 0.6050515455484522}, {"Predictions": 29.988220880068752, "y": 1.9882208800687522}, {"Predictions": 11.121921577639256, "y": 1.878078422360744}, {"Predictions": 29.43486749920664, "y": 3.4348674992066393}, {"Predictions": 23.51869384783953, "y": 4.518693847839529}, {"Predictions": 32.60707593590241, "y": 3.607075935902408}, {"Predictions": 10.625609306450954, "y": 4.374390693549046}, {"Predictions": 24.924072081039345, "y": 5.924072081039345}, {"Predictions": 13.501372877750875, "y": 3.398627122249124}, {"Predictions": 30.11118829803811, "y": 1.1111882980381083}, {"Predictions": 22.1571215170032, "y": 5.957121517003202}, {"Predictions": 27.20036607075211, "y": 0.7996339292478893}, {"Predictions": 24.347200998117085, "y": 4.347200998117085}, {"Predictions": 29.465091215798214, "y": 2.9349087842017845}, {"Predictions": 29.061510318630894, "y": 1.6615103186308957}, {"Predictions": 28.219965662633587, "y": 6.780034337366413}, {"Predictions": 24.65461954304048, "y": 2.6546195430404786}, {"Predictions": 29.693859006194984, "y": 14.306140993805016}, {"Predictions": 31.007079977745278, "y": 3.0929200222547237}, {"Predictions": 18.377233555573515, "y": 0.3772335555735147}, {"Predictions": 31.694132934470232, "y": 5.6941329344702325}, {"Predictions": 28.776473405451945, "y": 2.776473405451945}, {"Predictions": 27.036883888960112, "y": 6.036883888960112}, {"Predictions": 22.704372600954237, "y": 6.704372600954237}, {"Predictions": 31.381384079527397, "y": 5.381384079527397}, {"Predictions": 28.526466891599505, "y": 6.5264668915995045}, {"Predictions": 14.746080087528917, "y": 0.25391991247108336}, {"Predictions": 23.37915815141329, "y": 3.9791581514132908}, {"Predictions": 19.394128621572015, "y": 0.19412862157201616}, {"Predictions": 28.664225818019265, "y": 2.9357741819807366}, {"Predictions": 13.057982616333227, "y": 0.0579826163332271}, {"Predictions": 31.0423993206953, "y": 6.957600679304701}, {"Predictions": 16.361420786669846, "y": 2.3614207866698464}, {"Predictions": 29.30156530042753, "y": 4.30156530042753}, {"Predictions": 16.361420786669846, "y": 3.3614207866698464}, {"Predictions": 7.606082591826208, "y": 2.3939174081737917}, {"Predictions": 17.762396465726724, "y": 4.762396465726724}, {"Predictions": 30.519546272691464, "y": 6.519546272691464}, {"Predictions": 30.132157243200147, "y": 5.867842756799853}, {"Predictions": 30.281906959619104, "y": 4.2819069596191035}, {"Predictions": 14.573001818159138, "y": 0.5730018181591383}, {"Predictions": 5.618067344406015, "y": 7.381932655593985}, {"Predictions": 22.43263748240494, "y": 3.432637482404939}, {"Predictions": 31.309921034210994, "y": 5.990078965789003}, {"Predictions": 27.761361947432995, "y": 6.761361947432995}, {"Predictions": 31.40320564076537, "y": 2.4032056407653712}, {"Predictions": 14.088986558485644, "y": 0.08898655848564374}, {"Predictions": 27.746782355367756, "y": 3.746782355367756}, {"Predictions": 27.248581192301998, "y": 0.751418807698002}, {"Predictions": 28.47717356164238, "y": 7.522826438357619}, {"Predictions": 22.018037371158407, "y": 0.018037371158406756}, {"Predictions": 20.251324240068726, "y": 4.251324240068726}, {"Predictions": 21.489194148114485, "y": 1.4891941481144855}, {"Predictions": 22.78002988597438, "y": 2.780029885974379}, {"Predictions": 27.459350739767384, "y": 2.459350739767384}, {"Predictions": 28.207910172752847, "y": 3.2079101727528467}, {"Predictions": 4.104361034648335, "y": 7.895638965351665}, {"Predictions": 23.25619073344393, "y": 0.7561907334439297}, {"Predictions": 24.427306371831826, "y": 2.372693628168175}, {"Predictions": 27.708627199333897, "y": 4.708627199333897}, {"Predictions": 27.198029230239158, "y": 6.098029230239156}, {"Predictions": 28.562503961478647, "y": 3.5625039614786473}, {"Predictions": 27.47292915066373, "y": 2.3729291506637296}, {"Predictions": 31.46468934975005, "y": 2.4646893497500493}, {"Predictions": 20.947113830322454, "y": 1.0471138303224556}, {"Predictions": 7.971300018520466, "y": 7.028699981479534}, {"Predictions": 27.915071219894692, "y": 5.915071219894692}, {"Predictions": 12.14940707441135, "y": 0.85059292558865}, {"Predictions": 26.660108057518222, "y": 4.660108057518222}, {"Predictions": 30.40990530406537, "y": 12.409905304065369}, {"Predictions": 24.30227324023248, "y": 6.702273240232479}, {"Predictions": 29.89821319726063, "y": 1.898213197260631}, {"Predictions": 15.05349863245231, "y": 0.053498632452310346}, {"Predictions": 16.55030767496168, "y": 0.5503076749616795}, {"Predictions": 29.313876440272118, "y": 2.313876440272118}, {"Predictions": 21.236617997525883, "y": 2.6366179975258817}, {"Predictions": 27.239426215386636, "y": 2.2394262153866364}, {"Predictions": 25.75064840683373, "y": 7.750648406833729}, {"Predictions": 15.579882453193271, "y": 0.5798824531932709}, {"Predictions": 31.453216697651612, "y": 7.546783302348388}, {"Predictions": 9.124376829960596, "y": 6.375623170039404}, {"Predictions": 31.875848042854606, "y": 2.075848042854606}, {"Predictions": 23.5443296360544, "y": 1.4556703639456003}, {"Predictions": 21.54881361993531, "y": 0.048813619935309305}, {"Predictions": 19.871148923090573, "y": 2.8711489230905727}, {"Predictions": 21.817800392558148, "y": 5.817800392558148}, {"Predictions": 26.888833915309284, "y": 4.588833915309284}, {"Predictions": 27.161515955064964, "y": 3.5384840449350357}, {"Predictions": 30.762645295546342, "y": 0.7626452955463421}, {"Predictions": 28.535998279295747, "y": 2.4640017207042533}, {"Predictions": 21.348653668573398, "y": 2.148653668573399}, {"Predictions": 22.95699257158633, "y": 6.45699257158633}, {"Predictions": 26.117521929182235, "y": 8.117521929182235}, {"Predictions": 12.269638473811042, "y": 0.7303615261889576}, {"Predictions": 27.382480357193195, "y": 0.11751964280680482}, {"Predictions": 24.424635053143703, "y": 6.424635053143703}, {"Predictions": 6.6958509542500835, "y": 4.3041490457499165}, {"Predictions": 20.311285028037794, "y": 3.311285028037794}, {"Predictions": 6.386613706714499, "y": 7.613386293285501}, {"Predictions": 31.535093351989094, "y": 5.535093351989094}, {"Predictions": 31.16494839527807, "y": 3.0350516047219323}, {"Predictions": 30.98135672237304, "y": 3.418643277626959}, {"Predictions": 32.114546399004325, "y": 2.985453600995676}, {"Predictions": 28.558743994464265, "y": 8.558743994464265}, {"Predictions": 27.47276465626802, "y": 5.472764656268019}, {"Predictions": 16.509316705843982, "y": 1.6906832941560168}, {"Predictions": 31.196108593156996, "y": 0.8038914068430039}, {"Predictions": 31.404264683842733, "y": 0.4957353161572655}, {"Predictions": 27.983185803610233, "y": 6.983185803610233}, {"Predictions": 28.13689507607193, "y": 6.13689507607193}, {"Predictions": 31.356413645716916, "y": 5.843586354283087}, {"Predictions": 27.25968976097636, "y": 5.640310239023638}, {"Predictions": 16.640138536017275, "y": 2.7598614639827233}, {"Predictions": 23.759739484421225, "y": 8.759739484421225}, {"Predictions": 27.718058792515958, "y": 5.718058792515958}, {"Predictions": 25.396184017871008, "y": 4.396184017871008}, {"Predictions": 27.972630467469273, "y": 9.027369532530727}, {"Predictions": 25.25596568914829, "y": 4.25596568914829}, {"Predictions": 21.817800392558148, "y": 6.817800392558148}, {"Predictions": 30.515210305867846, "y": 0.48478969413215367}, {"Predictions": 27.827734855774693, "y": 4.827734855774693}, {"Predictions": 26.888315777408522, "y": 2.388315777408522}, {"Predictions": 30.86820414633969, "y": 1.8682041463396892}, {"Predictions": 30.404874377588463, "y": 0.09512562241153688}, {"Predictions": 23.298611667036134, "y": 8.298611667036134}, {"Predictions": 31.31995823245119, "y": 3.380041767548814}, {"Predictions": 27.507784615675504, "y": 0.5077846156755044}, {"Predictions": 28.836280138944325, "y": 0.8362801389443248}, {"Predictions": 25.81010338425884, "y": 6.810103384258841}, {"Predictions": 30.377650968476445, "y": 11.122349031523555}, {"Predictions": 16.844235276146094, "y": 0.6557647238539062}, {"Predictions": 29.14667622407144, "y": 0.14667622407144165}, {"Predictions": 28.122280389374055, "y": 2.1222803893740547}, {"Predictions": 30.53202010595879, "y": 1.2679798940412113}, {"Predictions": 22.933739158436076, "y": 4.933739158436076}, {"Predictions": 15.633257900983146, "y": 0.8667420990168537}, {"Predictions": 15.360917177375704, "y": 2.360917177375704}, {"Predictions": 22.512067061796266, "y": 3.512067061796266}, {"Predictions": 27.320044237618404, "y": 2.6799557623815957}, {"Predictions": 26.018907012608416, "y": 6.018907012608416}, {"Predictions": 27.465151765698142, "y": 8.465151765698142}, {"Predictions": 26.07987258369233, "y": 0.9201274163076683}, {"Predictions": 27.487962180748198, "y": 4.487962180748198}, {"Predictions": 5.239591770195993, "y": 8.760408229804007}, {"Predictions": 21.88219694186501, "y": 1.2821969418650099}, {"Predictions": 25.552641636259175, "y": 2.347358363740824}, {"Predictions": 12.355191229951501, "y": 2.644808770048499}, {"Predictions": 30.724325645116764, "y": 1.275674354883236}, {"Predictions": 11.258621460981644, "y": 0.7413785390183563}, {"Predictions": 27.605946094230095, "y": 4.605946094230095}, {"Predictions": 30.785809354101445, "y": 2.7141906458985545}, {"Predictions": 27.253158680759675, "y": 1.7531586807596753}, {"Predictions": 30.53202010595879, "y": 10.267979894041208}]}, {"name": "data_1", "source": "source_0", "transform": [{"type": "loess", "x": "Predictions", "as": ["Predictions", "y"], "y": "y"}, {"type": "project", "fields": ["Predictions", "y"]}]}], "marks": [{"type": "symbol", "name": "layer_0_marks", "from": {"data": "data_0"}, "encode": {"update": {"fill": {"value": "transparent"}, "opacity": {"value": 0.7}, "x": {"field": "Predictions", "scale": "x"}, "y": {"field": "y", "scale": "y"}, "stroke": {"value": "#4c78a8"}}}, "style": ["point"]}, {"type": "line", "name": "layer_1_marks", "from": {"data": "data_1"}, "sort": {"field": "x"}, "encode": {"update": {"x": {"field": "Predictions", "scale": "x"}, "defined": {"signal": "isValid(datum[\"Predictions\"]) && isFinite(+datum[\"Predictions\"]) && isValid(datum[\"y\"]) && isFinite(+datum[\"y\"])"}, "stroke": {"value": "#4c78a8"}, "y": {"field": "y", "scale": "y"}}}, "style": ["line"]}], "scales": [{"name": "x", "type": "linear", "domain": {"fields": [{"data": "data_0", "field": "Predictions"}, {"data": "data_1", "field": "Predictions"}]}, "range": [0, {"signal": "width"}], "zero": true, "nice": true}, {"name": "y", "type": "linear", "domain": {"fields": [{"data": "data_0", "field": "y"}, {"data": "data_1", "field": "y"}]}, "range": [{"signal": "height"}, 0], "zero": true, "nice": true}], "axes": [{"scale": "x", "gridScale": "y", "maxExtent": 0, "grid": true, "minExtent": 0, "tickCount": {"signal": "ceil(width/40)"}, "labels": false, "ticks": false, "zindex": 0, "aria": false, "orient": "bottom", "domain": false}, {"scale": "y", "ticks": false, "grid": true, "aria": false, "minExtent": 0, "zindex": 0, "gridScale": "x", "domain": false, "labels": false, "orient": "left", "tickCount": {"signal": "ceil(height/40)"}, "maxExtent": 0}, {"scale": "x", "zindex": 0, "grid": false, "labelFlush": true, "orient": "bottom", "title": "Predicted Values", "labelOverlap": true, "tickCount": {"signal": "ceil(width/40)"}}, {"scale": "y", "zindex": 0, "grid": false, "orient": "left", "title": "Absolute value of Residuals", "labelOverlap": true, "tickCount": {"signal": "ceil(height/40)"}}], "title": {"text": "Testing for Heteroskedasticity", "frame": "group"}, "style": "cell", "width": 300, "background": "white", "padding": 5, "height": 300}, {"mode": "vega"});
+</script>
+</div>
+</div>
+<div id="4fe3772e" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cross_val_score(linreg, X, y, cv<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>scores<span class="sc">.</span>mean()<span class="sc">:.2}</span><span class="ss"> r-squared score with standard deviation </span><span class="sc">{</span>scores<span class="sc">.</span>std()<span class="sc">:.2}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.27 r-squared score with standard deviation 0.52</code></pre>
+</div>
+</div>
+<p>Remember, you will also need to explain and interpret all of your output. For guidance on how you should do that, refer to the <a href="https://jrladd.com/CIS241/how-to-explain.html#explaining-a-linear-regression">How To Explain</a> guide.</p>
+</section>
+<section id="knn-classification" class="level3" data-number="14.10.2">
+<h3 data-number="14.10.2" class="anchored" data-anchor-id="knn-classification"><span class="header-section-number">14.10.2</span> KNN Classification</h3>
+<p>Here’s an example of a full model workflow for a KNN classifier of the penguins data.</p>
+<p>First import libraries and data. In a real scenario, you’d also do some exploratory data analysis here.</p>
+<div id="c955b37e" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You'll also need pandas, numpy, and altair</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># For standardization</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># For KNN</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split, cross_val_score</span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, classification_report, RocCurveDisplay</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a><span class="co"># You'll also need matplotlib this time</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> pd.read_csv(<span class="st">"../data/penguins.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Then set up and run your model. Remember, there are steps here specific to this model and dataset.</p>
+<div id="14473ae2" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First you must split and standardize the data with a new target.</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Decide on your predictors and targets</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>predictors <span class="op">=</span> [<span class="st">"bill_length_mm"</span>, <span class="st">"bill_depth_mm"</span>, <span class="st">"flipper_length_mm"</span>, <span class="st">"sex"</span>]</span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="st">"species"</span> <span class="co"># A categorical target now</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> penguins.dropna()</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.get_dummies(penguins[predictors])</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> penguins[target]</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>    X, </span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>    y, </span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.3</span>, </span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardizing using the training data</span></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a>scaler.fit(X_train)</span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a>X_train_std <span class="op">=</span> scaler.transform(X_train)</span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the classification model</span></span>
+<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Decide on a good value for K (n_neighbors)</span></span>
+<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a>knn <span class="op">=</span> KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a>knn.fit(X_train_std, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<style>#sk-container-id-1 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-1 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-1 pre {
+  padding: 0;
+}
+
+#sk-container-id-1 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-1 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-1 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-1 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-1 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-1 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-1 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-1 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-1 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-1 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-1 div.sk-toggleable__content {
+  display: none;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-1 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-1 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-1 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-1 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-1 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-1 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-1 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+
+.estimator-table summary {
+    padding: .5rem;
+    font-family: monospace;
+    cursor: pointer;
+}
+
+.estimator-table details[open] {
+    padding-left: 0.1rem;
+    padding-right: 0.1rem;
+    padding-bottom: 0.3rem;
+}
+
+.estimator-table .parameters-table {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.estimator-table .parameters-table tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+.estimator-table .parameters-table tr:nth-child(even) {
+    background-color: #f6f6f6;
+}
+
+.estimator-table .parameters-table tr:hover {
+    background-color: #e0e0e0;
+}
+
+.estimator-table table td {
+    border: 1px solid rgba(106, 105, 104, 0.232);
+}
+
+.user-set td {
+    color:rgb(255, 94, 0);
+    text-align: left;
+}
+
+.user-set td.value pre {
+    color:rgb(255, 94, 0) !important;
+    background-color: transparent !important;
+}
+
+.default td {
+    color: black;
+    text-align: left;
+}
+
+.user-set td i,
+.default td i {
+    color: black;
+}
+
+.copy-paste-icon {
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0NDggNTEyIj48IS0tIUZvbnQgQXdlc29tZSBGcmVlIDYuNy4yIGJ5IEBmb250YXdlc29tZSAtIGh0dHBzOi8vZm9udGF3ZXNvbWUuY29tIExpY2Vuc2UgLSBodHRwczovL2ZvbnRhd2Vzb21lLmNvbS9saWNlbnNlL2ZyZWUgQ29weXJpZ2h0IDIwMjUgRm9udGljb25zLCBJbmMuLS0+PHBhdGggZD0iTTIwOCAwTDMzMi4xIDBjMTIuNyAwIDI0LjkgNS4xIDMzLjkgMTQuMWw2Ny45IDY3LjljOSA5IDE0LjEgMjEuMiAxNC4xIDMzLjlMNDQ4IDMzNmMwIDI2LjUtMjEuNSA0OC00OCA0OGwtMTkyIDBjLTI2LjUgMC00OC0yMS41LTQ4LTQ4bDAtMjg4YzAtMjYuNSAyMS41LTQ4IDQ4LTQ4ek00OCAxMjhsODAgMCAwIDY0LTY0IDAgMCAyNTYgMTkyIDAgMC0zMiA2NCAwIDAgNDhjMCAyNi41LTIxLjUgNDgtNDggNDhMNDggNTEyYy0yNi41IDAtNDgtMjEuNS00OC00OEwwIDE3NmMwLTI2LjUgMjEuNS00OCA0OC00OHoiLz48L3N2Zz4=);
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    background-position: 0;
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+}
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KNeighborsClassifier()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>KNeighborsClassifier</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.neighbors.KNeighborsClassifier.html">?<span>Documentation for KNeighborsClassifier</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix="">
+        <div class="estimator-table">
+            <details>
+                <summary>Parameters</summary>
+                
+<table class="parameters-table caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<tbody>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">n_neighbors&nbsp;</td>
+<td class="value">5</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">weights&nbsp;</td>
+<td class="value">'uniform'</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">algorithm&nbsp;</td>
+<td class="value">'auto'</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">leaf_size&nbsp;</td>
+<td class="value">30</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">p&nbsp;</td>
+<td class="value">2</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">metric&nbsp;</td>
+<td class="value">'minkowski'</td>
+</tr>
+<tr class="default odd">
+<td><em></em></td>
+<td class="param">metric_params&nbsp;</td>
+<td class="value">None</td>
+</tr>
+<tr class="default even">
+<td><em></em></td>
+<td class="param">n_jobs&nbsp;</td>
+<td class="value">None</td>
+</tr>
+</tbody>
+</table>
+
+            </details>
+        </div>
+    </div></div></div></div></div><script>function copyToClipboard(text, element) {
+    // Get the parameter prefix from the closest toggleable content
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const fullParamName = paramPrefix ? `${paramPrefix}${text}` : text;
+
+    const originalStyle = element.style;
+    const computedStyle = window.getComputedStyle(element);
+    const originalWidth = computedStyle.width;
+    const originalHTML = element.innerHTML.replace('Copied!', '');
+
+    navigator.clipboard.writeText(fullParamName)
+        .then(() => {
+            element.style.width = originalWidth;
+            element.style.color = 'green';
+            element.innerHTML = "Copied!";
+
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        })
+        .catch(err => {
+            console.error('Failed to copy:', err);
+            element.style.color = 'red';
+            element.innerHTML = "Failed!";
+            setTimeout(() => {
+                element.innerHTML = originalHTML;
+                element.style = originalStyle;
+            }, 2000);
+        });
+    return false;
+}
+
+document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
+    const toggleableContent = element.closest('.sk-toggleable__content');
+    const paramPrefix = toggleableContent ? toggleableContent.dataset.paramPrefix : '';
+    const paramName = element.parentElement.nextElementSibling.textContent.trim();
+    const fullParamName = paramPrefix ? `${paramPrefix}${paramName}` : paramName;
+
+    element.setAttribute('title', fullParamName);
+});
+</script>
+</div>
+</div>
+<p>In a distance-based model like KNN, there are no coefficients, so you can move on to the prediction and validation steps.</p>
+<div id="34c1a4e9" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get the prediction results</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize test data</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>X_test_std <span class="op">=</span> scaler.transform(X_test)</span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Prediction probabilities</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>probabilities <span class="op">=</span> knn.predict_proba(X_test_std)</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="co"># The predictions themselves</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> knn.predict(X_test_std)</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="co"># The categories or classes we predicted</span></span>
+<span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> knn.classes_</span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's make the probabilities look nicer</span></span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>probabilities <span class="op">=</span> pd.DataFrame(probabilities, columns<span class="op">=</span>categories)</span>
+<span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a>probabilities</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Adelie</th>
+<th data-quarto-table-cell-role="th">Chinstrap</th>
+<th data-quarto-table-cell-role="th">Gentoo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">95</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">96</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">97</td>
+<td>1.0</td>
+<td>0.0</td>
+<td>0.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">98</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">99</td>
+<td>0.0</td>
+<td>0.0</td>
+<td>1.0</td>
+</tr>
+</tbody>
+</table>
+
+<p>100 rows × 3 columns</p>
+</div>
+</div>
+</div>
+<div id="73dc9fbc" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the classification report</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, predictions))</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate confusion matrix and transform data</span></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>conf_mat <span class="op">=</span> confusion_matrix(y_test,predictions)</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>conf_mat <span class="op">=</span> pd.DataFrame(conf_mat,index<span class="op">=</span>categories,columns<span class="op">=</span>categories)</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>conf_mat <span class="op">=</span> conf_mat.melt(ignore_index<span class="op">=</span><span class="va">False</span>).reset_index()</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create heatmap</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>heatmap <span class="op">=</span> alt.Chart(conf_mat).mark_rect().encode(</span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">"variable:N"</span>).title(<span class="st">"Predicted Response"</span>),</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">"index:N"</span>).title(<span class="st">"True Response"</span>),</span>
+<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.Color(<span class="st">"value:Q"</span>, legend<span class="op">=</span><span class="va">None</span>).scale(scheme<span class="op">=</span><span class="st">"blues"</span>)</span>
+<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a>).properties(</span>
+<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a>    width<span class="op">=</span><span class="dv">400</span>,</span>
+<span id="cb43-15"><a href="#cb43-15" aria-hidden="true" tabindex="-1"></a>    height<span class="op">=</span><span class="dv">400</span></span>
+<span id="cb43-16"><a href="#cb43-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Add text labels for numbers</span></span>
+<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> heatmap.mark_text(baseline<span class="op">=</span><span class="st">"middle"</span>).encode(</span>
+<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span>alt.Text(<span class="st">"value:Q"</span>),</span>
+<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a>    color<span class="op">=</span>alt.value(<span class="st">"black"</span>),</span>
+<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>alt.value(<span class="dv">50</span>)</span>
+<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a>heatmap <span class="op">+</span> text</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>              precision    recall  f1-score   support
+
+      Adelie       0.96      1.00      0.98        48
+   Chinstrap       1.00      0.88      0.93        16
+      Gentoo       1.00      1.00      1.00        36
+
+    accuracy                           0.98       100
+   macro avg       0.99      0.96      0.97       100
+weighted avg       0.98      0.98      0.98       100
+</code></pre>
+</div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+
+<style>
+  #altair-viz-c4a1b87689224619b89369bc2081d707.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #altair-viz-c4a1b87689224619b89369bc2081d707.vega-embed details,
+  #altair-viz-c4a1b87689224619b89369bc2081d707.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="altair-viz-c4a1b87689224619b89369bc2081d707"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-c4a1b87689224619b89369bc2081d707") {
+      outputDiv = document.getElementById("altair-viz-c4a1b87689224619b89369bc2081d707");
+    }
+
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.20.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      let deps = ["vega-embed"];
+      require(deps, displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5.20.1"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"$schema": "https://vega.github.io/schema/vega/v5.json", "data": [{"name": "source_0", "values": [{"index": "Adelie", "value": 48, "variable": "Adelie"}, {"index": "Chinstrap", "value": 2, "variable": "Adelie"}, {"index": "Gentoo", "value": 0, "variable": "Adelie"}, {"index": "Adelie", "value": 0, "variable": "Chinstrap"}, {"index": "Chinstrap", "value": 14, "variable": "Chinstrap"}, {"index": "Gentoo", "value": 0, "variable": "Chinstrap"}, {"index": "Adelie", "value": 0, "variable": "Gentoo"}, {"index": "Chinstrap", "value": 0, "variable": "Gentoo"}, {"index": "Gentoo", "value": 36, "variable": "Gentoo"}]}, {"name": "data_0", "values": [{"index": "Adelie", "value": 48, "variable": "Adelie"}, {"index": "Chinstrap", "value": 2, "variable": "Adelie"}, {"index": "Gentoo", "value": 0, "variable": "Adelie"}, {"index": "Adelie", "value": 0, "variable": "Chinstrap"}, {"index": "Chinstrap", "value": 14, "variable": "Chinstrap"}, {"index": "Gentoo", "value": 0, "variable": "Chinstrap"}, {"index": "Adelie", "value": 0, "variable": "Gentoo"}, {"index": "Chinstrap", "value": 0, "variable": "Gentoo"}, {"index": "Gentoo", "value": 36, "variable": "Gentoo"}]}, {"name": "data_0_x_domain_variable_0", "values": [{"variable": "Adelie"}, {"variable": "Chinstrap"}, {"variable": "Gentoo"}]}, {"name": "source_0_x_domain_variable_1", "values": [{"variable": "Adelie"}, {"variable": "Chinstrap"}, {"variable": "Gentoo"}]}, {"name": "data_0_y_domain_index_0", "values": [{"index": "Adelie"}, {"index": "Chinstrap"}, {"index": "Gentoo"}]}, {"name": "source_0_y_domain_index_1", "values": [{"index": "Adelie"}, {"index": "Chinstrap"}, {"index": "Gentoo"}]}, {"name": "data_0_color_domain_value", "values": [{"min": 0, "max": 48}]}], "marks": [{"type": "rect", "name": "layer_0_marks", "from": {"data": "data_0"}, "encode": {"update": {"width": {"signal": "max(0.25, bandwidth('x'))"}, "x": {"field": "variable", "scale": "x"}, "fill": {"field": "value", "scale": "color"}, "height": {"signal": "max(0.25, bandwidth('y'))"}, "y": {"field": "index", "scale": "y"}}}, "style": ["rect"]}, {"type": "text", "name": "layer_1_marks", "from": {"data": "source_0"}, "encode": {"update": {"fill": {"value": "black"}, "align": {"value": "center"}, "baseline": {"value": "middle"}, "fontSize": {"value": 50}, "x": {"field": "variable", "scale": "x", "band": 0.5}, "y": {"field": "index", "scale": "y", "band": 0.5}, "text": {"signal": "format(datum[\"value\"], \"\")"}}}, "style": ["text"]}], "scales": [{"name": "x", "type": "band", "domain": {"fields": [{"data": "data_0_x_domain_variable_0", "field": "variable"}, {"data": "source_0_x_domain_variable_1", "field": "variable"}], "sort": true}, "range": [0, {"signal": "width"}], "paddingOuter": 0, "paddingInner": 0}, {"name": "y", "type": "band", "domain": {"fields": [{"data": "data_0_y_domain_index_0", "field": "index"}, {"data": "source_0_y_domain_index_1", "field": "index"}], "sort": true}, "range": [0, {"signal": "height"}], "paddingInner": 0, "paddingOuter": 0}, {"name": "color", "type": "linear", "domain": [{"signal": "(data(\"data_0_color_domain_value\")[0] || {}).min"}, {"signal": "(data(\"data_0_color_domain_value\")[0] || {}).max"}], "range": {"scheme": "blues"}, "interpolate": "hcl", "zero": false}], "axes": [{"scale": "x", "labelAlign": "right", "title": "Predicted Response", "zindex": 1, "orient": "bottom", "labelBaseline": "middle", "grid": false, "labelAngle": 270}, {"scale": "y", "title": "True Response", "orient": "left", "grid": false, "zindex": 1}], "height": 400, "padding": 5, "background": "white", "style": "cell", "width": 400}, {"mode": "vega"});
+</script>
+</div>
+</div>
+<div id="bba622e7" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run cross-validation on standardized data</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>scaler_full <span class="op">=</span> StandardScaler()</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>scaler_full.fit(X)</span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>X_std <span class="op">=</span> scaler.transform(X)</span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cross_val_score(knn, X_std, y, cv<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>scores<span class="sc">.</span>mean()<span class="sc">:.2}</span><span class="ss"> accuracy with standard deviation </span><span class="sc">{</span>scores<span class="sc">.</span>std()<span class="sc">:.2}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.0 accuracy with standard deviation 0.0091</code></pre>
+</div>
+</div>
+<p>Since this is <em>not</em> a binary classifier (i.e.&nbsp;We have three target classes: Adelie, Chinstrap, and Gentoo.), it’s not appropriate to include an ROC Curve here, but you may want it for a different model or dataset.</p>
+<p>Remember, you will also need to explain and interpret all of your output. For guidance on how you should do that, refer to the <a href="https://jrladd.com/CIS241/how-to-explain.html#explaining-a-linear-regression">How To Explain</a> guide.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../guides/hypothesis-testing.html" class="pagination-link" aria-label="Hypothesis Testing">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../how-to-explain.html" class="pagination-link" aria-label="How to Explain in CIS241">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">How to Explain in CIS241</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
