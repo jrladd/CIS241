@@ -1,0 +1,606 @@
+# Modeling with Scikit-learn
+
+[Scikit-learn](https://scikit-learn.org/stable/index.html), or `sklearn`, is an all-purpose Python library for statistical modeling and machine learning. It gives you access to many different kinds of models and approaches, and we will just scratch the surface in this class. You'll use `scikit-learn` any time you create a model, whether it's a supervised regression or classification, or an unsupervised approach. This guide will walk you through the general aspects of modeling in `scikit-learn`, but the specifics will be up to you!
+
+::: callout-note
+Scikit-learn's [User Guide](https://scikit-learn.org/stable/user_guide.html) and Documentation are very detailed, and we'll practice using them together in class. That's a good place to start if you want more information about anything you find here.
+:::
+
+## The scikit-learn modeling workflow
+
+No matter what kind of modeling you're doing, here are the general steps you will follow:
+
+1.  Choose your model based on your data and research questions
+2.  Choose predictor and target variables appropriate to the model, test for validity if necessary
+3.  Prepare the data: removing any null values, scaling/normalizing variables, or using one-hot encoding or reference coding as necessary.
+4.  Split the data into train and test portions (n.b.: You will skip this step for unsupervised approaches!)
+5.  Initialize the model, paying special attention to hyperparameters
+6.  Fit the model to your training data
+7.  Summarize and/or predict based on the model
+8.  Validate and assess the model based on your results
+
+## Choose a model and import functions
+
+Unlike the other libraries we've used so far, you'd never simply run `import sklearn`: the library is too big and would import way more than you need, potentially slowing down your code! Instead, you'll import just the parts you need for a particular model.
+
+In the first step of the modeling workflow, you need to use the *model selection* principles we'll discuss in class to determine the right model for your data and research questions. That will give you a good idea of what functions and methods you'll need. You'll import them with code that looks like this:
+
+``` python
+# You only need to import the functions you will use
+# This may be different every time
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.metrics import mean_squared_error, r2_score
+```
+
+This is the example of what you'd need if you were going to run a linear regression. Note that you're importing a **class**, the capitalized `LinearRegression` in the first line, that has your model itself. And you're also importing all the additional functions you need to validate and explain that model.
+
+## Choose predictor and target variables
+
+Next you'll choose what predictors and target variables you use. The process of choosing predictors (i.e. features) is called *feature selection*, and the kind of model you chose will often help you determine which predictors you use. The reverse is also true: the kind of features/predictors you have access to might help you determine which model to use.
+
+Typically you'd first identify the variables and then use them to select the specific `X` (predictors) and `y` (target) data you'll use in the model.
+
+``` python
+predictors = ["your_first_predictor", "your_second_predictor", "your_third_predictor", ...]
+target = "your_target_variable" #Note there are no brackets here
+
+X = your_dataframe[predictors]
+y = your_dataframe[target]
+```
+
+Sometimes you will want to test your predictors for validity before selecting them. In this case, you might create a `potential_predictors` list and use that before narrowing down to your official predictors. This is especially true for linear models like Linear Regression or Logistic Regression, when you often want to check for multicollinearity using a pairplot or correlation matrix at this stage.
+
+::: {.callout-tip}
+In an unsupervised model, there is no target variable, so you would only need to set up predictors and an `X`. And in some cases, you would run your model on the entire dataset without selecting specific features as predictors.
+:::
+
+## Prepare the data
+
+There are a few steps you might take at this stage. **Some of these steps might happen before or during the previous step.**
+
+::: {.callout-important}
+YOU WILL NOT DO EVERY ONE OF THESE STEPS EVERY TIME YOU RUN A MODEL. IT WILL ALWAYS DEPEND ON YOUR MODEL AND YOUR DATA.
+:::
+
+### Remove null values
+
+If your data has null values, this will cause errors in most models. It is helpful to remove null values from your data *before* you create your `X` and `y` variables. Use `subset=` to avoid dropping rows unnecesarily.
+
+``` python
+your_dataframe = your_dataframe.dropna(subset=predictors)
+```
+
+If there are null values in the target, you may need to add the target to the `subset` list.
+
+### Encode categorical variables
+
+If you have categorical variables in your predictors, you may need to change them to numerical 1s and 0s in order to run your model. You may be able to skip this for certain tree models, like the random forest.
+
+For linear models (linear and logistic regression), use **reference coding** by dropping one of your category columns. This code will got **in place of** the code where you defined `X` in the previos section.
+
+``` python
+X = pd.get_dummies(your_dataframe[predictors], drop_first=True)
+```
+
+For almost all other models, use **one-hot encoding** and don't drop any of the reference columns.
+
+``` python
+X = pd.get_dummies(your_dataframe[predictors])
+```
+
+::: {.callout-warning}
+If you have a categorical variable with lots of individual classes, this process will create too many columns in your code. This could slow down your code, cause your kernel crash, and/or make your model unreliable. Make sure you've inspected the categorical variables you want to use.
+:::
+
+### Normalize/Scale variables
+
+If your predictors are at very different scales, this could affect the results of your model. Especially in the case of distance-based models like K-nearest neighbors or K-means clustering, it's important to scale your variables.
+
+The process of scaling works like using a model class in `sklearn`. First you import the scaler. There are many different ways to scale data, but we'll typically standardize with z-scores.
+
+``` python
+from sklearn.preprocessing import StandardScaler
+```
+
+***After* you split the data** (see below) you should standardize the training data.
+
+``` python
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train_std = scaler.transform(X_train)
+```
+
+Then you would use `X_train_std` in place of `X_train` in any subsequent code.
+
+***Before* you validate on your test data**, you need to scale the test data with the same scaler.
+
+``` python
+X_test_std = scaler.transform(X_test)
+```
+
+Notice that you don't re-fit the scaler at this step. After this you would use `X_test_std` in place of `X_test` in any subsequent code.
+
+***Before* you cross-validate (or before you fit an unsupervised model)**, you will need to standardize the entirety of the unsplit data.
+
+``` python
+scaler = StandardScaler()
+scaler.fit(X)
+X_std = scaler.transform(X)
+```
+
+Then you would use `X_std` in place of `X` in any subsequent code.
+
+## Split the data
+
+For all ***supervised*** models, you will split the data into training and test sets. A training set will determine the model's coefficients, and a test set will let us see how well it works on *new* data that it *hasn't already seen*. (For *unsupervised* models, since there is no training, you will skip this step and work on the *entire* dataset.)
+
+You use the `train_test_split` function that we imported above to split your data.
+
+```python
+X_train, X_test, y_train, y_test = train_test_split(
+    X, 
+    y, 
+    test_size=0.3, 
+    random_state=0)
+```
+
+The `test_size` parameter determines what percentage of the data will be reserved for testing (in this case, 30%). If your dataset is very small, you may want to reserve a smaller test set so that you can use as much data as possible for training, but it's unadvisable to choose a test set smaller than 20%.
+
+The `random_state` parameter ensures that data split is the same every time. It doesn't matter what number you use here, so long as it's the same every time you run the function.
+
+## Initialize the model
+
+In order to run a model, you must initialize the model class by assigning it to a variable. For a simple model like linear regression, it would look like this:
+
+``` python
+your_model_name = LinearRegression()
+```
+
+Many models have hyperparameters and other settings you need to select at the time of initialization. Refer to your notes from class and the `sklearn` documentation for details about specific hyperparameters. As an example, initialization of a Naive Bayes model might look like:
+
+``` python
+naive_model = MultinomialNB(alpha=0.01, fit_prior=True)
+```
+
+In this case, the `MultinomialNB` class has two hyperparamters, `alpha` and `fit_prior`.
+
+## Fit the model
+
+**In a supervised model**, you will take the model variable that you initialized in the previous step and `fit`, i.e. run, it on your split training data.
+
+```python
+your_model_name.fit(X_train_std, y_train)
+```
+
+**In an unsupervised model**, you will fit directly to the full data, and there is no target `y` variable.
+
+```python
+your_model_name.fit(X)
+```
+
+Or sometimes:
+
+```python
+results = your_model_name.fit_transform(X)
+```
+
+The last option will fit and get results in the same function, but we'll typically only use it for our PCA model.
+
+## Summarize and/or predict
+
+:::{.callout-caution}
+This step is only for *supervised* models. For unsupervised models, you will often use the fit data to generate a transformation or retrieve attributes.
+:::
+
+### Display and interpret coefficients
+
+This option is only for linear models: linear and logistic regression. You can display the intercept and coefficients to better interpret the relationships in your data.
+
+```python
+# You'll use loops and string formatting here
+print(f"Intercept: {your_model_name.intercept_:.3f}")
+for c,p in zip(your_model_name.coef_,X.columns):
+    print(f"Coefficient for {p}: {c:.4f}")
+```
+
+### Tree diagrams and feature importances
+
+This option is only for tree models: decision trees and the random forest.
+
+1. You can use the `plot_tree()` function to create an informative tree diagram. See the [Scikit-learn documentation](https://scikit-learn.org/stable/modules/generated/sklearn.tree.plot_tree.html#sklearn.tree.plot_tree) for details.
+
+2. You can display the feature importances from these models in order to interpret the results more accurately. Listing feature importances will use the `your_model_name.feature_importances_` attribute and the same looping procedure as displaying coefficients (above).
+
+### Get predictions
+
+Supervised models always produce predictions. In regression models, you produce numerical predictions with `.predict()`. We will always run these functions on the **test data** to get *out of sample predictions*.
+
+```python
+# For regression
+predictions = your_model_name.predict(X_test)
+```
+
+In classification models, you produce categorical predictions with `.predict()` and numerical probabilities with `.predict_proba()`. You should also get the *target classes* at this stage.
+
+```python
+# For classification
+categories = your_model_name.classes_
+probabilities = your_model_name.predict_proba(X_test_std)
+predictions = your_model_name.predict(X_test_std)
+
+# It's helpful to put the probabilities into a dataframe
+probabilities = pd.DataFrame(probabilities, columns=categories)
+```
+
+## Validate and assess your model
+
+For every kind of model, there are distinct validation and assessment steps that help you interpret your results.
+
+::: {.callout-note}
+There are many different validation methods, and this guide will go through a few of the ones we'll use in this class. The `sklearn` documentation lists many more possibilities for different kinds of models.
+:::
+
+### Cross-validation
+
+All supervised models should be cross-validated. This runs the model multiple times over different splits of the data, to verify that your results weren't skewed by a random split of the data.
+
+At the top of your code, you should have the `cross_val_score` function imported. Then, no matter the model, you run the function on the entire unsplit dataset.
+
+```python
+# cv is the number of folds, or the repeated runs of the model
+scores = cross_val_score(your_model name, X, y, cv=5)
+# Use f-strings to print the mean and standard deviation of your result
+print(f"{scores.mean():.2} score with standard deviation {scores.std():.2}")
+```
+
+For regression models, `cross_val_score` will generate an $R^2$ score for each run of your model. For classification models, it will generate an accuracy score.
+
+### Validation for Regression
+
+Regression validation is based on *residuals*. Here are the `sklearn` functions you need to validate a regression. You would add these at the top of your notebook with your other imports.
+
+```python
+from sklearn.metrics import mean_squared_error, r2_score
+```
+
+You first step in regression validation is to calculate the residuals.
+
+```python
+# Out-of-sample residuals:
+residuals = y_test - predictions
+
+# It's helpful to put them into a dataframe with your predictions
+results = pd.DataFrame({'Predictions': predictions, 'Residuals':residuals})
+```
+
+You can use the predictions you generated in the previous step to calculate Root Mean Squared Error (RMSE).
+
+```python
+print(f"Root mean squared error: {np.sqrt(mean_squared_error(y_test, predictions)):.2f}")
+```
+
+You can also display the $R^2$ score, aka the coefficient of determination.
+
+```python
+print(f"Coefficient of determination: {r2_score(y_test, predictions):.2f}")
+```
+
+In addition to these two values, you can also create visualizations for validation.
+
+A histogram of residuals will show you if the residuals are normally distributed.
+
+```python
+alt.Chart(results, title="Histogram of Residuals").mark_bar().encode(
+    x=alt.X('Residuals:Q', title="Residuals").bin(maxbins=20),
+    y=alt.Y('count():Q', title="Value Counts")
+)
+```
+
+And you can plot the absolute value of residuals against the predictions to test for heteroskedasticity. You will **only** use this plot for linear regression.
+
+```python
+# Plot the absolute value of residuals against the predicted values
+chart = alt.Chart(results, title="Testing for Heteroskedasticity").mark_point().encode(
+    x=alt.X('Predictions:Q').title("Predicted Values"),
+    y=alt.Y('y:Q').title("Absolute value of Residuals") 
+).transform_calculate(y='abs(datum.Residuals)')
+
+chart + chart.transform_loess('Predictions', 'y').mark_line()
+```
+
+### Validation for Classification
+
+Classification validation is based on the confusion matrix, which tallies the number of categories correctly predicted by the model. Here are the `sklearn` functions you need to validate a classifier. You would add these at the top of your notebook with your other imports.
+
+```python
+from sklearn.metrics import confusion_matrix, classification_report, RocCurveDisplay
+# You won't always need matplotlib, but it's good to have
+import matplotlib.pyplot as plt
+```
+
+The `confusion_matrix` function generates the results, and you can turn this into a confusion matrix visualization: a special kind of heatmap with text overlayed.
+
+```python
+# Calculate confusion matrix and transform data
+conf_mat = confusion_matrix(y_test,predictions)
+conf_mat = pd.DataFrame(conf_mat,index=categories,columns=categories)
+conf_mat = conf_mat.melt(ignore_index=False).reset_index()
+# Create heatmap
+heatmap = alt.Chart(conf_mat).mark_rect().encode(
+    x=alt.X("variable:N").title("Predicted Response"),
+    y=alt.Y("index:N").title("True Response"),
+    color=alt.Color("value:Q", legend=None).scale(scheme="blues")
+).properties(
+    width=400,
+    height=400
+)
+# Add text labels for numbers
+text = heatmap.mark_text(baseline="middle").encode(
+    text=alt.Text("value:Q"),
+    color=alt.value("black"),
+    size=alt.value(50)
+)
+
+heatmap + text
+```
+
+You can calculate the accuracy, precision, and recall scores with the classification report.
+
+```python
+# You must use print() to make this readable
+print(classification_report(y_test, predictions))
+```
+
+Don't forget that you must also use cross-validation for a classifier!
+
+You can also create an ROC Curve if you have a **binary classifer** (just two target classes).
+
+```python
+# Create our ROC Curve plot
+RocCurveDisplay.from_predictions(y_test,
+                                 probabilities[categories[0]],
+                                 pos_label=categories[0])
+
+# Draw a green line for 0
+plt.plot([0, 1], [0, 1], color = 'g')
+```
+
+
+### Validation for Unsupervised Models
+
+Validation steps for unsupervised models are specific to the model. For example, in K-means clustering, you could show the labels of your clustering and a bar plot of the cluster means. Refer back to our class notes and supplementary readings for validation steps for K-means clustering and PCA.
+
+## Examples of model code
+
+### Linear regression
+
+Here's an example of the full model workflow for a linear regression of the cars data.
+
+First import libraries and data. In a real scenario, you'd also do some exploratory data analysis here.
+
+``` {python}
+import pandas as pd
+import numpy as np
+import altair as alt
+from vega_datasets import data
+
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.metrics import mean_squared_error, r2_score
+
+alt.data_transformers.enable("vegafusion")
+
+cars = data.cars()
+```
+
+Because this is a linear model, you should also validate any potential predictors by testing for multicollinearity. One way to do that is to use a correlation matrix of potential predictors. (You might also use a pair plot here.)
+
+``` {python}
+potential_predictors = ['Cylinders', 'Displacement', 'Horsepower',
+       'Weight_in_lbs', 'Acceleration']
+
+# Re-arrange correlation matrix data
+cars_corr = (cars[potential_predictors].corr(numeric_only=True)
+             .stack()
+             .reset_index()
+             .rename(columns={0:'corr','level_0':'var1','level_1':'var2'})
+            )
+# Create correlation heatmap
+base = alt.Chart(cars_corr, title="Cars Correlation Matrix").mark_rect().encode(
+    x=alt.X("var1:N",title=None),
+    y=alt.Y("var2:N",title=None),
+    color=alt.Color("corr",title="Correlation coefficient").scale(scheme='blueorange')
+).properties(width=300,height=300)
+# Add text labels for coefficients
+text = base.mark_text(baseline='middle').encode(
+    alt.Text('corr:Q', format=".2f"),
+    color=alt.condition(
+        (alt.datum.corr < -0.5) | (alt.datum.corr > 0.5),
+        alt.value('white'),
+        alt.value('black')
+    )
+)
+base+text # Display visualization
+```
+
+Then set up and run your model. Since this is a linear model, you also should display and interpret the coefficients.
+
+``` {python}
+# Select target and predictors based on validation
+target = "Miles_per_Gallon" # Our target variable
+predictors = ["Displacement", "Horsepower", "Acceleration"] # A list of predictors
+
+# Remove null values
+cars = cars.dropna(subset=predictors+[target])
+
+# Create variables and split data
+X = cars[predictors]
+y = cars[target]
+X_train, X_test, y_train, y_test = train_test_split(
+    X, 
+    y, 
+    test_size=0.4, 
+    random_state=42)
+
+# Fit the model
+linreg = LinearRegression()
+linreg.fit(X_train, y_train)
+
+# View coefficients
+print(f"Intercept: {linreg.intercept_:.3f}")
+for c,p in zip(linreg.coef_,X.columns):
+    print(f"Coefficient for {p}: {c:.4f}")
+```
+
+Finally, predict with the model, then display and interpret the validation steps.
+
+```{python}
+predictions = linreg.predict(X_test)
+
+# Our out-of-sample residuals:
+residuals = y_test - predictions
+results = pd.DataFrame({'Predictions': predictions, 'Residuals':residuals})
+
+print(f"Root mean squared error: {np.sqrt(mean_squared_error(y_test, predictions)):.2f}")
+print(f"Coefficient of determination: {r2_score(y_test, predictions):.2f}")
+```
+
+``` {python}
+# Histogram of residuals
+alt.Chart(results, title="Histogram of Residuals").mark_bar().encode(
+    x=alt.X('Residuals:Q', title="Residuals").bin(maxbins=20),
+    y=alt.Y('count():Q', title="Value Counts")
+)
+```
+
+``` {python}
+# Test for heteroskedasticity
+# Plot the absolute value of residuals against the predicted values
+chart = alt.Chart(results, title="Testing for Heteroskedasticity").mark_point().encode(
+    x=alt.X('Predictions:Q').title("Predicted Values"),
+    y=alt.Y('y:Q').title("Absolute value of Residuals") 
+).transform_calculate(y='abs(datum.Residuals)')
+
+chart + chart.transform_loess('Predictions', 'y').mark_line()
+```
+
+``` {python}
+scores = cross_val_score(linreg, X, y, cv=5)
+print(f"{scores.mean():.2} r-squared score with standard deviation {scores.std():.2}")
+```
+
+Remember, you will also need to explain and interpret all of your output. For guidance on how you should do that, refer to the [How To Explain](https://jrladd.com/CIS241/how-to-explain.html#explaining-a-linear-regression) guide.
+
+### KNN Classification
+
+Here's an example of a full model workflow for a KNN classifier of the penguins data.
+
+First import libraries and data. In a real scenario, you’d also do some exploratory data analysis here.
+
+``` {python}
+# You'll also need pandas, numpy, and altair
+# For standardization
+from sklearn.preprocessing import StandardScaler
+# For KNN
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.metrics import confusion_matrix, classification_report, RocCurveDisplay
+
+# You'll also need matplotlib this time
+import matplotlib.pyplot as plt
+
+penguins = pd.read_csv("../data/penguins.csv")
+```
+
+Then set up and run your model. Remember, there are steps here specific to this model and dataset.
+
+``` {python}
+# First you must split and standardize the data with a new target.
+# Decide on your predictors and targets
+predictors = ["bill_length_mm", "bill_depth_mm", "flipper_length_mm", "sex"]
+target = "species" # A categorical target now
+
+penguins = penguins.dropna()
+X = pd.get_dummies(penguins[predictors])
+y = penguins[target]
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, 
+    y, 
+    test_size=0.3, 
+    random_state=0)
+
+# Standardizing using the training data
+scaler = StandardScaler()
+scaler.fit(X_train)
+
+X_train_std = scaler.transform(X_train)
+
+# Fit the classification model
+# Decide on a good value for K (n_neighbors)
+knn = KNeighborsClassifier(n_neighbors=5)
+knn.fit(X_train_std, y_train)
+```
+
+In a distance-based model like KNN, there are no coefficients, so you can move on to the prediction and validation steps.
+
+``` {python}
+# Get the prediction results
+
+# Standardize test data
+X_test_std = scaler.transform(X_test)
+
+# Prediction probabilities
+probabilities = knn.predict_proba(X_test_std)
+# The predictions themselves
+predictions = knn.predict(X_test_std)
+# The categories or classes we predicted
+categories = knn.classes_
+
+# Let's make the probabilities look nicer
+probabilities = pd.DataFrame(probabilities, columns=categories)
+probabilities
+```
+
+``` {python}
+# Print the classification report
+print(classification_report(y_test, predictions))
+
+# Calculate confusion matrix and transform data
+conf_mat = confusion_matrix(y_test,predictions)
+conf_mat = pd.DataFrame(conf_mat,index=categories,columns=categories)
+conf_mat = conf_mat.melt(ignore_index=False).reset_index()
+# Create heatmap
+heatmap = alt.Chart(conf_mat).mark_rect().encode(
+    x=alt.X("variable:N").title("Predicted Response"),
+    y=alt.Y("index:N").title("True Response"),
+    color=alt.Color("value:Q", legend=None).scale(scheme="blues")
+).properties(
+    width=400,
+    height=400
+)
+# Add text labels for numbers
+text = heatmap.mark_text(baseline="middle").encode(
+    text=alt.Text("value:Q"),
+    color=alt.value("black"),
+    size=alt.value(50)
+)
+
+heatmap + text
+```
+
+``` {python}
+# Run cross-validation on standardized data
+scaler_full = StandardScaler()
+scaler_full.fit(X)
+
+X_std = scaler.transform(X)
+
+scores = cross_val_score(knn, X_std, y, cv=10)
+print(f"{scores.mean():.2} accuracy with standard deviation {scores.std():.2}")
+```
+
+Since this is *not* a binary classifier (i.e. We have three target classes: Adelie, Chinstrap, and Gentoo.), it's not appropriate to include an ROC Curve here, but you may want it for a different model or dataset.
+
+Remember, you will also need to explain and interpret all of your output. For guidance on how you should do that, refer to the [How To Explain](https://jrladd.com/CIS241/how-to-explain.html#explaining-a-linear-regression) guide.
