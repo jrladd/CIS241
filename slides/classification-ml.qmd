@@ -1,0 +1,84 @@
+---
+title: "More Classification with Machine Learning"
+subtitle: "CIS 241, Dr. Ladd"
+author: "`spacebar` to go to the next slide, `esc`/menu to navigate"
+format:
+  revealjs:
+    theme: white
+    controls: true
+    slide-level: 2
+    transition: slide
+    incremental: true
+    center: true
+    navigation-mode: vertical
+    embed-resources: true
+---
+
+# Logistic Regression 📈 is only one type of classification model!
+
+There are many different classifiers, and we'll learn about:
+
+- K-nearest neighbors 🎯
+- Decision Trees and the Random Forest 🌲
+- Naive Bayes 🪙
+
+# KNN and Random Forest work in the same way as they do for regression.
+
+The only difference is, now you're using them to predict a *category* instead of a *number*.
+
+You'll use `KNeighborsClassifier`, `DecisionTreeClassifier`, and `RandomForestClassifier` instead of the Regressor versions.
+
+Using the wrong one will lead to an error!
+
+# What is Naive Bayes Classification?
+
+## Naive Bayes predicts a target by finding the probability of *predictors* based on a specific target.
+
+Like in hypothesis testing, this is the opposite of what we'd expect!
+
+## Exact Bayesian Classification
+
+Find all records that are the same as the one you care about. What's the proportion of possible targets? The highest proportion is your prediction!
+
+This is impractical, because very few records are identical.
+
+## Naive Bayes Classification
+
+For each possible target, find the individual conditional probabilities of every predictor. Multiply these probabilities by each other and by the number of records in the possible target class. Divide this by the sum of these values for all the classes. That gives you the probability!
+
+## This is *naive* because it assumes every predictor is independent.
+
+This isn't always true, but naive Bayes classifiers can still be useful.
+
+## This can *only* be used with categorical predictor variables!!
+
+Numerical variables would need to be "binned" into categories first.
+
+## We need the `MultinomialNB` class.
+
+```python
+from sklearn.naive_bayes import MultinomialNB
+```
+
+## Thanks, Thomas Bayes!
+
+![](img/Thomas_Bayes.gif)
+
+# You Try It!
+
+Let's create a Naive Bayes model to predict survival in the `titanic` dataset.
+
+```python
+titanic = pd.read_csv("https://jrladd.com/CIS241/data/titanic.csv")
+```
+
+Consider how you'd do this for KNN and Random Forest, too!
+
+# Validation for Classifiers
+
+All four of our classifiers---Logistic Regression, KNN, Random Forest, and Naive Bayes---use the same validation methods.
+
+1. Confusion Matrix
+2. Classification Report
+3. Cross-validation
+4. ROC Curve & AUC Score (binary classifier only)

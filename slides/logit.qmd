@@ -1,5 +1,5 @@
 ---
-title: "Logistic Regression"
+title: "Classification with Logistic Regression"
 subtitle: "CIS 241, Dr. Ladd"
 author: "`spacebar` to go to the next slide, `esc`/menu to navigate"
 format:
@@ -18,9 +18,14 @@ format:
 
 AKA Logit Regression, Maximum-Entropy Classification
 
+Even though it's got "Regression" in its name, Logistic Regression is our first ***classification*** method.
+
 ## How do we predict a *category*?
 
-Logistic Regression is our first **classification** method.
+- Regressors predict a numerical value.
+- Classifiers predict a category class.
+
+Logistic Regression is a **classifier**.
 
 ## Logistic regression is a *linear* model.
 
@@ -64,20 +69,14 @@ Run the `train_test_split` function now. What should you use as a test size?
 
 ## Fit a logistic regression model
 
-```{.python code-line-numbers="1-2|4-7|8|"}
+```{.python}
 # We need a different class from sklearn
 from sklearn.linear_model import LogisticRegression
-
-# See next slide for discussion of parameters
-logit_model = LogisticRegression(penalty=None, 
-                                 solver='lbfgs', 
-                                 random_state=42)
-logit_model.fit(X_train, y_train)
 ```
 
 Do you need to drop null values?
 
-## Setting model parameters
+## Setting model hyperparameters
 
 - **penalty**: By default, scikit-learn regularizes your predictors. This could lead to unpredictable results for non-normalized data! For now, always set this to 'none'.
 - **solver**: This is the underlying algorithm scikit-learn will use to calculate the coefficients. The `lbfgs` solver is the default and is good for small datasets.
@@ -89,77 +88,20 @@ Do you need to drop null values?
 
 ## We can print the intercept and the coefficents, just like in linear regression.
 
-```python
-print(f"Intercept: {logit_model.intercept_[0]:.3f}")
-print("Coefficients:")
-for name, coef in zip(X_train.columns, logit_model.coef_[0]):
-    print(f"\t{name}: {coef:.4f}")
-```
-
 How do *the odds* change for each unit of the predictor?
 
 ## Instead of predicting a value, we can predict the *probability* that our new data will fall into category.
 
-```{.python code-line-numbers="1-2|3-4|5-6|8-10"}
-# We can get prediction probabilities
-probabilities = logit_model.predict_proba(X_test)
-# We can get the predictions themselves
-predictions = logit_model.predict(X_test)
-# We can get the categories or classes we predicted
-categories = logit_model.classes_
-
-# Let's make the probabilities look nicer
-probabilities = pd.DataFrame(probabilities, columns=categories)
-probabilities
-```
+We need to store predictions, probabilities, and categories (i.e. classes).
 
 ## There is no RMSE or $R^{2}$ for logistic regression.
 
 So how do we assess our model instead?
 
-## We need another set of metric functions
-
-```python
-# Add cross_val_score to your train_test_split line
-from sklearn.model_selection import train_test_split, cross_val_score
-# These replace the r-squared score and RMSE
-# You could put these all on one line
-from sklearn.metrics import confusion_matrix, classification_report
-from sklearn.metric import RocCurveDisplay
-
-# You'll also need matplotlib this time
-import matplotlib.pyplot as plt
-```
-
 ## Validate classifiers with the *confusion matrix*.
 
 ![Confusion matrix for our penguin model.](img/confusion_altair.png)
 
----
-
-```{.python code-line-numbers="1-4|5-13|14-19|21"}
-# Calculate confusion matrix and transform data
-conf_mat = confusion_matrix(y_test,predictions)
-conf_mat = pd.DataFrame(conf_mat,index=categories,columns=categories)
-conf_mat = conf_mat.melt(ignore_index=False).reset_index()
-# Create heatmap
-heatmap = alt.Chart(conf_mat).mark_rect().encode(
-    x=alt.X("variable:N").title("Predicted Response"),
-    y=alt.Y("index:N").title("True Response"),
-    color=alt.Color("value:Q", legend=None).scale(scheme="blues")
-).properties(
-    width=400,
-    height=400
-)
-# Add text labels for numbers
-text = heatmap.mark_text(baseline="middle").encode(
-    text=alt.Text("value:Q"),
-    color=alt.value("black"),
-    size=alt.value(50)
-)
-
-heatmap + text
-```
 
 ## From the confusion matrix, we get scores for our model.
 
@@ -172,37 +114,17 @@ heatmap + text
 
 ![](img/precision_recall.svg){height=600px}
 
-## Calculating these scores is simple in scikit-learn.
-
-```python
-# You must use print to make this readable
-print(classification_report(y_test, predictions))
-```
+## Use the classfication report to get all of these metrics in scikit-learn.
 
 There are individual functions for these, too.
 
 ## Cross-validation lets you compare multiple runs of the model with different training data.
 
-```python
-scores = cross_val_score(logit_model, X, y, cv=5)
-print(f"{scores.mean():.2} accuracy with standard deviation {scores.std():.2}")
-```
+This works the same as it did for regression, but it returns *accuracy* instead of $R^2$ score.
 
 ## Plot the model's recall with the ROC Curve.
 
 This only works for *binary* classifiers!
-```python
-# Create our ROC Curve plot
-RocCurveDisplay.from_predictions(y_test,
-                                 probabilities[categories[0]],
-                                 pos_label=categories[0])
 
-# Draw a green line for 0
-plt.plot([0, 1], [0, 1], color = 'g')
-```
-
-ROC: Receiver Operating Characteristics
-
-## Another helpful measure is the area under the ROC curve (AUC).
-
-This measure is written right on the ROC Curve plot!
+- ROC: Receiver Operating Characteristics
+- AUC: Area Under the Curve (This measure is written right on the ROC Curve plot!)
