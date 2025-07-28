@@ -1,0 +1,144 @@
+---
+title: "More Regression with Machine Learning"
+subtitle: "CIS 241, Dr. Ladd"
+author: "`spacebar` to go to the next slide, `esc`/menu to navigate"
+format:
+  revealjs:
+    theme: serif
+    controls: true
+    slide-level: 2
+    transition: slide
+    incremental: true
+    center: true
+    navigation-mode: vertical
+    embed-resources: true
+---
+
+# Linear Regression 📈 is only one type of regression model!
+
+There are many different regressors, and we'll learn about:
+
+- K-nearest neighbors 🎯
+- Decision Trees and the Random Forest 🌲
+
+## There are also different kinds of *linear* regression that we aren't covering.
+
+- Polynomial regression
+- Ridge regression
+- Poisson regression
+
+## Both of our new methods (KNN and RF) can be used as regressors or as classifiers.
+
+But today we're only focusing on regression (i.e. predicting a numerical target).
+
+## You'll need to import some new `sklearn` classes to run these.
+
+```python
+#For KNN
+from sklearn.neighbors import KNeighborsRegressor
+```
+
+```python
+#For Random Forest
+from sklearn.tree import DecisionTreeRegressor, plot_tree
+from sklearn.ensemble import RandomForestClassifier
+```
+
+See the [Sklearn Guide](https://jrladd.com/CIS241/guides/sklearn.html) for everything else you'll need.
+
+# What is K-Nearest Neighbors?
+
+## A *machine learning* method based on distances.
+
+## There are many ways to calculate distance.
+
+![[Euclidean distance](http://programminghistorian.org/en/lessons/common-similarity-measures#what-is-similarity-or-distance) is the default in scikit-learn.](img/euclidean.jpg){width=30%}
+
+$$\sqrt[]{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$
+
+## The key to KNN is setting the correct *K*.
+
+- In machine learning, *K* or *k* refers to any integer.
+- If K is too low, you may be *overfitting*.
+- If K is too high, you may be *oversmoothing*.
+- Usually between 1-20, and an odd number avoids ties.
+- You must decide based on the data!
+
+## The Bias-Variance Trade-Off
+
+- Variance: the error in your model due to the choice of training data (sensitivity to small changes in the training data)
+- Bias: the error in your model due to not accounting for the real-world scenario (bad assumptions in the learning algorithm)
+- As variance goes up, bias goes down and vice versa.
+- Overfitting leads to variance, Oversmoothing (underfitting) leads to bias
+- You're trying to find a *balance*
+
+## You can use one-hot encoding to handle factor variables.
+
+How is this different from reference coding?
+
+## You ***must*** standardize your variables.
+
+Also called "normalization", this keeps variables in the same scale.
+
+Not "how much" but "how different from the average."
+
+## The most common standardization is the z-score.
+
+$$z=\frac{x-\bar{x}}{s}$$
+
+The z-score is the original value minus the mean and divided by the standard deviation.
+
+# What are Decision Trees and the Random Forest?
+
+These are *one* type of tree model, but a decision tree runs the model one time and random forest is an *ensemble* approach.
+
+## A tree model is a set of rules to split data into different categories.
+
+## Decision trees are trained using *recursive partitioning*.
+
+Let's find out more from the [`sklearn` documentation](https://scikit-learn.org/stable/modules/tree.html).
+
+## You can use the `plot_tree()` function to see the tree of split data.
+
+See the [Sklearn Guide](https://jrladd.com/CIS241/guides/sklearn.html#tree-diagrams-and-feature-importances) and the [documentation](https://scikit-learn.org/stable/modules/generated/sklearn.tree.plot_tree.html#sklearn.tree.plot_tree) for more info.
+
+## Decision Trees create nodes (branching rules) based on optimal split values.
+
+## Decision Trees can help you determine which predictors (features) are most important.
+
+This is referred to as "variable (or feature) importance" and takes advantage of decision trees' skill at finding patterns in the data.
+
+## Trees can find hidden patterns and help you interpret interactions between variables.
+
+But they are not so reliable one-at-a-time, and often cause overfitting. We need to think about the bias-variance tradeoff!
+
+## This is where the Random Forest comes in!
+
+To get more accurate predictions, it's best to use many trees together.
+
+And what do you call a lot of trees? A forest!
+
+## The random forest is an *ensemble* method.
+
+You can see all the metaphors here: a forest, a musical ensemble, etc.
+
+The decision trees are put together using "bagging": bootstrap aggregating.
+
+## For both decision trees and random forest, pay attention to your model's *hyperparameters*.
+
+- `min_samples_leaf`: the minimum number of records in a terminal node (leaf)
+- `max_leaf_nodes`: the maximum number of nodes in the entire tree
+- `splitter` and `criterion`: the kind of trees you will create
+
+Setting these can help you create smaller trees and avoid spurious results!
+
+# You Try It!
+
+Let's try two models, one KNN and one Random Forest, with the Seattle Housing data.
+
+```python
+housing = pd.read_csv("https://jrladd.com/CIS241/data/house_sales.tsv", sep="\t")
+```
+
+- For KNN, don't forget variable scaling!
+- For Random Forest, don't forget to first fit a decision tree to get a tree diagram and feature importances.

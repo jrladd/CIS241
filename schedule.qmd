@@ -15,7 +15,7 @@ Date|Topics & Slides|Workshops|Assignments|Supplemental Reading
 23 & 25 Sept.|Hypothesis Testing: [Comparison of Means](slides/hypothesis.html)|2: <a href="resources/02_baseball1.ipynb" download>Sports 1</a>|(Begin Test 1)|Downey Ch. [11](https://allendowney.github.io/ElementsOfDataScience/11_resampling.html) and [13](https://allendowney.github.io/ElementsOfDataScience/13_hypothesis.html)
 30 Sept. & 2 Oct.|NO CLASS TUESDAY; Hypothesis Testing: [Correlation](slides/correlation.html)|2: <a href="resources/02_baseball2.ipynb" download>Sports 2</a>|**Test 1** 2 Oct.|Downey Ch. [9](https://allendowney.github.io/ElementsOfDataScience/09_relationships.html)
 7 & 9 Oct.|Supervised Learning: [Regression](slides/regression.html)|3: <a href="resources/03_airbnb1.ipynb" download>Business 1</a>||Downey Ch. [10](https://allendowney.github.io/ElementsOfDataScience/10_regression.html); McKinney Ch. [12.4](https://wesmckinney.com/book/modeling#modeling-scikit-learn)
-14 & 16 Oct.|Supervised Learning: Regression|3: <a href="resources/03_airbnb2.ipynb" download>Business 2</a>|
+14 & 16 Oct.|Supervised Learning: [Regression, cont.](slides/regression-ml.html)|3: <a href="resources/03_airbnb2.ipynb" download>Business 2</a>|
 23 Oct.|NO CLASS TUESDAY (FALL BREAK); Ethical Data Science|3.5: Ethics|
 28 & 30 Oct.|Supervised Learning: Classification|4: <a href="resources/05_health1.ipynb" download>Health 1</a>|**[Project Planning Assignment](assignments/project-planning.md) Due 30 Oct.**
 4 & 6 Nov.|Supervised Learning: Classification|4: <a href="resources/05_health2.ipynb" download>Health 2</a>|(Begin Test 2)

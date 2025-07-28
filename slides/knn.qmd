@@ -44,7 +44,6 @@ $$\sqrt[]{(x_2 - x_1)^2 + (y_2 - y_1)^2}$$
 - Overfitting leads to variance, Oversmoothing (underfitting) leads to bias
 - You're trying to find a *balance*
 
-
 ## You can use one-hot encoding to handle factor variables.
 
 How is this different from reference coding?
