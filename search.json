@@ -836,6 +836,18 @@
     ]
   },
   {
+    "objectID": "guides/sklearn.html#appendix-import-models",
+    "href": "guides/sklearn.html#appendix-import-models",
+    "title": "14  Modeling with Scikit-learn",
+    "section": "14.11 Appendix: Import Models",
+    "text": "14.11 Appendix: Import Models\nHere are the bits of sklearn you will need to import different model classes. You can refer to the documentation for each of these classes to get more details about hyperparameters and other features. Remember, you should only import the code you need for your specific model.\n# Linear Regression\nfrom sklearn.linear_model import LinearRegression\n\n# KNN Regression\nfrom sklearn.neighbors import KNeighborsRegressor\n\n# Random Forest Regression\nfrom sklearn.tree import DecisionTreeRegressor, plot_tree\nfrom sklearn.ensemble import RandomForestRegressor\n\n# Logistic Regression\nfrom sklearn.linear_model import LogisticRegression\n\n# KNN Classification\nfrom sklearn.neighbors import KNeighborsClassifier\n\n# Random Forest Classification\nfrom sklearn.tree import DecisionTreeClassifier, plot_tree\nfrom sklearn.ensemble import RandomForestClassifier\n\n# Naive Bayes Classifier\nfrom sklearn.naive_bayes import MultinomialNB\n\n# K-Means Clustering\nfrom sklearn.cluster import KMeans\n\n# Principal Component Analysis\nfrom sklearn.decomposition import PCA",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Modeling with Scikit-learn</span>"
+    ]
+  },
+  {
     "objectID": "how-to-explain.html",
     "href": "how-to-explain.html",
     "title": "15  How to Explain in CIS241",
