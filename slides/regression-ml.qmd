@@ -41,7 +41,7 @@ from sklearn.neighbors import KNeighborsRegressor
 ```python
 #For Random Forest
 from sklearn.tree import DecisionTreeRegressor, plot_tree
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestRegressor
 ```
 
 See the [Sklearn Guide](https://jrladd.com/CIS241/guides/sklearn.html) for everything else you'll need.

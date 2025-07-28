@@ -604,3 +604,38 @@ print(f"{scores.mean():.2} accuracy with standard deviation {scores.std():.2}")
 Since this is *not* a binary classifier (i.e. We have three target classes: Adelie, Chinstrap, and Gentoo.), it's not appropriate to include an ROC Curve here, but you may want it for a different model or dataset.
 
 Remember, you will also need to explain and interpret all of your output. For guidance on how you should do that, refer to the [How To Explain](https://jrladd.com/CIS241/how-to-explain.html#explaining-a-linear-regression) guide.
+
+## Appendix: Import Models
+
+Here are the bits of `sklearn` you will need to import different model classes. You can refer to the documentation for each of these classes to get more details about hyperparameters and other features. Remember, **you should only import the code you need for your specific model**.
+
+```python
+# Linear Regression
+from sklearn.linear_model import LinearRegression
+
+# KNN Regression
+from sklearn.neighbors import KNeighborsRegressor
+
+# Random Forest Regression
+from sklearn.tree import DecisionTreeRegressor, plot_tree
+from sklearn.ensemble import RandomForestRegressor
+
+# Logistic Regression
+from sklearn.linear_model import LogisticRegression
+
+# KNN Classification
+from sklearn.neighbors import KNeighborsClassifier
+
+# Random Forest Classification
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.ensemble import RandomForestClassifier
+
+# Naive Bayes Classifier
+from sklearn.naive_bayes import MultinomialNB
+
+# K-Means Clustering
+from sklearn.cluster import KMeans
+
+# Principal Component Analysis
+from sklearn.decomposition import PCA
+```
