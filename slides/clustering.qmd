@@ -35,7 +35,7 @@ It constructs a model of the data without learning from existing labels.
 
 ## Types of unsupervised learning
 
-- Principal component analysis (PCA): dimension reduction
+- **Principal component analysis (PCA): dimension reduction**
 - Correspondence analysis: dimension reduction
 - **K-Means Clustering: clustering and exploration**
 - Hierarchical Clustering: clustering and exploration
@@ -72,7 +72,7 @@ Maybe your company needs to split customers into exactly 4 categories, for insta
 
 ## If you're lost when choosing K, you can try the "elbow method."
 
-1. Run K-Means multiple times, with a different value for K each time.
+1. Run K-Means multiple times in a `for` loop, with a different value for K each time.
 2. Look at how close the values are to their centroid. (This is called inertia.)
 3. Create a graph to see at what value for K this inertia measure begins to settle.
 
@@ -108,18 +108,11 @@ It is best to stick with numerical variables for clustering, but if you must use
 
 Because this is an unsupervised method, there's no need to reserve a test set. There would be nothing to test on!
 
-## Code for running K-Means.
-
-This isn't the whole workflow, it's just the model code.
+## Class for running K-Means.
 
 ```python
 from sklearn.cluster import KMeans
-
-kmeans = KMeans(n_clusters=3, n_init='auto', max_iter=300, random_state=0)
-kmeans.fit(X_std)
 ```
-
-Before running this, you should try the elbow method to determine a good K value!
 
 ## As always pay attention to the hyperparameters.
 
@@ -130,12 +123,7 @@ Before running this, you should try the elbow method to determine a good K value
 
 ## We can interpret the clusters in two ways.
 
-First, we can look at the relative size of the clusters. Are they relatively balanced? Unbalanced clusters may mean we need to try again.
-
-```python
-# Using the .labels_ attribute of our model
-pd.Series(kmeans.labels_).value_counts()
-```
+First, we can look at the relative size of the clusters. Are they relatively balanced? Unbalanced clusters may mean we need to try again. Use `.value_counts()` on the `.labels_` attribute of your model.
 
 ## We can interpret the clusters in two ways. (cont.)
 

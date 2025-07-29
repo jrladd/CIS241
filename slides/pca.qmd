@@ -1,0 +1,68 @@
+---
+title: "Unsupervised Learning & Principal Component Analysis 🍕🍕🍕"
+subtitle: "CIS 241, Dr. Ladd"
+author: "`spacebar` to go to the next slide, `esc`/menu to navigate"
+format:
+  revealjs:
+    theme: solarized
+    controls: true
+    slide-level: 2
+    transition: slide
+    incremental: true
+    center: true
+    navigation-mode: vertical
+    embed-resources: true
+---
+
+
+# What is Principal Component Analysis?
+
+## PCA is a form of *dimension reduction*
+
+It groups or reduces the number of features (dimensions) in your data into a more manageable number of columns.
+
+## PCA is a simple type of Singular Value Decomposition (SVD)
+
+SVD is a linear algebra method for refactoring a matrix (dataset) into a smaller matrix by finding multiple lines of best fit.
+
+It's closely related to Factor Analysis.
+
+## Think of a pizza...
+
+![](img/pizza.png)
+
+
+## PCA can be used for...
+
+- Exploration and Visualization (usually uses 2 dimensions)
+- Modeling and Data Preparation (any number of dimensions)
+
+# Running PCA
+
+## Choose a number of components appropriate to your use case!
+
+## You don't need to split your data, but you should definitely standardize it!
+
+## As always pay attention to the hyperparameters.
+
+- `n_components`: the number of components the model will produce
+- `whiten`: an adjustment of results, good for when you will use components in another model
+- `svd_solver`: the exact SVD method you'll use, usually can be left as 'auto'
+- `random_state`
+
+## Use `.fit_transform()` to fit the model and get components in the same function.
+
+The resulting data will have the same number of rows but a new number of columns.
+
+Put this data into a new dataframe to do something with it!
+
+## The `.components_` and `.explained_variance_` attributes can help you understand your results.
+
+## Try PCA for the `penguins` dataset.
+
+1. Select features and prepare data. Consider standardizations as well as null values.
+2. Run PCA to reduce to 2 dimensions and plot the results.
+3. Run PCA with 3 dimensions and use `.components_` to assess results.
+4. Use the 3-dimension PCA results to re-run last week's K-means clustering.
+
+Good luck! 🐧🐧🐧
