@@ -39,6 +39,7 @@ book:
       - guides/altair.ipynb
       - guides/hypothesis-testing.qmd
       - guides/sklearn.qmd
+      - guides/debugging.qmd
   - part: "Other Key Info"
     chapters:
     - how-to-explain.ipynb

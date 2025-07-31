@@ -78,7 +78,7 @@ Do you need to drop null values?
 
 ## Setting model hyperparameters
 
-- **penalty**: By default, scikit-learn regularizes your predictors. This could lead to unpredictable results for non-normalized data! For now, always set this to 'none'.
+- **penalty**: By default, scikit-learn regularizes your predictors. This could lead to unpredictable results for non-normalized data! For now, always set this to `None`.
 - **solver**: This is the underlying algorithm scikit-learn will use to calculate the coefficients. The `lbfgs` solver is the default and is good for small datasets.
 - **random_state**: As in `train_test_split`, this should always be set to ensure repeatability.
 

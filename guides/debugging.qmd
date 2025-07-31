@@ -1,0 +1,134 @@
+---
+title: "Debugging Your Code"
+---
+
+## Some steps to try when you encounter an error
+
+Bugs in your code can be frustrating! But there are concrete steps you can take:
+
+![](../slides/img/ladybug.jpg)
+
+### Step 1: **Define the Problem.**
+
+Think about what you were *trying* to do vs. what happened instead. Create a hypothesis for what went wrong.
+
+### Step 2: **Read the Error Message.**
+
+Look for a line number where the error is occurring.
+
+Sometimes the bug is in the line *before* the one that threw the error!
+
+See @sec-anatomy below for more.
+
+### Step 3: **Re-run code from the beginning.**
+
+Remember that code is run in order, from the first line in your script to the last one. And specific parts of your code, like `for` loops or functions, have specific indented *contexts*. If any of your code is out of order or indented improperly, the rest of the code may not work.
+
+This can happen a lot in JupyterHub, since sometimes you re-run a lower cell without fixing one that's higher up in your code. Go back to the beginning of your code and re-run to see if that will fix it, and if not go cell-by-cell through the code to find the problem.
+
+### Step 4: **Talk it out!**
+
+Try your best to explain the problem *out loud*, preferably to a friend or teammate.
+
+Practice [rubber duck debugging](https://en.wikipedia.org/wiki/Rubber_duck_debugging).
+
+![](../slides/img/rubberduck.png)
+
+### Step 5: **Check instructions, documentation, and Google.**
+
+If you're lost, refer to all the resources you have: cheatsheets, guides, online documentation. Don't forget [RAD CAT](https://jrladd.com/CIS241/radcat)!
+
+And when in doubt: Google the error message and see if someone else had the same problem!
+
+### Step 6: **Ask for help!**
+
+Don't let a single bug frustrate you for too long. If none of the above strategies worked, ask a classmate, PAL tutor, or instructor for help with the problem.
+
+## Avoid Bugs before they happen!
+
+### Save and/or "Restart and Run All" Often.
+
+If you're getting the same bug repeatedly in the same cell despite making changes, it could be that something is "stuck" in memory. Use the "restart and run all" button to try it again with a fresh kernel.
+
+### Use good names.
+
+Name your variables and dataframes with care. Rename things to make them more clear. Good names can help you find a problem quickly.
+
+### Start simple, and build up little by little.
+
+Don't try to write a whole program all in one go.
+
+### Run your code line-by-line.
+
+Check that it works *as you go*.
+
+### Leave yourself good annotations and comments!
+
+Use `#` to leave comments: remind yourself what certain lines of code are doing.
+
+## Anatomy of an Error Message {#sec-anatomy}
+
+Here's an example of an error message from Pandas:
+
+``` {python}
+#| error: true
+
+# Import library
+import pandas as pd
+
+# Read in data
+penguins = pd.read_csv("../data/penguins.csv")
+
+# Filter only Adelie penguins
+penguins_filter = penguins[penguins.Species == "Adelie"]
+penguins_filter
+```
+
+This code uses a lot of best practices (clear variable names, good comments, etc.), but it still has an error. Let's see if you can decode it.
+
+**The bottom line** of the error message defines the error itself. Make sure you always scroll to the bottom of the error message first!
+
+In this case the last line says `AttributeError: 'DataFrame' object has no attribute 'Species'`. Before the colon is the type of error (an attribute error in Pandas refers to a column or attribute of the data), and after the colon Python attempts to tell you what's wrong (in this case it says that the dataframe doesn't have a column called "Species").
+
+**Everything above the bottom line** of the error message is part of the Traceback, which shows you step by step what went wrong with the code. Sometimes these tracebacks can be very long, but usually you only need a small part of it.
+
+After you've looked at the last line, go back to the top part of the Traceback. This will show you the code that you wrote. In our case it looks like this:
+
+```
+<ipython-input-3-ff22716e7d6d> in ?()
+      4 # Read in data
+      5 penguins = pd.read_csv("../data/penguins.csv")
+      6 
+      7 # Filter only Adelie penguins
+----> 8 penguins_filter = penguins[penguins.Species == "Adelie"]
+```
+
+The Traceback has an arrow that points directly at the line causing the problem. In this case, that's line 8, the final line of our cell. Sometimes the Traceback will even highlight the part of the line that's causing the problem!
+
+There's no highlight here, but the error definition told us what was wrong: the "Species" column. Let's look at the columns in this DataFrame to see if we can spot the issue:
+
+``` {python}
+penguins.info()
+```
+
+Do you see it?
+
+Yes! The column isn't called "Species", it's called "species". The code accidentally capitalized the word! This is a very easy fix. You can repair the cell like so:
+
+``` {python}
+#| error: true
+
+# Import library
+import pandas as pd
+
+# Read in data
+penguins = pd.read_csv("../data/penguins.csv")
+
+# Filter only Adelie penguins
+penguins_filter = penguins[penguins.species == "Adelie"]
+penguins_filter
+```
+
+And goodbye error message!
+
+Over time, you'll get used to reading and decoding these error messages on your own, but don't be afraid to ask questions if you run into one you're unsure about.
