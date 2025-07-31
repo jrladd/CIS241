@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-12-13">
 
-<title>8&nbsp; Final Project – CIS241 Intro to Data Science</title>
+<title>15&nbsp; Debugging Your Code – CIS241 Intro to Data Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,13 +20,48 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<link href="../guides/jupyterhub.html" rel="next">
-<link href="../assignments/presentation.html" rel="prev">
+<link href="../how-to-explain.html" rel="next">
+<link href="../guides/sklearn.html" rel="prev">
 <link href="../bar_chart_apple_64.png" rel="icon" type="image/png">
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
@@ -55,6 +89,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="../styles.css">
@@ -111,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/final-report.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Final Project</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/jupyterhub.html">Guides</a></li><li class="breadcrumb-item"><a href="../guides/debugging.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Debugging Your Code</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -192,7 +229,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../assignments/final-report.html" class="sidebar-item-text sidebar-link active">
+  <a href="../assignments/final-report.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
   </div>
 </li>
@@ -245,7 +282,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../guides/debugging.html" class="sidebar-item-text sidebar-link">
+  <a href="../guides/debugging.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Debugging Your Code</span></span></a>
   </div>
 </li>
@@ -296,19 +333,33 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">8.1</span> Introduction</a></li>
-  <li><a href="#data-explanation-and-exploration" id="toc-data-explanation-and-exploration" class="nav-link" data-scroll-target="#data-explanation-and-exploration"><span class="header-section-number">8.2</span> Data Explanation and Exploration</a></li>
-  <li><a href="#statistical-analysis-and-interpretation" id="toc-statistical-analysis-and-interpretation" class="nav-link" data-scroll-target="#statistical-analysis-and-interpretation"><span class="header-section-number">8.3</span> Statistical Analysis and Interpretation</a></li>
-  <li><a href="#conclusions" id="toc-conclusions" class="nav-link" data-scroll-target="#conclusions"><span class="header-section-number">8.4</span> Conclusions</a></li>
+  <li><a href="#some-steps-to-try-when-you-encounter-an-error" id="toc-some-steps-to-try-when-you-encounter-an-error" class="nav-link active" data-scroll-target="#some-steps-to-try-when-you-encounter-an-error"><span class="header-section-number">15.1</span> Some steps to try when you encounter an error</a>
+  <ul class="collapse">
+  <li><a href="#step-1-define-the-problem." id="toc-step-1-define-the-problem." class="nav-link" data-scroll-target="#step-1-define-the-problem."><span class="header-section-number">15.1.1</span> Step 1: <strong>Define the Problem.</strong></a></li>
+  <li><a href="#step-2-read-the-error-message." id="toc-step-2-read-the-error-message." class="nav-link" data-scroll-target="#step-2-read-the-error-message."><span class="header-section-number">15.1.2</span> Step 2: <strong>Read the Error Message.</strong></a></li>
+  <li><a href="#step-3-re-run-code-from-the-beginning." id="toc-step-3-re-run-code-from-the-beginning." class="nav-link" data-scroll-target="#step-3-re-run-code-from-the-beginning."><span class="header-section-number">15.1.3</span> Step 3: <strong>Re-run code from the beginning.</strong></a></li>
+  <li><a href="#step-4-talk-it-out" id="toc-step-4-talk-it-out" class="nav-link" data-scroll-target="#step-4-talk-it-out"><span class="header-section-number">15.1.4</span> Step 4: <strong>Talk it out!</strong></a></li>
+  <li><a href="#step-5-check-instructions-documentation-and-google." id="toc-step-5-check-instructions-documentation-and-google." class="nav-link" data-scroll-target="#step-5-check-instructions-documentation-and-google."><span class="header-section-number">15.1.5</span> Step 5: <strong>Check instructions, documentation, and Google.</strong></a></li>
+  <li><a href="#step-6-ask-for-help" id="toc-step-6-ask-for-help" class="nav-link" data-scroll-target="#step-6-ask-for-help"><span class="header-section-number">15.1.6</span> Step 6: <strong>Ask for help!</strong></a></li>
+  </ul></li>
+  <li><a href="#avoid-bugs-before-they-happen" id="toc-avoid-bugs-before-they-happen" class="nav-link" data-scroll-target="#avoid-bugs-before-they-happen"><span class="header-section-number">15.2</span> Avoid Bugs before they happen!</a>
+  <ul class="collapse">
+  <li><a href="#save-andor-restart-and-run-all-often." id="toc-save-andor-restart-and-run-all-often." class="nav-link" data-scroll-target="#save-andor-restart-and-run-all-often."><span class="header-section-number">15.2.1</span> Save and/or “Restart and Run All” Often.</a></li>
+  <li><a href="#use-good-names." id="toc-use-good-names." class="nav-link" data-scroll-target="#use-good-names."><span class="header-section-number">15.2.2</span> Use good names.</a></li>
+  <li><a href="#start-simple-and-build-up-little-by-little." id="toc-start-simple-and-build-up-little-by-little." class="nav-link" data-scroll-target="#start-simple-and-build-up-little-by-little."><span class="header-section-number">15.2.3</span> Start simple, and build up little by little.</a></li>
+  <li><a href="#run-your-code-line-by-line." id="toc-run-your-code-line-by-line." class="nav-link" data-scroll-target="#run-your-code-line-by-line."><span class="header-section-number">15.2.4</span> Run your code line-by-line.</a></li>
+  <li><a href="#leave-yourself-good-annotations-and-comments" id="toc-leave-yourself-good-annotations-and-comments" class="nav-link" data-scroll-target="#leave-yourself-good-annotations-and-comments"><span class="header-section-number">15.2.5</span> Leave yourself good annotations and comments!</a></li>
+  </ul></li>
+  <li><a href="#sec-anatomy" id="toc-sec-anatomy" class="nav-link" data-scroll-target="#sec-anatomy"><span class="header-section-number">15.3</span> Anatomy of an Error Message</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../assignments.html">Assignments</a></li><li class="breadcrumb-item"><a href="../assignments/final-report.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Final Project</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/jupyterhub.html">Guides</a></li><li class="breadcrumb-item"><a href="../guides/debugging.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Debugging Your Code</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Final Project</span></h1>
+<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Debugging Your Code</span></h1>
 </div>
 
 
@@ -316,12 +367,6 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">December 13, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -331,41 +376,281 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><strong>Complete by: Saturday 13 Dec.&nbsp;at 2pm</strong></p>
-<p><strong>Please note that I <em>cannot</em> accept any work past this deadline.</strong></p>
-<p><strong>A polished Jupyter Notebook HTML file reporting the results of your final data analysis project, as outlined in your <a href="../assignments/project-planning.html">Project Planning Document</a>.</strong> Roughly, 5-7 written pages (though this is hard to measure in a Jupyter notebook, so consider it a <em>guideline</em>). Think about this report as a “final takeaway” of all the skills you’ve learned in class over the semester. Below is a rough structure of your final written report.</p>
-<p><strong>This should be a ready-to-deliver report with clear section headers and interpretations of any statistical or graphical output (like several of our previous projects).</strong> You can review the <a href="../sample-final-project.html">Sample Final Project</a> to get a sense of what you’ll need to accomplish.</p>
-<section id="introduction" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">8.1</span> Introduction</h2>
-<ul>
-<li>Provide a one-to-three paragraph introduction, professionally written, that gives an overview of the essentials someone needs to know to make sense of the data you show.</li>
-<li>Consider some of the ethical and logistical challenges that your data presents, and discuss this in your introduction. Address the ethical issues in your project in terms of the <a href="https://ethos.academicdatascience.org/lenses/">ADSA’s four lenses</a>.</li>
-<li>You may reuse some of the text you wrote in your <a href="../assignments/project-planning.html">Project Planning</a> document, but think carefully about how to revise and expand it.</li>
-<li>You <strong>must</strong> cite and link to your dataset, and you can use Markdown to create contextual links like so: <code>[text here](website)</code>.</li>
-</ul>
+<section id="some-steps-to-try-when-you-encounter-an-error" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="some-steps-to-try-when-you-encounter-an-error"><span class="header-section-number">15.1</span> Some steps to try when you encounter an error</h2>
+<p>Bugs in your code can be frustrating! But there are concrete steps you can take:</p>
+<p><img src="../slides/img/ladybug.jpg" class="img-fluid"></p>
+<section id="step-1-define-the-problem." class="level3" data-number="15.1.1">
+<h3 data-number="15.1.1" class="anchored" data-anchor-id="step-1-define-the-problem."><span class="header-section-number">15.1.1</span> Step 1: <strong>Define the Problem.</strong></h3>
+<p>Think about what you were <em>trying</em> to do vs.&nbsp;what happened instead. Create a hypothesis for what went wrong.</p>
 </section>
-<section id="data-explanation-and-exploration" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="data-explanation-and-exploration"><span class="header-section-number">8.2</span> Data Explanation and Exploration</h2>
-<ul>
-<li>Provide some details describing the data you are working with. What are the observations? The key variables you will be looking at? Are there any particular challenges in the data you will need to work through or be aware of during analysis?</li>
-<li>Present at least two univariate or bivariate analyses of key attributes in your data—these may be summary statistics, confidence intervals, distributions, correlations, or other observations. These may be closely related to the visualizations you create in this section.</li>
-<li>Provide four polished visuals that describe the data in a way relevant to your question (descriptive, not related to your statistical model specifically–not a regression plot). <em>No more than two of these should be the same visualization type</em>. Write text that describes the data and what the visuals tell you about your data or decisions you will need to make for the analysis.</li>
-</ul>
+<section id="step-2-read-the-error-message." class="level3" data-number="15.1.2">
+<h3 data-number="15.1.2" class="anchored" data-anchor-id="step-2-read-the-error-message."><span class="header-section-number">15.1.2</span> Step 2: <strong>Read the Error Message.</strong></h3>
+<p>Look for a line number where the error is occurring.</p>
+<p>Sometimes the bug is in the line <em>before</em> the one that threw the error!</p>
+<p>See <a href="#sec-anatomy" class="quarto-xref"><span>Section 15.3</span></a> below for more.</p>
 </section>
-<section id="statistical-analysis-and-interpretation" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="statistical-analysis-and-interpretation"><span class="header-section-number">8.3</span> Statistical Analysis and Interpretation</h2>
-<ul>
-<li>Provide at least two distinct statistical approaches (for example: linear regression and hypothesis testing; naive bayes classification and Kmeans clustering; KNN regression and random forest classification; etc.) that you interpret correctly and fully in the text. <em>These can be whatever you choose, but you should explain why you chose the model you did, and why they fit the data.</em> It’s recommended that you use two <em>different</em> approaches (i.e.&nbsp;not just two methods for regression or two methods for classification).</li>
-<li>Provide at least three polished visuals that specifically support and validate the model(s) you have developed (e.g., residual and regression line/scatter, histogram showing normality of data or residuals, confusion matrix, etc.), or help to communicate your main result. Visuals should have captions and be referred to clearly in your text, and they should not all be the same (e.g., not three scatterplots). You’ll likely need more than three to complete the usual validation steps.</li>
-<li>Text should fully explain what you show and your findings, to someone who is unfamiliar with your data, code, and models, in terms of the data and in plain language.</li>
-</ul>
+<section id="step-3-re-run-code-from-the-beginning." class="level3" data-number="15.1.3">
+<h3 data-number="15.1.3" class="anchored" data-anchor-id="step-3-re-run-code-from-the-beginning."><span class="header-section-number">15.1.3</span> Step 3: <strong>Re-run code from the beginning.</strong></h3>
+<p>Remember that code is run in order, from the first line in your script to the last one. And specific parts of your code, like <code>for</code> loops or functions, have specific indented <em>contexts</em>. If any of your code is out of order or indented improperly, the rest of the code may not work.</p>
+<p>This can happen a lot in JupyterHub, since sometimes you re-run a lower cell without fixing one that’s higher up in your code. Go back to the beginning of your code and re-run to see if that will fix it, and if not go cell-by-cell through the code to find the problem.</p>
 </section>
-<section id="conclusions" class="level2" data-number="8.4">
-<h2 data-number="8.4" class="anchored" data-anchor-id="conclusions"><span class="header-section-number">8.4</span> Conclusions</h2>
-<ul>
-<li>Provide one or two paragraphs concluding about the data: what does it tell us, what are the limitations to this data/model, and what is one future direction you could envision for future data analysts or data collectors?</li>
-<li>Include citations for the two secondary references that you used in your Project Planning document, and explain how they pertain to your conclusions and insights. You may cite a reference by linking directly to it in your markdown <code>[text here](link here)</code>, and listing the full citation below the conclusions section. Please ask me if you aren’t sure how to cite references.</li>
-</ul>
+<section id="step-4-talk-it-out" class="level3" data-number="15.1.4">
+<h3 data-number="15.1.4" class="anchored" data-anchor-id="step-4-talk-it-out"><span class="header-section-number">15.1.4</span> Step 4: <strong>Talk it out!</strong></h3>
+<p>Try your best to explain the problem <em>out loud</em>, preferably to a friend or teammate.</p>
+<p>Practice <a href="https://en.wikipedia.org/wiki/Rubber_duck_debugging">rubber duck debugging</a>.</p>
+<p><img src="../slides/img/rubberduck.png" class="img-fluid"></p>
+</section>
+<section id="step-5-check-instructions-documentation-and-google." class="level3" data-number="15.1.5">
+<h3 data-number="15.1.5" class="anchored" data-anchor-id="step-5-check-instructions-documentation-and-google."><span class="header-section-number">15.1.5</span> Step 5: <strong>Check instructions, documentation, and Google.</strong></h3>
+<p>If you’re lost, refer to all the resources you have: cheatsheets, guides, online documentation. Don’t forget <a href="https://jrladd.com/CIS241/radcat">RAD CAT</a>!</p>
+<p>And when in doubt: Google the error message and see if someone else had the same problem!</p>
+</section>
+<section id="step-6-ask-for-help" class="level3" data-number="15.1.6">
+<h3 data-number="15.1.6" class="anchored" data-anchor-id="step-6-ask-for-help"><span class="header-section-number">15.1.6</span> Step 6: <strong>Ask for help!</strong></h3>
+<p>Don’t let a single bug frustrate you for too long. If none of the above strategies worked, ask a classmate, PAL tutor, or instructor for help with the problem.</p>
+</section>
+</section>
+<section id="avoid-bugs-before-they-happen" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="avoid-bugs-before-they-happen"><span class="header-section-number">15.2</span> Avoid Bugs before they happen!</h2>
+<section id="save-andor-restart-and-run-all-often." class="level3" data-number="15.2.1">
+<h3 data-number="15.2.1" class="anchored" data-anchor-id="save-andor-restart-and-run-all-often."><span class="header-section-number">15.2.1</span> Save and/or “Restart and Run All” Often.</h3>
+<p>If you’re getting the same bug repeatedly in the same cell despite making changes, it could be that something is “stuck” in memory. Use the “restart and run all” button to try it again with a fresh kernel.</p>
+</section>
+<section id="use-good-names." class="level3" data-number="15.2.2">
+<h3 data-number="15.2.2" class="anchored" data-anchor-id="use-good-names."><span class="header-section-number">15.2.2</span> Use good names.</h3>
+<p>Name your variables and dataframes with care. Rename things to make them more clear. Good names can help you find a problem quickly.</p>
+</section>
+<section id="start-simple-and-build-up-little-by-little." class="level3" data-number="15.2.3">
+<h3 data-number="15.2.3" class="anchored" data-anchor-id="start-simple-and-build-up-little-by-little."><span class="header-section-number">15.2.3</span> Start simple, and build up little by little.</h3>
+<p>Don’t try to write a whole program all in one go.</p>
+</section>
+<section id="run-your-code-line-by-line." class="level3" data-number="15.2.4">
+<h3 data-number="15.2.4" class="anchored" data-anchor-id="run-your-code-line-by-line."><span class="header-section-number">15.2.4</span> Run your code line-by-line.</h3>
+<p>Check that it works <em>as you go</em>.</p>
+</section>
+<section id="leave-yourself-good-annotations-and-comments" class="level3" data-number="15.2.5">
+<h3 data-number="15.2.5" class="anchored" data-anchor-id="leave-yourself-good-annotations-and-comments"><span class="header-section-number">15.2.5</span> Leave yourself good annotations and comments!</h3>
+<p>Use <code>#</code> to leave comments: remind yourself what certain lines of code are doing.</p>
+</section>
+</section>
+<section id="sec-anatomy" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="sec-anatomy"><span class="header-section-number">15.3</span> Anatomy of an Error Message</h2>
+<p>Here’s an example of an error message from Pandas:</p>
+<div id="4e0b0452" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import library</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> pd.read_csv(<span class="st">"../data/penguins.csv"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter only Adelie penguins</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>penguins_filter <span class="op">=</span> penguins[penguins.Species <span class="op">==</span> <span class="st">"Adelie"</span>]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>penguins_filter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-green-fg">/var/folders/xk/29clchk51j5bm56kqn4v8dsc0000gq/T/ipykernel_45295/490271837.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-fg">      4</span> <span style="font-style:italic;color:rgb(95,135,135)"># Read in data</span>
+<span class="ansi-green-fg">      5</span> penguins = pd.read_csv(<span class="ansi-yellow-fg">"../data/penguins.csv"</span>)
+<span class="ansi-green-fg">      6</span> 
+<span class="ansi-green-fg">      7</span> <span style="font-style:italic;color:rgb(95,135,135)"># Filter only Adelie penguins</span>
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">8</span> penguins_filter = penguins[penguins.Species == <span class="ansi-yellow-fg">"Adelie"</span>]
+<span class="ansi-green-fg">      9</span> penguins_filter
+
+<span class="ansi-green-fg">~/CIS241/.venv/lib/python3.12/site-packages/pandas/core/generic.py</span> in <span class="ansi-cyan-fg">?</span><span class="ansi-blue-fg">(self, name)</span>
+<span class="ansi-green-fg">   6314</span>             <span style="font-weight:bold;color:rgb(0,135,0)">and</span> name <span style="font-weight:bold;color:rgb(0,135,0)">not</span> <span style="font-weight:bold;color:rgb(0,135,0)">in</span> self._accessors
+<span class="ansi-green-fg">   6315</span>             <span style="font-weight:bold;color:rgb(0,135,0)">and</span> self._info_axis._can_hold_identifiers_and_holds_name(name)
+<span class="ansi-green-fg">   6316</span>         ):
+<span class="ansi-green-fg">   6317</span>             <span style="font-weight:bold;color:rgb(0,135,0)">return</span> self[name]
+<span class="ansi-green-fg">-&gt; </span><span class="ansi-green-fg">6318</span>         <span style="font-weight:bold;color:rgb(0,135,0)">return</span> object.__getattribute__(self, name)
+
+<span class="ansi-red-fg">AttributeError</span>: 'DataFrame' object has no attribute 'Species'</pre>
+</div>
+</div>
+</div>
+<p>This code uses a lot of best practices (clear variable names, good comments, etc.), but it still has an error. Let’s see if you can decode it.</p>
+<p><strong>The bottom line</strong> of the error message defines the error itself. Make sure you always scroll to the bottom of the error message first!</p>
+<p>In this case the last line says <code>AttributeError: 'DataFrame' object has no attribute 'Species'</code>. Before the colon is the type of error (an attribute error in Pandas refers to a column or attribute of the data), and after the colon Python attempts to tell you what’s wrong (in this case it says that the dataframe doesn’t have a column called “Species”).</p>
+<p><strong>Everything above the bottom line</strong> of the error message is part of the Traceback, which shows you step by step what went wrong with the code. Sometimes these tracebacks can be very long, but usually you only need a small part of it.</p>
+<p>After you’ve looked at the last line, go back to the top part of the Traceback. This will show you the code that you wrote. In our case it looks like this:</p>
+<pre><code>&lt;ipython-input-3-ff22716e7d6d&gt; in ?()
+      4 # Read in data
+      5 penguins = pd.read_csv("../data/penguins.csv")
+      6 
+      7 # Filter only Adelie penguins
+----&gt; 8 penguins_filter = penguins[penguins.Species == "Adelie"]</code></pre>
+<p>The Traceback has an arrow that points directly at the line causing the problem. In this case, that’s line 8, the final line of our cell. Sometimes the Traceback will even highlight the part of the line that’s causing the problem!</p>
+<p>There’s no highlight here, but the error definition told us what was wrong: the “Species” column. Let’s look at the columns in this DataFrame to see if we can spot the issue:</p>
+<div id="6be021db" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>penguins.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 344 entries, 0 to 343
+Data columns (total 7 columns):
+ #   Column             Non-Null Count  Dtype  
+---  ------             --------------  -----  
+ 0   species            344 non-null    object 
+ 1   island             344 non-null    object 
+ 2   bill_length_mm     342 non-null    float64
+ 3   bill_depth_mm      342 non-null    float64
+ 4   flipper_length_mm  342 non-null    float64
+ 5   body_mass_g        342 non-null    float64
+ 6   sex                333 non-null    object 
+dtypes: float64(4), object(3)
+memory usage: 18.9+ KB</code></pre>
+</div>
+</div>
+<p>Do you see it?</p>
+<p>Yes! The column isn’t called “Species”, it’s called “species”. The code accidentally capitalized the word! This is a very easy fix. You can repair the cell like so:</p>
+<div id="e5906cf6" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import library</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in data</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>penguins <span class="op">=</span> pd.read_csv(<span class="st">"../data/penguins.csv"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Filter only Adelie penguins</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>penguins_filter <span class="op">=</span> penguins[penguins.species <span class="op">==</span> <span class="st">"Adelie"</span>]</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>penguins_filter</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">species</th>
+<th data-quarto-table-cell-role="th">island</th>
+<th data-quarto-table-cell-role="th">bill_length_mm</th>
+<th data-quarto-table-cell-role="th">bill_depth_mm</th>
+<th data-quarto-table-cell-role="th">flipper_length_mm</th>
+<th data-quarto-table-cell-role="th">body_mass_g</th>
+<th data-quarto-table-cell-role="th">sex</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Adelie</td>
+<td>Torgersen</td>
+<td>39.1</td>
+<td>18.7</td>
+<td>181.0</td>
+<td>3750.0</td>
+<td>Male</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Adelie</td>
+<td>Torgersen</td>
+<td>39.5</td>
+<td>17.4</td>
+<td>186.0</td>
+<td>3800.0</td>
+<td>Female</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Adelie</td>
+<td>Torgersen</td>
+<td>40.3</td>
+<td>18.0</td>
+<td>195.0</td>
+<td>3250.0</td>
+<td>Female</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Adelie</td>
+<td>Torgersen</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+<td>NaN</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Adelie</td>
+<td>Torgersen</td>
+<td>36.7</td>
+<td>19.3</td>
+<td>193.0</td>
+<td>3450.0</td>
+<td>Female</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">147</td>
+<td>Adelie</td>
+<td>Dream</td>
+<td>36.6</td>
+<td>18.4</td>
+<td>184.0</td>
+<td>3475.0</td>
+<td>Female</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">148</td>
+<td>Adelie</td>
+<td>Dream</td>
+<td>36.0</td>
+<td>17.8</td>
+<td>195.0</td>
+<td>3450.0</td>
+<td>Female</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">149</td>
+<td>Adelie</td>
+<td>Dream</td>
+<td>37.8</td>
+<td>18.1</td>
+<td>193.0</td>
+<td>3750.0</td>
+<td>Male</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">150</td>
+<td>Adelie</td>
+<td>Dream</td>
+<td>36.0</td>
+<td>17.1</td>
+<td>187.0</td>
+<td>3700.0</td>
+<td>Female</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">151</td>
+<td>Adelie</td>
+<td>Dream</td>
+<td>41.5</td>
+<td>18.5</td>
+<td>201.0</td>
+<td>4000.0</td>
+<td>Male</td>
+</tr>
+</tbody>
+</table>
+
+<p>152 rows × 7 columns</p>
+</div>
+</div>
+</div>
+<p>And goodbye error message!</p>
+<p>Over time, you’ll get used to reading and decoding these error messages on your own, but don’t be afraid to ask questions if you run into one you’re unsure about.</p>
 
 
 </section>
@@ -772,13 +1057,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../assignments/presentation.html" class="pagination-link" aria-label="Presentation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Presentation</span></span>
+      <a href="../guides/sklearn.html" class="pagination-link" aria-label="Modeling with Scikit-learn">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Modeling with Scikit-learn</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../guides/jupyterhub.html" class="pagination-link" aria-label="JupyterHub">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">JupyterHub</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../how-to-explain.html" class="pagination-link" aria-label="How to Explain in CIS241">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">How to Explain in CIS241</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
