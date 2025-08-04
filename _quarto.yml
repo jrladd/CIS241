@@ -25,6 +25,7 @@ book:
     - schedule.qmd
     - policies.md
     - groundrules.md
+    - criteria.md
   - part: assignments.md
     chapters:
       - assignments/documentation.md  
