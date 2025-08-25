@@ -8,7 +8,7 @@ format:
 
 Date|Topics & Slides|Workshops|Assignments|Supplemental Reading
 --|---|---|---|---
-26 & 28 Aug.|What Is Data? & Responsible Data Collection|[Jupyter](guides/jupyterhub.md)||Bruce Ch. 1 (Sakai)
+26 & 28 Aug.|[What Is Data?](slides/whatisdata.html) & Responsible Data Collection|[Jupyter](guides/jupyterhub.md)||Bruce Ch. 1 (Sakai)
 2 & 4 Sept.|[Python & Data Wrangling](slides/wrangling.html)|0: <a href="resources/00_python_pandas.ipynb" download>Practice Python</a>||McKinney, Ch. [3](https://wesmckinney.com/book/python-builtin), [5](https://wesmckinney.com/book/pandas-basics), and [8](https://wesmckinney.com/book/data-wrangling); Downey Ch. [7](https://allendowney.github.io/ElementsOfDataScience/07_dataframes.html)
 9 & 11 Sept.|[Exploratory Data Analysis](slides/eda.html): Summary Statistics & Data Types|1: <a href="resources/01_movies1.ipynb" download>Movies 1</a>|**[Documentation Assignment](assignments/documentation.md) Due 11 Sept.**|Downey Ch. [2](https://allendowney.github.io/ElementsOfDataScience/02_times.html); McKinney Ch. [11](https://wesmckinney.com/book/time-series)
 16 & 18 Sept.|Exploratory Data Analysis: [Visualization](slides/visualizing.html)|1: <a href="resources/01_movies2.ipynb" download>Movies 2</a>||Wilke Ch. [5](https://clauswilke.com/dataviz/directory-of-visualizations.html) and UW Ch. [1, 2, 3, & 6](https://idl.uw.edu/visualization-curriculum/intro.html)
