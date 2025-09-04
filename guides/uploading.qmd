@@ -1,0 +1,31 @@
+---
+title: "Uploading a Jupyter Assignment"
+---
+
+Many of the assignments you create in this class will be written and coded in Jupyter notebooks. This is a short guide to submitting those assignments to Sakai.
+
+:::{.callout-caution}
+This guide is only for assignments that are in Jupyter notebooks, such as the weekly workshops and take-home tests. Other assignments (like the Documentation) can be submitted as PDFs.
+:::
+
+## Step 1: Complete the whole assignment
+
+Make sure the entire assignment is finished, following the [RAD CAT](/radcat.md) guide. All of the visualizations should be displayed the way you want, and all of the necessary code output should be shown in the notebook. *If it's not showing up in the notebook view in JupyterHub, it won't show up in the output.*
+
+## Step 2: Export an HTML file
+
+In JupyterHub, select `File > Save and Export Notebook As... > HTML` (see the screenshot below). This will download an HTML version of the notebook to your computer. **Do not download the .ipynb file or submit it to Sakai. You need the HTML output so that I can read and grade your work.**
+
+![](/images/html_export.png)
+
+## Step 3: Rename and check the HTML file
+
+The HTML will be downloaded somewhere on your computer (usually into the Downloads folder by default). Find the HTML file, **open it, and look it over.** Make sure that the file displays everything correctly. Sometimes the export goes wrong, and you may need to go back, make changes to your notebook, and export the file again. *It is your responsibility that the HTML file is correct.*
+
+After checking that the file is ready, rename the file so that it includes your last name. If the original file name was `01_movies1.html` and your last name is Smith, you should rename the file to `smith_01_movies1.html`. Just add your last name and an underscore to the start of the filename. Correctly naming your files is an important part of staying organized as a programmer and data scientist!
+
+## Step 4: Upload to Sakai
+
+Now that your HTML is exported, checked, and renamed, you can upload it to the Sakai assignment as you would any other file. Under our class in [Sakai](https://sakai.washjeff.edu/) is an Assignments tab. You'll see an assignment that matches the name of the assignment in your notebook. Select that one, then click `Browse...` to add the file from your computer to Sakai. Once your file is uploaded, make sure you click `Proceed` and then `Submit` to fully upload your assignment. I won't be able to see and grade the assignment until you've clicked `Submit`.
+
+And that's it! If anything goes wrong at any point in this process or you don't know what to do next, you can always send me an email or stop by office hours.

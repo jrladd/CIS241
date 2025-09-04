@@ -45,6 +45,7 @@ book:
     chapters:
     - how-to-explain.ipynb
     - radcat.md
+    - guides/uploading.qmd
     - sample-final-project.ipynb
     - guides/jupyter.md
   search: false
