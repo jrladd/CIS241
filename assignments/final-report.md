@@ -1,9 +1,9 @@
 ---
 title:  "Final Project"
-date:   2025-12-13
+date:   2026-05-01
 show_date: false
 ---
-**Complete by: Saturday 13 Dec. at 2pm**
+**Complete by: Friday 1 May at 2pm**
 
 **Please note that I *cannot* accept any work past this deadline.**
 

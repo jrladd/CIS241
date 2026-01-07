@@ -1,9 +1,9 @@
 ---
-title:  "Project Planning Document"
-date:   2025-10-30
+title:  "Project Plan"
+date:   2026-03-19
 show_date: false
 ---
-**Complete by: Thursday 30 Oct. at class time**
+**Complete by: Thursday 19 Mar. at class time**
 
 ## Description
 

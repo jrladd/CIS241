@@ -1,11 +1,13 @@
 ---
 title:  "Presentation"
-date:   2025-11-25
+date:   2026-04-16
 show_date: false
 ---
-**Complete by: Thursday 25 Nov. at class time**
+**Complete by: Thursday 16 Apr. at class time**
 
 *You will prepare a 3-5 minute “elevator pitch” video presentation about your project for your classmates, along with a short written summary for me. The goal of this video is not to summarize the entire content of your project, but rather to explain to your audience your chosen data set, the questions you have, and the approaches you plan to take, in a way that will generate interest and allow others to offer suggestions.*
+
+*Alongside the video, you'll create a written report and a single presentation slide.*
 
 ## Creating a Video
 
@@ -41,6 +43,16 @@ You will also produce a 1–2 page written summary that may overlap with some of
 
 You'll submit this document as a PDF on Sakai. You can copy your visualizations as static images into the word processor of your choice—let me know if you have questions about this.
 
+## Slide for Scholars Day
+
+Take one of the visualizations from your written summary and make a slide for the CIS Open House on Scholars Day. You can add your slide to the slideshow I will share on OneDrive.
+
+Your slide should include your name, a title, the visualization, and a 2–3 sentence explanation/interpretation. There will be a rotating slideshow during the Scholars Day CIS Open House, so your slide should be understandable and informative for a general audience that doesn't know anything about your project.
+
+If you wind up changing your project or would like to update your slide after the deadline, you may do so as long as I approve the changes. I may also ask you to revise your slide if necessary.
+
+**As part of this assignment you must attend the CIS Open House on Scholars Day, Tues. 28 Apr 2pm–3:50pm.** When you arrive, check in with me or Dr. Rapp so that we can verify you were there. You should stay for a minimum of 15 minutes to check out the other presentations and projects. *You do not need to present anything or speak publicly about your project at this event*, but you never know... maybe someone will love your slide and want to chat about it!
+
 ## How to Submit a Video
 
 - Please submit videos to the OneDrive folder for our class (there is a link to the folder on Sakai).
@@ -50,29 +62,23 @@ You'll submit this document as a PDF on Sakai. You can copy your visualizations 
 
 ## Responding to Videos
 
-In addition to making a video presentation, you will watch and respond to the videos made by your peers. Before class on Thurs. 4 Dec., you will watch *all* the videos. After watching a video, you will write down the following for each one.
+In addition to making a video presentation, you will watch and respond to the videos made by your peers. Before class on Thurs. 4 Dec., you will watch *all* the videos. After watching a video, you will write down the following for each one. (I recommend writing your responses onto a computer instead of a paper notebook, since you will later add them as comments online.)
 
 1. One substantive similarity between the presenter's project and your own.
 2. One question you have about the project.
 3. One idea or suggestion you have for the presenter as they finish their project.
 
-Bring these similarities, questions, and suggestions with you to class, and you will use them as the basis to discuss the projects in your groups. You'll also use these as the start of our Q&A session for the panel presentations.
+Bring these similarities, questions, and suggestions with you to class, and you will use them as the basis to discuss the projects in your groups.
 
 **At the end of the class, you can post your three items as a comment attached to your classmate's video on Stream.** *I'll read over each response and will include this as part of your presentation grade.*
 
 **Remember**: the best comments are ones that are substantive and move the conversation forward. So not just "We are both working on golf data," but "In my project, I found that one challenge with golf data was that it had mostly quantitative variables. You're dealing with a similar challenge." And not just "What do you plan to do next?" but "When you model your data with a random forest classifier, do you plan to limit the size of your decision trees?" These comments can be genuinely helpful feedback for your classmates, so give the feedback that you would like to receive!
 
-## Panel Discussions
-
-During our final exam session, we'll have panel discussions about your final projects. Your final projects will be due before this session begins, and all of your classmates will have watched your video presentation.
-
-You do *not* need to prepare a separate presentation for this session, and there is no final exam. Each group will take questions from the rest of the class about their videos and their final projects. You can use the responses you already wrote for the videos as questions for the Q&A portion. I will explain more about the format in class. *Participation in the panel discussion is part of the presentation grade.*
-
-The goal of these discussions is to reflect on what you accomplished in your project and compare that to what you had initially planned.
 
 ## Requirements
 
 - Your video presentation, uploaded to the OneDrive folder
 - Your written summary, submitted as PDF to the Sakai assignment
-- Responses for each video, brought with you to class on Thurs. 4 Dec.
-- Participation in the panel discussions on Dec. 13 at 2pm
+- Your Scholars Day slide, added to our group slideshow on OneDrive
+- Responses for each video, brought with you to class on Thurs. 23 Apr.
+- Attendance at the CIS Open House on Scholars Day, Tues. 28 Apr 2pm–3:50pm
