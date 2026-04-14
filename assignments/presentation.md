@@ -51,7 +51,7 @@ Your slide should include your name, a title, the visualization, and a 2–3 sen
 
 If you wind up changing your project or would like to update your slide after the deadline, you may do so as long as I approve the changes. I may also ask you to revise your slide if necessary.
 
-**As part of this assignment you must attend the CIS Open House on Scholars Day, Tues. 28 Apr 2pm–3:50pm.** When you arrive, check in with me or Dr. Rapp so that we can verify you were there. You should stay for a minimum of 15 minutes to check out the other presentations and projects. *You do not need to present anything or speak publicly about your project at this event*, but you never know... maybe someone will love your slide and want to chat about it!
+**As part of this assignment you must attend the CIS Open House on Scholars Day, Tues. 28 Apr 2pm–2:50pm.** When you arrive, check in with me or Dr. Rapp so that we can verify you were there. You should stay for a minimum of 15 minutes to check out the other presentations and projects. *You do not need to present anything or speak publicly about your project at this event*, but you never know... maybe someone will love your slide and want to chat about it!
 
 ## How to Submit a Video
 
@@ -62,7 +62,7 @@ If you wind up changing your project or would like to update your slide after th
 
 ## Responding to Videos
 
-In addition to making a video presentation, you will watch and respond to the videos made by your peers. Before class on Thurs. 4 Dec., you will watch *all* the videos. After watching a video, you will write down the following for each one. (I recommend writing your responses onto a computer instead of a paper notebook, since you will later add them as comments online.)
+In addition to making a video presentation, you will watch and respond to the videos made by your peers. Before class on Thurs. 23 Apr., you will watch *all* the videos. After watching a video, you will write down the following for each one. (I recommend writing your responses onto a computer instead of a paper notebook, since you will later add them as comments online.)
 
 1. One substantive similarity between the presenter's project and your own.
 2. One question you have about the project.
@@ -81,4 +81,4 @@ Bring these similarities, questions, and suggestions with you to class, and you 
 - Your written summary, submitted as PDF to the Sakai assignment
 - Your Scholars Day slide, added to our group slideshow on OneDrive
 - Responses for each video, brought with you to class on Thurs. 23 Apr.
-- Attendance at the CIS Open House on Scholars Day, Tues. 28 Apr 2pm–3:50pm
+- Attendance at the CIS Open House on Scholars Day, Tues. 28 Apr 2pm–2:50pm
