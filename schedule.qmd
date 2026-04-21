@@ -22,7 +22,7 @@ Date|Topics & Slides|Workshops|Assignments|Supplemental Reading
 7 & 9 Apr.|Unsupervised Learning: [Clustering](slides/clustering.html)|5: <a href="resources/06_lit1.ipynb" download>Literature 1</a>|**Test 2** 9 Apr.|Bruce Ch. [7](https://ebookcentral.proquest.com/lib/washjeff/reader.action?docID=6173908&ppg=258&c=RVBVQg)
 14 & 16 Apr.|Unsupervised Learning: [Dimension Reduction](slides/pca.html)|5: <a href="resources/06_lit2.ipynb" download>Literature 2</a>|**[Video Presentations](assignments/presentation.md) Due 16 Apr.**|Bruce Ch. [7](https://ebookcentral.proquest.com/lib/washjeff/reader.action?docID=6173908&ppg=251&c=RVBVQg)
 21 & 23 Apr.|Discuss Projects & Videos, [Sample Final Project](sample-final-project.ipynb)||
-28 Apr. **2pm–3:50pm**|CIS Open House on Scholars Day!||**[Final Project](assignments/final-report.md) Due Fri. 1 May at 2pm**
+28 Apr. **2pm–2:50pm**|CIS Open House on Scholars Day!||**[Final Project](assignments/final-report.md) Due Fri. 1 May at 2pm**
 
 : {.striped .hover}
 
