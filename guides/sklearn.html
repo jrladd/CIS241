@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>15&nbsp; Modeling with Scikit-learn – CIS241 Intro to Data Science</title>
+<title>sklearn – CIS241 Intro to Data Science</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -60,21 +63,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<link href="../guides/debugging.html" rel="next">
-<link href="../guides/hypothesis-testing.html" rel="prev">
-<link href="../bar_chart_apple_64.png" rel="icon" type="image/png">
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../bar_chart_apple_64.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-2d053c8a602df91ec61aa3379e601c1a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0f9aa9b9e44320098794e46e8ae1c927.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -91,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -104,7 +121,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -134,6 +151,7 @@ window.Quarto = {
     <span class="navbar-title">CIS241 Intro to Data Science</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -156,10 +174,6 @@ window.Quarto = {
 <span class="menu-text">Course Policies</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../groundrules.html"> 
-<span class="menu-text">Ground Rules</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="https://jupyterhub.ciswashjeff.net/"> 
 <span class="menu-text">JupyterHub</span></a>
   </li>  
@@ -174,7 +188,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/jupyterhub.html">Guides</a></li><li class="breadcrumb-item"><a href="../guides/sklearn.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Modeling with Scikit-learn</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/jupyterhub.html">Guides</a></li><li class="breadcrumb-item"><a href="../guides/sklearn.html">Modeling with Scikit-learn</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -184,9 +198,10 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../images/startrek.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../images/startrek.jpg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../images/startrek.jpg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
@@ -194,7 +209,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Homepage</span></span></a>
+ <span class="menu-text">Homepage</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -209,33 +224,33 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../schedule.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Course Schedule</span></span></a>
+ <span class="menu-text">Course Schedule</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../policies.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Course Policies</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../groundrules.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ground Rules</span></span></a>
+ <span class="menu-text">Course Policies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../criteria.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Criteria for Good Reports</span></span></a>
+ <span class="menu-text">Criteria for Good Reports</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../assignments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Assignments</span></a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Guides</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -243,26 +258,38 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../assignments/documentation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Documentation Assignment</span></span></a>
+  <a href="../guides/jupyterhub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JupyterHub</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../assignments/project-planning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Project Plan</span></span></a>
+  <a href="../guides/python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../assignments/presentation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Presentation</span></span></a>
+  <a href="../guides/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pandas</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../assignments/final-report.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
+  <a href="../guides/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/sklearn.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Modeling with Scikit-learn</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/debugging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Debugging Your Code</span></a>
   </div>
 </li>
       </ul>
@@ -270,7 +297,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Guides</span></a>
+ <span class="menu-text">Other Key Info</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -278,85 +305,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../guides/jupyterhub.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">JupyterHub</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../guides/python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../guides/pandas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Pandas</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../guides/altair.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Altair</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../guides/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../guides/sklearn.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Modeling with Scikit-learn</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../guides/debugging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Debugging Your Code</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Other Key Info</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../how-to-explain.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">How to Explain in CIS241</span></span></a>
+ <span class="menu-text">How to Explain in CIS241</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../radcat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">R.A.D. C.A.T.</span></span></a>
+ <span class="menu-text">R.A.D. C.A.T.</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guides/uploading.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Uploading a Jupyter Assignment</span></span></a>
+ <span class="menu-text">Uploading a Jupyter Assignment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sample-final-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Work Acquistion and Gender in the Museum of Modern Art</span></span></a>
+ <span class="menu-text">Sample Final Project</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guides/jupyter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Advanced Jupyter Setup</span></span></a>
+ <span class="menu-text">Advanced Jupyter Setup</span></a>
   </div>
 </li>
       </ul>
@@ -368,60 +342,49 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-scikit-learn-modeling-workflow" id="toc-the-scikit-learn-modeling-workflow" class="nav-link active" data-scroll-target="#the-scikit-learn-modeling-workflow"><span class="header-section-number">15.1</span> The scikit-learn modeling workflow</a></li>
-  <li><a href="#choose-a-model-and-import-functions" id="toc-choose-a-model-and-import-functions" class="nav-link" data-scroll-target="#choose-a-model-and-import-functions"><span class="header-section-number">15.2</span> Choose a model and import functions</a></li>
-  <li><a href="#choose-predictor-and-target-variables" id="toc-choose-predictor-and-target-variables" class="nav-link" data-scroll-target="#choose-predictor-and-target-variables"><span class="header-section-number">15.3</span> Choose predictor and target variables</a></li>
-  <li><a href="#prepare-the-data" id="toc-prepare-the-data" class="nav-link" data-scroll-target="#prepare-the-data"><span class="header-section-number">15.4</span> Prepare the data</a>
+  <li><a href="#modeling-with-scikit-learn" id="toc-modeling-with-scikit-learn" class="nav-link active" data-scroll-target="#modeling-with-scikit-learn">Modeling with Scikit-learn</a>
   <ul class="collapse">
-  <li><a href="#remove-null-values" id="toc-remove-null-values" class="nav-link" data-scroll-target="#remove-null-values"><span class="header-section-number">15.4.1</span> Remove null values</a></li>
-  <li><a href="#encode-categorical-variables" id="toc-encode-categorical-variables" class="nav-link" data-scroll-target="#encode-categorical-variables"><span class="header-section-number">15.4.2</span> Encode categorical variables</a></li>
-  <li><a href="#normalizescale-variables" id="toc-normalizescale-variables" class="nav-link" data-scroll-target="#normalizescale-variables"><span class="header-section-number">15.4.3</span> Normalize/Scale variables</a></li>
-  </ul></li>
-  <li><a href="#split-the-data" id="toc-split-the-data" class="nav-link" data-scroll-target="#split-the-data"><span class="header-section-number">15.5</span> Split the data</a></li>
-  <li><a href="#initialize-the-model" id="toc-initialize-the-model" class="nav-link" data-scroll-target="#initialize-the-model"><span class="header-section-number">15.6</span> Initialize the model</a></li>
-  <li><a href="#fit-the-model" id="toc-fit-the-model" class="nav-link" data-scroll-target="#fit-the-model"><span class="header-section-number">15.7</span> Fit the model</a></li>
-  <li><a href="#summarize-andor-predict" id="toc-summarize-andor-predict" class="nav-link" data-scroll-target="#summarize-andor-predict"><span class="header-section-number">15.8</span> Summarize and/or predict</a>
+  <li><a href="#the-scikit-learn-modeling-workflow" id="toc-the-scikit-learn-modeling-workflow" class="nav-link" data-scroll-target="#the-scikit-learn-modeling-workflow">The scikit-learn modeling workflow</a></li>
+  <li><a href="#choose-a-model-and-import-functions" id="toc-choose-a-model-and-import-functions" class="nav-link" data-scroll-target="#choose-a-model-and-import-functions">Choose a model and import functions</a></li>
+  <li><a href="#choose-predictor-and-target-variables" id="toc-choose-predictor-and-target-variables" class="nav-link" data-scroll-target="#choose-predictor-and-target-variables">Choose predictor and target variables</a></li>
+  <li><a href="#prepare-the-data" id="toc-prepare-the-data" class="nav-link" data-scroll-target="#prepare-the-data">Prepare the data</a>
   <ul class="collapse">
-  <li><a href="#display-and-interpret-coefficients" id="toc-display-and-interpret-coefficients" class="nav-link" data-scroll-target="#display-and-interpret-coefficients"><span class="header-section-number">15.8.1</span> Display and interpret coefficients</a></li>
-  <li><a href="#tree-diagrams-and-feature-importances" id="toc-tree-diagrams-and-feature-importances" class="nav-link" data-scroll-target="#tree-diagrams-and-feature-importances"><span class="header-section-number">15.8.2</span> Tree diagrams and feature importances</a></li>
-  <li><a href="#get-predictions" id="toc-get-predictions" class="nav-link" data-scroll-target="#get-predictions"><span class="header-section-number">15.8.3</span> Get predictions</a></li>
+  <li><a href="#remove-null-values" id="toc-remove-null-values" class="nav-link" data-scroll-target="#remove-null-values">Remove null values</a></li>
+  <li><a href="#encode-categorical-variables" id="toc-encode-categorical-variables" class="nav-link" data-scroll-target="#encode-categorical-variables">Encode categorical variables</a></li>
+  <li><a href="#normalizescale-variables" id="toc-normalizescale-variables" class="nav-link" data-scroll-target="#normalizescale-variables">Normalize/Scale variables</a></li>
   </ul></li>
-  <li><a href="#validate-and-assess-your-model" id="toc-validate-and-assess-your-model" class="nav-link" data-scroll-target="#validate-and-assess-your-model"><span class="header-section-number">15.9</span> Validate and assess your model</a>
+  <li><a href="#split-the-data" id="toc-split-the-data" class="nav-link" data-scroll-target="#split-the-data">Split the data</a></li>
+  <li><a href="#initialize-the-model" id="toc-initialize-the-model" class="nav-link" data-scroll-target="#initialize-the-model">Initialize the model</a></li>
+  <li><a href="#fit-the-model" id="toc-fit-the-model" class="nav-link" data-scroll-target="#fit-the-model">Fit the model</a></li>
+  <li><a href="#summarize-andor-predict" id="toc-summarize-andor-predict" class="nav-link" data-scroll-target="#summarize-andor-predict">Summarize and/or predict</a>
   <ul class="collapse">
-  <li><a href="#cross-validation" id="toc-cross-validation" class="nav-link" data-scroll-target="#cross-validation"><span class="header-section-number">15.9.1</span> Cross-validation</a></li>
-  <li><a href="#validation-for-regression" id="toc-validation-for-regression" class="nav-link" data-scroll-target="#validation-for-regression"><span class="header-section-number">15.9.2</span> Validation for Regression</a></li>
-  <li><a href="#validation-for-classification" id="toc-validation-for-classification" class="nav-link" data-scroll-target="#validation-for-classification"><span class="header-section-number">15.9.3</span> Validation for Classification</a></li>
-  <li><a href="#validation-for-unsupervised-models" id="toc-validation-for-unsupervised-models" class="nav-link" data-scroll-target="#validation-for-unsupervised-models"><span class="header-section-number">15.9.4</span> Validation for Unsupervised Models</a></li>
+  <li><a href="#display-and-interpret-coefficients" id="toc-display-and-interpret-coefficients" class="nav-link" data-scroll-target="#display-and-interpret-coefficients">Display and interpret coefficients</a></li>
+  <li><a href="#tree-diagrams-and-feature-importances" id="toc-tree-diagrams-and-feature-importances" class="nav-link" data-scroll-target="#tree-diagrams-and-feature-importances">Tree diagrams and feature importances</a></li>
+  <li><a href="#get-predictions" id="toc-get-predictions" class="nav-link" data-scroll-target="#get-predictions">Get predictions</a></li>
   </ul></li>
-  <li><a href="#appendix-import-models" id="toc-appendix-import-models" class="nav-link" data-scroll-target="#appendix-import-models"><span class="header-section-number">15.10</span> Appendix: Import Models</a></li>
+  <li><a href="#validate-and-assess-your-model" id="toc-validate-and-assess-your-model" class="nav-link" data-scroll-target="#validate-and-assess-your-model">Validate and assess your model</a>
+  <ul class="collapse">
+  <li><a href="#cross-validation" id="toc-cross-validation" class="nav-link" data-scroll-target="#cross-validation">Cross-validation</a></li>
+  <li><a href="#validation-for-regression" id="toc-validation-for-regression" class="nav-link" data-scroll-target="#validation-for-regression">Validation for Regression</a></li>
+  <li><a href="#validation-for-classification" id="toc-validation-for-classification" class="nav-link" data-scroll-target="#validation-for-classification">Validation for Classification</a></li>
+  <li><a href="#validation-for-unsupervised-models" id="toc-validation-for-unsupervised-models" class="nav-link" data-scroll-target="#validation-for-unsupervised-models">Validation for Unsupervised Models</a></li>
+  </ul></li>
+  <li><a href="#appendix-import-models" id="toc-appendix-import-models" class="nav-link" data-scroll-target="#appendix-import-models">Appendix: Import Models</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/jupyterhub.html">Guides</a></li><li class="breadcrumb-item"><a href="../guides/sklearn.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Modeling with Scikit-learn</span></a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Modeling with Scikit-learn</span></h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../guides/jupyterhub.html">Guides</a></li><li class="breadcrumb-item"><a href="../guides/sklearn.html">Modeling with Scikit-learn</a></li></ol></nav></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="modeling-with-scikit-learn" class="level1">
+<h1>Modeling with Scikit-learn</h1>
 <p><a href="https://scikit-learn.org/stable/index.html">Scikit-learn</a>, or <code>sklearn</code>, is an all-purpose Python library for statistical modeling and machine learning. It gives you access to many different kinds of models and approaches, and we will just scratch the surface in this class. You’ll use <code>scikit-learn</code> any time you create a model, whether it’s a supervised regression or classification, or an unsupervised approach. This guide will walk you through the general aspects of modeling in <code>scikit-learn</code>, but the specifics will be up to you!</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -436,8 +399,8 @@ Note
 <p>Scikit-learn’s <a href="https://scikit-learn.org/stable/user_guide.html">User Guide</a> and Documentation are very detailed, and we’ll practice using them together in class. That’s a good place to start if you want more information about anything you find here.</p>
 </div>
 </div>
-<section id="the-scikit-learn-modeling-workflow" class="level2" data-number="15.1">
-<h2 data-number="15.1" class="anchored" data-anchor-id="the-scikit-learn-modeling-workflow"><span class="header-section-number">15.1</span> The scikit-learn modeling workflow</h2>
+<section id="the-scikit-learn-modeling-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="the-scikit-learn-modeling-workflow">The scikit-learn modeling workflow</h2>
 <p>No matter what kind of modeling you’re doing, here are the general steps you will follow:</p>
 <ol type="1">
 <li>Choose your model based on your data and research questions</li>
@@ -450,26 +413,26 @@ Note
 <li>Validate and assess the model based on your results</li>
 </ol>
 </section>
-<section id="choose-a-model-and-import-functions" class="level2" data-number="15.2">
-<h2 data-number="15.2" class="anchored" data-anchor-id="choose-a-model-and-import-functions"><span class="header-section-number">15.2</span> Choose a model and import functions</h2>
+<section id="choose-a-model-and-import-functions" class="level2">
+<h2 class="anchored" data-anchor-id="choose-a-model-and-import-functions">Choose a model and import functions</h2>
 <p>Unlike the other libraries we’ve used so far, you’d never simply run <code>import sklearn</code>: the library is too big and would import way more than you need, potentially slowing down your code! Instead, you’ll import just the parts you need for a particular model.</p>
 <p>In the first step of the modeling workflow, you need to use the <em>model selection</em> principles we’ll discuss in class to determine the right model for your data and research questions. That will give you a good idea of what functions and methods you’ll need. You’ll import them with code that looks like this:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You only need to import the functions you will use</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You only need to import the functions you will use</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># This may be different every time</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split, cross_val_score</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error, r2_score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error, r2_score</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This is the example of what you’d need if you were going to run a linear regression. Note that you’re importing a <strong>class</strong>, the capitalized <code>LinearRegression</code> in the first line, that has your model itself. And you’re also importing all the additional functions you need to validate and explain that model.</p>
 </section>
-<section id="choose-predictor-and-target-variables" class="level2" data-number="15.3">
-<h2 data-number="15.3" class="anchored" data-anchor-id="choose-predictor-and-target-variables"><span class="header-section-number">15.3</span> Choose predictor and target variables</h2>
+<section id="choose-predictor-and-target-variables" class="level2">
+<h2 class="anchored" data-anchor-id="choose-predictor-and-target-variables">Choose predictor and target variables</h2>
 <p>Next you’ll choose what predictors and target variables you use. The process of choosing predictors (i.e.&nbsp;features) is called <em>feature selection</em>, and the kind of model you chose will often help you determine which predictors you use. The reverse is also true: the kind of features/predictors you have access to might help you determine which model to use.</p>
 <p>Typically you’d first identify the variables and then use them to select the specific <code>X</code> (predictors) and <code>y</code> (target) data you’ll use in the model.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>predictors <span class="op">=</span> [<span class="st">"your_first_predictor"</span>, <span class="st">"your_second_predictor"</span>, <span class="st">"your_third_predictor"</span>, ...]</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>predictors <span class="op">=</span> [<span class="st">"your_first_predictor"</span>, <span class="st">"your_second_predictor"</span>, <span class="st">"your_third_predictor"</span>, ...]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="st">"your_target_variable"</span> <span class="co">#Note there are no brackets here</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> your_dataframe[predictors]</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> your_dataframe[target]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> your_dataframe[target]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Sometimes you will want to test your predictors for validity before selecting them. In this case, you might create a <code>potential_predictors</code> list and use that before narrowing down to your official predictors. This is especially true for linear models like Linear Regression or Logistic Regression, when you often want to check for multicollinearity using a pairplot or correlation matrix at this stage.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -485,8 +448,8 @@ Tip
 </div>
 </div>
 </section>
-<section id="prepare-the-data" class="level2" data-number="15.4">
-<h2 data-number="15.4" class="anchored" data-anchor-id="prepare-the-data"><span class="header-section-number">15.4</span> Prepare the data</h2>
+<section id="prepare-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="prepare-the-data">Prepare the data</h2>
 <p>There are a few steps you might take at this stage. <strong>Some of these steps might happen before or during the previous step.</strong></p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -501,19 +464,19 @@ Important
 <p>YOU WILL NOT DO EVERY ONE OF THESE STEPS EVERY TIME YOU RUN A MODEL. IT WILL ALWAYS DEPEND ON YOUR MODEL AND YOUR DATA.</p>
 </div>
 </div>
-<section id="remove-null-values" class="level3" data-number="15.4.1">
-<h3 data-number="15.4.1" class="anchored" data-anchor-id="remove-null-values"><span class="header-section-number">15.4.1</span> Remove null values</h3>
+<section id="remove-null-values" class="level3">
+<h3 class="anchored" data-anchor-id="remove-null-values">Remove null values</h3>
 <p>If your data has null values, this will cause errors in most models. It is helpful to remove null values from your data <em>before</em> you create your <code>X</code> and <code>y</code> variables. Use <code>subset=</code> to avoid dropping rows unnecesarily.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>your_dataframe <span class="op">=</span> your_dataframe.dropna(subset<span class="op">=</span>predictors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>your_dataframe <span class="op">=</span> your_dataframe.dropna(subset<span class="op">=</span>predictors)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If there are null values in the target, you may need to add the target to the <code>subset</code> list.</p>
 </section>
-<section id="encode-categorical-variables" class="level3" data-number="15.4.2">
-<h3 data-number="15.4.2" class="anchored" data-anchor-id="encode-categorical-variables"><span class="header-section-number">15.4.2</span> Encode categorical variables</h3>
+<section id="encode-categorical-variables" class="level3">
+<h3 class="anchored" data-anchor-id="encode-categorical-variables">Encode categorical variables</h3>
 <p>If you have categorical variables in your predictors, you may need to change them to numerical 1s and 0s in order to run your model. You may be able to skip this for certain tree models, like the random forest.</p>
 <p>For linear models (linear and logistic regression), use <strong>reference coding</strong> by dropping one of your category columns. This code will got <strong>in place of</strong> the code where you defined <code>X</code> in the previos section.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.get_dummies(your_dataframe[predictors], drop_first<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.get_dummies(your_dataframe[predictors], drop_first<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For almost all other models, use <strong>one-hot encoding</strong> and don’t drop any of the reference columns.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.get_dummies(your_dataframe[predictors])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pd.get_dummies(your_dataframe[predictors])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -528,58 +491,58 @@ Warning
 </div>
 </div>
 </section>
-<section id="normalizescale-variables" class="level3" data-number="15.4.3">
-<h3 data-number="15.4.3" class="anchored" data-anchor-id="normalizescale-variables"><span class="header-section-number">15.4.3</span> Normalize/Scale variables</h3>
+<section id="normalizescale-variables" class="level3">
+<h3 class="anchored" data-anchor-id="normalizescale-variables">Normalize/Scale variables</h3>
 <p>If your predictors are at very different scales, this could affect the results of your model. Especially in the case of distance-based models like K-nearest neighbors or K-means clustering, it’s important to scale your variables.</p>
 <p>The process of scaling works like using a model class in <code>sklearn</code>. First you import the scaler. There are many different ways to scale data, but we’ll typically standardize with z-scores.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong><em>After</em> you split the data</strong> (see below) you should standardize the training data.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>scaler.fit(X_train)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>X_train_std <span class="op">=</span> scaler.transform(X_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>X_train_std <span class="op">=</span> scaler.transform(X_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then you would use <code>X_train_std</code> in place of <code>X_train</code> in any subsequent code.</p>
 <p><strong><em>Before</em> you validate on your test data</strong>, you need to scale the test data with the same scaler.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>X_test_std <span class="op">=</span> scaler.transform(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>X_test_std <span class="op">=</span> scaler.transform(X_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Notice that you don’t re-fit the scaler at this step. After this you would use <code>X_test_std</code> in place of <code>X_test</code> in any subsequent code.</p>
 <p><strong><em>Before</em> you cross-validate (or before you fit an unsupervised model)</strong>, you will need to standardize the entirety of the unsplit data.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>scaler.fit(X)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>X_std <span class="op">=</span> scaler.transform(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>X_std <span class="op">=</span> scaler.transform(X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Then you would use <code>X_std</code> in place of <code>X</code> in any subsequent code.</p>
 </section>
 </section>
-<section id="split-the-data" class="level2" data-number="15.5">
-<h2 data-number="15.5" class="anchored" data-anchor-id="split-the-data"><span class="header-section-number">15.5</span> Split the data</h2>
+<section id="split-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="split-the-data">Split the data</h2>
 <p>For all <strong><em>supervised</em></strong> models, you will split the data into training and test sets. A training set will determine the model’s coefficients, and a test set will let us see how well it works on <em>new</em> data that it <em>hasn’t already seen</em>. (For <em>unsupervised</em> models, since there is no training, you will skip this step and work on the <em>entire</em> dataset.)</p>
 <p>You use the <code>train_test_split</code> function that we imported above to split your data.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    X, </span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    y, </span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    test_size<span class="op">=</span><span class="fl">0.3</span>, </span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    random_state<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>test_size</code> parameter determines what percentage of the data will be reserved for testing (in this case, 30%). If your dataset is very small, you may want to reserve a smaller test set so that you can use as much data as possible for training, but it’s unadvisable to choose a test set smaller than 20%.</p>
 <p>The <code>random_state</code> parameter ensures that data split is the same every time. It doesn’t matter what number you use here, so long as it’s the same every time you run the function.</p>
 </section>
-<section id="initialize-the-model" class="level2" data-number="15.6">
-<h2 data-number="15.6" class="anchored" data-anchor-id="initialize-the-model"><span class="header-section-number">15.6</span> Initialize the model</h2>
+<section id="initialize-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="initialize-the-model">Initialize the model</h2>
 <p>In order to run a model, you must initialize the model class by assigning it to a variable. For a simple model like linear regression, it would look like this:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>your_model_name <span class="op">=</span> LinearRegression()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>your_model_name <span class="op">=</span> LinearRegression()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Many models have hyperparameters and other settings you need to select at the time of initialization. Refer to your notes from class and the <code>sklearn</code> documentation for details about specific hyperparameters. As an example, initialization of a Naive Bayes model might look like:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>naive_model <span class="op">=</span> MultinomialNB(alpha<span class="op">=</span><span class="fl">0.01</span>, fit_prior<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>naive_model <span class="op">=</span> MultinomialNB(alpha<span class="op">=</span><span class="fl">0.01</span>, fit_prior<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In this case, the <code>MultinomialNB</code> class has two hyperparamters, <code>alpha</code> and <code>fit_prior</code>.</p>
 </section>
-<section id="fit-the-model" class="level2" data-number="15.7">
-<h2 data-number="15.7" class="anchored" data-anchor-id="fit-the-model"><span class="header-section-number">15.7</span> Fit the model</h2>
+<section id="fit-the-model" class="level2">
+<h2 class="anchored" data-anchor-id="fit-the-model">Fit the model</h2>
 <p><strong>In a supervised model</strong>, you will take the model variable that you initialized in the previous step and <code>fit</code>, i.e.&nbsp;run, it on your split training data.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>your_model_name.fit(X_train_std, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>your_model_name.fit(X_train_std, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>In an unsupervised model</strong>, you will fit directly to the full data, and there is no target <code>y</code> variable.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>your_model_name.fit(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>your_model_name.fit(X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Or sometimes:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> your_model_name.fit_transform(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> your_model_name.fit_transform(X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The last option will fit and get results in the same function, but we’ll typically only use it for our PCA model.</p>
 </section>
-<section id="summarize-andor-predict" class="level2" data-number="15.8">
-<h2 data-number="15.8" class="anchored" data-anchor-id="summarize-andor-predict"><span class="header-section-number">15.8</span> Summarize and/or predict</h2>
+<section id="summarize-andor-predict" class="level2">
+<h2 class="anchored" data-anchor-id="summarize-andor-predict">Summarize and/or predict</h2>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -593,39 +556,39 @@ Caution
 <p>This step is only for <em>supervised</em> models. For unsupervised models, you will often use the fit data to generate a transformation or retrieve attributes.</p>
 </div>
 </div>
-<section id="display-and-interpret-coefficients" class="level3" data-number="15.8.1">
-<h3 data-number="15.8.1" class="anchored" data-anchor-id="display-and-interpret-coefficients"><span class="header-section-number">15.8.1</span> Display and interpret coefficients</h3>
+<section id="display-and-interpret-coefficients" class="level3">
+<h3 class="anchored" data-anchor-id="display-and-interpret-coefficients">Display and interpret coefficients</h3>
 <p>This option is only for linear models: linear and logistic regression. You can display the intercept and coefficients to better interpret the relationships in your data.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You'll use loops and string formatting here</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You'll use loops and string formatting here</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Intercept: </span><span class="sc">{</span>your_model_name<span class="sc">.</span>intercept_<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c,p <span class="kw">in</span> <span class="bu">zip</span>(your_model_name.coef_,X.columns):</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Coefficient for </span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>c<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Coefficient for </span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>c<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="tree-diagrams-and-feature-importances" class="level3" data-number="15.8.2">
-<h3 data-number="15.8.2" class="anchored" data-anchor-id="tree-diagrams-and-feature-importances"><span class="header-section-number">15.8.2</span> Tree diagrams and feature importances</h3>
+<section id="tree-diagrams-and-feature-importances" class="level3">
+<h3 class="anchored" data-anchor-id="tree-diagrams-and-feature-importances">Tree diagrams and feature importances</h3>
 <p>This option is only for tree models: decision trees and the random forest.</p>
 <ol type="1">
 <li><p>You can use the <code>plot_tree()</code> function to create an informative tree diagram. See the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.plot_tree.html#sklearn.tree.plot_tree">Scikit-learn documentation</a> for details.</p></li>
 <li><p>You can display the feature importances from these models in order to interpret the results more accurately. Listing feature importances will use the <code>your_model_name.feature_importances_</code> attribute and the same looping procedure as displaying coefficients (above).</p></li>
 </ol>
 </section>
-<section id="get-predictions" class="level3" data-number="15.8.3">
-<h3 data-number="15.8.3" class="anchored" data-anchor-id="get-predictions"><span class="header-section-number">15.8.3</span> Get predictions</h3>
+<section id="get-predictions" class="level3">
+<h3 class="anchored" data-anchor-id="get-predictions">Get predictions</h3>
 <p>Supervised models always produce predictions. In regression models, you produce numerical predictions with <code>.predict()</code>. We will always run these functions on the <strong>test data</strong> to get <em>out of sample predictions</em>.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For regression</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> your_model_name.predict(X_test)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For regression</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> your_model_name.predict(X_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In classification models, you produce categorical predictions with <code>.predict()</code> and numerical probabilities with <code>.predict_proba()</code>. You should also get the <em>target classes</em> at this stage.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For classification</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For classification</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> your_model_name.classes_</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>probabilities <span class="op">=</span> your_model_name.predict_proba(X_test_std)</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> your_model_name.predict(X_test_std)</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># It's helpful to put the probabilities into a dataframe</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>probabilities <span class="op">=</span> pd.DataFrame(probabilities, columns<span class="op">=</span>categories)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>probabilities <span class="op">=</span> pd.DataFrame(probabilities, columns<span class="op">=</span>categories)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
-<section id="validate-and-assess-your-model" class="level2" data-number="15.9">
-<h2 data-number="15.9" class="anchored" data-anchor-id="validate-and-assess-your-model"><span class="header-section-number">15.9</span> Validate and assess your model</h2>
+<section id="validate-and-assess-your-model" class="level2">
+<h2 class="anchored" data-anchor-id="validate-and-assess-your-model">Validate and assess your model</h2>
 <p>For every kind of model, there are distinct validation and assessment steps that help you interpret your results.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -640,53 +603,53 @@ Note
 <p>There are many different validation methods, and this guide will go through a few of the ones we’ll use in this class. The <code>sklearn</code> documentation lists many more possibilities for different kinds of models.</p>
 </div>
 </div>
-<section id="cross-validation" class="level3" data-number="15.9.1">
-<h3 data-number="15.9.1" class="anchored" data-anchor-id="cross-validation"><span class="header-section-number">15.9.1</span> Cross-validation</h3>
+<section id="cross-validation" class="level3">
+<h3 class="anchored" data-anchor-id="cross-validation">Cross-validation</h3>
 <p>All supervised models should be cross-validated. This runs the model multiple times over different splits of the data, to verify that your results weren’t skewed by a random split of the data.</p>
 <p>At the top of your code, you should have the <code>cross_val_score</code> function imported. Then, no matter the model, you run the function on the entire unsplit dataset.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cv is the number of folds, or the repeated runs of the model</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cv is the number of folds, or the repeated runs of the model</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> cross_val_score(your_model name, X, y, cv<span class="op">=</span><span class="dv">5</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Use f-strings to print the mean and standard deviation of your result</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>scores<span class="sc">.</span>mean()<span class="sc">:.2}</span><span class="ss"> score with standard deviation </span><span class="sc">{</span>scores<span class="sc">.</span>std()<span class="sc">:.2}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>scores<span class="sc">.</span>mean()<span class="sc">:.2}</span><span class="ss"> score with standard deviation </span><span class="sc">{</span>scores<span class="sc">.</span>std()<span class="sc">:.2}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For regression models, <code>cross_val_score</code> will generate an <span class="math inline">\(R^2\)</span> score for each run of your model. For classification models, it will generate an accuracy score.</p>
 </section>
-<section id="validation-for-regression" class="level3" data-number="15.9.2">
-<h3 data-number="15.9.2" class="anchored" data-anchor-id="validation-for-regression"><span class="header-section-number">15.9.2</span> Validation for Regression</h3>
+<section id="validation-for-regression" class="level3">
+<h3 class="anchored" data-anchor-id="validation-for-regression">Validation for Regression</h3>
 <p>Regression validation is based on <em>residuals</em>. Here are the <code>sklearn</code> functions you need to validate a regression. You would add these at the top of your notebook with your other imports.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error, r2_score</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_squared_error, r2_score</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You first step in regression validation is to calculate the residuals.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Out-of-sample residuals:</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Out-of-sample residuals:</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>residuals <span class="op">=</span> y_test <span class="op">-</span> predictions</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># It's helpful to put them into a dataframe with your predictions</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pd.DataFrame({<span class="st">'Predictions'</span>: predictions, <span class="st">'Residuals'</span>:residuals})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> pd.DataFrame({<span class="st">'Predictions'</span>: predictions, <span class="st">'Residuals'</span>:residuals})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can use the predictions you generated in the previous step to calculate Root Mean Squared Error (RMSE).</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Root mean squared error: </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(mean_squared_error(y_test, predictions))<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Root mean squared error: </span><span class="sc">{</span>np<span class="sc">.</span>sqrt(mean_squared_error(y_test, predictions))<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can also display the <span class="math inline">\(R^2\)</span> score, aka the coefficient of determination.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Coefficient of determination: </span><span class="sc">{</span>r2_score(y_test, predictions)<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Coefficient of determination: </span><span class="sc">{</span>r2_score(y_test, predictions)<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In addition to these two values, you can also create visualizations for validation.</p>
 <p>A histogram of residuals will show you if the residuals are normally distributed.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(results, title<span class="op">=</span><span class="st">"Histogram of Residuals"</span>).mark_bar().encode(</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(results, title<span class="op">=</span><span class="st">"Histogram of Residuals"</span>).mark_bar().encode(</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'Residuals:Q'</span>, title<span class="op">=</span><span class="st">"Residuals"</span>).<span class="bu">bin</span>(maxbins<span class="op">=</span><span class="dv">20</span>),</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'count():Q'</span>, title<span class="op">=</span><span class="st">"Value Counts"</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>And you can plot the absolute value of residuals against the predictions to test for heteroskedasticity. You will <strong>only</strong> use this plot for linear regression.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the absolute value of residuals against the predicted values</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the absolute value of residuals against the predicted values</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>chart <span class="op">=</span> alt.Chart(results, title<span class="op">=</span><span class="st">"Testing for Heteroskedasticity"</span>).mark_point().encode(</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>alt.X(<span class="st">'Predictions:Q'</span>).title(<span class="st">"Predicted Values"</span>),</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>alt.Y(<span class="st">'y:Q'</span>).title(<span class="st">"Absolute value of Residuals"</span>) </span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>).transform_calculate(y<span class="op">=</span><span class="st">'abs(datum.Residuals)'</span>)</span>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>chart <span class="op">+</span> chart.transform_loess(<span class="st">'Predictions'</span>, <span class="st">'y'</span>).mark_line()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>chart <span class="op">+</span> chart.transform_loess(<span class="st">'Predictions'</span>, <span class="st">'y'</span>).mark_line()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="validation-for-classification" class="level3" data-number="15.9.3">
-<h3 data-number="15.9.3" class="anchored" data-anchor-id="validation-for-classification"><span class="header-section-number">15.9.3</span> Validation for Classification</h3>
+<section id="validation-for-classification" class="level3">
+<h3 class="anchored" data-anchor-id="validation-for-classification">Validation for Classification</h3>
 <p>Classification validation is based on the confusion matrix, which tallies the number of categories correctly predicted by the model. Here are the <code>sklearn</code> functions you need to validate a classifier. You would add these at the top of your notebook with your other imports.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, classification_report, RocCurveDisplay</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix, classification_report, RocCurveDisplay</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># You won't always need matplotlib, but it's good to have</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>confusion_matrix</code> function generates the results, and you can turn this into a confusion matrix visualization: a special kind of heatmap with text overlayed.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate confusion matrix and transform data</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate confusion matrix and transform data</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>conf_mat <span class="op">=</span> confusion_matrix(y_test,predictions)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>conf_mat <span class="op">=</span> pd.DataFrame(conf_mat,index<span class="op">=</span>categories,columns<span class="op">=</span>categories)</span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>conf_mat <span class="op">=</span> conf_mat.melt(ignore_index<span class="op">=</span><span class="va">False</span>).reset_index()</span>
@@ -706,29 +669,29 @@ Note
 <span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    size<span class="op">=</span>alt.value(<span class="dv">50</span>)</span>
 <span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>heatmap <span class="op">+</span> text</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a>heatmap <span class="op">+</span> text</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can calculate the accuracy, precision, and recall scores with the classification report.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You must use print() to make this readable</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, predictions))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You must use print() to make this readable</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, predictions))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Don’t forget that you must also use cross-validation for a classifier!</p>
 <p>You can also create an ROC Curve if you have a <strong>binary classifer</strong> (just two target classes).</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create our ROC Curve plot</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create our ROC Curve plot</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>RocCurveDisplay.from_predictions(y_test,</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                                 probabilities[categories[<span class="dv">0</span>]],</span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                                 pos_label<span class="op">=</span>categories[<span class="dv">0</span>])</span>
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw a green line for 0</span></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], color <span class="op">=</span> <span class="st">'g'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], color <span class="op">=</span> <span class="st">'g'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="validation-for-unsupervised-models" class="level3" data-number="15.9.4">
-<h3 data-number="15.9.4" class="anchored" data-anchor-id="validation-for-unsupervised-models"><span class="header-section-number">15.9.4</span> Validation for Unsupervised Models</h3>
+<section id="validation-for-unsupervised-models" class="level3">
+<h3 class="anchored" data-anchor-id="validation-for-unsupervised-models">Validation for Unsupervised Models</h3>
 <p>Validation steps for unsupervised models are specific to the model. For example, in K-means clustering, you could show the labels of your clustering and a bar plot of the cluster means. Refer back to our class notes and supplementary readings for validation steps for K-means clustering and PCA.</p>
 </section>
 </section>
-<section id="appendix-import-models" class="level2" data-number="15.10">
-<h2 data-number="15.10" class="anchored" data-anchor-id="appendix-import-models"><span class="header-section-number">15.10</span> Appendix: Import Models</h2>
+<section id="appendix-import-models" class="level2">
+<h2 class="anchored" data-anchor-id="appendix-import-models">Appendix: Import Models</h2>
 <p>Here are the bits of <code>sklearn</code> you will need to import different model classes. You can refer to the documentation for each of these classes to get more details about hyperparameters and other features. Remember, <strong>you should only import the code you need for your specific model</strong>.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear Regression</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Linear Regression</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># KNN Regression</span></span>
@@ -755,9 +718,10 @@ Note
 <span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
 <span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Principal Component Analysis</span></span>
-<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.decomposition <span class="im">import</span> PCA</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -812,13 +776,14 @@ Note
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -833,7 +798,7 @@ Note
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/jrladd\.github\.io\/CIS241\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1160,18 +1125,6 @@ Note
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../guides/hypothesis-testing.html" class="pagination-link" aria-label="Hypothesis Testing">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../guides/debugging.html" class="pagination-link" aria-label="Debugging Your Code">
-        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Debugging Your Code</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

@@ -1,0 +1,358 @@
+id,fn,mn,ln,suff,status,dob,birthCity,birthState,birthCountry,isMale,college,major,gradSchool,dod,rank,branch
+1,Joseph,M.,Acaba,,Active,5/17/67,Inglewood, CA,USA,t,University of California-Santa Barbara,Geology,t,,,
+2,Loren,W.,Acton,,Retired,3/7/36,Lewiston, MT,USA,t,Montana State University,Engineering Physics,t,,,
+3,James,C.,Adamson,,Retired,3/3/46,Warsaw, NY,USA,t,US Military Academy,Engineering,t,,Colonel,US Army 
+4,Thomas,D.,Akers,,Retired,5/20/51,St. Louis, MO,USA,t,University of Missouri-Rolla,Applied Mathematics,t,,Colonel,US Air Force 
+5,Buzz,,Aldrin,,Retired,1/20/30,Montclair, NJ,USA,t,US Military Academy,Mechanical Engineering,t,,Colonel,US Air Force 
+6,Andrew,M.,Allen,,Retired,8/4/55,Philadelphia, PA,USA,t,Villanova University,Mechanical Engineering,t,,Lieutenant Colonel,US Marine Corps 
+7,Joseph,P.,Allen,,Retired,6/27/37,Crawsfordsville, IN,USA,t,DePauw University,Mathematics & Physics,t,,,
+8,Scott,D.,Altman,,Retired,8/15/59,Lincoln, IL,USA,t,University of Illinois,Aeronautical & Astronautical Engineering,t,,Captain,US Navy 
+9,William,A.,Anders,,Retired,10/17/33,Hong Kong,,China,t,US Naval Academy,Nuclear Engineering,t,,Major General,US Air Force Reserves 
+10,Clayton,C.,Anderson,,Retired,2/23/59,Omaha, NE,USA,t,Hastings College,Physics,t,,,
+11,Michael,P.,Anderson,,Deceased,12/25/59,Plattsburgh, NY,USA,t,University of Washington,Physics & Astronomy,t,2/1/03,Lieutenant Colonel,US Air Force
+12,Dominic,A.,Antonelli,,Active,8/23/67,Detroit, MI,USA,t,MIT,Aeronautics & Astronautics,t,,Commander,US Navy
+13,Jerome,,Apt,III,Retired,4/18/49,Springfield, MA,USA,t,Harvard University,Physics,t,,,
+14,Lee,J.,Archambault,,Retired,8/25/60,Oak Park, IL,USA,t,University of Illinois-Urbana,Aeronautical & Astronautical Engineering,t,,Colonel,US Air Force
+15,Neil,A.,Armstrong,,Deceased,8/5/30,Wapakoneta, OH,USA,t,Purdue University,Aeronautical Engineering,t,8/25/12,,
+16,Richard,R.,Arnold,II,Active,11/26/63,Cheverly, MD,USA,t,Frostburg State University,Accounting,t,,,
+17,Jeffrey,S.,Ashby,,Retired,6/1/54,Dallas, TX,USA,t,University of Idaho,Mechanical Engineering,t,,Captain,US Navy 
+18,Serena,M.,Aunon,,Active,4/9/76,Indianapolis, IN,USA,f,George Washington University,Electrical Engineering,t,,,
+19,James,P.,Bagian,,Retired,2/22/52,Philadelphia, PA,USA,t,Drexel University,Mechanical Engineering,t,,,
+20,Ellen,S.,Baker,,Retired,4/27/53,Fayettesville, NC,USA,f,State University of New York-Buffalo,Geology,t,,,
+21,Michael,A.,Baker,,Management,10/27/53,Memphis, TN,USA,t,University of Texas,Aerospace Engineering,f,,Captain,US Navy 
+22,Michael,R.,Barratt,,Active,4/16/59,Vancouver, WA,USA,t,University of Washington,Zoology,t,,,
+23,Daniel,T.,Barry,,Retired,12/30/53,Norwalk, CT,USA,t,Cornell University,Electrical Engineering,t,,,
+24,John-David,F.,Bartoe,,Retired,11/17/44,Abington, PA,USA,t,Lehigh University,Physics,t,,,
+25,Charles,A.,Bassett,II,Deceased,12/30/31,Dayton, OH,USA,t,Texas Technological College,Electrical Engineering,f,2/28/66,Captain,US Air Force
+26,Alan,L.,Bean,,Retired,3/15/32,Wheeler, TX,USA,t,University of Texas,Aeronautical Engineering,f,,Captain,US Navy 
+27,Robert,L.,Behnken,,Active,7/28/70,Creve Couer, MO,USA,t,Washington University,Physics & Mechanical Engineering,t,,Colonel,US Air Force
+28,John,E.,Blaha,,Retired,8/26/42,San Antonio, TX,USA,t,US Air Force Academy,Engineering Science,t,,Colonel,US Air Force 
+29,Michael,J.,Bloomfield,,Retired,3/16/59,Flint, MI,USA,t,US Air Force Academy,Engineering Mechanics,t,,Colonel,US Air Force 
+30,Guion,S.,Bluford,Jr.,Retired,11/22/42,Philadelphia, PA,USA,t,Pennsylvania State University,Aerospace Engineering,t,,Colonel,US Air Force 
+31,Karol,J.,Bobko,,Retired,12/23/37,New York, NY,USA,t,US Air Force Academy,Aerospace Engineering,t,,Colonel,US Air Force 
+32,Eric,A.,Boe,,Active,10/1/64,Miami, FL,USA,t,US Air Force Academy,Aeronautical Engineering,t,,Colonel,US Air Force
+33,Charles,F.,Bolden,Jr.,Management,8/19/46,Columbia, SC,USA,t,US Naval Academy,Electrical Science,t,,Major General,US Marine Corps 
+34,Frank,,Borman,,Retired,3/14/28,Gary, IN,USA,t,US Military Academy,Aeronautical Engineering,t,,Colonel,US Air Force 
+35,Stephen,G.,Bowen,,Active,2/13/64,Cohasset, MA,USA,t,US Naval Academy,Electrical Engineering,t,,Captain,US Navy
+36,Kenneth,D.,Bowersox,,Retired,11/14/56,Portsmouth, VA,USA,t,US Naval Academy,Aerospace Engineering,t,,Captain,US Navy 
+37,Charles,E.,Brady,Jr.,Deceased,8/12/51,Pinehurst, NC,USA,t,University of North Carolina at Chapel Hill,Pre-medicine,t,7/23/06,Captain,US Navy
+38,Vance,D.,Brand,,Retired,5/9/31,Longmont, CA,USA,t,University of Colorado,Business Management; Aeronautical Engineering,t,,,US Marine Corps Reserves
+39,Daniel,C.,Brandenstein,,Retired,1/17/43,Watertown, WI,USA,t,University of Wisconsin,Mathematics & Physics,f,,Captain,US Navy 
+40,Randolph,J.,Bresnik,,Active,9/11/67,Fort Knox, KY,USA,t,The Citadel,Mathematics,t,,Colonel,US Marine Corps
+41,Roy,D.,Bridges,Jr.,Retired,7/19/43,Atlanta, GA,USA,t,US Air Force Academy,Engineering Science,t,,Major General,US Air Force 
+42,Curtis,L.,Brown,Jr.,Retired,3/11/56,Elizabethtown, NC,USA,t,US Air Force Academy,Electrical Engineering,f,,Colonel,US Air Force 
+43,David,M.,Brown,,Deceased,4/16/56,Arlington, VA,USA,t,College of William & Mary,Biology,t,2/1/03,Captain,US Navy
+44,Mark,N.,Brown,,Retired,11/18/51,Valparaiso, IN,USA,t,Purdue University,Aeronautical & Astronautical Engineering,t,,Colonel,US Air Force 
+45,James,F.,Buchli,,Retired,6/20/45,New Rockford, ND,USA,t,US Naval Academy,Aeronautical Engineering,t,,Colonel,US Marine Corps 
+46,Jay,Clark,Buckey,,Retired,6/6/56,New York, NY,USA,t,Cornell University,Electrical Engineering,t,,,
+47,John,S.,Bull,,Deceased,9/25/34,Memphis, TN,USA,t,Rice University,Mechanical Engineering,t,8/11/08,,
+48,Daniel,C.,Burbank,,Active,7/27/61,Machester, CT,USA,t,US Coast Guard Academy,Electrical Engineering,t,,Captain,US Coast Guard 
+49,Daniel,W.,Bursch,,Retired,7/25/57,Bristol, PA,USA,t,US Naval Academy,Physics,t,,Captain,US Navy 
+50,Robert,D.,Cabana,,Management,1/23/49,Minneapolis, MN,USA,t,US Naval Academy,Mathematics,f,,Colonel,US Marine Corps 
+51,Yvonne,D.,Cagle,,Management,4/24/59,West Point, NY,USA,f,San Francisco State University,Biochemistry,f,,Colonel,US Air Force
+52,Fernando,,Caldeiro,,Deceased,6/12/58,Buenos Aires,, Argentina,t,University of Arizona,Mechanical Engineering,t,10/3/09,,
+53,Tracy,E.,Caldwell,,Active,8/14/69,Arcadia, CA,USA,f,California State University-Fullerton,Chemistry,t,,,
+54,Charles,J.,Camarda,,Management,5/8/52,Queens, NY,USA,t,Polytechnic Institute of Brooklyn,Aerospace Engineering,t,,,
+55,Kenneth,D.,Cameron,,Retired,11/29/49,Cleveland, OH,USA,t,MIT,Aeronautics & Astronautics,t,,Colonel,US Marine Corps 
+56,Duane,G.,Carey,,Retired,4/30/57,St. Paul, MN,USA,t,University of Minnesota-Minneapolis,Aerospace Engineering & Mechanics,t,,Lieutenant Colonel,US Air Force 
+57,M.,Scott,Carpenter,,Retired,5/1/25,Boulder, CO,USA,t,University of Colorado,Aeronautical Engineering,f,,Commander,US Navy 
+58,Gerald,P.,Carr,,Retired,8/22/32,Denver, CO,USA,t,University of Southern California,Mechanical Engineering,t,,Colonel,US Marine Corps 
+59,Manley,Lanier,Carter,Jr.,Deceased,8/15/47,Macon, GA,USA,t,Emory University,Chemistry,t,4/5/91,Captain,US Navy
+60,John,H.,Casper,,Management,7/9/43,Greenville, SC,USA,t,US Air Force Academy,Engineering Science,t,,Colonel,US Air Force 
+61,Christopher,J.,Cassidy,,Active,1/4/70,Salem, MA,USA,t,US Naval Academy,Mathematics,t,,Commander,US Navy
+62,Robert,,Cenker,,Retired,11/5/48,Uniontown, PA,USA,t,Pennsylvania State University,Aerospace Engineering,t,,,
+63,Eugene,A.,Cernan,,Retired,3/14/34,Chicago, IL,USA,t,Purdue University,Electrical Engineering,t,,Captain,US Navy 
+64,Roger,B.,Chaffee,,Deceased,2/15/35,Grand Rapids, MI,USA,t,Purdue University,Aeronautical Engineering,f,1/27/67,Lieutenant Commander,US Navy
+65,Gregory,E.,Chamitoff,,Active,8/6/62,Montreal,, Canada,t,California Polytechnic State University,Electrical Engineering,t,,,
+66,Franklin,R.,Chang-Diaz,,Retired,4/5/50,San Jose,, Costa Rica,t,University of Connecticut,Mechanical Engineering,t,,,
+67,Philip,K.,Chapman,,Retired,3/5/35,Melbourne,, Australia,t,University of Sydney,Physics & Mathematics,t,,,
+68,Kalpana,,Chawla,,Deceased,6/1/61,Karnal,, India,f,Punjab Engineering College,Aeronautical Engineering,t,2/1/03,,
+69,Leroy,,Chiao,,Retired,8/28/60,Milwaukee, WI,USA,t,University of California-Berkeley,Chemical Engineering,t,,,
+70,Kevin,P.,Chilton,,Retired,3/11/54,Los Angeles, CA,USA,t,US Air Force Academy,Engineering Science,t,,Brigadier General,US Air Force 
+71,Laurel,B.,Clark,,Deceased,3/10/61,Ames, IA,USA,f,University of Wisconsin-Madison,Zoology,t,2/1/03,Captain,US Navy
+72,Mary,L.,Cleave,,Retired,2/5/47,Southampton, NY,USA,f,Colorado State University,Biological Science,t,,,
+73,Michael,R.,Clifford,,Retired,10/13/52,San Bernardino, CA,USA,t,US Military Academy,Aerospace Engineering,t,,Lieutenant Colonel,US Army 
+74,Michael,L.,Coats,,Retired,1/16/46,Sacramento, CA,USA,t,US Naval Academy,Administration of Science and Technology,t,,Captain,US Navy 
+75,Kenneth,D.,Cockrell,,Management,4/9/50,Austin, TX,USA,t,University of Texas,Mechanical Engineering,t,,,US Naval Reserves
+76,Catherine,G.,Coleman,,Active,12/14/60,Charleston, SC,USA,f,MIT,Chemistry,t,,Colonel,US Air Force 
+77,Eileen,M.,Collins,,Retired,11/19/59,Elmira, NY,USA,f,Syracuse University,Mathematics & Economics,t,,Colonel,US Air Force 
+78,Michael,,Collins,,Retired,10/31/30,Rome,, Italy,t,US Military Academy,Military Science,f,,,US Air Force Reserves
+79,Charles,,Conrad,Jr.,Deceased,5/2/30,Philadelphia, PA,USA,t,Princeton University,Aeronautical Engineering,f,7/8/99,Captain,US Navy 
+80,Leroy,Gordon,Cooper,Jr.,Deceased,3/6/27,Shawnee, OK,USA,t,Air Force Institute of Technology,Aeronautical Engineering,f,10/4/04,Colonel,US Air Force 
+81,Richard,O.,Covey,,Retired,8/1/46,Fayetteville, AR,USA,t,US Air Force Academy,Engineering Science,t,,Colonel,US Air Force 
+82,Timothy,J.,Creamer,,Management,11/15/59,Ft. Huachuca, AZ,USA,t,Loyola College,Chemistry,t,,Colonel,US Army 
+83,John,O.,Creighton,,Retired,4/28/43,Orange, TX,USA,t,US Naval Academy,Administration of Science and Technology,t,,Captain,US Navy 
+84,Robert,L.,Crippen,,Retired,9/11/37,Beaumont, TX,USA,t,University of Texas,Aerospace Engineering,f,,Captain,US Navy 
+85,Roger,K.,Crouch,,Retired,9/12/40,Jamestown, TN,USA,t,Tennessee Polytechnic Institute,Physics,t,,,
+86,Frank,L.,Culbertson,Jr.,Retired,5/15/49,Charleston, SC,USA,t,US Naval Academy,Aerospace Engineering,f,,Captain,US Navy 
+87,Walter,,Cunningham,,Retired,3/16/32,Creston, IA,USA,t,University of California-Los Angeles,Physics,t,,Colonel,US Marine Corps Reserves
+88,Robert,L.,Curbeam,Jr.,Retired,3/5/62,Baltimore, MD,USA,t,US Naval Academy,Aerospace Engineering,t,,Captain,US Navy 
+89,Nancy,J.,Currie,,Management,12/29/58,Wilmington, DE,USA,f,Ohio State University,Biological Science,t,,Colonel,US Army 
+90,N.,Jan,Davis,,Retired,11/1/53,Cocoa Beach, FL,USA,f,Georgia Institute of Technology,Applied Biology; Mechanical Engineering,t,,,
+91,Lawrence,J.,Delucas,,Retired,7/11/50,Syracuse, NY,USA,t,University of Alabama at Birmingham,Chemistry; Physiological Optics,t,,,
+92,Alvin,B.,Drew,Jr.,Active,11/5/62,Washington, DC,USA,t,US Air Force Academy,Physics & Astronautical Engineering,t,,Colonel,US Air Force
+93,Brian,,Duffy,,Retired,6/20/53,Boston, MA,USA,t,US Air Force Academy,Mathematics,t,,Colonel,US Air Force 
+94,Charles,M.,Duke,Jr.,Retired,10/3/35,Charlotte, NC,USA,t,US Naval Academy,Naval Sciences,t,,Brigadier General,US Air Force 
+95,Bonnie,J.,Dunbar,,Retired,3/3/49,Sunnyside, WA,USA,f,University of Washington,Ceramic Engineering,t,,,
+96,Samuel,T.,Durrance,,Retired,9/17/43,Tallahassee, FL,USA,t,California State University,Physics,t,,,
+97,James,P.,Dutton,Jr.,Management,11/20/68,Eugene, OR,USA,t,US Air Force Academy,Astronautical Engineering,t,,Colonel,US Air Force
+98,Joe,F.,Edwards,Jr.,Retired,2/3/58,Richmond, VA,USA,t,US Naval Academy,Aerospace Engineering,t,,Commander,US Navy 
+99,Donn,F.,Eisele,,Deceased,5/23/30,Columbus, OH,USA,t,US Naval Academy,Astronautics,t,12/2/87,Colonel,US Air Force 
+100,Anthony,W.,England,,Retired,5/15/42,Indianapolis, IN,USA,t,MIT,Geology,t,,,
+101,Joe,H.,Engle,,Retired,8/26/32,Dickinson, KS,USA,t,University of Kansas,Aeronautical Engineering,f,,Major General,US Air Force 
+102,Jeanette,J.,Epps,,Active,11/3/70,Syracuse, NY,USA,f,LeMoyne College,Physics,t,,,
+103,Ronald,E.,Evans,Jr.,Deceased,11/10/33,St. Francis, KS,USA,t,University of Kansas,Electrical Engineering,t,4/6/90,Captain,US Navy 
+104,John,M.,Fabian,,Retired,1/28/39,Goosecreek, TX,USA,t,Washington State University,Mechanical Engineering,t,,Colonel,US Air Force 
+105,Christopher,J.,Ferguson,,Retired,9/1/61,Philadelphia, PA,USA,t,Drexel University,Mechanical Engineering,t,,Captain,US Navy 
+106,Martin,J.,Fettman,,Retired,12/31/56,Brooklyn, NY,USA,t,Cornell University,Animal Nutrition,t,,,
+107,Andrew,J.,Feustel,,Active,8/25/65,Lancaster, PA,USA,t,Purdue University,Solid Earth Sciences,t,,,
+108,E.,Michael,Fincke,,Active,3/14/67,Pittsburgh, PA,USA,t,MIT,"Aeronautics & Astronautics; Earth, Atmospheric & Planetary Sciences",t,,Colonel,US Air Force
+109,Jack,D.,Fischer,,Active,1/23/74,Louisville, CO,USA,t,US Air Force Academy,Astronautical Engineering,t,,,
+110,Anna,L.,Fisher,,Management,8/24/49,New York, NY,USA,f,University of California-Los Angeles,Chemistry,t,,,
+111,William,F.,Fisher,,Retired,4/1/46,Dallas, TX,USA,t,Stanford University,Biological Science,t,,,
+112,C.,Michael,Foale,,Active,1/6/57,Louth,, England,t,Cambridge University,Physics,t,,,
+113,Kevin,A.,Ford,,Active,7/7/60,Portland, IN,USA,t,University of Notre Dame,Aerospace Engineering,t,,Colonel,US Air Force 
+114,Michael,J.,Foreman,,Management,3/29/57,Columbus, OH,USA,t,US Naval Academy,Aerospace Engineering,t,,Captain,US Navy 
+115,Patrick,G.,Forrester,,Management,3/31/57,El Paso, TX,USA,t,US Military Academy,Applied Science & Engineering,t,,Colonel,US Army 
+116,Michael,E.,Fossum,,Active,12/19/57,Sioux Falls, SD,USA,t,Texas A&M University,Mechanical Engineering,t,,,US Air Force Reserves 
+117,Theodore,C.,Freeman,,Deceased,2/18/30,Haversford, PA,USA,t,US Naval Academy,Aeronautical Engineering,t,10/31/64,Captain,US Air Force
+118,Stephen,N.,Frick,,Management,9/30/61,Pittsburgh, PA,USA,t,US Naval Academy,Aerospace Engineering,t,,Captain,US Navy 
+119,C.,Gordon,Fullerton,,Retired,10/11/36,Rochester, NY,USA,t,California Institute of Technology,Mechanical Engineering,t,,Colonel,US Air Force 
+120,F.,Andrew,Gaffney,,Retired,6/9/46,Carlsbad, NM,USA,t,University of California-Berkeley,Psychology,t,,,
+121,Ronald,J.,Garan,Jr.,Management,10/20/61,Yonkers, NY,USA,t,State University of New York,Business Economics,t,,Colonel,US Air Force 
+122,Dale,A.,Gardner,,Retired,11/8/48,Fairmont, MN,USA,t,University of Illinois,Engineering Physics,f,,Captain,US Navy 
+123,Guy,S.,Gardner,,Retired,1/6/48,Alta Vista, VA,USA,t,US Air Force Academy,Engineering Sciences; Astronautics & Mathematics,t,,Colonel,US Air Force 
+124,Jake,,Garn,,Retired,10/12/32,Richfield. UT,,USA,t,University of Utah,Business Finance,f,,,
+125,Owen,K.,Garriott,,Retired,11/22/30,Enid, OK,USA,t,University of Oklahoma,Electrical Engineering,t,,,
+126,Charles,D.,Gemar,,Retired,8/4/55,Yanktown, SD,USA,t,US Military Academy,Engineering,f,,Lieutenant Colonel,US Army
+127,Michael,L.,Gernhardt,,Management,5/4/56,Mansfield, OH,USA,t,Vanderbilt University,Physics,t,,,
+128,Edward,G.,Gibson,,Retired,11/8/36,Buffalo, NY,USA,t,University of Rochester,Engineering,t,,,
+129,Robert,L.,Gibson,,Retired,10/30/46,Cooperstown, NY,USA,t,California Polytechnic Institute,Aeronautical Engineering,f,,Captain,US Navy 
+130,Edward,G.,Givens,Jr.,Deceased,1/5/30,Quanah, TX,USA,t,US Naval Academy,Naval Sciences,f,6/6/67,Major,US Air Force
+131,John,H.,Glenn,Jr.,Retired,7/18/21,Cambridge, OH,USA,t,Muskingum College,Engineering,f,,Colonel,US Marine Corps 
+132,Linda,M.,Godwin,,Retired,7/2/52,Cape Girardeau, MO,USA,f,Southeast Missouri State,Mathematics & Physics,t,,,
+133,Michael,T.,Good,,Management,10/13/62,Parma, OH,USA,t,University of Notre Dame,Aerospace Engineering,t,,Colonel,US Air Force 
+134,Richard,F.,Gordon,Jr.,Retired,10/5/29,Seattle, WA,USA,t,University of Washington,Chemistry,f,,Captain,US Navy 
+135,Dominic,L.,Gorie,,Retired,5/2/57,Lake Charles, LA,USA,t,US Naval Academy,Ocean Engineering,t,,Captain,US Navy 
+136,Ronald,J.,Grabe,,Retired,6/13/45,New York, NY,USA,t,US Air Force Academy,Engineering Science,f,,Colonel,US Air Force 
+137,Duane,E.,Graveline,,Retired,3/2/31,Newport, VT,USA,t,University of Vermont,Pre-medicine,t,,,
+138,Frederick,D.,Gregory,,Retired,1/7/41,Washington, DC,USA,t,US Air Force Academy,Military Engineering,t,,Colonel,US Air Force 
+139,William,G.,Gregory,,Retired,5/14/57,Lockport, NY,USA,t,US Air Force Academy,Engineering Science,t,,Lieutenant Colonel,US Air Force
+140,S.,David,Griggs,,Deceased,9/7/39,Portland, OR,USA,t,US Naval Academy,Administration of Science and Technology,t,6/17/89,,
+141,Virgil,I.,Grissom,,Deceased,4/3/26,Mitchell, IN,USA,t,Purdue University,Mechanical Engineering,f,1/27/67,Lieutenant Colonel,US Air Force
+142,John,M.,Grunsfeld,,Management,10/10/58,Chicago, IL,USA,t,MIT,Physics,t,,,
+143,Sidney,M.,Gutierrez,,Retired,6/27/51,Albuquerque, NM,USA,t,US Air Force Academy,Aeronautical Engineering,t,,Colonel,US Air Force 
+144,Fred,W.,Haise,Jr.,Retired,11/14/33,Biloxi, MS,USA,t,University of Oklahoma,Aeronautical Engineering,f,,,
+145,James,D.,Halsell,Jr.,Retired,9/29/56,Monroe, LA,USA,t,US Air Force Academy,Engineering,t,,Colonel,US Air Force 
+146,Kenneth,T.,Ham,,Retired,12/12/64,Plainfield, NJ,USA,t,US Naval Academy,Aerospace Engineering,t,,Captain,US Navy
+147,L.,Blaine,Hammond,Jr.,Retired,1/16/52,Savannah, GA,USA,t,US Air Force Academy,Engineering Science,t,,Colonel,US Air Force 
+148,Gregory,J.,Harbaugh,,Retired,4/15/56,Cleveland, OH,USA,t,Purdue University,Aeronautical & Astronautical Engineering,t,,,
+149,Bernard,A.,Harris,Jr.,Retired,6/26/56,Temple, TX,USA,t,University of Houston,Biology,t,,,
+150,Terry,J.,Hart,,Retired,10/27/46,Pittsburgh, PA,USA,t,Lehigh University,Mechanical Engineering,t,,,
+151,Henry,W.,Hartsfield,Jr.,Retired,11/21/33,Birmingham, AL,USA,t,Auburn University,Physics,t,,Colonel,US Air Force 
+152,Frederick,H.,Hauck,,Retired,4/11/41,Long Beach, CA,USA,t,Tufts University,Physics,t,,Captain,US Navy 
+153,Steven,A.,Hawley,,Retired,12/12/51,Ottawa, KS,USA,t,University of Kansas,Physics & Astronomy,t,,,
+154,Susan,J.,Helms,,Retired,2/26/58,Charlotte, NC,USA,f,US Air Force Academy,Aeronautical Engineering,t,,Lieutenant General,US Air Force
+155,Karl,G.,Henize,,Deceased,10/17/26,Cincinnati, OH,USA,t,University of Virginia,Mathematics,t,10/5/93,,
+156,Thomas,J.,Hennen,,Retired,8/17/52,Albany, GA,USA,t,,,f,,Chief Warrant Officer,US Army 
+157,Terence,T.,Henricks,,Retired,7/5/52,Bryan, OH,USA,t,US Air Force Academy,Civil Engineering,t,,Colonel,US Air Force 
+158,Jose,M.,Hernandez,,Retired,8/7/62,French Camp, CA,USA,t,University of the Pacific,Electrical Engineering,t,,,
+159,John,B.,Herrington,,Retired,9/14/58,Wetumka, OK,USA,t,University of Colorado,Applied Mathematics,t,,Commander,US Navy 
+160,Richard,J.,Hieb,,Retired,9/21/55,Jamestown, ND,USA,t,Northwest Nazarene College,Mathematics & Physics,t,,,
+161,Joan,E.,Higginbotham,,Retired,8/3/64,Chicago, IL,USA,f,Southern Illinois University-Carbondale,Electrical Engineering,t,,,
+162,David,C.,Hilmers,,Retired,1/28/50,Clinton, IA,USA,t,Cornell University,Mathematics,t,,Colonel,US Marine Corps 
+163,Kathryn,P.,Hire,,Management,8/26/59,Mobile, AL,USA,f,US Naval Academy,Engineering Management,t,,Captain,US Naval Reserves
+164,Charles,O.,Hobaugh,,Retired,11/5/61,Bar Harbor, ME,USA,t,US Naval Academy,Aerospace Engineering,f,,Colonel,US Marine Corps 
+165,Jeffrey,A.,Hoffman,,Retired,11/2/44,Brooklyn, NY,USA,t,Amherst College,Astronomy,t,,,
+166,Donald,L.,Holmquest,,Retired,4/7/39,Dallas, TX,USA,t,Southern Methodist University,Electrical Engineering,t,,,
+167,Michael,S.,Hopkins,,Active,12/28/68,Lebanon, MO,USA,t,University of Illinois,Aerospace Engineering,t,,Colonel,US Air Force
+168,Scott,J.,Horowitz,,Retired,3/24/57,Philadelphia, PA,USA,t,California State University-Northridge,Engineering,t,,Colonel,US Air Force 
+169,Millie,,Hughes-Fulford,,Retired,12/21/45,Mineral Wells, TX,USA,f,Tarleton State University,Chemistry & Biology,f,,,
+170,Douglas,G.,Hurley,,Active,10/21/66,Endicott, NY,USA,t,Tulane University,Civil Engineering,f,,Colonel,US Marine Corps
+171,Rick,D.,Husband,,Deceased,7/12/57,Amarillo, TX,USA,t,Texas Tech University,Mechanical Engineering,t,2/1/03,Colonel,US Air Force
+172,James,B.,Irwin,,Deceased,3/17/30,Pittsburgh, PA,USA,t,US Naval Academy,Naval Sciences,t,8/8/91,Colonel,US Air Force 
+173,Marsha,S.,Ivins,,Retired,4/15/51,Baltimore, MD,USA,f,University of Colorado,Aerospace Engineering,f,,,
+174,Gregory,B.,Jarvis,,Deceased,8/24/44,Detroit, MI,USA,t,State University of New York at Buffalo,Electrical Engineering,t,1/28/86,,
+175,Mae,C.,Jemison,,Retired,10/17/56,Decatur, AL,USA,f,Stanford University,Chemical Engineering,t,,,
+176,Tamara,E.,Jernigan,,Retired,5/7/59,Chattanooga, TN,USA,f,Stanford University,Physics,t,,,
+177,Brent,W.,Jett,,Retired,10/5/58,Pontiac, MI,USA,t,US Naval Academy,Aerospace Engineering,t,,Captain,US Navy 
+178,Gregory,C.,Johnson,,Management,7/30/54,Seattle, WA,USA,t,University of Washington,Aerospace Engineering,f,,Captain,US Navy 
+179,Gregory,H.,Johnson,,Active,5/12/62,London,, England,t,US Air Force Academy,Aeronautical Engineering,t,,Colonel,US Air Force 
+180,Thomas,D.,Jones,,Retired,1/22/55,Baltimore, MD,USA,t,US Air Force Academy,Planetary Science,t,,,
+181,Janet,L.,Kavandi,,Management,7/17/59,Springfield, MO,USA,f,Missouri Southern State College,Chemistry,t,,,
+182,James,M.,Kelly,,Management,5/14/64,Burlington, IA,USA,t,US Air Force Academy,Astronautical Engineering,t,,Colonel,US Air Force 
+183,Mark,E.,Kelly,,Retired,2/21/64,Orange, NJ,USA,t,US Merchant Marine Academy,Marine Engineering & Nautical Science,t,,Captain,US Navy 
+184,Scott,J.,Kelly,,Active,2/21/64,Orange, NJ,USA,t,State University of New York Maritime College,Electrical Engineering,t,,Captain,US Navy 
+185,Joseph,P.,Kerwin,,Retired,2/19/32,Oak Park, IL,USA,t,College of the Holy Cross,Philosophy,t,,Captain,US Navy 
+186,Susan,L.,Kilrain,,Retired,10/24/61,Augusta, GA,USA,f,Embry-Riddle University,Astronautical Engineering,t,,Commander,US Navy 
+187,Robert,Shane,Kimbrough,,Active,6/4/67,Killeen, TX,USA,t,US Military Academy,Aerospace Engineering,t,,Colonel,US Army
+188,Timothy,L.,Kopra,,Active,4/9/63,Austin, TX,USA,t,US Military Academy,Computer Science,t,,Colonel,US Army 
+189,Kevin,R.,Kregel,,Retired,9/16/56,New York, NY,USA,t,US Air Force Academy,Astronautical Engineering,t,,,
+190,Wendy,B.,Lawrence,,Retired,7/2/59,Jacksonville, FL,USA,f,US Naval Academy,Ocean Engineering,t,,Captain,US Navy 
+191,Mark,C.,Lee,,Retired,8/14/52,Viroqua, WI,USA,t,US Air Force Academy,Civil Engineering,t,,Colonel,US Air Force 
+192,David,C.,Leestma,,Management,5/6/49,Muskegon, MI,USA,t,US Naval Academy,Aeronautical Engineering,t,,Captain,US Navy 
+193,William,B.,Lenoir,,Deceased,3/14/39,Miami, FL,USA,t,MIT,Electrical Engineering,t,8/26/12,,
+194,Fred,W.,Leslie,,Retired,12/19/51,Ancon,, Panama,t,University of Texas,Engineering Science,t,,,
+195,Byron,K.,Lichtenberg,,Retired,2/19/48,Stroudsburg, PA,USA,t,Brown University,Aerospace Engineering,t,,,
+196,Don,L.,Lind,,Retired,5/18/30,Midvale, UT,USA,t,University of Utah,Physics,t,,,
+197,Kjell,N.,Lindgren,,Active,1/23/73,Taipei,, Taiwan,t,US Air Force Academy,Biology,t,,,
+198,Steven,W.,Lindsey,,Retired,8/24/60,Arcadia, CA,USA,t,US Air Force Academy,Engineering Science,t,,Colonel,US Air Force 
+199,Jerry,M.,Linenger,,Retired,1/16/55,Mount Clemens, MI,USA,t,US Naval Academy,Bioscience,t,,Captain,US Navy 
+200,Richard,M.,Linnehan,,Management,9/19/57,Lowell, MA,USA,t,University of New Hampshire,Animal Science,t,,,
+201,Gregory,T.,Linteris,,Retired,10/4/57,Demarest, NJ,USA,t,Princeton University,Chemical Engineering,t,,,
+202,John,A.,Llewellyn,,Retired,4/22/33,Cardiff,, Wales,t,University College at Cardiff,Chemistry,t,,,
+203,Paul,S.,Lockhart,,Retired,4/28/56,Amarillo, TX,USA,t,Texas Tech University,Mathematics,t,,Colonel,US Air Force 
+204,Michael,E.,Lopez-Alegria,,Retired,5/30/58,Madrid,, Spain,t,US Naval Academy,Systems Engineering,t,,Captain,US Navy 
+205,Christopher,J.,Loria,,Retired,7/9/60,Belmont, MA,USA,t,US Naval Academy,Engineering,t,,Colonel,US Marine Corps 
+206,J.,Mike,Lounge,,Deceased,6/28/46,Denver, CO,USA,t,US Naval Academy,Mathematics & Physics,t,3/1/11,,
+207,Jack,R.,Lousma,,Retired,2/29/36,Grand Rapids, MI,USA,t,University of Michigan,Aeronautical Engineering,t,,Colonel,US Marine Corps 
+208,Stanley,G.,Love,,Management,6/8/65,San Diego, CA,USA,t,Harvey Mudd College,Physics,t,,,
+209,James,A.,Lovell,Jr.,Retired,3/25/28,Cleveland, OH,USA,t,US Naval Academy,Engineering,f,,Captain,US Navy 
+210,G.,David,Low,,Deceased,2/19/56,Cleveland, OH,USA,t,Washington & Lee University,Physics & Engineering,t,3/15/08,,
+211,Edward,T.,Lu,,Retired,7/1/63,Springfield, MA,USA,t,Cornell University,Electrical Engineering,t,,,
+212,Shannon,W.,Lucid,,Retired,1/14/43,Shanghai,, China,f,University of Oklahoma,Chemistry,t,,,
+213,Sandra,H.,Magnus,,Retired,10/30/64,Belleville, IL,USA,f,University of Missouri-Rolla,Physics,t,,,
+214,Thomas,H.,Marshburn,,Active,8/29/60,Statesville, NC,USA,t,Davidson College,Physics,t,,,
+215,Michael,J.,Massimino,,Management,8/19/62,Oceanside, NY,USA,t,Columbia University,Industrial Engineering,t,,,
+216,Richard,A.,Mastracchio,,Active,2/11/60,Waterbury, CT,USA,t,University of Connecticut,Electrical Engineering; Computer Science,t,,,
+217,Thomas,K.,Mattingly,II,Retired,3/17/36,Chicago, IL,USA,t,Auburn University,Aeronautical Engineering,f,,Rear Admiral,US Navy 
+218,K.,Megan,McArthur,,Active,8/30/71,Honolulu, HI,USA,f,University of California-Los Angeles,Aerospace Engineering,t,,,
+219,William,S.,McArthur,Jr.,Management,7/26/51,Laurinburg, NC,USA,t,US Military Academy,Applied Science & Engineering,t,,Colonel,US Army 
+220,S.,Christa,McAuliffe,,Deceased,9/2/48,Boston, MA,USA,f,Framingham State College,Education,t,1/28/86,,
+221,Jon,A.,McBride,,Retired,8/14/43,Charleston, WV,USA,t,US Naval Postgraduate School,Aeronautical Engineering,f,,Captain,US Navy 
+222,Bruce,,McCandless,II,Retired,6/8/37,Boston, MA,USA,t,US Naval Academy,Electrical Engineering,t,,Captain,US Navy 
+223,William,C.,McCool,,Deceased,9/23/61,San Diego, CA,USA,t,US Naval Academy,Naval Sciences,t,2/1/03,Commander,US Navy
+224,Michael,J.,McCulley,,Retired,8/4/43,San Diego, CA,USA,t,Purdue University,Metallurgical Engineering,t,,Captain,US Navy 
+225,James,A.,McDivitt,,Retired,6/10/29,Chicago, IL,USA,t,University of Michigan,Astronautical Engineering,f,,Brigadier General,US Air Force 
+226,Donald,R.,McMonagle,,Retired,5/14/52,Flint, MI,USA,t,US Air Force Academy,Astronautical Engineering,t,,Colonel,US Air Force 
+227,Ronald,E.,McNair,,Deceased,10/21/50,Lake City, SC,USA,t,North Carolina A&T State College,Physics,t,1/28/86,,
+228,Carl,J.,Meade,,Retired,11/16/50,Chanute Air Force Base, IL,USA,t,University of Texas,Electronics Engineering,t,,Colonel,US Air Force 
+229,Bruce,E.,Melnick,,Retired,12/5/49,New York, NY,USA,t,US Coast Guard Academy,Engineering,t,,Commander,US Coast Guard 
+230,Pamela,A.,Melroy,,Retired,9/17/61,Palo Alto, CA,USA,f,Wellesley College,Physics & Astronomy,t,,Colonel,US Air Force 
+231,Leland,D.,Melvin,,Management,2/15/64,Lynchburg, VA,USA,t,University of Richmond,Chemistry,t,,,
+232,Dorothy,M.,Metcalf-Lindenberger,,Active,5/2/75,Colorado Springs, CO,USA,f,Whitman College,Geology,f,,,
+233,F.,Curtis,Michel,,Retired,6/5/34,LaCrosse, WI,USA,t,California Institute of Technology,Physics,t,,,
+234,Edgar,D.,Mitchell,,Retired,9/17/30,Hereford, TX,USA,t,Carnegie-Mellon University,Industrial Management,t,,Captain,US Navy 
+235,Barbara,R.,Morgan,,Retired,11/28/51,Fresno, CA,USA,f,Stanford University,Human Biology,f,,,
+236,Lee,M.,Morin,,Management,9/9/52,Manchester, NH,USA,t,University of New Hampshire,Mathematical & Electrical Science,t,,Captain,US Navy
+237,Richard,M.,Mullane,,Retired,9/10/45,Wichita Falls, TX,USA,t,US Military Academy,Military Engineering,t,,Colonel,US Air Force 
+238,Story,,Musgrave,,Retired,8/19/35,Boston, MA,USA,t,Syracuse University,Mathematics & Statistics; Chemistry,t,,,
+239,Steven,R.,Nagel,,Retired,10/27/46,Canton, IL,USA,t,University of Illinois,Aerospace Engineering,t,,Colonel,US Air Force 
+240,Bill,,Nelson,,Retired,9/29/42,Miami, FL,USA,t,Yale University,Political Science,t,,Captain,US Army 
+241,George,D.,Nelson,,Retired,7/13/50,Charles City, IA,USA,t,Harvey Mudd College,Physics,t,,,
+242,James,H.,Newman,,Retired,10/16/56,San Diego, CA,USA,t,Dartmouth College,Physics,t,,,
+243,Carlos,I.,Noriega,,Retired,10/8/59,Lima,, Peru,t,University of Southern California,Computer Science,t,,Lieutenant Colonel,US Marine Corps 
+244,Lisa,M.,Nowak,,Retired,5/10/63,Washington, DC,USA,f,US Naval Academy,Aerospace Engineering,t,,Captain,US Navy 
+245,Karen,L.,Nyberg,,Active,10/7/69,Parker’s Prairie, MN,USA,f,University of North Dakota,Mechanical Engineering,t,,,
+246,Bryan,D.,O'Connor,,Retired,9/6/46,Orange, CA,USA,t,US Naval Academy,Engineering,t,,Colonel,US Marine Corps 
+247,Brian,T.,O'Leary,,Deceased,1/27/40,Boston, MA,USA,t,Williams College,Physics,t,7/28/11,,
+248,Ellen,,Ochoa,,Management,5/10/58,Los Angeles, CA,USA,f,San Diego State University,Physics,t,,,
+249,William,A.,Oefelein,,Retired,3/29/65,Ft. Belvoir, VA,USA,t,Oregon State University,Electrical Engineering,t,,Commander,US Navy 
+250,John,D.,Olivas,,Retired,5/25/66,North Hollywood, CA,USA,t,University of Texas-El Paso,Mechanical Engineering,t,,,
+251,Ellison,S.,Onizuka,,Deceased,6/24/46,Kealakekua, HI,USA,t,University of Colorado,Aerospace Engineering,t,1/28/86,Lieutenant Colonel,US Air Force
+252,Stephen,S.,Oswald,,Retired,6/30/51,Seattle, WA,USA,t,US Naval Academy,Aerospace Engineering,f,,,
+253,Robert,F.,Overmyer,,Deceased,7/14/36,Lorain, OH,USA,t,Baldwin Wallace College,Physics,t,3/22/96,Colonel,US Marine Corps 
+254,William,A.,Pailes,,Retired,6/26/52,Hackensack, NJ,USA,t,US Air Force Academy,Computer Science,t,,Colonel,US Air Force 
+255,Scott,E.,Parazynski,,Retired,7/28/61,Little Rock, AR,USA,t,Stanford University,Biology,t,,,
+256,Ronald,A.,Parise,,Deceased,5/24/51,Warren, OH,USA,t,Youngstown State University,Physics,t,5/9/08,,
+257,Robert,A.,Parker,,Retired,12/14/36,New York, NY,USA,t,Amherst College,Physics & Astronomy,t,,,
+258,Niclolas,J.M.,Patrick,,Retired,3/22/64,North Yorkshire,, England,t,University of Cambridge,Engineering,t,,,
+259,James,A.,Pawelczyk,,Retired,9/20/60,Buffalo, NY,USA,t,University of Rochester,Biology & Psychology,t,,,
+260,Gary,E.,Payton,,Retired,6/20/48,Rock Island, IL,USA,t,US Air Force Academy,Astronautical Engineering,t,,Major,US Air Force
+261,Donald,H.,Peterson,,Retired,10/22/33,Winona, MS,USA,t,US Military Academy,Nuclear Engineering,t,,Colonel,US Air Force 
+262,Donald,R.,Pettit,,Active,4/20/55,Silverton, OR,USA,t,Oregon State University,Chemical Engineering,t,,,
+263,John,L.,Phillips,,Retired,4/15/51,Ft. Belvoir, VA,USA,t,US Naval Academy,Mathematics; Russian,t,,Captain,US Naval Reserves 
+264,William,R.,Pogue,,Retired,1/23/30,Okemah, OK,USA,t,Oklahoma Baptist University,Education,t,,Colonel,US Air Force 
+265,Alan,G.,Poindexter,,Deceased,11/5/61,Pasadena, CA,USA,t,Georgia Institute of Technology,Aerospace Engineering,t,7/1/12,Captain,US Navy
+266,Mark,L.,Polansky,,Retired,6/2/56,Paterson, NJ,USA,t,Purdue University,Aeronautical & Astronautical Engineering,t,,,
+267,Charles,J.,Precourt,,Retired,6/29/55,Waltham, MA,USA,t,US Air Force Academy,Aeronautical Engineering,t,,Colonel,US Air Force 
+268,William,F.,Readdy,,Retired,1/24/52,Quonset Point, RI,USA,t,US Naval Academy,Aerospace Engineering,f,,Captain,US Navy 
+269,Kenneth,S.,Reightler,Jr.,Retired,3/24/51,Patuxent River, MD,USA,t,US Naval Academy,Aerospace Engineering,t,,Captain,US Navy 
+270,James,F.,Reilly,II,Retired,3/18/54,Mountain Home Air Force Base, ID,USA,t,University of Texas-Dallas,Geosciences,t,,,
+271,Garrett,E.,Reisman,,Retired,2/10/68,Morristown, NJ,USA,t,University of Pennsylvania,Economics,t,,,
+272,Judith,A.,Resnik,,Deceased,4/5/49,Akron, OH,USA,f,Carnegie-Mellon University,Electrical Engineering,t,1/28/86,,
+273,Paul,W.,Richards,,Management,5/20/64,Scranton, PA,USA,t,Drexel University,Mechanical Engineering,t,,,
+274,Richard,N.,Richards,,Retired,8/24/46,Key West, FL,USA,t,University of Missouri,Chemical Engineering,t,,Captain,US Navy 
+275,Sally,K.,Ride,,Deceased,5/26/51,Los Angeles, CA,USA,f,Stanford University,Physics; English,t,7/23/12,,
+276,Patricia,Hilliard,Robertson,,Deceased,3/12/63,Indiana, PA,USA,f,Indiana University of Pennsylvania,Biology,t,5/24/01,,
+277,Stephen,K.,Robinson,,Retired,10/26/55,Sacramento, CA,USA,t,University of California-Davis,Mechanical & Aeronautical Engineering,t,,,
+278,Kent,V.,Rominger,,Retired,8/7/56,Del Norte, CO,USA,t,Colorado State University,Civil Engineering,t,,Captain,US Navy 
+279,Stuart,A.,Roosa,,Deceased,8/16/33,Durango, CO,USA,t,University of Colorado,Aeronautical Engineering,f,12/12/94,Colonel,US Air Force 
+280,Jerry,L.,Ross,,Retired,1/20/48,Crown Point, IN,USA,t,Purdue University,Mechanical Engineering,t,,Colonel,US Air Force 
+281,Kathleen,,Rubins,,Active,10/14/78,Farmington, CT,USA,f,University of California-San Diego,Molecular Biology,t,,,
+282,Mario,,Runco,Jr.,Management,1/26/52,Bronx, NY,USA,t,City College of New York,Earth & Planetary Science,t,4/23/01,Lieutenant Commander,US Navy 
+283,Albert,,Sacco,Jr.,Retired,5/3/49,Boston, MA,USA,t,Northeastern University,Chemical Engineering,t,,,
+284,Robert,L.,Satcher,Jr.,Retired,9/22/65,Hampton, VA,USA,t,MIT,Chemical Engineering,t,,,
+285,Walter,M.,Schirra,Jr.,Deceased,3/12/23,Hackensack, NJ,USA,t,US Naval Academy,Naval Sciences,f,5/2/07,Captain,US Navy 
+286,Harrison,H.,Schmitt,,Retired,7/3/35,Santa Rita, NM,USA,t,California Institute of Technology,Geology,t,,,
+287,Russell,L.,Schweickart,,Retired,10/25/35,Neptune, NJ,USA,t,MIT,Aeronautics & Astronautics,t,,,
+288,Francis,R.,Scobee,,Deceased,5/19/39,Cle Elum, WA,USA,t,University of Arizona,Aerospace Engineering,f,1/28/86,Major,US Air Force 
+289,David,R.,Scott,,Retired,6/6/32,San Antonio, TX,USA,t,US Military Academy,Astronautics,t,,Colonel,US Air Force 
+290,Winston,E.,Scott,,Retired,8/6/50,Miami, FL,USA,t,Florida State University,Music,t,,Captain,US Navy 
+291,Paul,D.,Scully-Power,,Retired,5/28/44,Sydney,, Australia,t,University of Sydney,Applied Mathematics,f,,,
+292,Richard,A.,Searfoss,,Retired,6/5/56,Mount Clemens, MI,USA,t,US Air Force Academy,Aeronautical Engineering,t,,Colonel,US Air Force 
+293,Margaret,Rhea,Seddon,,Retired,11/8/47,Murfreesboro, TN,USA,f,University of California-Berkeley,Physiology,t,,,
+294,Elliot,M.,See,Jr.,Deceased,7/23/27,Dallas, TX,USA,t,US Merchant Marine Academy,Marine Engineering,t,2/28/66,,
+295,Ronald,M.,Sega,,Retired,12/4/52,Cleveland, OH,USA,t,US Air Force Academy,Physics & Mathematics,t,,Colonel,US Air Force Reserves 
+296,Piers,J.,Sellers,,Management,4/11/55,Crowborough,,England,t,University of Edinburgh,Ecological Science,t,,,
+297,Brewster,H.,Shaw,Jr.,Retired,5/16/45,Cass City, MI,USA,t,University of Wisconsin,Engineering Mechanics,t,,Colonel,US Air Force 
+298,Alan,B.,Shepard,Jr.,Deceased,11/18/23,East Derry, NH,USA,t,US Naval Academy,Naval Sciences,f,7/21/98,Rear Admiral,US Navy 
+299,William,M.,Shepherd,,Retired,7/26/49,Oak Ridge, TN,USA,t,US Naval Academy,Aerospace Engineering,t,,Captain,US Navy 
+300,Loren,J.,Shriver,,Retired,9/23/44,Jefferson, IA,USA,t,US Air Force Academy,Aeronautical Engineering,t,,Colonel,US Air Force 
+301,Donald,K.,Slayton,,Deceased,3/1/24,Sparta, WI,USA,t,University of Minnesota,Aeronautical Engineering,f,6/13/93,Major,US Air Force Reserves
+302,Michael,J.,Smith,,Deceased,4/30/45,Beaufort, NC,USA,t,US Naval Academy,Naval Sciences,t,1/28/86,Captain,US Navy
+303,Steven,L.,Smith,,Management,12/30/58,Phoenix, AZ,USA,t,Stanford University,Electrical Engineering,t,,,
+304,Sherwood,C.,Spring,,Retired,9/23/44,Hartford, CT,USA,t,US Military Academy,Engineering,t,,Colonel,US Army 
+305,Robert,C.,Springer,,Retired,5/21/42,St. Louis, MO,USA,t,US Naval Academy,Naval Sciences,t,,Colonel,US Marine Corps 
+306,Thomas,P.,Stafford,,Retired,9/17/30,Weatherford, OK,USA,t,US Naval Academy,Aeronautics & Astronautics,f,,Lieutenant General,US Air Force 
+307,Heidemarie,M.,Stefanyshyn-Piper,,Retired,2/7/63,St. Paul, MN,USA,f,MIT,Mechanical Engineering,f,,Captain,US Navy
+308,Robert,L.,Stewart,,Retired,8/13/42,Washington, DC,USA,t,University of Southern Mississippi,Mathematics,t,,Brigadier General,US Army 
+309,Nicole,P.,Stott,,Active,11/19/62,Albany, NY,USA,f,Embry-Riddle Aeronautical University,Aeronautical Engineering,t,,,
+310,Frederick,W.,Sturckow,,Retired,8/11/61,La Mesa, CA,USA,t,California Polytechnic State University,Mechanical Engineering,f,,Colonel,US Marine Corps 
+311,Kathryn,D.,Sullivan,,Retired,10/3/51,Patterson, NJ,USA,f,University of California-Santa Cruz,Earth Sciences,t,,,
+312,Steven,R.,Swanson,,Active,12/3/60,Syracuse, NY,USA,t,University of Colorado,Engineering Physics,t,,,
+313,John,L.,Swigert,Jr.,Deceased,8/30/31,Denver, CO,USA,t,University of Colorado,Mechanical Engineering,t,12/27/82,,
+314,Daniel,M.,Tani,,Retired,2/1/61,Ridley Park, PA,USA,t,MIT,Mechanical Engineering,t,,,
+315,Joseph,R.,Tanner,,Retired,1/21/50,Danville, IL,USA,t,University of Illinois,Mechanical Engineering,f,,,
+316,Norman,E.,Thagard,,Retired,7/3/43,Marianna, FL,USA,t,Florida State University,Engineering Science,t,,,
+317,Andrew,S.W.,Thomas,,Management,12/18/51,Adelaide,,Australia,t,University of Adelaide,Mechanical Engineering,t,,,
+318,Donald,A.,Thomas,,Retired,5/6/55,Cleveland, OH,USA,t,Case Western Reserve University,Physics,t,,,
+319,Stephen,D.,Thorne,,Deceased,2/11/53,Frankfurt,,West Germany,t,US Naval Academy,Engineering,f,5/24/86,Lieutenant Commander,US Navy
+320,Kathryn,C.,Thornton,,Retired,8/17/52,Montgomery, AL,USA,f,Auburn University,Physics,t,,,
+321,William,E.,Thornton,,Retired,4/14/29,Faison, NC,USA,t,University of North Carolina,Physics,t,,,
+322,Pierre,J.,Thuot,,Retired,5/19/55,Groton, CT,USA,t,US Naval Academy,Physics,t,,Commander,US Navy
+323,Scott,D.,Tingle,,Active,7/19/65,Attleboro, MA,USA,t,Southeastern Massachusetts University,Mechanical Engineering,t,,Commander,US Navy
+324,Richard,H.,Truly,,Retired,11/12/37,Fayette, MS,USA,t,Georgia Institute of Technology,Aeronautical Engineering,f,,Vice Admiral,US Navy 
+325,Lodewijk,,van den Berg,,Retired,3/24/32,Sluiskil,,Netherlands,t,Delft University of Technology,Chemical Engineering,t,,,
+326,James,D.,van Hoften,,Retired,6/11/44,Fresno, CA,USA,t,University of California-Berkeley,Civil Engineering,t,,,
+327,Mark,T.,Vande Hei,,Active,11/10/66,Falls Church, VA,USA,t,Saint John’s University,Physics,t,,Colonel,US Army
+328,Charles,Lacy,Veach,,Deceased,9/18/44,Chicago, IL,USA,t,US Air Force Academy,Engineering Management,f,10/3/95,,
+329,Terry,W.,Virts,Jr.,Active,12/1/67,Baltimore, MD,USA,t,US Air Force Academy,Mathematics,t,,Colonel,US Air Force
+330,James,S.,Voss,,Retired,3/3/49,Cordova, AL,USA,t,Auburn University,Aerospace Engineering,t,,Colonel,US Army 
+331,Janice,E.,Voss,,Deceased,10/8/56,South Bend, IN,USA,f,Purdue University,Engineering Science,t,2/6/12,,
+332,Rex,J.,Walheim,,Active,10/10/62,Redwood, CA,USA,t,University of California-Berkeley,Mechanical Engineering,t,,Colonel,US Air Force 
+333,Charles,D.,Walker,,Retired,8/29/48,Bedford, IN,USA,t,Purdue University,Aeronautical & Astronautical Engineering,f,,,
+334,David,M.,Walker,,Deceased,5/20/44,Columbus, GA,USA,t,US Naval Academy,Naval Sciences,f,4/23/01,Captain,US Navy 
+335,Shannon,,Walker,,Active,6/4/65,Houston, TX,USA,f,Rice University,Space Physics,t,,,
+336,Carl,E.,Walz,,Retired,9/6/55,Cleveland, OH,USA,t,Kent State University,Physics,t,,Colonel,US Air Force
+337,Taylor,G.,Wang,,Retired,6/16/40,Jiangxi,,China,t,University of California at Los Angeles,Physics,t,,,
+338,Mary,E.,Weber,,Retired,8/24/62,Cleveland, OH,USA,f,Purdue University,Chemical Engineering,t,,,
+339,Paul,J.,Weitz,,Retired,6/25/32,Erie, PA,USA,t,Pennsylvania State University,Aeronautical Engineering,t,,Captain,US Navy 
+340,James,D.,Wetherbee,,Retired,11/27/52,Flushing, NY,USA,t,University of Notre Dame,Aerospace Engineering,f,,Captain,US Navy 
+341,Douglas,H.,Wheelock,,Active,5/5/60,Binghamton, NY,USA,t,US Military Academy,Applied Science & Engineering,t,,Colonel,US Army
+342,Edward,H.,White,II,Deceased,11/14/30,San Antonio, TX,USA,t,US Military Academy,Aeronautical Engineering,t,1/27/67,Lieutenant Colonel,US Air Force
+343,Peggy,A.,Whitson,,Active,2/9/60,Mt. Ayr, IA,USA,f,Iowa Wesleyan College,Chemistry & Biology,t,,,
+344,Terrence,W.,Wilcutt,,Management,10/31/49,Russellville, KY,USA,t,Western Kentucky University,Mathematics,f,,,
+345,Clifton,C.,Williams,Jr.,Deceased,9/26/32,Mobile, AL,USA,t,Auburn University,Mechanical Engineering,f,10/5/67,Major,US Marine Corps
+346,Donald,E.,Williams,,Retired,2/13/58,Lafayette, IN,USA,t,Purdue University,Mechanical Engineering,f,,Captain,US Navy 
+347,Jeffrey,N.,Williams,,Active,1/18/58,Superior, WI,USA,t,US Military Academy,Applied Science & Engineering,t,,Colonel,US Army 
+348,Sunita,L.,Williams,,Active,9/19/65,Euclid, OH,USA,f,US Naval Academy,Physical Science,t,,Captain,US Navy
+349,Barry,E.,Wilmore,,Active,12/29/62,Murfreesboro, TN,USA,t,Tennessee Technological University,Electrical Engineering,t,,Captain,US Navy
+350,Stephanie,D.,Wilson,,Active,9/27/66,Boston, MA,USA,f,Harvard University,Engineering Science,t,,,
+351,G.,Reid,Wiseman,,Active,11/11/75,Baltimore, MD,USA,t,Rensselaer Polytechnic Institute,Computer & Systems Engineering,t,,Commander,US Navy
+352,Peter,J.K.,Wisoff,,Retired,8/16/58,Norfolk, VA,USA,t,University of Virginia,Physics,t,,,
+353,David,A.,Wolf,,Retired,8/23/56,Indianapolis, IN,USA,t,Purdue University,Electrical Engineering,t,,,
+354,Neil,W.,Woodward,III,Retired,7/26/62,Chicago, IL,USA,t,MIT,Physics,t,,Commander,US Navy
+355,Alfred,M.,Worden,,Retired,2/7/32,Jackson, MI,USA,t,US Military Academy,Military Science,t,,Colonel,US Air Force 
+356,John,W.,Young,,Retired,9/24/30,San Francisco, CA,USA,t,Georgia Institute of Technology,Aeronautical Engineering,f,,Captain,US Navy 
+357,George,D.,Zamka,,Retired,6/29/62,Jersey City, NJ,USA,t,US Naval Academy,Mathematics,t,,Colonel,US Marine Corps 

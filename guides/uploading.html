@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>19&nbsp; Uploading a Jupyter Assignment – CIS241 Intro to Data Science</title>
+<title>Uploading a Jupyter Assignment – CIS241 Intro to Data Science</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -25,21 +28,35 @@ ul.task-list li input[type="checkbox"] {
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<link href="../sample-final-project.html" rel="next">
-<link href="../radcat.html" rel="prev">
-<link href="../bar_chart_apple_64.png" rel="icon" type="image/png">
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../bar_chart_apple_64.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-2d053c8a602df91ec61aa3379e601c1a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0f9aa9b9e44320098794e46e8ae1c927.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -70,6 +87,7 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">CIS241 Intro to Data Science</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
@@ -92,10 +110,6 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Course Policies</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../groundrules.html"> 
-<span class="menu-text">Ground Rules</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="https://jupyterhub.ciswashjeff.net/"> 
 <span class="menu-text">JupyterHub</span></a>
   </li>  
@@ -110,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../how-to-explain.html">Other Key Info</a></li><li class="breadcrumb-item"><a href="../guides/uploading.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Uploading a Jupyter Assignment</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../how-to-explain.html">Other Key Info</a></li><li class="breadcrumb-item"><a href="../guides/uploading.html">Uploading a Jupyter Assignment</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -120,9 +134,10 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
       <a href="../index.html" class="sidebar-logo-link">
-      <img src="../images/startrek.jpg" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="../images/startrek.jpg" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../images/startrek.jpg" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
       </div>
     <div class="sidebar-menu-container"> 
@@ -130,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Homepage</span></span></a>
+ <span class="menu-text">Homepage</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -145,33 +160,33 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../schedule.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Course Schedule</span></span></a>
+ <span class="menu-text">Course Schedule</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../policies.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Course Policies</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../groundrules.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Ground Rules</span></span></a>
+ <span class="menu-text">Course Policies</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../criteria.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Criteria for Good Reports</span></span></a>
+ <span class="menu-text">Criteria for Good Reports</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../assignments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Assignments</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../assignments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Assignments</span></a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Guides</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -179,26 +194,38 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../assignments/documentation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Documentation Assignment</span></span></a>
+  <a href="../guides/jupyterhub.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">JupyterHub</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../assignments/project-planning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Project Plan</span></span></a>
+  <a href="../guides/python.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Python</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../assignments/presentation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Presentation</span></span></a>
+  <a href="../guides/pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pandas</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../assignments/final-report.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Final Project</span></span></a>
+  <a href="../guides/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hypothesis Testing</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/sklearn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Modeling with Scikit-learn</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../guides/debugging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Debugging Your Code</span></a>
   </div>
 </li>
       </ul>
@@ -206,7 +233,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Guides</span></a>
+ <span class="menu-text">Other Key Info</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -214,85 +241,32 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../guides/jupyterhub.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">JupyterHub</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../guides/python.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Python</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../guides/pandas.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Pandas</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../guides/altair.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Altair</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../guides/hypothesis-testing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../guides/sklearn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Modeling with Scikit-learn</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../guides/debugging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Debugging Your Code</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Other Key Info</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../how-to-explain.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">How to Explain in CIS241</span></span></a>
+ <span class="menu-text">How to Explain in CIS241</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../radcat.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">R.A.D. C.A.T.</span></span></a>
+ <span class="menu-text">R.A.D. C.A.T.</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guides/uploading.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Uploading a Jupyter Assignment</span></span></a>
+ <span class="menu-text">Uploading a Jupyter Assignment</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../sample-final-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Work Acquistion and Gender in the Museum of Modern Art</span></span></a>
+ <span class="menu-text">Sample Final Project</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../guides/jupyter.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Advanced Jupyter Setup</span></span></a>
+ <span class="menu-text">Advanced Jupyter Setup</span></a>
   </div>
 </li>
       </ul>
@@ -304,22 +278,22 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
+    <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#step-1-complete-the-whole-assignment" id="toc-step-1-complete-the-whole-assignment" class="nav-link active" data-scroll-target="#step-1-complete-the-whole-assignment"><span class="header-section-number">19.1</span> Step 1: Complete the whole assignment</a></li>
-  <li><a href="#step-2-export-an-html-file" id="toc-step-2-export-an-html-file" class="nav-link" data-scroll-target="#step-2-export-an-html-file"><span class="header-section-number">19.2</span> Step 2: Export an HTML file</a></li>
-  <li><a href="#step-3-rename-and-check-the-html-file" id="toc-step-3-rename-and-check-the-html-file" class="nav-link" data-scroll-target="#step-3-rename-and-check-the-html-file"><span class="header-section-number">19.3</span> Step 3: Rename and check the HTML file</a></li>
-  <li><a href="#step-4-upload-to-sakai" id="toc-step-4-upload-to-sakai" class="nav-link" data-scroll-target="#step-4-upload-to-sakai"><span class="header-section-number">19.4</span> Step 4: Upload to Sakai</a></li>
+  <li><a href="#step-1-complete-the-whole-assignment" id="toc-step-1-complete-the-whole-assignment" class="nav-link active" data-scroll-target="#step-1-complete-the-whole-assignment">Step 1: Complete the whole assignment</a></li>
+  <li><a href="#step-2-export-an-html-file" id="toc-step-2-export-an-html-file" class="nav-link" data-scroll-target="#step-2-export-an-html-file">Step 2: Export an HTML file</a></li>
+  <li><a href="#step-3-rename-and-check-the-html-file" id="toc-step-3-rename-and-check-the-html-file" class="nav-link" data-scroll-target="#step-3-rename-and-check-the-html-file">Step 3: Rename and check the HTML file</a></li>
+  <li><a href="#step-4-upload-to-sakai" id="toc-step-4-upload-to-sakai" class="nav-link" data-scroll-target="#step-4-upload-to-sakai">Step 4: Upload to Sakai</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../how-to-explain.html">Other Key Info</a></li><li class="breadcrumb-item"><a href="../guides/uploading.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Uploading a Jupyter Assignment</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../how-to-explain.html">Other Key Info</a></li><li class="breadcrumb-item"><a href="../guides/uploading.html">Uploading a Jupyter Assignment</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Uploading a Jupyter Assignment</span></h1>
+<h1 class="title">Uploading a Jupyter Assignment</h1>
 </div>
 
 
@@ -350,22 +324,22 @@ Caution
 <p>This guide is only for assignments that are in Jupyter notebooks, such as the weekly workshops and take-home tests. Other assignments (like the Documentation) can be submitted as PDFs.</p>
 </div>
 </div>
-<section id="step-1-complete-the-whole-assignment" class="level2" data-number="19.1">
-<h2 data-number="19.1" class="anchored" data-anchor-id="step-1-complete-the-whole-assignment"><span class="header-section-number">19.1</span> Step 1: Complete the whole assignment</h2>
+<section id="step-1-complete-the-whole-assignment" class="level2">
+<h2 class="anchored" data-anchor-id="step-1-complete-the-whole-assignment">Step 1: Complete the whole assignment</h2>
 <p>Make sure the entire assignment is finished, following the <a href="../radcat.html">RAD CAT</a> guide. All of the visualizations should be displayed the way you want, and all of the necessary code output should be shown in the notebook. <em>If it’s not showing up in the notebook view in JupyterHub, it won’t show up in the output.</em></p>
 </section>
-<section id="step-2-export-an-html-file" class="level2" data-number="19.2">
-<h2 data-number="19.2" class="anchored" data-anchor-id="step-2-export-an-html-file"><span class="header-section-number">19.2</span> Step 2: Export an HTML file</h2>
+<section id="step-2-export-an-html-file" class="level2">
+<h2 class="anchored" data-anchor-id="step-2-export-an-html-file">Step 2: Export an HTML file</h2>
 <p>In JupyterHub, select <code>File &gt; Save and Export Notebook As... &gt; HTML</code> (see the screenshot below). This will download an HTML version of the notebook to your computer. <strong>Do not download the .ipynb file or submit it to Sakai. You need the HTML output so that I can read and grade your work.</strong></p>
 <p><img src="../images/html_export.png" class="img-fluid"></p>
 </section>
-<section id="step-3-rename-and-check-the-html-file" class="level2" data-number="19.3">
-<h2 data-number="19.3" class="anchored" data-anchor-id="step-3-rename-and-check-the-html-file"><span class="header-section-number">19.3</span> Step 3: Rename and check the HTML file</h2>
+<section id="step-3-rename-and-check-the-html-file" class="level2">
+<h2 class="anchored" data-anchor-id="step-3-rename-and-check-the-html-file">Step 3: Rename and check the HTML file</h2>
 <p>The HTML will be downloaded somewhere on your computer (usually into the Downloads folder by default). Find the HTML file, <strong>open it, and look it over.</strong> Make sure that the file displays everything correctly. Sometimes the export goes wrong, and you may need to go back, make changes to your notebook, and export the file again. <em>It is your responsibility that the HTML file is correct.</em></p>
 <p>After checking that the file is ready, rename the file so that it includes your last name. If the original file name was <code>01_movies1.html</code> and your last name is Smith, you should rename the file to <code>smith_01_movies1.html</code>. Just add your last name and an underscore to the start of the filename. Correctly naming your files is an important part of staying organized as a programmer and data scientist!</p>
 </section>
-<section id="step-4-upload-to-sakai" class="level2" data-number="19.4">
-<h2 data-number="19.4" class="anchored" data-anchor-id="step-4-upload-to-sakai"><span class="header-section-number">19.4</span> Step 4: Upload to Sakai</h2>
+<section id="step-4-upload-to-sakai" class="level2">
+<h2 class="anchored" data-anchor-id="step-4-upload-to-sakai">Step 4: Upload to Sakai</h2>
 <p>Now that your HTML is exported, checked, and renamed, you can upload it to the Sakai assignment as you would any other file. Under our class in <a href="https://sakai.washjeff.edu/">Sakai</a> is an Assignments tab. You’ll see an assignment that matches the name of the assignment in your notebook. Select that one, then click <code>Browse...</code> to add the file from your computer to Sakai. Once your file is uploaded, make sure you click <code>Proceed</code> and then <code>Submit</code> to fully upload your assignment. I won’t be able to see and grade the assignment until you’ve clicked <code>Submit</code>.</p>
 <p>And that’s it! If anything goes wrong at any point in this process or you don’t know what to do next, you can always send me an email or stop by office hours.</p>
 
@@ -424,13 +398,14 @@ Caution
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -445,7 +420,7 @@ Caution
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/jrladd\.github\.io\/CIS241\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -772,18 +747,6 @@ Caution
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../radcat.html" class="pagination-link" aria-label="R.A.D. C.A.T.">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">R.A.D. C.A.T.</span></span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../sample-final-project.html" class="pagination-link" aria-label="Work Acquistion and Gender in the Museum of Modern Art">
-        <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Work Acquistion and Gender in the Museum of Modern Art</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

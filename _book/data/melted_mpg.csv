@@ -1,0 +1,974 @@
+manufacturer,model,year,trans,variable,value
+audi,a4,1999,auto(l5),displ,1.8
+audi,a4,1999,manual(m5),displ,1.8
+audi,a4,2008,manual(m6),displ,2.0
+audi,a4,2008,auto(av),displ,2.0
+audi,a4 quattro,1999,manual(m5),displ,1.8
+audi,a4 quattro,1999,auto(l5),displ,1.8
+audi,a4 quattro,2008,manual(m6),displ,2.0
+audi,a4 quattro,2008,auto(s6),displ,2.0
+audi,a6 quattro,1999,auto(l5),displ,2.8
+audi,a6 quattro,2008,auto(s6),displ,3.1
+chevrolet,c1500 suburban 2wd,2008,auto(l4),displ,5.3
+chevrolet,c1500 suburban 2wd,1999,auto(l4),displ,5.7
+chevrolet,corvette,1999,manual(m6),displ,5.7
+chevrolet,corvette,1999,auto(l4),displ,5.7
+chevrolet,corvette,2008,manual(m6),displ,6.2
+chevrolet,corvette,2008,auto(s6),displ,6.2
+chevrolet,k1500 tahoe 4wd,2008,auto(l4),displ,5.3
+chevrolet,k1500 tahoe 4wd,1999,auto(l4),displ,5.7
+chevrolet,malibu,1999,auto(l4),displ,2.4
+chevrolet,malibu,2008,auto(l4),displ,2.4
+chevrolet,malibu,2008,auto(s6),displ,3.6
+dodge,caravan 2wd,1999,auto(l3),displ,2.4
+dodge,caravan 2wd,1999,auto(l4),displ,3.0
+dodge,caravan 2wd,2008,auto(l4),displ,3.3
+dodge,caravan 2wd,2008,auto(l6),displ,3.8
+dodge,dakota pickup 4wd,2008,manual(m6),displ,3.7
+dodge,dakota pickup 4wd,2008,auto(l4),displ,3.7
+dodge,dakota pickup 4wd,1999,auto(l4),displ,3.9
+dodge,dakota pickup 4wd,1999,manual(m5),displ,3.9
+dodge,dakota pickup 4wd,2008,auto(l5),displ,4.7
+dodge,durango 4wd,1999,auto(l4),displ,3.9
+dodge,durango 4wd,2008,auto(l5),displ,4.7
+dodge,ram 1500 pickup 4wd,2008,manual(m6),displ,4.7
+dodge,ram 1500 pickup 4wd,2008,auto(l5),displ,4.7
+dodge,ram 1500 pickup 4wd,1999,auto(l4),displ,5.2
+dodge,ram 1500 pickup 4wd,1999,manual(m5),displ,5.2
+ford,expedition 2wd,1999,auto(l4),displ,4.6
+ford,expedition 2wd,2008,auto(l6),displ,5.4
+ford,explorer 4wd,1999,auto(l5),displ,4.0
+ford,explorer 4wd,1999,manual(m5),displ,4.0
+ford,explorer 4wd,2008,auto(l5),displ,4.0
+ford,explorer 4wd,2008,auto(l6),displ,4.6
+ford,explorer 4wd,1999,auto(l4),displ,5.0
+ford,f150 pickup 4wd,1999,auto(l4),displ,4.2
+ford,f150 pickup 4wd,1999,manual(m5),displ,4.2
+ford,f150 pickup 4wd,2008,auto(l4),displ,4.6
+ford,mustang,1999,manual(m5),displ,3.8
+ford,mustang,1999,auto(l4),displ,3.8
+ford,mustang,2008,manual(m5),displ,4.0
+ford,mustang,2008,auto(l5),displ,4.0
+ford,mustang,2008,manual(m6),displ,5.4
+honda,civic,1999,manual(m5),displ,1.6
+honda,civic,1999,auto(l4),displ,1.6
+honda,civic,2008,manual(m5),displ,1.8
+honda,civic,2008,auto(l5),displ,1.8
+honda,civic,2008,manual(m6),displ,2.0
+hyundai,sonata,1999,auto(l4),displ,2.4
+hyundai,sonata,1999,manual(m5),displ,2.4
+hyundai,sonata,2008,auto(l4),displ,2.4
+hyundai,sonata,2008,manual(m5),displ,2.4
+hyundai,sonata,2008,auto(l5),displ,3.3
+hyundai,tiburon,1999,auto(l4),displ,2.0
+hyundai,tiburon,1999,manual(m5),displ,2.0
+hyundai,tiburon,2008,manual(m5),displ,2.0
+hyundai,tiburon,2008,auto(l4),displ,2.0
+hyundai,tiburon,2008,manual(m6),displ,2.7
+jeep,grand cherokee 4wd,2008,auto(l5),displ,3.0
+jeep,grand cherokee 4wd,1999,auto(l4),displ,4.0
+land rover,range rover,1999,auto(l4),displ,4.0
+land rover,range rover,2008,auto(s6),displ,4.2
+lincoln,navigator 2wd,1999,auto(l4),displ,5.4
+lincoln,navigator 2wd,2008,auto(l6),displ,5.4
+mercury,mountaineer 4wd,1999,auto(l5),displ,4.0
+mercury,mountaineer 4wd,2008,auto(l5),displ,4.0
+mercury,mountaineer 4wd,2008,auto(l6),displ,4.6
+mercury,mountaineer 4wd,1999,auto(l4),displ,5.0
+nissan,altima,1999,manual(m5),displ,2.4
+nissan,altima,1999,auto(l4),displ,2.4
+nissan,altima,2008,auto(av),displ,2.5
+nissan,altima,2008,manual(m6),displ,2.5
+nissan,maxima,1999,auto(l4),displ,3.0
+nissan,maxima,1999,manual(m5),displ,3.0
+nissan,maxima,2008,auto(av),displ,3.5
+nissan,pathfinder 4wd,1999,auto(l4),displ,3.3
+nissan,pathfinder 4wd,1999,manual(m5),displ,3.3
+nissan,pathfinder 4wd,2008,auto(l5),displ,4.0
+nissan,pathfinder 4wd,2008,auto(s5),displ,5.6
+pontiac,grand prix,1999,auto(l4),displ,3.1
+pontiac,grand prix,2008,auto(l4),displ,3.8
+pontiac,grand prix,2008,auto(s4),displ,5.3
+subaru,forester awd,1999,manual(m5),displ,2.5
+subaru,forester awd,1999,auto(l4),displ,2.5
+subaru,forester awd,2008,manual(m5),displ,2.5
+subaru,forester awd,2008,auto(l4),displ,2.5
+subaru,impreza awd,1999,auto(l4),displ,2.2
+subaru,impreza awd,1999,manual(m5),displ,2.2
+subaru,impreza awd,2008,auto(s4),displ,2.5
+subaru,impreza awd,2008,manual(m5),displ,2.5
+toyota,4runner 4wd,1999,manual(m5),displ,2.7
+toyota,4runner 4wd,1999,auto(l4),displ,2.7
+toyota,4runner 4wd,2008,auto(l5),displ,4.0
+toyota,camry,1999,manual(m5),displ,2.2
+toyota,camry,1999,auto(l4),displ,2.2
+toyota,camry,2008,manual(m5),displ,2.4
+toyota,camry,2008,auto(l5),displ,2.4
+toyota,camry,2008,auto(s6),displ,3.5
+toyota,camry solara,1999,auto(l4),displ,2.2
+toyota,camry solara,1999,manual(m5),displ,2.2
+toyota,camry solara,2008,manual(m5),displ,2.4
+toyota,camry solara,2008,auto(s5),displ,2.4
+toyota,corolla,1999,auto(l3),displ,1.8
+toyota,corolla,1999,auto(l4),displ,1.8
+toyota,corolla,1999,manual(m5),displ,1.8
+toyota,corolla,2008,manual(m5),displ,1.8
+toyota,corolla,2008,auto(l4),displ,1.8
+toyota,land cruiser wagon 4wd,1999,auto(l4),displ,4.7
+toyota,land cruiser wagon 4wd,2008,auto(s6),displ,5.7
+toyota,toyota tacoma 4wd,1999,manual(m5),displ,2.7
+toyota,toyota tacoma 4wd,1999,auto(l4),displ,2.7
+toyota,toyota tacoma 4wd,2008,manual(m5),displ,2.7
+toyota,toyota tacoma 4wd,2008,manual(m6),displ,4.0
+toyota,toyota tacoma 4wd,2008,auto(l5),displ,4.0
+volkswagen,gti,1999,manual(m5),displ,2.0
+volkswagen,gti,1999,auto(l4),displ,2.0
+volkswagen,gti,2008,manual(m6),displ,2.0
+volkswagen,gti,2008,auto(s6),displ,2.0
+volkswagen,jetta,1999,manual(m5),displ,1.9
+volkswagen,jetta,1999,auto(l4),displ,2.0
+volkswagen,jetta,2008,auto(s6),displ,2.0
+volkswagen,jetta,2008,manual(m6),displ,2.0
+volkswagen,jetta,2008,manual(m5),displ,2.5
+volkswagen,new beetle,1999,manual(m5),displ,1.9
+volkswagen,new beetle,1999,auto(l4),displ,1.9
+volkswagen,new beetle,2008,manual(m5),displ,2.5
+volkswagen,new beetle,2008,auto(s6),displ,2.5
+volkswagen,passat,1999,manual(m5),displ,1.8
+volkswagen,passat,1999,auto(l5),displ,1.8
+volkswagen,passat,2008,auto(s6),displ,2.0
+volkswagen,passat,2008,manual(m6),displ,2.0
+audi,a4,1999,auto(l5),cyl,4
+audi,a4,1999,manual(m5),cyl,4
+audi,a4,2008,manual(m6),cyl,4
+audi,a4,2008,auto(av),cyl,4
+audi,a4 quattro,1999,manual(m5),cyl,4
+audi,a4 quattro,1999,auto(l5),cyl,4
+audi,a4 quattro,2008,manual(m6),cyl,4
+audi,a4 quattro,2008,auto(s6),cyl,4
+audi,a6 quattro,1999,auto(l5),cyl,6
+audi,a6 quattro,2008,auto(s6),cyl,6
+chevrolet,c1500 suburban 2wd,2008,auto(l4),cyl,8
+chevrolet,c1500 suburban 2wd,1999,auto(l4),cyl,8
+chevrolet,corvette,1999,manual(m6),cyl,8
+chevrolet,corvette,1999,auto(l4),cyl,8
+chevrolet,corvette,2008,manual(m6),cyl,8
+chevrolet,corvette,2008,auto(s6),cyl,8
+chevrolet,k1500 tahoe 4wd,2008,auto(l4),cyl,8
+chevrolet,k1500 tahoe 4wd,1999,auto(l4),cyl,8
+chevrolet,malibu,1999,auto(l4),cyl,4
+chevrolet,malibu,2008,auto(l4),cyl,4
+chevrolet,malibu,2008,auto(s6),cyl,6
+dodge,caravan 2wd,1999,auto(l3),cyl,4
+dodge,caravan 2wd,1999,auto(l4),cyl,6
+dodge,caravan 2wd,2008,auto(l4),cyl,6
+dodge,caravan 2wd,2008,auto(l6),cyl,6
+dodge,dakota pickup 4wd,2008,manual(m6),cyl,6
+dodge,dakota pickup 4wd,2008,auto(l4),cyl,6
+dodge,dakota pickup 4wd,1999,auto(l4),cyl,6
+dodge,dakota pickup 4wd,1999,manual(m5),cyl,6
+dodge,dakota pickup 4wd,2008,auto(l5),cyl,8
+dodge,durango 4wd,1999,auto(l4),cyl,6
+dodge,durango 4wd,2008,auto(l5),cyl,8
+dodge,ram 1500 pickup 4wd,2008,manual(m6),cyl,8
+dodge,ram 1500 pickup 4wd,2008,auto(l5),cyl,8
+dodge,ram 1500 pickup 4wd,1999,auto(l4),cyl,8
+dodge,ram 1500 pickup 4wd,1999,manual(m5),cyl,8
+ford,expedition 2wd,1999,auto(l4),cyl,8
+ford,expedition 2wd,2008,auto(l6),cyl,8
+ford,explorer 4wd,1999,auto(l5),cyl,6
+ford,explorer 4wd,1999,manual(m5),cyl,6
+ford,explorer 4wd,2008,auto(l5),cyl,6
+ford,explorer 4wd,2008,auto(l6),cyl,8
+ford,explorer 4wd,1999,auto(l4),cyl,8
+ford,f150 pickup 4wd,1999,auto(l4),cyl,6
+ford,f150 pickup 4wd,1999,manual(m5),cyl,6
+ford,f150 pickup 4wd,2008,auto(l4),cyl,8
+ford,mustang,1999,manual(m5),cyl,6
+ford,mustang,1999,auto(l4),cyl,6
+ford,mustang,2008,manual(m5),cyl,6
+ford,mustang,2008,auto(l5),cyl,6
+ford,mustang,2008,manual(m6),cyl,8
+honda,civic,1999,manual(m5),cyl,4
+honda,civic,1999,auto(l4),cyl,4
+honda,civic,2008,manual(m5),cyl,4
+honda,civic,2008,auto(l5),cyl,4
+honda,civic,2008,manual(m6),cyl,4
+hyundai,sonata,1999,auto(l4),cyl,4
+hyundai,sonata,1999,manual(m5),cyl,4
+hyundai,sonata,2008,auto(l4),cyl,4
+hyundai,sonata,2008,manual(m5),cyl,4
+hyundai,sonata,2008,auto(l5),cyl,6
+hyundai,tiburon,1999,auto(l4),cyl,4
+hyundai,tiburon,1999,manual(m5),cyl,4
+hyundai,tiburon,2008,manual(m5),cyl,4
+hyundai,tiburon,2008,auto(l4),cyl,4
+hyundai,tiburon,2008,manual(m6),cyl,6
+jeep,grand cherokee 4wd,2008,auto(l5),cyl,6
+jeep,grand cherokee 4wd,1999,auto(l4),cyl,6
+land rover,range rover,1999,auto(l4),cyl,8
+land rover,range rover,2008,auto(s6),cyl,8
+lincoln,navigator 2wd,1999,auto(l4),cyl,8
+lincoln,navigator 2wd,2008,auto(l6),cyl,8
+mercury,mountaineer 4wd,1999,auto(l5),cyl,6
+mercury,mountaineer 4wd,2008,auto(l5),cyl,6
+mercury,mountaineer 4wd,2008,auto(l6),cyl,8
+mercury,mountaineer 4wd,1999,auto(l4),cyl,8
+nissan,altima,1999,manual(m5),cyl,4
+nissan,altima,1999,auto(l4),cyl,4
+nissan,altima,2008,auto(av),cyl,4
+nissan,altima,2008,manual(m6),cyl,4
+nissan,maxima,1999,auto(l4),cyl,6
+nissan,maxima,1999,manual(m5),cyl,6
+nissan,maxima,2008,auto(av),cyl,6
+nissan,pathfinder 4wd,1999,auto(l4),cyl,6
+nissan,pathfinder 4wd,1999,manual(m5),cyl,6
+nissan,pathfinder 4wd,2008,auto(l5),cyl,6
+nissan,pathfinder 4wd,2008,auto(s5),cyl,8
+pontiac,grand prix,1999,auto(l4),cyl,6
+pontiac,grand prix,2008,auto(l4),cyl,6
+pontiac,grand prix,2008,auto(s4),cyl,8
+subaru,forester awd,1999,manual(m5),cyl,4
+subaru,forester awd,1999,auto(l4),cyl,4
+subaru,forester awd,2008,manual(m5),cyl,4
+subaru,forester awd,2008,auto(l4),cyl,4
+subaru,impreza awd,1999,auto(l4),cyl,4
+subaru,impreza awd,1999,manual(m5),cyl,4
+subaru,impreza awd,2008,auto(s4),cyl,4
+subaru,impreza awd,2008,manual(m5),cyl,4
+toyota,4runner 4wd,1999,manual(m5),cyl,4
+toyota,4runner 4wd,1999,auto(l4),cyl,4
+toyota,4runner 4wd,2008,auto(l5),cyl,6
+toyota,camry,1999,manual(m5),cyl,4
+toyota,camry,1999,auto(l4),cyl,4
+toyota,camry,2008,manual(m5),cyl,4
+toyota,camry,2008,auto(l5),cyl,4
+toyota,camry,2008,auto(s6),cyl,6
+toyota,camry solara,1999,auto(l4),cyl,4
+toyota,camry solara,1999,manual(m5),cyl,4
+toyota,camry solara,2008,manual(m5),cyl,4
+toyota,camry solara,2008,auto(s5),cyl,4
+toyota,corolla,1999,auto(l3),cyl,4
+toyota,corolla,1999,auto(l4),cyl,4
+toyota,corolla,1999,manual(m5),cyl,4
+toyota,corolla,2008,manual(m5),cyl,4
+toyota,corolla,2008,auto(l4),cyl,4
+toyota,land cruiser wagon 4wd,1999,auto(l4),cyl,8
+toyota,land cruiser wagon 4wd,2008,auto(s6),cyl,8
+toyota,toyota tacoma 4wd,1999,manual(m5),cyl,4
+toyota,toyota tacoma 4wd,1999,auto(l4),cyl,4
+toyota,toyota tacoma 4wd,2008,manual(m5),cyl,4
+toyota,toyota tacoma 4wd,2008,manual(m6),cyl,6
+toyota,toyota tacoma 4wd,2008,auto(l5),cyl,6
+volkswagen,gti,1999,manual(m5),cyl,4
+volkswagen,gti,1999,auto(l4),cyl,4
+volkswagen,gti,2008,manual(m6),cyl,4
+volkswagen,gti,2008,auto(s6),cyl,4
+volkswagen,jetta,1999,manual(m5),cyl,4
+volkswagen,jetta,1999,auto(l4),cyl,4
+volkswagen,jetta,2008,auto(s6),cyl,4
+volkswagen,jetta,2008,manual(m6),cyl,4
+volkswagen,jetta,2008,manual(m5),cyl,5
+volkswagen,new beetle,1999,manual(m5),cyl,4
+volkswagen,new beetle,1999,auto(l4),cyl,4
+volkswagen,new beetle,2008,manual(m5),cyl,5
+volkswagen,new beetle,2008,auto(s6),cyl,5
+volkswagen,passat,1999,manual(m5),cyl,4
+volkswagen,passat,1999,auto(l5),cyl,4
+volkswagen,passat,2008,auto(s6),cyl,4
+volkswagen,passat,2008,manual(m6),cyl,4
+audi,a4,1999,auto(l5),drv,f
+audi,a4,1999,manual(m5),drv,f
+audi,a4,2008,manual(m6),drv,f
+audi,a4,2008,auto(av),drv,f
+audi,a4 quattro,1999,manual(m5),drv,4
+audi,a4 quattro,1999,auto(l5),drv,4
+audi,a4 quattro,2008,manual(m6),drv,4
+audi,a4 quattro,2008,auto(s6),drv,4
+audi,a6 quattro,1999,auto(l5),drv,4
+audi,a6 quattro,2008,auto(s6),drv,4
+chevrolet,c1500 suburban 2wd,2008,auto(l4),drv,r
+chevrolet,c1500 suburban 2wd,1999,auto(l4),drv,r
+chevrolet,corvette,1999,manual(m6),drv,r
+chevrolet,corvette,1999,auto(l4),drv,r
+chevrolet,corvette,2008,manual(m6),drv,r
+chevrolet,corvette,2008,auto(s6),drv,r
+chevrolet,k1500 tahoe 4wd,2008,auto(l4),drv,4
+chevrolet,k1500 tahoe 4wd,1999,auto(l4),drv,4
+chevrolet,malibu,1999,auto(l4),drv,f
+chevrolet,malibu,2008,auto(l4),drv,f
+chevrolet,malibu,2008,auto(s6),drv,f
+dodge,caravan 2wd,1999,auto(l3),drv,f
+dodge,caravan 2wd,1999,auto(l4),drv,f
+dodge,caravan 2wd,2008,auto(l4),drv,f
+dodge,caravan 2wd,2008,auto(l6),drv,f
+dodge,dakota pickup 4wd,2008,manual(m6),drv,4
+dodge,dakota pickup 4wd,2008,auto(l4),drv,4
+dodge,dakota pickup 4wd,1999,auto(l4),drv,4
+dodge,dakota pickup 4wd,1999,manual(m5),drv,4
+dodge,dakota pickup 4wd,2008,auto(l5),drv,4
+dodge,durango 4wd,1999,auto(l4),drv,4
+dodge,durango 4wd,2008,auto(l5),drv,4
+dodge,ram 1500 pickup 4wd,2008,manual(m6),drv,4
+dodge,ram 1500 pickup 4wd,2008,auto(l5),drv,4
+dodge,ram 1500 pickup 4wd,1999,auto(l4),drv,4
+dodge,ram 1500 pickup 4wd,1999,manual(m5),drv,4
+ford,expedition 2wd,1999,auto(l4),drv,r
+ford,expedition 2wd,2008,auto(l6),drv,r
+ford,explorer 4wd,1999,auto(l5),drv,4
+ford,explorer 4wd,1999,manual(m5),drv,4
+ford,explorer 4wd,2008,auto(l5),drv,4
+ford,explorer 4wd,2008,auto(l6),drv,4
+ford,explorer 4wd,1999,auto(l4),drv,4
+ford,f150 pickup 4wd,1999,auto(l4),drv,4
+ford,f150 pickup 4wd,1999,manual(m5),drv,4
+ford,f150 pickup 4wd,2008,auto(l4),drv,4
+ford,mustang,1999,manual(m5),drv,r
+ford,mustang,1999,auto(l4),drv,r
+ford,mustang,2008,manual(m5),drv,r
+ford,mustang,2008,auto(l5),drv,r
+ford,mustang,2008,manual(m6),drv,r
+honda,civic,1999,manual(m5),drv,f
+honda,civic,1999,auto(l4),drv,f
+honda,civic,2008,manual(m5),drv,f
+honda,civic,2008,auto(l5),drv,f
+honda,civic,2008,manual(m6),drv,f
+hyundai,sonata,1999,auto(l4),drv,f
+hyundai,sonata,1999,manual(m5),drv,f
+hyundai,sonata,2008,auto(l4),drv,f
+hyundai,sonata,2008,manual(m5),drv,f
+hyundai,sonata,2008,auto(l5),drv,f
+hyundai,tiburon,1999,auto(l4),drv,f
+hyundai,tiburon,1999,manual(m5),drv,f
+hyundai,tiburon,2008,manual(m5),drv,f
+hyundai,tiburon,2008,auto(l4),drv,f
+hyundai,tiburon,2008,manual(m6),drv,f
+jeep,grand cherokee 4wd,2008,auto(l5),drv,4
+jeep,grand cherokee 4wd,1999,auto(l4),drv,4
+land rover,range rover,1999,auto(l4),drv,4
+land rover,range rover,2008,auto(s6),drv,4
+lincoln,navigator 2wd,1999,auto(l4),drv,r
+lincoln,navigator 2wd,2008,auto(l6),drv,r
+mercury,mountaineer 4wd,1999,auto(l5),drv,4
+mercury,mountaineer 4wd,2008,auto(l5),drv,4
+mercury,mountaineer 4wd,2008,auto(l6),drv,4
+mercury,mountaineer 4wd,1999,auto(l4),drv,4
+nissan,altima,1999,manual(m5),drv,f
+nissan,altima,1999,auto(l4),drv,f
+nissan,altima,2008,auto(av),drv,f
+nissan,altima,2008,manual(m6),drv,f
+nissan,maxima,1999,auto(l4),drv,f
+nissan,maxima,1999,manual(m5),drv,f
+nissan,maxima,2008,auto(av),drv,f
+nissan,pathfinder 4wd,1999,auto(l4),drv,4
+nissan,pathfinder 4wd,1999,manual(m5),drv,4
+nissan,pathfinder 4wd,2008,auto(l5),drv,4
+nissan,pathfinder 4wd,2008,auto(s5),drv,4
+pontiac,grand prix,1999,auto(l4),drv,f
+pontiac,grand prix,2008,auto(l4),drv,f
+pontiac,grand prix,2008,auto(s4),drv,f
+subaru,forester awd,1999,manual(m5),drv,4
+subaru,forester awd,1999,auto(l4),drv,4
+subaru,forester awd,2008,manual(m5),drv,4
+subaru,forester awd,2008,auto(l4),drv,4
+subaru,impreza awd,1999,auto(l4),drv,4
+subaru,impreza awd,1999,manual(m5),drv,4
+subaru,impreza awd,2008,auto(s4),drv,4
+subaru,impreza awd,2008,manual(m5),drv,4
+toyota,4runner 4wd,1999,manual(m5),drv,4
+toyota,4runner 4wd,1999,auto(l4),drv,4
+toyota,4runner 4wd,2008,auto(l5),drv,4
+toyota,camry,1999,manual(m5),drv,f
+toyota,camry,1999,auto(l4),drv,f
+toyota,camry,2008,manual(m5),drv,f
+toyota,camry,2008,auto(l5),drv,f
+toyota,camry,2008,auto(s6),drv,f
+toyota,camry solara,1999,auto(l4),drv,f
+toyota,camry solara,1999,manual(m5),drv,f
+toyota,camry solara,2008,manual(m5),drv,f
+toyota,camry solara,2008,auto(s5),drv,f
+toyota,corolla,1999,auto(l3),drv,f
+toyota,corolla,1999,auto(l4),drv,f
+toyota,corolla,1999,manual(m5),drv,f
+toyota,corolla,2008,manual(m5),drv,f
+toyota,corolla,2008,auto(l4),drv,f
+toyota,land cruiser wagon 4wd,1999,auto(l4),drv,4
+toyota,land cruiser wagon 4wd,2008,auto(s6),drv,4
+toyota,toyota tacoma 4wd,1999,manual(m5),drv,4
+toyota,toyota tacoma 4wd,1999,auto(l4),drv,4
+toyota,toyota tacoma 4wd,2008,manual(m5),drv,4
+toyota,toyota tacoma 4wd,2008,manual(m6),drv,4
+toyota,toyota tacoma 4wd,2008,auto(l5),drv,4
+volkswagen,gti,1999,manual(m5),drv,f
+volkswagen,gti,1999,auto(l4),drv,f
+volkswagen,gti,2008,manual(m6),drv,f
+volkswagen,gti,2008,auto(s6),drv,f
+volkswagen,jetta,1999,manual(m5),drv,f
+volkswagen,jetta,1999,auto(l4),drv,f
+volkswagen,jetta,2008,auto(s6),drv,f
+volkswagen,jetta,2008,manual(m6),drv,f
+volkswagen,jetta,2008,manual(m5),drv,f
+volkswagen,new beetle,1999,manual(m5),drv,f
+volkswagen,new beetle,1999,auto(l4),drv,f
+volkswagen,new beetle,2008,manual(m5),drv,f
+volkswagen,new beetle,2008,auto(s6),drv,f
+volkswagen,passat,1999,manual(m5),drv,f
+volkswagen,passat,1999,auto(l5),drv,f
+volkswagen,passat,2008,auto(s6),drv,f
+volkswagen,passat,2008,manual(m6),drv,f
+audi,a4,1999,auto(l5),cty,18
+audi,a4,1999,manual(m5),cty,21
+audi,a4,2008,manual(m6),cty,20
+audi,a4,2008,auto(av),cty,21
+audi,a4 quattro,1999,manual(m5),cty,18
+audi,a4 quattro,1999,auto(l5),cty,16
+audi,a4 quattro,2008,manual(m6),cty,20
+audi,a4 quattro,2008,auto(s6),cty,19
+audi,a6 quattro,1999,auto(l5),cty,15
+audi,a6 quattro,2008,auto(s6),cty,17
+chevrolet,c1500 suburban 2wd,2008,auto(l4),cty,14
+chevrolet,c1500 suburban 2wd,1999,auto(l4),cty,13
+chevrolet,corvette,1999,manual(m6),cty,16
+chevrolet,corvette,1999,auto(l4),cty,15
+chevrolet,corvette,2008,manual(m6),cty,16
+chevrolet,corvette,2008,auto(s6),cty,15
+chevrolet,k1500 tahoe 4wd,2008,auto(l4),cty,14
+chevrolet,k1500 tahoe 4wd,1999,auto(l4),cty,11
+chevrolet,malibu,1999,auto(l4),cty,19
+chevrolet,malibu,2008,auto(l4),cty,22
+chevrolet,malibu,2008,auto(s6),cty,17
+dodge,caravan 2wd,1999,auto(l3),cty,18
+dodge,caravan 2wd,1999,auto(l4),cty,17
+dodge,caravan 2wd,2008,auto(l4),cty,17
+dodge,caravan 2wd,2008,auto(l6),cty,16
+dodge,dakota pickup 4wd,2008,manual(m6),cty,15
+dodge,dakota pickup 4wd,2008,auto(l4),cty,14
+dodge,dakota pickup 4wd,1999,auto(l4),cty,13
+dodge,dakota pickup 4wd,1999,manual(m5),cty,14
+dodge,dakota pickup 4wd,2008,auto(l5),cty,14
+dodge,durango 4wd,1999,auto(l4),cty,13
+dodge,durango 4wd,2008,auto(l5),cty,13
+dodge,ram 1500 pickup 4wd,2008,manual(m6),cty,12
+dodge,ram 1500 pickup 4wd,2008,auto(l5),cty,9
+dodge,ram 1500 pickup 4wd,1999,auto(l4),cty,11
+dodge,ram 1500 pickup 4wd,1999,manual(m5),cty,11
+ford,expedition 2wd,1999,auto(l4),cty,11
+ford,expedition 2wd,2008,auto(l6),cty,12
+ford,explorer 4wd,1999,auto(l5),cty,14
+ford,explorer 4wd,1999,manual(m5),cty,15
+ford,explorer 4wd,2008,auto(l5),cty,13
+ford,explorer 4wd,2008,auto(l6),cty,13
+ford,explorer 4wd,1999,auto(l4),cty,13
+ford,f150 pickup 4wd,1999,auto(l4),cty,14
+ford,f150 pickup 4wd,1999,manual(m5),cty,14
+ford,f150 pickup 4wd,2008,auto(l4),cty,13
+ford,mustang,1999,manual(m5),cty,18
+ford,mustang,1999,auto(l4),cty,18
+ford,mustang,2008,manual(m5),cty,17
+ford,mustang,2008,auto(l5),cty,16
+ford,mustang,2008,manual(m6),cty,14
+honda,civic,1999,manual(m5),cty,28
+honda,civic,1999,auto(l4),cty,24
+honda,civic,2008,manual(m5),cty,26
+honda,civic,2008,auto(l5),cty,25
+honda,civic,2008,manual(m6),cty,21
+hyundai,sonata,1999,auto(l4),cty,18
+hyundai,sonata,1999,manual(m5),cty,18
+hyundai,sonata,2008,auto(l4),cty,21
+hyundai,sonata,2008,manual(m5),cty,21
+hyundai,sonata,2008,auto(l5),cty,19
+hyundai,tiburon,1999,auto(l4),cty,19
+hyundai,tiburon,1999,manual(m5),cty,19
+hyundai,tiburon,2008,manual(m5),cty,20
+hyundai,tiburon,2008,auto(l4),cty,20
+hyundai,tiburon,2008,manual(m6),cty,16
+jeep,grand cherokee 4wd,2008,auto(l5),cty,17
+jeep,grand cherokee 4wd,1999,auto(l4),cty,15
+land rover,range rover,1999,auto(l4),cty,11
+land rover,range rover,2008,auto(s6),cty,12
+lincoln,navigator 2wd,1999,auto(l4),cty,11
+lincoln,navigator 2wd,2008,auto(l6),cty,12
+mercury,mountaineer 4wd,1999,auto(l5),cty,14
+mercury,mountaineer 4wd,2008,auto(l5),cty,13
+mercury,mountaineer 4wd,2008,auto(l6),cty,13
+mercury,mountaineer 4wd,1999,auto(l4),cty,13
+nissan,altima,1999,manual(m5),cty,21
+nissan,altima,1999,auto(l4),cty,19
+nissan,altima,2008,auto(av),cty,23
+nissan,altima,2008,manual(m6),cty,23
+nissan,maxima,1999,auto(l4),cty,18
+nissan,maxima,1999,manual(m5),cty,19
+nissan,maxima,2008,auto(av),cty,19
+nissan,pathfinder 4wd,1999,auto(l4),cty,14
+nissan,pathfinder 4wd,1999,manual(m5),cty,15
+nissan,pathfinder 4wd,2008,auto(l5),cty,14
+nissan,pathfinder 4wd,2008,auto(s5),cty,12
+pontiac,grand prix,1999,auto(l4),cty,18
+pontiac,grand prix,2008,auto(l4),cty,18
+pontiac,grand prix,2008,auto(s4),cty,16
+subaru,forester awd,1999,manual(m5),cty,18
+subaru,forester awd,1999,auto(l4),cty,18
+subaru,forester awd,2008,manual(m5),cty,20
+subaru,forester awd,2008,auto(l4),cty,20
+subaru,impreza awd,1999,auto(l4),cty,21
+subaru,impreza awd,1999,manual(m5),cty,19
+subaru,impreza awd,2008,auto(s4),cty,20
+subaru,impreza awd,2008,manual(m5),cty,19
+toyota,4runner 4wd,1999,manual(m5),cty,15
+toyota,4runner 4wd,1999,auto(l4),cty,16
+toyota,4runner 4wd,2008,auto(l5),cty,16
+toyota,camry,1999,manual(m5),cty,21
+toyota,camry,1999,auto(l4),cty,21
+toyota,camry,2008,manual(m5),cty,21
+toyota,camry,2008,auto(l5),cty,21
+toyota,camry,2008,auto(s6),cty,19
+toyota,camry solara,1999,auto(l4),cty,21
+toyota,camry solara,1999,manual(m5),cty,21
+toyota,camry solara,2008,manual(m5),cty,21
+toyota,camry solara,2008,auto(s5),cty,22
+toyota,corolla,1999,auto(l3),cty,24
+toyota,corolla,1999,auto(l4),cty,24
+toyota,corolla,1999,manual(m5),cty,26
+toyota,corolla,2008,manual(m5),cty,28
+toyota,corolla,2008,auto(l4),cty,26
+toyota,land cruiser wagon 4wd,1999,auto(l4),cty,11
+toyota,land cruiser wagon 4wd,2008,auto(s6),cty,13
+toyota,toyota tacoma 4wd,1999,manual(m5),cty,15
+toyota,toyota tacoma 4wd,1999,auto(l4),cty,16
+toyota,toyota tacoma 4wd,2008,manual(m5),cty,17
+toyota,toyota tacoma 4wd,2008,manual(m6),cty,15
+toyota,toyota tacoma 4wd,2008,auto(l5),cty,16
+volkswagen,gti,1999,manual(m5),cty,21
+volkswagen,gti,1999,auto(l4),cty,19
+volkswagen,gti,2008,manual(m6),cty,21
+volkswagen,gti,2008,auto(s6),cty,22
+volkswagen,jetta,1999,manual(m5),cty,33
+volkswagen,jetta,1999,auto(l4),cty,19
+volkswagen,jetta,2008,auto(s6),cty,22
+volkswagen,jetta,2008,manual(m6),cty,21
+volkswagen,jetta,2008,manual(m5),cty,21
+volkswagen,new beetle,1999,manual(m5),cty,35
+volkswagen,new beetle,1999,auto(l4),cty,29
+volkswagen,new beetle,2008,manual(m5),cty,20
+volkswagen,new beetle,2008,auto(s6),cty,20
+volkswagen,passat,1999,manual(m5),cty,21
+volkswagen,passat,1999,auto(l5),cty,18
+volkswagen,passat,2008,auto(s6),cty,19
+volkswagen,passat,2008,manual(m6),cty,21
+audi,a4,1999,auto(l5),hwy,29
+audi,a4,1999,manual(m5),hwy,29
+audi,a4,2008,manual(m6),hwy,31
+audi,a4,2008,auto(av),hwy,30
+audi,a4 quattro,1999,manual(m5),hwy,26
+audi,a4 quattro,1999,auto(l5),hwy,25
+audi,a4 quattro,2008,manual(m6),hwy,28
+audi,a4 quattro,2008,auto(s6),hwy,27
+audi,a6 quattro,1999,auto(l5),hwy,24
+audi,a6 quattro,2008,auto(s6),hwy,25
+chevrolet,c1500 suburban 2wd,2008,auto(l4),hwy,20
+chevrolet,c1500 suburban 2wd,1999,auto(l4),hwy,17
+chevrolet,corvette,1999,manual(m6),hwy,26
+chevrolet,corvette,1999,auto(l4),hwy,23
+chevrolet,corvette,2008,manual(m6),hwy,26
+chevrolet,corvette,2008,auto(s6),hwy,25
+chevrolet,k1500 tahoe 4wd,2008,auto(l4),hwy,19
+chevrolet,k1500 tahoe 4wd,1999,auto(l4),hwy,15
+chevrolet,malibu,1999,auto(l4),hwy,27
+chevrolet,malibu,2008,auto(l4),hwy,30
+chevrolet,malibu,2008,auto(s6),hwy,26
+dodge,caravan 2wd,1999,auto(l3),hwy,24
+dodge,caravan 2wd,1999,auto(l4),hwy,24
+dodge,caravan 2wd,2008,auto(l4),hwy,24
+dodge,caravan 2wd,2008,auto(l6),hwy,23
+dodge,dakota pickup 4wd,2008,manual(m6),hwy,19
+dodge,dakota pickup 4wd,2008,auto(l4),hwy,18
+dodge,dakota pickup 4wd,1999,auto(l4),hwy,17
+dodge,dakota pickup 4wd,1999,manual(m5),hwy,17
+dodge,dakota pickup 4wd,2008,auto(l5),hwy,19
+dodge,durango 4wd,1999,auto(l4),hwy,17
+dodge,durango 4wd,2008,auto(l5),hwy,17
+dodge,ram 1500 pickup 4wd,2008,manual(m6),hwy,16
+dodge,ram 1500 pickup 4wd,2008,auto(l5),hwy,12
+dodge,ram 1500 pickup 4wd,1999,auto(l4),hwy,15
+dodge,ram 1500 pickup 4wd,1999,manual(m5),hwy,16
+ford,expedition 2wd,1999,auto(l4),hwy,17
+ford,expedition 2wd,2008,auto(l6),hwy,18
+ford,explorer 4wd,1999,auto(l5),hwy,17
+ford,explorer 4wd,1999,manual(m5),hwy,19
+ford,explorer 4wd,2008,auto(l5),hwy,19
+ford,explorer 4wd,2008,auto(l6),hwy,19
+ford,explorer 4wd,1999,auto(l4),hwy,17
+ford,f150 pickup 4wd,1999,auto(l4),hwy,17
+ford,f150 pickup 4wd,1999,manual(m5),hwy,17
+ford,f150 pickup 4wd,2008,auto(l4),hwy,17
+ford,mustang,1999,manual(m5),hwy,26
+ford,mustang,1999,auto(l4),hwy,25
+ford,mustang,2008,manual(m5),hwy,26
+ford,mustang,2008,auto(l5),hwy,24
+ford,mustang,2008,manual(m6),hwy,20
+honda,civic,1999,manual(m5),hwy,33
+honda,civic,1999,auto(l4),hwy,32
+honda,civic,2008,manual(m5),hwy,34
+honda,civic,2008,auto(l5),hwy,36
+honda,civic,2008,manual(m6),hwy,29
+hyundai,sonata,1999,auto(l4),hwy,26
+hyundai,sonata,1999,manual(m5),hwy,27
+hyundai,sonata,2008,auto(l4),hwy,30
+hyundai,sonata,2008,manual(m5),hwy,31
+hyundai,sonata,2008,auto(l5),hwy,28
+hyundai,tiburon,1999,auto(l4),hwy,26
+hyundai,tiburon,1999,manual(m5),hwy,29
+hyundai,tiburon,2008,manual(m5),hwy,28
+hyundai,tiburon,2008,auto(l4),hwy,27
+hyundai,tiburon,2008,manual(m6),hwy,24
+jeep,grand cherokee 4wd,2008,auto(l5),hwy,22
+jeep,grand cherokee 4wd,1999,auto(l4),hwy,20
+land rover,range rover,1999,auto(l4),hwy,15
+land rover,range rover,2008,auto(s6),hwy,18
+lincoln,navigator 2wd,1999,auto(l4),hwy,17
+lincoln,navigator 2wd,2008,auto(l6),hwy,18
+mercury,mountaineer 4wd,1999,auto(l5),hwy,17
+mercury,mountaineer 4wd,2008,auto(l5),hwy,19
+mercury,mountaineer 4wd,2008,auto(l6),hwy,19
+mercury,mountaineer 4wd,1999,auto(l4),hwy,17
+nissan,altima,1999,manual(m5),hwy,29
+nissan,altima,1999,auto(l4),hwy,27
+nissan,altima,2008,auto(av),hwy,31
+nissan,altima,2008,manual(m6),hwy,32
+nissan,maxima,1999,auto(l4),hwy,26
+nissan,maxima,1999,manual(m5),hwy,25
+nissan,maxima,2008,auto(av),hwy,25
+nissan,pathfinder 4wd,1999,auto(l4),hwy,17
+nissan,pathfinder 4wd,1999,manual(m5),hwy,17
+nissan,pathfinder 4wd,2008,auto(l5),hwy,20
+nissan,pathfinder 4wd,2008,auto(s5),hwy,18
+pontiac,grand prix,1999,auto(l4),hwy,26
+pontiac,grand prix,2008,auto(l4),hwy,28
+pontiac,grand prix,2008,auto(s4),hwy,25
+subaru,forester awd,1999,manual(m5),hwy,25
+subaru,forester awd,1999,auto(l4),hwy,24
+subaru,forester awd,2008,manual(m5),hwy,27
+subaru,forester awd,2008,auto(l4),hwy,26
+subaru,impreza awd,1999,auto(l4),hwy,26
+subaru,impreza awd,1999,manual(m5),hwy,26
+subaru,impreza awd,2008,auto(s4),hwy,25
+subaru,impreza awd,2008,manual(m5),hwy,25
+toyota,4runner 4wd,1999,manual(m5),hwy,20
+toyota,4runner 4wd,1999,auto(l4),hwy,20
+toyota,4runner 4wd,2008,auto(l5),hwy,20
+toyota,camry,1999,manual(m5),hwy,29
+toyota,camry,1999,auto(l4),hwy,27
+toyota,camry,2008,manual(m5),hwy,31
+toyota,camry,2008,auto(l5),hwy,31
+toyota,camry,2008,auto(s6),hwy,28
+toyota,camry solara,1999,auto(l4),hwy,27
+toyota,camry solara,1999,manual(m5),hwy,29
+toyota,camry solara,2008,manual(m5),hwy,31
+toyota,camry solara,2008,auto(s5),hwy,31
+toyota,corolla,1999,auto(l3),hwy,30
+toyota,corolla,1999,auto(l4),hwy,33
+toyota,corolla,1999,manual(m5),hwy,35
+toyota,corolla,2008,manual(m5),hwy,37
+toyota,corolla,2008,auto(l4),hwy,35
+toyota,land cruiser wagon 4wd,1999,auto(l4),hwy,15
+toyota,land cruiser wagon 4wd,2008,auto(s6),hwy,18
+toyota,toyota tacoma 4wd,1999,manual(m5),hwy,20
+toyota,toyota tacoma 4wd,1999,auto(l4),hwy,20
+toyota,toyota tacoma 4wd,2008,manual(m5),hwy,22
+toyota,toyota tacoma 4wd,2008,manual(m6),hwy,18
+toyota,toyota tacoma 4wd,2008,auto(l5),hwy,20
+volkswagen,gti,1999,manual(m5),hwy,29
+volkswagen,gti,1999,auto(l4),hwy,26
+volkswagen,gti,2008,manual(m6),hwy,29
+volkswagen,gti,2008,auto(s6),hwy,29
+volkswagen,jetta,1999,manual(m5),hwy,44
+volkswagen,jetta,1999,auto(l4),hwy,26
+volkswagen,jetta,2008,auto(s6),hwy,29
+volkswagen,jetta,2008,manual(m6),hwy,29
+volkswagen,jetta,2008,manual(m5),hwy,29
+volkswagen,new beetle,1999,manual(m5),hwy,44
+volkswagen,new beetle,1999,auto(l4),hwy,41
+volkswagen,new beetle,2008,manual(m5),hwy,28
+volkswagen,new beetle,2008,auto(s6),hwy,29
+volkswagen,passat,1999,manual(m5),hwy,29
+volkswagen,passat,1999,auto(l5),hwy,29
+volkswagen,passat,2008,auto(s6),hwy,28
+volkswagen,passat,2008,manual(m6),hwy,29
+audi,a4,1999,auto(l5),fl,p
+audi,a4,1999,manual(m5),fl,p
+audi,a4,2008,manual(m6),fl,p
+audi,a4,2008,auto(av),fl,p
+audi,a4 quattro,1999,manual(m5),fl,p
+audi,a4 quattro,1999,auto(l5),fl,p
+audi,a4 quattro,2008,manual(m6),fl,p
+audi,a4 quattro,2008,auto(s6),fl,p
+audi,a6 quattro,1999,auto(l5),fl,p
+audi,a6 quattro,2008,auto(s6),fl,p
+chevrolet,c1500 suburban 2wd,2008,auto(l4),fl,r
+chevrolet,c1500 suburban 2wd,1999,auto(l4),fl,r
+chevrolet,corvette,1999,manual(m6),fl,p
+chevrolet,corvette,1999,auto(l4),fl,p
+chevrolet,corvette,2008,manual(m6),fl,p
+chevrolet,corvette,2008,auto(s6),fl,p
+chevrolet,k1500 tahoe 4wd,2008,auto(l4),fl,r
+chevrolet,k1500 tahoe 4wd,1999,auto(l4),fl,r
+chevrolet,malibu,1999,auto(l4),fl,r
+chevrolet,malibu,2008,auto(l4),fl,r
+chevrolet,malibu,2008,auto(s6),fl,r
+dodge,caravan 2wd,1999,auto(l3),fl,r
+dodge,caravan 2wd,1999,auto(l4),fl,r
+dodge,caravan 2wd,2008,auto(l4),fl,r
+dodge,caravan 2wd,2008,auto(l6),fl,r
+dodge,dakota pickup 4wd,2008,manual(m6),fl,r
+dodge,dakota pickup 4wd,2008,auto(l4),fl,r
+dodge,dakota pickup 4wd,1999,auto(l4),fl,r
+dodge,dakota pickup 4wd,1999,manual(m5),fl,r
+dodge,dakota pickup 4wd,2008,auto(l5),fl,r
+dodge,durango 4wd,1999,auto(l4),fl,r
+dodge,durango 4wd,2008,auto(l5),fl,r
+dodge,ram 1500 pickup 4wd,2008,manual(m6),fl,r
+dodge,ram 1500 pickup 4wd,2008,auto(l5),fl,e
+dodge,ram 1500 pickup 4wd,1999,auto(l4),fl,r
+dodge,ram 1500 pickup 4wd,1999,manual(m5),fl,r
+ford,expedition 2wd,1999,auto(l4),fl,r
+ford,expedition 2wd,2008,auto(l6),fl,r
+ford,explorer 4wd,1999,auto(l5),fl,r
+ford,explorer 4wd,1999,manual(m5),fl,r
+ford,explorer 4wd,2008,auto(l5),fl,r
+ford,explorer 4wd,2008,auto(l6),fl,r
+ford,explorer 4wd,1999,auto(l4),fl,r
+ford,f150 pickup 4wd,1999,auto(l4),fl,r
+ford,f150 pickup 4wd,1999,manual(m5),fl,r
+ford,f150 pickup 4wd,2008,auto(l4),fl,r
+ford,mustang,1999,manual(m5),fl,r
+ford,mustang,1999,auto(l4),fl,r
+ford,mustang,2008,manual(m5),fl,r
+ford,mustang,2008,auto(l5),fl,r
+ford,mustang,2008,manual(m6),fl,p
+honda,civic,1999,manual(m5),fl,r
+honda,civic,1999,auto(l4),fl,r
+honda,civic,2008,manual(m5),fl,r
+honda,civic,2008,auto(l5),fl,r
+honda,civic,2008,manual(m6),fl,p
+hyundai,sonata,1999,auto(l4),fl,r
+hyundai,sonata,1999,manual(m5),fl,r
+hyundai,sonata,2008,auto(l4),fl,r
+hyundai,sonata,2008,manual(m5),fl,r
+hyundai,sonata,2008,auto(l5),fl,r
+hyundai,tiburon,1999,auto(l4),fl,r
+hyundai,tiburon,1999,manual(m5),fl,r
+hyundai,tiburon,2008,manual(m5),fl,r
+hyundai,tiburon,2008,auto(l4),fl,r
+hyundai,tiburon,2008,manual(m6),fl,r
+jeep,grand cherokee 4wd,2008,auto(l5),fl,d
+jeep,grand cherokee 4wd,1999,auto(l4),fl,r
+land rover,range rover,1999,auto(l4),fl,p
+land rover,range rover,2008,auto(s6),fl,r
+lincoln,navigator 2wd,1999,auto(l4),fl,r
+lincoln,navigator 2wd,2008,auto(l6),fl,r
+mercury,mountaineer 4wd,1999,auto(l5),fl,r
+mercury,mountaineer 4wd,2008,auto(l5),fl,r
+mercury,mountaineer 4wd,2008,auto(l6),fl,r
+mercury,mountaineer 4wd,1999,auto(l4),fl,r
+nissan,altima,1999,manual(m5),fl,r
+nissan,altima,1999,auto(l4),fl,r
+nissan,altima,2008,auto(av),fl,r
+nissan,altima,2008,manual(m6),fl,r
+nissan,maxima,1999,auto(l4),fl,r
+nissan,maxima,1999,manual(m5),fl,r
+nissan,maxima,2008,auto(av),fl,p
+nissan,pathfinder 4wd,1999,auto(l4),fl,r
+nissan,pathfinder 4wd,1999,manual(m5),fl,r
+nissan,pathfinder 4wd,2008,auto(l5),fl,p
+nissan,pathfinder 4wd,2008,auto(s5),fl,p
+pontiac,grand prix,1999,auto(l4),fl,r
+pontiac,grand prix,2008,auto(l4),fl,r
+pontiac,grand prix,2008,auto(s4),fl,p
+subaru,forester awd,1999,manual(m5),fl,r
+subaru,forester awd,1999,auto(l4),fl,r
+subaru,forester awd,2008,manual(m5),fl,r
+subaru,forester awd,2008,auto(l4),fl,r
+subaru,impreza awd,1999,auto(l4),fl,r
+subaru,impreza awd,1999,manual(m5),fl,r
+subaru,impreza awd,2008,auto(s4),fl,p
+subaru,impreza awd,2008,manual(m5),fl,p
+toyota,4runner 4wd,1999,manual(m5),fl,r
+toyota,4runner 4wd,1999,auto(l4),fl,r
+toyota,4runner 4wd,2008,auto(l5),fl,r
+toyota,camry,1999,manual(m5),fl,r
+toyota,camry,1999,auto(l4),fl,r
+toyota,camry,2008,manual(m5),fl,r
+toyota,camry,2008,auto(l5),fl,r
+toyota,camry,2008,auto(s6),fl,r
+toyota,camry solara,1999,auto(l4),fl,r
+toyota,camry solara,1999,manual(m5),fl,r
+toyota,camry solara,2008,manual(m5),fl,r
+toyota,camry solara,2008,auto(s5),fl,r
+toyota,corolla,1999,auto(l3),fl,r
+toyota,corolla,1999,auto(l4),fl,r
+toyota,corolla,1999,manual(m5),fl,r
+toyota,corolla,2008,manual(m5),fl,r
+toyota,corolla,2008,auto(l4),fl,r
+toyota,land cruiser wagon 4wd,1999,auto(l4),fl,r
+toyota,land cruiser wagon 4wd,2008,auto(s6),fl,r
+toyota,toyota tacoma 4wd,1999,manual(m5),fl,r
+toyota,toyota tacoma 4wd,1999,auto(l4),fl,r
+toyota,toyota tacoma 4wd,2008,manual(m5),fl,r
+toyota,toyota tacoma 4wd,2008,manual(m6),fl,r
+toyota,toyota tacoma 4wd,2008,auto(l5),fl,r
+volkswagen,gti,1999,manual(m5),fl,r
+volkswagen,gti,1999,auto(l4),fl,r
+volkswagen,gti,2008,manual(m6),fl,p
+volkswagen,gti,2008,auto(s6),fl,p
+volkswagen,jetta,1999,manual(m5),fl,d
+volkswagen,jetta,1999,auto(l4),fl,r
+volkswagen,jetta,2008,auto(s6),fl,p
+volkswagen,jetta,2008,manual(m6),fl,p
+volkswagen,jetta,2008,manual(m5),fl,r
+volkswagen,new beetle,1999,manual(m5),fl,d
+volkswagen,new beetle,1999,auto(l4),fl,d
+volkswagen,new beetle,2008,manual(m5),fl,r
+volkswagen,new beetle,2008,auto(s6),fl,r
+volkswagen,passat,1999,manual(m5),fl,p
+volkswagen,passat,1999,auto(l5),fl,p
+volkswagen,passat,2008,auto(s6),fl,p
+volkswagen,passat,2008,manual(m6),fl,p
+audi,a4,1999,auto(l5),class,compact
+audi,a4,1999,manual(m5),class,compact
+audi,a4,2008,manual(m6),class,compact
+audi,a4,2008,auto(av),class,compact
+audi,a4 quattro,1999,manual(m5),class,compact
+audi,a4 quattro,1999,auto(l5),class,compact
+audi,a4 quattro,2008,manual(m6),class,compact
+audi,a4 quattro,2008,auto(s6),class,compact
+audi,a6 quattro,1999,auto(l5),class,midsize
+audi,a6 quattro,2008,auto(s6),class,midsize
+chevrolet,c1500 suburban 2wd,2008,auto(l4),class,suv
+chevrolet,c1500 suburban 2wd,1999,auto(l4),class,suv
+chevrolet,corvette,1999,manual(m6),class,2seater
+chevrolet,corvette,1999,auto(l4),class,2seater
+chevrolet,corvette,2008,manual(m6),class,2seater
+chevrolet,corvette,2008,auto(s6),class,2seater
+chevrolet,k1500 tahoe 4wd,2008,auto(l4),class,suv
+chevrolet,k1500 tahoe 4wd,1999,auto(l4),class,suv
+chevrolet,malibu,1999,auto(l4),class,midsize
+chevrolet,malibu,2008,auto(l4),class,midsize
+chevrolet,malibu,2008,auto(s6),class,midsize
+dodge,caravan 2wd,1999,auto(l3),class,minivan
+dodge,caravan 2wd,1999,auto(l4),class,minivan
+dodge,caravan 2wd,2008,auto(l4),class,minivan
+dodge,caravan 2wd,2008,auto(l6),class,minivan
+dodge,dakota pickup 4wd,2008,manual(m6),class,pickup
+dodge,dakota pickup 4wd,2008,auto(l4),class,pickup
+dodge,dakota pickup 4wd,1999,auto(l4),class,pickup
+dodge,dakota pickup 4wd,1999,manual(m5),class,pickup
+dodge,dakota pickup 4wd,2008,auto(l5),class,pickup
+dodge,durango 4wd,1999,auto(l4),class,suv
+dodge,durango 4wd,2008,auto(l5),class,suv
+dodge,ram 1500 pickup 4wd,2008,manual(m6),class,pickup
+dodge,ram 1500 pickup 4wd,2008,auto(l5),class,pickup
+dodge,ram 1500 pickup 4wd,1999,auto(l4),class,pickup
+dodge,ram 1500 pickup 4wd,1999,manual(m5),class,pickup
+ford,expedition 2wd,1999,auto(l4),class,suv
+ford,expedition 2wd,2008,auto(l6),class,suv
+ford,explorer 4wd,1999,auto(l5),class,suv
+ford,explorer 4wd,1999,manual(m5),class,suv
+ford,explorer 4wd,2008,auto(l5),class,suv
+ford,explorer 4wd,2008,auto(l6),class,suv
+ford,explorer 4wd,1999,auto(l4),class,suv
+ford,f150 pickup 4wd,1999,auto(l4),class,pickup
+ford,f150 pickup 4wd,1999,manual(m5),class,pickup
+ford,f150 pickup 4wd,2008,auto(l4),class,pickup
+ford,mustang,1999,manual(m5),class,subcompact
+ford,mustang,1999,auto(l4),class,subcompact
+ford,mustang,2008,manual(m5),class,subcompact
+ford,mustang,2008,auto(l5),class,subcompact
+ford,mustang,2008,manual(m6),class,subcompact
+honda,civic,1999,manual(m5),class,subcompact
+honda,civic,1999,auto(l4),class,subcompact
+honda,civic,2008,manual(m5),class,subcompact
+honda,civic,2008,auto(l5),class,subcompact
+honda,civic,2008,manual(m6),class,subcompact
+hyundai,sonata,1999,auto(l4),class,midsize
+hyundai,sonata,1999,manual(m5),class,midsize
+hyundai,sonata,2008,auto(l4),class,midsize
+hyundai,sonata,2008,manual(m5),class,midsize
+hyundai,sonata,2008,auto(l5),class,midsize
+hyundai,tiburon,1999,auto(l4),class,subcompact
+hyundai,tiburon,1999,manual(m5),class,subcompact
+hyundai,tiburon,2008,manual(m5),class,subcompact
+hyundai,tiburon,2008,auto(l4),class,subcompact
+hyundai,tiburon,2008,manual(m6),class,subcompact
+jeep,grand cherokee 4wd,2008,auto(l5),class,suv
+jeep,grand cherokee 4wd,1999,auto(l4),class,suv
+land rover,range rover,1999,auto(l4),class,suv
+land rover,range rover,2008,auto(s6),class,suv
+lincoln,navigator 2wd,1999,auto(l4),class,suv
+lincoln,navigator 2wd,2008,auto(l6),class,suv
+mercury,mountaineer 4wd,1999,auto(l5),class,suv
+mercury,mountaineer 4wd,2008,auto(l5),class,suv
+mercury,mountaineer 4wd,2008,auto(l6),class,suv
+mercury,mountaineer 4wd,1999,auto(l4),class,suv
+nissan,altima,1999,manual(m5),class,compact
+nissan,altima,1999,auto(l4),class,compact
+nissan,altima,2008,auto(av),class,midsize
+nissan,altima,2008,manual(m6),class,midsize
+nissan,maxima,1999,auto(l4),class,midsize
+nissan,maxima,1999,manual(m5),class,midsize
+nissan,maxima,2008,auto(av),class,midsize
+nissan,pathfinder 4wd,1999,auto(l4),class,suv
+nissan,pathfinder 4wd,1999,manual(m5),class,suv
+nissan,pathfinder 4wd,2008,auto(l5),class,suv
+nissan,pathfinder 4wd,2008,auto(s5),class,suv
+pontiac,grand prix,1999,auto(l4),class,midsize
+pontiac,grand prix,2008,auto(l4),class,midsize
+pontiac,grand prix,2008,auto(s4),class,midsize
+subaru,forester awd,1999,manual(m5),class,suv
+subaru,forester awd,1999,auto(l4),class,suv
+subaru,forester awd,2008,manual(m5),class,suv
+subaru,forester awd,2008,auto(l4),class,suv
+subaru,impreza awd,1999,auto(l4),class,subcompact
+subaru,impreza awd,1999,manual(m5),class,subcompact
+subaru,impreza awd,2008,auto(s4),class,compact
+subaru,impreza awd,2008,manual(m5),class,compact
+toyota,4runner 4wd,1999,manual(m5),class,suv
+toyota,4runner 4wd,1999,auto(l4),class,suv
+toyota,4runner 4wd,2008,auto(l5),class,suv
+toyota,camry,1999,manual(m5),class,midsize
+toyota,camry,1999,auto(l4),class,midsize
+toyota,camry,2008,manual(m5),class,midsize
+toyota,camry,2008,auto(l5),class,midsize
+toyota,camry,2008,auto(s6),class,midsize
+toyota,camry solara,1999,auto(l4),class,compact
+toyota,camry solara,1999,manual(m5),class,compact
+toyota,camry solara,2008,manual(m5),class,compact
+toyota,camry solara,2008,auto(s5),class,compact
+toyota,corolla,1999,auto(l3),class,compact
+toyota,corolla,1999,auto(l4),class,compact
+toyota,corolla,1999,manual(m5),class,compact
+toyota,corolla,2008,manual(m5),class,compact
+toyota,corolla,2008,auto(l4),class,compact
+toyota,land cruiser wagon 4wd,1999,auto(l4),class,suv
+toyota,land cruiser wagon 4wd,2008,auto(s6),class,suv
+toyota,toyota tacoma 4wd,1999,manual(m5),class,pickup
+toyota,toyota tacoma 4wd,1999,auto(l4),class,pickup
+toyota,toyota tacoma 4wd,2008,manual(m5),class,pickup
+toyota,toyota tacoma 4wd,2008,manual(m6),class,pickup
+toyota,toyota tacoma 4wd,2008,auto(l5),class,pickup
+volkswagen,gti,1999,manual(m5),class,compact
+volkswagen,gti,1999,auto(l4),class,compact
+volkswagen,gti,2008,manual(m6),class,compact
+volkswagen,gti,2008,auto(s6),class,compact
+volkswagen,jetta,1999,manual(m5),class,compact
+volkswagen,jetta,1999,auto(l4),class,compact
+volkswagen,jetta,2008,auto(s6),class,compact
+volkswagen,jetta,2008,manual(m6),class,compact
+volkswagen,jetta,2008,manual(m5),class,compact
+volkswagen,new beetle,1999,manual(m5),class,subcompact
+volkswagen,new beetle,1999,auto(l4),class,subcompact
+volkswagen,new beetle,2008,manual(m5),class,subcompact
+volkswagen,new beetle,2008,auto(s6),class,subcompact
+volkswagen,passat,1999,manual(m5),class,midsize
+volkswagen,passat,1999,auto(l5),class,midsize
+volkswagen,passat,2008,auto(s6),class,midsize
+volkswagen,passat,2008,manual(m6),class,midsize
