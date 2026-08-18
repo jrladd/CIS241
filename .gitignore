@@ -15,3 +15,5 @@ pyproject.toml
 uv.lock
 .venv/
 /_book/
+
+**/*.quarto_ipynb

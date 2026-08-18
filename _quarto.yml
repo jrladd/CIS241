@@ -1,5 +1,5 @@
 project:
-  type: book
+  type: website
   render:
     - "*.qmd"
     - "*.ipynb"
@@ -13,42 +13,36 @@ project:
     - "*.xlsx"
     - "*.csv.gz"
     - "slides/*.html"
-book:
+website:
   favicon: bar_chart_apple_64.png
   title: "CIS241 Intro to Data Science"
   sidebar:
     logo: images/startrek.jpg
-  chapters:
-  - index.qmd
-  - part: "Course Information"
-    chapters:
-    - schedule.qmd
-    - policies.md
-    - groundrules.md
-    - criteria.md
-  - part: assignments.md
-    chapters:
-      - assignments/documentation.md  
-      - assignments/project-planning.md
-      - assignments/presentation.md
-      - assignments/final-report.md
-  - part: "Guides"
-    chapters:
-      - guides/jupyterhub.md
-      - guides/python.ipynb
-      - guides/pandas.ipynb
-      - guides/altair.ipynb
-      - guides/hypothesis-testing.qmd
-      - guides/sklearn.qmd
-      - guides/debugging.qmd
-  - part: "Other Key Info"
-    chapters:
-    - how-to-explain.ipynb
-    - radcat.md
-    - guides/uploading.qmd
-    - sample-final-project.ipynb
-    - guides/jupyter.md
-  search: false
+    search: false
+    contents:
+    - index.qmd
+    - section: "Course Information"
+      contents:
+      - schedule.qmd
+      - policies.md
+      - criteria.md
+      - assignments.md
+    - section: "Guides"
+      contents:
+        - guides/jupyterhub.md
+        - guides/python.ipynb
+        - guides/pandas.ipynb
+        - guides/hypothesis-testing.qmd
+        - guides/sklearn.qmd
+        - guides/debugging.qmd
+    - section: "Other Key Info"
+      contents:
+      - how-to-explain.ipynb
+      - radcat.md
+      - guides/uploading.qmd
+      - text: "Sample Final Project"
+        href: sample-final-project.ipynb
+      - guides/jupyter.md
   navbar:
     right:
       - href: index.qmd
@@ -56,7 +50,6 @@ book:
       - schedule.qmd
       - assignments.md
       - policies.md
-      - groundrules.md
       - href: https://jupyterhub.ciswashjeff.net/
         text: JupyterHub
 

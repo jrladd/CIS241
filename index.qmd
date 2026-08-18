@@ -10,15 +10,14 @@ title-block-banner-color: white
 
 :::: {.card-body}
 
-CIS 241. Washington & Jefferson College. Spring 2026.
+CIS 241. Washington & Jefferson College. Fall 2026.
 
-**Meeting Time: TR 9:00-10:45pm**
+**Meeting Time: TR 8:30-10:00am**
 
-**Dr. Ladd’s Student Drop-In Hours: Mon. 1–3pm, Thurs. 11am–12pm  TECH 201**  
+**Dr. Ladd’s Student Drop-In Hours: Mon. 1–3pm, Thurs. 10am–12pm  TECH 201**  
 **or email for appointment, jladd@washjeff.edu**
 
-**PAL Tutoring Hours: 7-10pm Sunday–Thursday in the CIS Lounge (TECH 217)**  
-**[Tutor bios and additional info](https://mywj.washjeff.edu/knowledgebase/cis-peer-tutoring/department/computing-and-information-studies)**
+**[PAL Tutoring](policies.md#cis-pal-tutors) Hours: 7-10pm Sunday–Thursday in the CIS Lounge (TECH 217)**
 
 ::::
 
