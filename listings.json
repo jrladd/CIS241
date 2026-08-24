@@ -2,11 +2,7 @@
   {
     "listing": "/assignments.html",
     "items": [
-      "/assignments/progress-report.html",
-      "/assignments/documentation.html",
-      "/assignments/project-planning.html",
-      "/assignments/presentation.html",
-      "/assignments/final-report.html"
+      "/assignments/documentation.html"
     ]
   }
 ]
