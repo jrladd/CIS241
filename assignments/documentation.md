@@ -1,6 +1,6 @@
 ---
 title:  "Documentation Assignment"
-date:   2026-01-29
+date:   2026-09-10
 show_date: false
 ---
 **Complete by: Thursday 29 Jan. at class time**
@@ -81,6 +81,10 @@ Add more rows as needed... [n.b. *You only need to create a chart of 20 variable
 For **Variable Definition**, If you don’t know or don’t have information on how to interpret a variable, or want to give a word of caution, say so here. If the variable has any special considerations or challenges inherent to its measure, you may note that here, too.
 
 For **Variable Codes and Ranges**, If you don’t need to specify acceptable values, you can just fill this in with NA (for not applicable).
+
+**Data Ethics**:
+
+Using at least 2 of the [ADSA's four lenses](https://ethos.alliance4datascience.ai/lenses/), write a paragraph describing some of the ethical challenges and considerations you have about your chosen dataset. Consider how *you* might view the data as the primary researcher as well as any *other relevant stakeholders*.
 
 **Data Wrangling**:
 

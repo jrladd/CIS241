@@ -2,6 +2,7 @@
 title:  "Project Plan"
 date:   2026-03-19
 show_date: false
+draft: true
 ---
 **Complete by: Thursday 19 Mar. at class time**
 
