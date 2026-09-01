@@ -16,7 +16,7 @@ Date|Topics & Data|Readings|Assignments
 6: 29 Sept. & 1 Oct.|Correlation w/ <a href="resources/02_baseball2.ipynb" download>Baseball Data</a>|Downey Ch. [9](https://allendowney.github.io/ElementsOfDataScience/09_relationships.html)|
 7: 6 & 8 Oct.|Review & Exam||**Test 1** 8 Oct.
 8: 13 & 15 Oct.|Regression w/ <a href="resources/03_airbnb1.ipynb" download>Business Data</a>|Bruce Ch. 4 (pdf)|
-9: 22 Oct.|Open Lab: Explanatory vs. Predictive Modeling||**Descriptive Analysis Project Due 22 Oct.**|
+9: 22 Oct.|Open Lab: Explanatory vs. Predictive Modeling||**[Descriptive Analysis Project](assignments/descriptive.md) Due 22 Oct.**|
 10: 27 & 29 Oct.|More Regression w/ <a href="resources/03_airbnb2.ipynb" download>Business Data</a>|Bruce Ch. 6 (pdf)|
 11: 3 & 5 Nov.|Classification w/ <a href="resources/05_health1.ipynb" download>Health Data</a>|Bruce Ch. 5 (pdf)|
 12: 10 & 12 Nov.|More Classification w/ <a href="resources/05_health2.ipynb" download>Health Data</a>||
@@ -24,7 +24,7 @@ Date|Topics & Data|Readings|Assignments
 14: 24 Nov.|Clustering w/ <a href="resources/06_lit1.ipynb" download>Literature Data</a>|Bruce Ch. 7 (pdf)|
 15: 1 & 3 Dec.|Dimension Reduction w/ <a href="resources/06_lit2.ipynb" download>Literature Data</a>||**[Video Presentations](assignments/presentation.md) Due 3 Dec.**
 8 Dec. **2pm–3:50pm**|CIS Open House on Scholars Day!|
-Final Exam Time|Discuss Videos/Projects||**[Final Project](assignments/final-report.md) Due Fri. 1 May at 2pm**
+Final Exam Time|Discuss Videos/Projects||**[Final Project](assignments/final-report.md) Due Mon. 14 Dec. at 9am**
 
 : {.striped .hover}
 

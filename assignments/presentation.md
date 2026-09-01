@@ -4,7 +4,7 @@ date:   2026-04-16
 show_date: false
 draft: true
 ---
-**Complete by: Thursday 16 Apr. at class time**
+**Complete by: Thursday 3 Dec. at class time**
 
 *You will prepare a 3-5 minute “elevator pitch” video presentation about your project for your classmates, along with a short written summary for me. The goal of this video is not to summarize the entire content of your project, but rather to explain to your audience your chosen data set, the questions you have, and the approaches you plan to take, in a way that will generate interest and allow others to offer suggestions.*
 

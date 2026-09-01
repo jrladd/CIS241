@@ -3,9 +3,9 @@ title:  "Documentation Assignment"
 date:   2026-09-10
 show_date: false
 ---
-**Complete by: Thursday 29 Jan. at class time**
+**Complete by: Thursday 10 Sept. at class time**
 
-The goal of this assignment is to get you more familiar with finding, understanding, and documenting a data set. You'll find three datasets online and create documentation and metadata for one of them, using the guidelines below.
+The goal of this assignment is to get you more familiar with finding, understanding, and documenting a data set. You'll find three datasets online and create documentation and metadata for one of them, using the guidelines below. This is stage one of the semester-long final project, but you don't need to know anything else about that project right now.
 
 ## Choosing Datasets
 
