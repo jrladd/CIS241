@@ -423,7 +423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="sec-anatomy" class="level2">
 <h2 class="anchored" data-anchor-id="sec-anatomy">Anatomy of an Error Message</h2>
 <p>Here’s an example of an error message from Pandas:</p>
-<div id="2449fd62" class="cell" data-execution_count="1">
+<div id="fd5299d3" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import library</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -469,7 +469,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ----&gt; 8 penguins_filter = penguins[penguins.Species == "Adelie"]</code></pre>
 <p>The Traceback has an arrow that points directly at the line causing the problem. In this case, that’s line 8, the final line of our cell. Sometimes the Traceback will even highlight the part of the line that’s causing the problem!</p>
 <p>There’s no highlight here, but the error definition told us what was wrong: the “Species” column. Let’s look at the columns in this DataFrame to see if we can spot the issue:</p>
-<div id="48ca2560" class="cell" data-execution_count="2">
+<div id="253e2cfb" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>penguins.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.DataFrame'&gt;
@@ -490,7 +490,7 @@ memory usage: 18.9 KB</code></pre>
 </div>
 <p>Do you see it?</p>
 <p>Yes! The column isn’t called “Species”, it’s called “species”. The code accidentally capitalized the word! This is a very easy fix. You can repair the cell like so:</p>
-<div id="1dfc10b9" class="cell" data-execution_count="3">
+<div id="7b37294c" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import library</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>

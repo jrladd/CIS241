@@ -3,7 +3,9 @@
     "listing": "/assignments.html",
     "items": [
       "/assignments/documentation.html",
-      "/assignments/descriptive.html"
+      "/assignments/descriptive.html",
+      "/assignments/presentation.html",
+      "/assignments/final-report.html"
     ]
   }
 ]
