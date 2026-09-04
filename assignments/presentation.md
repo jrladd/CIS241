@@ -1,8 +1,7 @@
 ---
 title:  "Presentation"
-date:   2026-04-16
+date:   2026-12-03
 show_date: false
-draft: true
 ---
 **Complete by: Thursday 3 Dec. at class time**
 
@@ -36,10 +35,10 @@ You will also produce a 1–2 page written summary that may overlap with some of
 
 
 - 1 paragraph on where you are currently at in your data analysis
-- At least 2 polished visuals using your dataset, well-labeled and described
+- At least 2 polished visuals using your dataset, well-labeled and described. If these are from the Descriptive project you should show how you've revised them
 - 1 paragraph describing what you plan to do in the Statistical Analysis and Interpretation part of your report: what methods might you use, and what will you need to do with your data to complete this section?
 - 1 paragraph covering your triumphs and challenges:
-	- Share something about your dataset that you have learned so far
+	- Share something about your dataset that you have learned since the Descriptive project
 	- Share something that you have found difficult, confusing, or haven’t figured out yet
 
 You'll submit this document as a PDF on Sakai. You can copy your visualizations as static images into the word processor of your choice—let me know if you have questions about this.
@@ -52,7 +51,7 @@ Your slide should include your name, a title, the visualization, and a 2–3 sen
 
 If you wind up changing your project or would like to update your slide after the deadline, you may do so as long as I approve the changes. I may also ask you to revise your slide if necessary.
 
-**As part of this assignment you must attend the CIS Open House on Scholars Day, Tues. 28 Apr 2pm–2:50pm.** When you arrive, check in with me or Dr. Rapp so that we can verify you were there. You should stay for a minimum of 15 minutes to check out the other presentations and projects. *You do not need to present anything or speak publicly about your project at this event*, but you never know... maybe someone will love your slide and want to chat about it!
+**As part of this assignment you must attend the CIS Open House on Scholars Day, Tues. 8 Dec. 2pm–3:50pm.** When you arrive, check in with me or Dr. Rapp so that we can verify you were there. You should stay for a minimum of 15 minutes to check out the other presentations and projects. *You do not need to present anything or speak publicly about your project at this event*, but you never know... maybe someone will love your slide and want to chat about it!
 
 ## How to Submit a Video
 
@@ -63,7 +62,7 @@ If you wind up changing your project or would like to update your slide after th
 
 ## Responding to Videos
 
-In addition to making a video presentation, you will watch and respond to the videos made by your peers. Before class on Thurs. 23 Apr., you will watch *all* the videos. After watching a video, you will write down the following for each one. (I recommend writing your responses onto a computer instead of a paper notebook, since you will later add them as comments online.)
+In addition to making a video presentation, you will watch and respond to the videos made by your peers. Before our final exam time on **Monday 12 Dec. at 9am**, you will watch *all* the videos. After watching a video, you will write down the following for each one. (I recommend writing your responses onto a computer instead of a paper notebook, since you will later add them as comments online.)
 
 1. One substantive similarity between the presenter's project and your own.
 2. One question you have about the project.
@@ -81,5 +80,5 @@ Bring these similarities, questions, and suggestions with you to class, and you 
 - Your video presentation, uploaded to the OneDrive folder
 - Your written summary, submitted as PDF to the Sakai assignment
 - Your Scholars Day slide, added to our group slideshow on OneDrive
-- Responses for each video, brought with you to class on Thurs. 23 Apr.
-- Attendance at the CIS Open House on Scholars Day, Tues. 28 Apr 2pm–2:50pm
+- Responses for each video, brought with you to class on Mon 12 Dec.
+- Attendance at the CIS Open House on Scholars Day, Tues. 8 Dec. 2pm–2:50pm
