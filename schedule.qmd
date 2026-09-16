@@ -12,7 +12,7 @@ Date|Topics & Data|Readings|Assignments
 2: 1 & 3 Sept.|[Jupyter](guides/jupyterhub.md), <a href="resources/00_python_pandas.ipynb" download>Python, and Data Wrangling</a>|Downey Ch. [1](https://allendowney.github.io/ElementsOfDataScience/01_variables.html) & [7](https://allendowney.github.io/ElementsOfDataScience/07_dataframes.html)|
 3: 8 & 10 Sept.|Exploratory Data Analysis w/ <a href="resources/01_movies1.ipynb" download>Movies Data</a>: Summary Statistics & Data Types|Bruce Ch. 1 (pdf); Downey Ch. [2](https://allendowney.github.io/ElementsOfDataScience/02_times.html)|**[Documentation Assignment](assignments/documentation.md) Due 10 Sept.**
 4: 15 & 17 Sept.|Exploratory Data Analysis w/<a href="resources/01_movies2.ipynb" download>Movies Data</a>: Visualization|Wilke Ch. [5](https://clauswilke.com/dataviz/directory-of-visualizations.html)|
-5: 22 & 24 Sept.|Distributions & Hypothesis Testing w/ <a href="resources/02_baseball1.ipynb" download>Baseball Data</a>|Downey Ch. [8](https://allendowney.github.io/ElementsOfDataScience/08_distributions.html); Bruce Ch. 3 (pdf)|
+5: 22 & 24 Sept.|Distributions & Hypothesis Testing w/ <a href="resources/02_baseball1.ipynb" download>Baseball Data</a>|Bruce Ch. 3 (pdf); (Optional: Downey Ch. [8](https://allendowney.github.io/ElementsOfDataScience/08_distributions.html))|
 6: 29 Sept. & 1 Oct.|Correlation w/ <a href="resources/02_baseball2.ipynb" download>Baseball Data</a>|Downey Ch. [9](https://allendowney.github.io/ElementsOfDataScience/09_relationships.html)|
 7: 6 & 8 Oct.|Review & Exam||**Test 1** 8 Oct.
 8: 13 & 15 Oct.|Regression w/ <a href="resources/03_airbnb1.ipynb" download>Business Data</a>|Bruce Ch. 4 (pdf)|
