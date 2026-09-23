@@ -24,7 +24,7 @@ You can use the [MathJax](https://math.meta.stackexchange.com/questions/5020/mat
 
 4. Choose the appropriate simulation function for the hypothesis test you're running. Make sure you have a basic understanding of how the code works in these simulations---you may have to filter or adjust your data to prepare it for the function. (See below for the functions you can choose from.)
 5. In a `for` loop, run the simulation many times (1000 is a good minimum) and put the resulting *permutations* into a list. This is similar to how we conducted bootstrap sampling. Convert that list to a dataframe with two columns: the permutation and the observed statistic.
-6. Create a histogram that shows your permutation distribution and your observed statistic. This is a standard histogram plus a `mark_rule()` layer that draws a vertical line for the observed statistic.
+6. Create a histogram that shows your permutation distribution and your observed statistic. This is a standard histogram or density plotplus a `plt.axvline()` layer that draws a vertical line for the observed statistic.
 7. Calculate the p-value (see below) and interpret the p-value and histogram together.
 
 ## Simulation Functions
