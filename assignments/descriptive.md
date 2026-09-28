@@ -30,7 +30,7 @@ This stage of the project, the Descriptive Analysis, should be a Jupyter Noteboo
 
 The report should be organized with findings split into different sections. To turn in the project, upload the HTML version of your Jupyter Notebook to Sakai. More details on specific elements of the project are below.
 
-**By Thursday 24 Sept. at 5pm, you should send me an email with the dataset you plan on using and some first ideas for research questions.**
+**By Thursday 1 Oct. at 5pm, you should send me an email with the dataset you plan on using and some first ideas for research questions.**
 
 ## Project Elements
 
