@@ -6,6 +6,7 @@ project:
     - "*.md"
     - "!resources/"
     - "!slides/"
+    - "!guides/altair.ipynb"
   resources:
     - "*.csv"
     - "*.tsv"
