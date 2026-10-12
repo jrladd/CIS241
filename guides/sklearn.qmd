@@ -291,22 +291,32 @@ In addition to these two values, you can also create visualizations for validati
 A histogram of residuals will show you if the residuals are normally distributed.
 
 ```python
-alt.Chart(results, title="Histogram of Residuals").mark_bar().encode(
-    x=alt.X('Residuals:Q', title="Residuals").bin(maxbins=20),
-    y=alt.Y('count():Q', title="Value Counts")
+results.residuals.plot(
+    kind="hist",
+    alpha=0.5,
+    title="Histogram of Residuals",
+    xlabel="Residuals"
 )
+plt.show()
 ```
 
 And you can plot the absolute value of residuals against the predictions to test for heteroskedasticity. You will **only** use this plot for linear regression.
 
 ```python
-# Plot the absolute value of residuals against the predicted values
-chart = alt.Chart(results, title="Testing for Heteroskedasticity").mark_point().encode(
-    x=alt.X('Predictions:Q').title("Predicted Values"),
-    y=alt.Y('y:Q').title("Absolute value of Residuals") 
-).transform_calculate(y='abs(datum.Residuals)')
+# Get absolute value of residuals
+results = results.assign(abs_residuals = np.abs(results.residuals)).sort_values("predictions")
+results.plot(
+    kind="scatter",
+    x="predictions", 
+    y="abs_residuals",
+    title="Testing for Heteroskedasticity",
+    xlabel="Predicted Values",
+    ylabel="Absolute value of Residuals"
+)
 
-chart + chart.transform_loess('Predictions', 'y').mark_line()
+# Plot a rolling average of the absolute values (estimates a LOESS curve)
+plt.plot(results["predictions"], results["abs_residuals"].rolling(window=30, center=True).mean(), c="red")
+plt.show()
 ```
 
 ### Validation for Classification
@@ -314,7 +324,7 @@ chart + chart.transform_loess('Predictions', 'y').mark_line()
 Classification validation is based on the confusion matrix, which tallies the number of categories correctly predicted by the model. Here are the `sklearn` functions you need to validate a classifier. You would add these at the top of your notebook with your other imports.
 
 ```python
-from sklearn.metrics import confusion_matrix, classification_report, RocCurveDisplay
+from sklearn.metrics import ConfusionMatrixDisplay, classification_report, RocCurveDisplay
 # You won't always need matplotlib, but it's good to have
 import matplotlib.pyplot as plt
 ```
@@ -322,27 +332,9 @@ import matplotlib.pyplot as plt
 The `confusion_matrix` function generates the results, and you can turn this into a confusion matrix visualization: a special kind of heatmap with text overlayed.
 
 ```python
-# Calculate confusion matrix and transform data
-conf_mat = confusion_matrix(y_test,predictions)
-conf_mat = pd.DataFrame(conf_mat,index=categories,columns=categories)
-conf_mat = conf_mat.melt(ignore_index=False).reset_index()
-# Create heatmap
-heatmap = alt.Chart(conf_mat).mark_rect().encode(
-    x=alt.X("variable:N").title("Predicted Response"),
-    y=alt.Y("index:N").title("True Response"),
-    color=alt.Color("value:Q", legend=None).scale(scheme="blues")
-).properties(
-    width=400,
-    height=400
-)
-# Add text labels for numbers
-text = heatmap.mark_text(baseline="middle").encode(
-    text=alt.Text("value:Q"),
-    color=alt.value("black"),
-    size=alt.value(50)
-)
-
-heatmap + text
+# Display confusion matrix
+ConfusionMatrixDisplay.from_predictions(y_test,predictions,display_labels=categories)
+plt.show()
 ```
 
 You can calculate the accuracy, precision, and recall scores with the classification report.
@@ -364,6 +356,7 @@ RocCurveDisplay.from_predictions(y_test,
 
 # Draw a green line for 0
 plt.plot([0, 1], [0, 1], color = 'g')
+plt.show()
 ```
 
 
