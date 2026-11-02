@@ -579,12 +579,12 @@ Caution
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> your_model_name.predict(X_test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In classification models, you produce categorical predictions with <code>.predict()</code> and numerical probabilities with <code>.predict_proba()</code>. You should also get the <em>target classes</em> at this stage.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For classification</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>categories <span class="op">=</span> your_model_name.classes_</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>classes <span class="op">=</span> your_model_name.classes_</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>probabilities <span class="op">=</span> your_model_name.predict_proba(X_test_std)</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> your_model_name.predict(X_test_std)</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># It's helpful to put the probabilities into a dataframe</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>probabilities <span class="op">=</span> pd.DataFrame(probabilities, columns<span class="op">=</span>categories)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>probabilities <span class="op">=</span> pd.DataFrame(probabilities, columns<span class="op">=</span>classes)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 </section>
 <section id="validate-and-assess-your-model" class="level2">
@@ -660,7 +660,7 @@ Note
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>confusion_matrix</code> function generates the results, and you can turn this into a confusion matrix visualization: a special kind of heatmap with text overlayed.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Display confusion matrix</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay.from_predictions(y_test,predictions,display_labels<span class="op">=</span>categories)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ConfusionMatrixDisplay.from_predictions(y_test,predictions,display_labels<span class="op">=</span>classes)</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You can calculate the accuracy, precision, and recall scores with the classification report.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You must use print() to make this readable</span></span>
@@ -669,8 +669,8 @@ Note
 <p>You can also create an ROC Curve if you have a <strong>binary classifer</strong> (just two target classes).</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create our ROC Curve plot</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>RocCurveDisplay.from_predictions(y_test,</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                                 probabilities[categories[<span class="dv">0</span>]],</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                                 pos_label<span class="op">=</span>categories[<span class="dv">0</span>])</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>                                 probabilities[classes[<span class="dv">0</span>]],</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>                                 pos_label<span class="op">=</span>classes[<span class="dv">0</span>])</span>
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Draw a green line for 0</span></span>
 <span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], color <span class="op">=</span> <span class="st">'g'</span>)</span>
