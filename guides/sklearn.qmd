@@ -225,12 +225,12 @@ In classification models, you produce categorical predictions with `.predict()` 
 
 ```python
 # For classification
-categories = your_model_name.classes_
+classes = your_model_name.classes_
 probabilities = your_model_name.predict_proba(X_test_std)
 predictions = your_model_name.predict(X_test_std)
 
 # It's helpful to put the probabilities into a dataframe
-probabilities = pd.DataFrame(probabilities, columns=categories)
+probabilities = pd.DataFrame(probabilities, columns=classes)
 ```
 
 ## Validate and assess your model
@@ -333,7 +333,7 @@ The `confusion_matrix` function generates the results, and you can turn this int
 
 ```python
 # Display confusion matrix
-ConfusionMatrixDisplay.from_predictions(y_test,predictions,display_labels=categories)
+ConfusionMatrixDisplay.from_predictions(y_test,predictions,display_labels=classes)
 plt.show()
 ```
 
@@ -351,8 +351,8 @@ You can also create an ROC Curve if you have a **binary classifer** (just two ta
 ```python
 # Create our ROC Curve plot
 RocCurveDisplay.from_predictions(y_test,
-                                 probabilities[categories[0]],
-                                 pos_label=categories[0])
+                                 probabilities[classes[0]],
+                                 pos_label=classes[0])
 
 # Draw a green line for 0
 plt.plot([0, 1], [0, 1], color = 'g')
