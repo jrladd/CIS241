@@ -1,5 +1,218 @@
 [
   {
+    "objectID": "guides/debugging.html",
+    "href": "guides/debugging.html",
+    "title": "Debugging Your Code",
+    "section": "",
+    "text": "Bugs in your code can be frustrating! But there are concrete steps you can take:\n\n\n\nThink about what you were trying to do vs. what happened instead. Create a hypothesis for what went wrong.\n\n\n\nLook for a line number where the error is occurring.\nSometimes the bug is in the line before the one that threw the error!\nSee Section 3 below for more.\n\n\n\nRemember that code is run in order, from the first line in your script to the last one. And specific parts of your code, like for loops or functions, have specific indented contexts. If any of your code is out of order or indented improperly, the rest of the code may not work.\nThis can happen a lot in JupyterHub, since sometimes you re-run a lower cell without fixing one that’s higher up in your code. Go back to the beginning of your code and re-run to see if that will fix it, and if not go cell-by-cell through the code to find the problem.\n\n\n\nTry your best to explain the problem out loud, preferably to a friend or teammate.\nPractice rubber duck debugging.\n\n\n\n\nIf you’re lost, refer to all the resources you have: cheatsheets, guides, online documentation. Don’t forget RAD CAT!\nAnd when in doubt: Google the error message and see if someone else had the same problem!\n\n\n\nDon’t let a single bug frustrate you for too long. If none of the above strategies worked, ask a classmate, PAL tutor, or instructor for help with the problem.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Debugging Your Code"
+    ]
+  },
+  {
+    "objectID": "guides/debugging.html#some-steps-to-try-when-you-encounter-an-error",
+    "href": "guides/debugging.html#some-steps-to-try-when-you-encounter-an-error",
+    "title": "Debugging Your Code",
+    "section": "",
+    "text": "Bugs in your code can be frustrating! But there are concrete steps you can take:\n\n\n\nThink about what you were trying to do vs. what happened instead. Create a hypothesis for what went wrong.\n\n\n\nLook for a line number where the error is occurring.\nSometimes the bug is in the line before the one that threw the error!\nSee Section 3 below for more.\n\n\n\nRemember that code is run in order, from the first line in your script to the last one. And specific parts of your code, like for loops or functions, have specific indented contexts. If any of your code is out of order or indented improperly, the rest of the code may not work.\nThis can happen a lot in JupyterHub, since sometimes you re-run a lower cell without fixing one that’s higher up in your code. Go back to the beginning of your code and re-run to see if that will fix it, and if not go cell-by-cell through the code to find the problem.\n\n\n\nTry your best to explain the problem out loud, preferably to a friend or teammate.\nPractice rubber duck debugging.\n\n\n\n\nIf you’re lost, refer to all the resources you have: cheatsheets, guides, online documentation. Don’t forget RAD CAT!\nAnd when in doubt: Google the error message and see if someone else had the same problem!\n\n\n\nDon’t let a single bug frustrate you for too long. If none of the above strategies worked, ask a classmate, PAL tutor, or instructor for help with the problem.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Debugging Your Code"
+    ]
+  },
+  {
+    "objectID": "guides/debugging.html#avoid-bugs-before-they-happen",
+    "href": "guides/debugging.html#avoid-bugs-before-they-happen",
+    "title": "Debugging Your Code",
+    "section": "Avoid Bugs before they happen!",
+    "text": "Avoid Bugs before they happen!\n\nSave and/or “Restart and Run All” Often.\nIf you’re getting the same bug repeatedly in the same cell despite making changes, it could be that something is “stuck” in memory. Use the “restart and run all” button to try it again with a fresh kernel.\n\n\nUse good names.\nName your variables and dataframes with care. Rename things to make them more clear. Good names can help you find a problem quickly.\n\n\nStart simple, and build up little by little.\nDon’t try to write a whole program all in one go.\n\n\nRun your code line-by-line.\nCheck that it works as you go.\n\n\nLeave yourself good annotations and comments!\nUse # to leave comments: remind yourself what certain lines of code are doing.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Debugging Your Code"
+    ]
+  },
+  {
+    "objectID": "guides/debugging.html#sec-anatomy",
+    "href": "guides/debugging.html#sec-anatomy",
+    "title": "Debugging Your Code",
+    "section": "Anatomy of an Error Message",
+    "text": "Anatomy of an Error Message\nHere’s an example of an error message from Pandas:\n\n# Import library\nimport pandas as pd\n\n# Read in data\npenguins = pd.read_csv(\"../data/penguins.csv\")\n\n# Filter only Adelie penguins\npenguins_filter = penguins[penguins.Species == \"Adelie\"]\npenguins_filter\n\n\n---------------------------------------------------------------------------\nAttributeError                            Traceback (most recent call last)\nCell In[1], line 8\n      5 penguins = pd.read_csv(\"../data/penguins.csv\")\n      7 # Filter only Adelie penguins\n----&gt; 8 penguins_filter = penguins[penguins.Species == \"Adelie\"]\n      9 penguins_filter\n\nFile ~/Library/Python/3.9/lib/python/site-packages/pandas/core/generic.py:6321, in NDFrame.__getattr__(self, name)\n   6314 if (\n   6315     name not in self._internal_names_set\n   6316     and name not in self._metadata\n   6317     and name not in self._accessors\n   6318     and self._info_axis._can_hold_identifiers_and_holds_name(name)\n   6319 ):\n   6320     return self[name]\n-&gt; 6321 return object.__getattribute__(self, name)\n\nAttributeError: 'DataFrame' object has no attribute 'Species'\n\n\n\nThis code uses a lot of best practices (clear variable names, good comments, etc.), but it still has an error. Let’s see if you can decode it.\nThe bottom line of the error message defines the error itself. Make sure you always scroll to the bottom of the error message first!\nIn this case the last line says AttributeError: 'DataFrame' object has no attribute 'Species'. Before the colon is the type of error (an attribute error in Pandas refers to a column or attribute of the data), and after the colon Python attempts to tell you what’s wrong (in this case it says that the dataframe doesn’t have a column called “Species”).\nEverything above the bottom line of the error message is part of the Traceback, which shows you step by step what went wrong with the code. Sometimes these tracebacks can be very long, but usually you only need a small part of it.\nAfter you’ve looked at the last line, go back to the top part of the Traceback. This will show you the code that you wrote. In our case it looks like this:\n&lt;ipython-input-3-ff22716e7d6d&gt; in ?()\n      4 # Read in data\n      5 penguins = pd.read_csv(\"../data/penguins.csv\")\n      6 \n      7 # Filter only Adelie penguins\n----&gt; 8 penguins_filter = penguins[penguins.Species == \"Adelie\"]\nThe Traceback has an arrow that points directly at the line causing the problem. In this case, that’s line 8, the final line of our cell. Sometimes the Traceback will even highlight the part of the line that’s causing the problem!\nThere’s no highlight here, but the error definition told us what was wrong: the “Species” column. Let’s look at the columns in this DataFrame to see if we can spot the issue:\n\npenguins.info()\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 344 entries, 0 to 343\nData columns (total 7 columns):\n #   Column             Non-Null Count  Dtype  \n---  ------             --------------  -----  \n 0   species            344 non-null    object \n 1   island             344 non-null    object \n 2   bill_length_mm     342 non-null    float64\n 3   bill_depth_mm      342 non-null    float64\n 4   flipper_length_mm  342 non-null    float64\n 5   body_mass_g        342 non-null    float64\n 6   sex                333 non-null    object \ndtypes: float64(4), object(3)\nmemory usage: 18.9+ KB\n\n\nDo you see it?\nYes! The column isn’t called “Species”, it’s called “species”. The code accidentally capitalized the word! This is a very easy fix. You can repair the cell like so:\n\n# Import library\nimport pandas as pd\n\n# Read in data\npenguins = pd.read_csv(\"../data/penguins.csv\")\n\n# Filter only Adelie penguins\npenguins_filter = penguins[penguins.species == \"Adelie\"]\npenguins_filter\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n0\nAdelie\nTorgersen\n39.1\n18.7\n181.0\n3750.0\nMale\n\n\n1\nAdelie\nTorgersen\n39.5\n17.4\n186.0\n3800.0\nFemale\n\n\n2\nAdelie\nTorgersen\n40.3\n18.0\n195.0\n3250.0\nFemale\n\n\n3\nAdelie\nTorgersen\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193.0\n3450.0\nFemale\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n147\nAdelie\nDream\n36.6\n18.4\n184.0\n3475.0\nFemale\n\n\n148\nAdelie\nDream\n36.0\n17.8\n195.0\n3450.0\nFemale\n\n\n149\nAdelie\nDream\n37.8\n18.1\n193.0\n3750.0\nMale\n\n\n150\nAdelie\nDream\n36.0\n17.1\n187.0\n3700.0\nFemale\n\n\n151\nAdelie\nDream\n41.5\n18.5\n201.0\n4000.0\nMale\n\n\n\n\n152 rows × 7 columns\n\n\n\nAnd goodbye error message!\nOver time, you’ll get used to reading and decoding these error messages on your own, but don’t be afraid to ask questions if you run into one you’re unsure about.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Debugging Your Code"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction to Data Science",
+    "section": "",
+    "text": "CIS 241. Washington & Jefferson College. Fall 2026.\nMeeting Time: TR 8:30-10:00am\nDr. Ladd’s Student Drop-In Hours: Mon. 1–3pm, Thurs. 10am–12pm TECH 201\nor email for appointment, jladd@washjeff.edu\nPAL Tutoring Hours: 7-10pm Sunday–Thursday in the CIS Lounge (TECH 217)",
+    "crumbs": [
+      "Home",
+      "Introduction to Data Science"
+    ]
+  },
+  {
+    "objectID": "index.html#course-description",
+    "href": "index.html#course-description",
+    "title": "Introduction to Data Science",
+    "section": "Course Description",
+    "text": "Course Description\nFrom social media to the James Webb telescope, from Shakespeare’s plays to the U.S. Census, data is being collected all around us, all the time. How can we make sense of these near-constant streams of information?\nThis course will attempt to answer this question by introducing the concepts and practices involved in data analysis: data collection and preparation, exploratory analysis, and prediction and classification. Using the programming language Python and other industry-standard tools, we will practice ways of working with data from simple summary statistics to advanced machine learning models. At each step of the way, we’ll discuss how to approach data analysis critically and ethically. And we’ll explore data sets from a wide range of fields and disciplines, including sociology, ecology, business, film, and history.",
+    "crumbs": [
+      "Home",
+      "Introduction to Data Science"
+    ]
+  },
+  {
+    "objectID": "index.html#learning-goals",
+    "href": "index.html#learning-goals",
+    "title": "Introduction to Data Science",
+    "section": "Learning Goals",
+    "text": "Learning Goals\nAt the end of this course, you should be able to:\n\nUnderstand and implement the data analysis process, from data collection to communicating results.\nUse exploratory data analysis to quickly understand a complex dataset.\nApply modeling techniques to make predictions.\nEvaluate the effectiveness of different modeling techniques.\nThink and act ethically at all steps of the data analysis process.\n\nBanner image: The Library Computer Access/Retrieval System (LCARS), a fictional operating system and data analysis interface from Star Trek: The Next Generation",
+    "crumbs": [
+      "Home",
+      "Introduction to Data Science"
+    ]
+  },
+  {
+    "objectID": "guides/sklearn.html",
+    "href": "guides/sklearn.html",
+    "title": "Modeling with Scikit-learn",
+    "section": "",
+    "text": "Scikit-learn, or sklearn, is an all-purpose Python library for statistical modeling and machine learning. It gives you access to many different kinds of models and approaches, and we will just scratch the surface in this class. You’ll use scikit-learn any time you create a model, whether it’s a supervised regression or classification, or an unsupervised approach. This guide will walk you through the general aspects of modeling in scikit-learn, but the specifics will be up to you!\n\n\n\n\n\n\nNote\n\n\n\nScikit-learn’s User Guide and Documentation are very detailed, and we’ll practice using them together in class. That’s a good place to start if you want more information about anything you find here.\n\n\n\n\nNo matter what kind of modeling you’re doing, here are the general steps you will follow:\n\nChoose your model based on your data and research questions\nChoose predictor and target variables appropriate to the model, test for validity if necessary\nPrepare the data: removing any null values, scaling/normalizing variables, or using one-hot encoding or reference coding as necessary.\nSplit the data into train and test portions (n.b.: You will skip this step for unsupervised approaches!)\nInitialize the model, paying special attention to hyperparameters\nFit the model to your training data\nSummarize and/or predict based on the model\nValidate and assess the model based on your results\n\n\n\n\nUnlike the other libraries we’ve used so far, you’d never simply run import sklearn: the library is too big and would import way more than you need, potentially slowing down your code! Instead, you’ll import just the parts you need for a particular model.\nIn the first step of the modeling workflow, you need to use the model selection principles we’ll discuss in class to determine the right model for your data and research questions. That will give you a good idea of what functions and methods you’ll need. You’ll import them with code that looks like this:\n# You only need to import the functions you will use\n# This may be different every time\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.model_selection import train_test_split, cross_val_score\nfrom sklearn.metrics import mean_squared_error, r2_score\nThis is the example of what you’d need if you were going to run a linear regression. Note that you’re importing a class, the capitalized LinearRegression in the first line, that has your model itself. And you’re also importing all the additional functions you need to validate and explain that model.\n\n\n\nNext you’ll choose what predictors and target variables you use. The process of choosing predictors (i.e. features) is called feature selection, and the kind of model you chose will often help you determine which predictors you use. The reverse is also true: the kind of features/predictors you have access to might help you determine which model to use.\nTypically you’d first identify the variables and then use them to select the specific X (predictors) and y (target) data you’ll use in the model.\npredictors = [\"your_first_predictor\", \"your_second_predictor\", \"your_third_predictor\", ...]\ntarget = \"your_target_variable\" #Note there are no brackets here\n\nX = your_dataframe[predictors]\ny = your_dataframe[target]\nSometimes you will want to test your predictors for validity before selecting them. In this case, you might create a potential_predictors list and use that before narrowing down to your official predictors. This is especially true for linear models like Linear Regression or Logistic Regression, when you often want to check for multicollinearity using a pairplot or correlation matrix at this stage.\n\n\n\n\n\n\nTip\n\n\n\nIn an unsupervised model, there is no target variable, so you would only need to set up predictors and an X. And in some cases, you would run your model on the entire dataset without selecting specific features as predictors.\n\n\n\n\n\nThere are a few steps you might take at this stage. Some of these steps might happen before or during the previous step.\n\n\n\n\n\n\nImportant\n\n\n\nYOU WILL NOT DO EVERY ONE OF THESE STEPS EVERY TIME YOU RUN A MODEL. IT WILL ALWAYS DEPEND ON YOUR MODEL AND YOUR DATA.\n\n\n\n\nIf your data has null values, this will cause errors in most models. It is helpful to remove null values from your data before you create your X and y variables. Use subset= to avoid dropping rows unnecesarily.\nyour_dataframe = your_dataframe.dropna(subset=predictors)\nIf there are null values in the target, you may need to add the target to the subset list.\n\n\n\nIf you have categorical variables in your predictors, you may need to change them to numerical 1s and 0s in order to run your model. You may be able to skip this for certain tree models, like the random forest.\nFor linear models (linear and logistic regression), use reference coding by dropping one of your category columns. This code will got in place of the code where you defined X in the previos section.\nX = pd.get_dummies(your_dataframe[predictors], drop_first=True)\nFor almost all other models, use one-hot encoding and don’t drop any of the reference columns.\nX = pd.get_dummies(your_dataframe[predictors])\n\n\n\n\n\n\nWarning\n\n\n\nIf you have a categorical variable with lots of individual classes, this process will create too many columns in your code. This could slow down your code, cause your kernel crash, and/or make your model unreliable. Make sure you’ve inspected the categorical variables you want to use.\n\n\n\n\n\nIf your predictors are at very different scales, this could affect the results of your model. Especially in the case of distance-based models like K-nearest neighbors or K-means clustering, it’s important to scale your variables.\nThe process of scaling works like using a model class in sklearn. First you import the scaler. There are many different ways to scale data, but we’ll typically standardize with z-scores.\nfrom sklearn.preprocessing import StandardScaler\nAfter you split the data (see below) you should standardize the training data.\nscaler = StandardScaler()\nscaler.fit(X_train)\nX_train_std = scaler.transform(X_train)\nThen you would use X_train_std in place of X_train in any subsequent code.\nBefore you validate on your test data, you need to scale the test data with the same scaler.\nX_test_std = scaler.transform(X_test)\nNotice that you don’t re-fit the scaler at this step. After this you would use X_test_std in place of X_test in any subsequent code.\nBefore you cross-validate (or before you fit an unsupervised model), you will need to standardize the entirety of the unsplit data.\nscaler = StandardScaler()\nscaler.fit(X)\nX_std = scaler.transform(X)\nThen you would use X_std in place of X in any subsequent code.\n\n\n\n\nFor all supervised models, you will split the data into training and test sets. A training set will determine the model’s coefficients, and a test set will let us see how well it works on new data that it hasn’t already seen. (For unsupervised models, since there is no training, you will skip this step and work on the entire dataset.)\nYou use the train_test_split function that we imported above to split your data.\nX_train, X_test, y_train, y_test = train_test_split(\n    X, \n    y, \n    test_size=0.3, \n    random_state=0)\nThe test_size parameter determines what percentage of the data will be reserved for testing (in this case, 30%). If your dataset is very small, you may want to reserve a smaller test set so that you can use as much data as possible for training, but it’s unadvisable to choose a test set smaller than 20%.\nThe random_state parameter ensures that data split is the same every time. It doesn’t matter what number you use here, so long as it’s the same every time you run the function.\n\n\n\nIn order to run a model, you must initialize the model class by assigning it to a variable. For a simple model like linear regression, it would look like this:\nyour_model_name = LinearRegression()\nMany models have hyperparameters and other settings you need to select at the time of initialization. Refer to your notes from class and the sklearn documentation for details about specific hyperparameters. As an example, initialization of a Naive Bayes model might look like:\nnaive_model = MultinomialNB(alpha=0.01, fit_prior=True)\nIn this case, the MultinomialNB class has two hyperparamters, alpha and fit_prior.\n\n\n\nIn a supervised model, you will take the model variable that you initialized in the previous step and fit, i.e. run, it on your split training data.\nyour_model_name.fit(X_train_std, y_train)\nIn an unsupervised model, you will fit directly to the full data, and there is no target y variable.\nyour_model_name.fit(X)\nOr sometimes:\nresults = your_model_name.fit_transform(X)\nThe last option will fit and get results in the same function, but we’ll typically only use it for our PCA model.\n\n\n\n\n\n\n\n\n\nCaution\n\n\n\nThis step is only for supervised models. For unsupervised models, you will often use the fit data to generate a transformation or retrieve attributes.\n\n\n\n\nThis option is only for linear models: linear and logistic regression. You can display the intercept and coefficients to better interpret the relationships in your data.\n# You'll use loops and string formatting here\nprint(f\"Intercept: {your_model_name.intercept_:.3f}\")\nfor c,p in zip(your_model_name.coef_,X.columns):\n    print(f\"Coefficient for {p}: {c:.4f}\")\n\n\n\nThis option is only for tree models: decision trees and the random forest.\n\nYou can use the plot_tree() function to create an informative tree diagram. See the Scikit-learn documentation for details.\nYou can display the feature importances from these models in order to interpret the results more accurately. Listing feature importances will use the your_model_name.feature_importances_ attribute and the same looping procedure as displaying coefficients (above).\n\n\n\n\nSupervised models always produce predictions. In regression models, you produce numerical predictions with .predict(). We will always run these functions on the test data to get out of sample predictions.\n# For regression\npredictions = your_model_name.predict(X_test)\nIn classification models, you produce categorical predictions with .predict() and numerical probabilities with .predict_proba(). You should also get the target classes at this stage.\n# For classification\nclasses = your_model_name.classes_\nprobabilities = your_model_name.predict_proba(X_test_std)\npredictions = your_model_name.predict(X_test_std)\n\n# It's helpful to put the probabilities into a dataframe\nprobabilities = pd.DataFrame(probabilities, columns=classes)\n\n\n\n\nFor every kind of model, there are distinct validation and assessment steps that help you interpret your results.\n\n\n\n\n\n\nNote\n\n\n\nThere are many different validation methods, and this guide will go through a few of the ones we’ll use in this class. The sklearn documentation lists many more possibilities for different kinds of models.\n\n\n\n\nAll supervised models should be cross-validated. This runs the model multiple times over different splits of the data, to verify that your results weren’t skewed by a random split of the data.\nAt the top of your code, you should have the cross_val_score function imported. Then, no matter the model, you run the function on the entire unsplit dataset.\n# cv is the number of folds, or the repeated runs of the model\nscores = cross_val_score(your_model name, X, y, cv=5)\n# Use f-strings to print the mean and standard deviation of your result\nprint(f\"{scores.mean():.2} score with standard deviation {scores.std():.2}\")\nFor regression models, cross_val_score will generate an \\(R^2\\) score for each run of your model. For classification models, it will generate an accuracy score.\n\n\n\nRegression validation is based on residuals. Here are the sklearn functions you need to validate a regression. You would add these at the top of your notebook with your other imports.\nfrom sklearn.metrics import mean_squared_error, r2_score\nYou first step in regression validation is to calculate the residuals.\n# Out-of-sample residuals:\nresiduals = y_test - predictions\n\n# It's helpful to put them into a dataframe with your predictions\nresults = pd.DataFrame({'Predictions': predictions, 'Residuals':residuals})\nYou can use the predictions you generated in the previous step to calculate Root Mean Squared Error (RMSE).\nprint(f\"Root mean squared error: {np.sqrt(mean_squared_error(y_test, predictions)):.2f}\")\nYou can also display the \\(R^2\\) score, aka the coefficient of determination.\nprint(f\"Coefficient of determination: {r2_score(y_test, predictions):.2f}\")\nIn addition to these two values, you can also create visualizations for validation.\nA histogram of residuals will show you if the residuals are normally distributed.\nresults.residuals.plot(\n    kind=\"hist\",\n    alpha=0.5,\n    title=\"Histogram of Residuals\",\n    xlabel=\"Residuals\"\n)\nplt.show()\nAnd you can plot the absolute value of residuals against the predictions to test for heteroskedasticity. You will only use this plot for linear regression.\n# Get absolute value of residuals\nresults = results.assign(abs_residuals = np.abs(results.residuals)).sort_values(\"predictions\")\nresults.plot(\n    kind=\"scatter\",\n    x=\"predictions\", \n    y=\"abs_residuals\",\n    title=\"Testing for Heteroskedasticity\",\n    xlabel=\"Predicted Values\",\n    ylabel=\"Absolute value of Residuals\"\n)\n\n# Plot a rolling average of the absolute values (estimates a LOESS curve)\nplt.plot(results[\"predictions\"], results[\"abs_residuals\"].rolling(window=30, center=True).mean(), c=\"red\")\nplt.show()\n\n\n\nClassification validation is based on the confusion matrix, which tallies the number of categories correctly predicted by the model. Here are the sklearn functions you need to validate a classifier. You would add these at the top of your notebook with your other imports.\nfrom sklearn.metrics import ConfusionMatrixDisplay, classification_report, RocCurveDisplay\n# You won't always need matplotlib, but it's good to have\nimport matplotlib.pyplot as plt\nThe confusion_matrix function generates the results, and you can turn this into a confusion matrix visualization: a special kind of heatmap with text overlayed.\n# Display confusion matrix\nConfusionMatrixDisplay.from_predictions(y_test,predictions,display_labels=classes)\nplt.show()\nYou can calculate the accuracy, precision, and recall scores with the classification report.\n# You must use print() to make this readable\nprint(classification_report(y_test, predictions))\nDon’t forget that you must also use cross-validation for a classifier!\nYou can also create an ROC Curve if you have a binary classifer (just two target classes).\n# Create our ROC Curve plot\nRocCurveDisplay.from_predictions(y_test,\n                                 probabilities[classes[0]],\n                                 pos_label=classes[0])\n\n# Draw a green line for 0\nplt.plot([0, 1], [0, 1], color = 'g')\nplt.show()\n\n\n\nValidation steps for unsupervised models are specific to the model. For example, in K-means clustering, you could show the labels of your clustering and a bar plot of the cluster means. Refer back to our class notes and supplementary readings for validation steps for K-means clustering and PCA.\n\n\n\n\nHere are the bits of sklearn you will need to import different model classes. You can refer to the documentation for each of these classes to get more details about hyperparameters and other features. Remember, you should only import the code you need for your specific model.\n# Linear Regression\nfrom sklearn.linear_model import LinearRegression\n\n# KNN Regression\nfrom sklearn.neighbors import KNeighborsRegressor\n\n# Random Forest Regression\nfrom sklearn.tree import DecisionTreeRegressor, plot_tree\nfrom sklearn.ensemble import RandomForestRegressor\n\n# Logistic Regression\nfrom sklearn.linear_model import LogisticRegression\n\n# KNN Classification\nfrom sklearn.neighbors import KNeighborsClassifier\n\n# Random Forest Classification\nfrom sklearn.tree import DecisionTreeClassifier, plot_tree\nfrom sklearn.ensemble import RandomForestClassifier\n\n# Naive Bayes Classifier\nfrom sklearn.naive_bayes import MultinomialNB\n\n# K-Means Clustering\nfrom sklearn.cluster import KMeans\n\n# Principal Component Analysis\nfrom sklearn.decomposition import PCA",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Modeling with Scikit-learn"
+    ]
+  },
+  {
+    "objectID": "guides/sklearn.html#the-scikit-learn-modeling-workflow",
+    "href": "guides/sklearn.html#the-scikit-learn-modeling-workflow",
+    "title": "Modeling with Scikit-learn",
+    "section": "",
+    "text": "No matter what kind of modeling you’re doing, here are the general steps you will follow:\n\nChoose your model based on your data and research questions\nChoose predictor and target variables appropriate to the model, test for validity if necessary\nPrepare the data: removing any null values, scaling/normalizing variables, or using one-hot encoding or reference coding as necessary.\nSplit the data into train and test portions (n.b.: You will skip this step for unsupervised approaches!)\nInitialize the model, paying special attention to hyperparameters\nFit the model to your training data\nSummarize and/or predict based on the model\nValidate and assess the model based on your results",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Modeling with Scikit-learn"
+    ]
+  },
+  {
+    "objectID": "guides/sklearn.html#choose-a-model-and-import-functions",
+    "href": "guides/sklearn.html#choose-a-model-and-import-functions",
+    "title": "Modeling with Scikit-learn",
+    "section": "",
+    "text": "Unlike the other libraries we’ve used so far, you’d never simply run import sklearn: the library is too big and would import way more than you need, potentially slowing down your code! Instead, you’ll import just the parts you need for a particular model.\nIn the first step of the modeling workflow, you need to use the model selection principles we’ll discuss in class to determine the right model for your data and research questions. That will give you a good idea of what functions and methods you’ll need. You’ll import them with code that looks like this:\n# You only need to import the functions you will use\n# This may be different every time\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.model_selection import train_test_split, cross_val_score\nfrom sklearn.metrics import mean_squared_error, r2_score\nThis is the example of what you’d need if you were going to run a linear regression. Note that you’re importing a class, the capitalized LinearRegression in the first line, that has your model itself. And you’re also importing all the additional functions you need to validate and explain that model.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Modeling with Scikit-learn"
+    ]
+  },
+  {
+    "objectID": "guides/sklearn.html#choose-predictor-and-target-variables",
+    "href": "guides/sklearn.html#choose-predictor-and-target-variables",
+    "title": "Modeling with Scikit-learn",
+    "section": "",
+    "text": "Next you’ll choose what predictors and target variables you use. The process of choosing predictors (i.e. features) is called feature selection, and the kind of model you chose will often help you determine which predictors you use. The reverse is also true: the kind of features/predictors you have access to might help you determine which model to use.\nTypically you’d first identify the variables and then use them to select the specific X (predictors) and y (target) data you’ll use in the model.\npredictors = [\"your_first_predictor\", \"your_second_predictor\", \"your_third_predictor\", ...]\ntarget = \"your_target_variable\" #Note there are no brackets here\n\nX = your_dataframe[predictors]\ny = your_dataframe[target]\nSometimes you will want to test your predictors for validity before selecting them. In this case, you might create a potential_predictors list and use that before narrowing down to your official predictors. This is especially true for linear models like Linear Regression or Logistic Regression, when you often want to check for multicollinearity using a pairplot or correlation matrix at this stage.\n\n\n\n\n\n\nTip\n\n\n\nIn an unsupervised model, there is no target variable, so you would only need to set up predictors and an X. And in some cases, you would run your model on the entire dataset without selecting specific features as predictors.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Modeling with Scikit-learn"
+    ]
+  },
+  {
+    "objectID": "guides/sklearn.html#prepare-the-data",
+    "href": "guides/sklearn.html#prepare-the-data",
+    "title": "Modeling with Scikit-learn",
+    "section": "",
+    "text": "There are a few steps you might take at this stage. Some of these steps might happen before or during the previous step.\n\n\n\n\n\n\nImportant\n\n\n\nYOU WILL NOT DO EVERY ONE OF THESE STEPS EVERY TIME YOU RUN A MODEL. IT WILL ALWAYS DEPEND ON YOUR MODEL AND YOUR DATA.\n\n\n\n\nIf your data has null values, this will cause errors in most models. It is helpful to remove null values from your data before you create your X and y variables. Use subset= to avoid dropping rows unnecesarily.\nyour_dataframe = your_dataframe.dropna(subset=predictors)\nIf there are null values in the target, you may need to add the target to the subset list.\n\n\n\nIf you have categorical variables in your predictors, you may need to change them to numerical 1s and 0s in order to run your model. You may be able to skip this for certain tree models, like the random forest.\nFor linear models (linear and logistic regression), use reference coding by dropping one of your category columns. This code will got in place of the code where you defined X in the previos section.\nX = pd.get_dummies(your_dataframe[predictors], drop_first=True)\nFor almost all other models, use one-hot encoding and don’t drop any of the reference columns.\nX = pd.get_dummies(your_dataframe[predictors])\n\n\n\n\n\n\nWarning\n\n\n\nIf you have a categorical variable with lots of individual classes, this process will create too many columns in your code. This could slow down your code, cause your kernel crash, and/or make your model unreliable. Make sure you’ve inspected the categorical variables you want to use.\n\n\n\n\n\nIf your predictors are at very different scales, this could affect the results of your model. Especially in the case of distance-based models like K-nearest neighbors or K-means clustering, it’s important to scale your variables.\nThe process of scaling works like using a model class in sklearn. First you import the scaler. There are many different ways to scale data, but we’ll typically standardize with z-scores.\nfrom sklearn.preprocessing import StandardScaler\nAfter you split the data (see below) you should standardize the training data.\nscaler = StandardScaler()\nscaler.fit(X_train)\nX_train_std = scaler.transform(X_train)\nThen you would use X_train_std in place of X_train in any subsequent code.\nBefore you validate on your test data, you need to scale the test data with the same scaler.\nX_test_std = scaler.transform(X_test)\nNotice that you don’t re-fit the scaler at this step. After this you would use X_test_std in place of X_test in any subsequent code.\nBefore you cross-validate (or before you fit an unsupervised model), you will need to standardize the entirety of the unsplit data.\nscaler = StandardScaler()\nscaler.fit(X)\nX_std = scaler.transform(X)\nThen you would use X_std in place of X in any subsequent code.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Modeling with Scikit-learn"
+    ]
+  },
+  {
+    "objectID": "guides/sklearn.html#split-the-data",
+    "href": "guides/sklearn.html#split-the-data",
+    "title": "Modeling with Scikit-learn",
+    "section": "",
+    "text": "For all supervised models, you will split the data into training and test sets. A training set will determine the model’s coefficients, and a test set will let us see how well it works on new data that it hasn’t already seen. (For unsupervised models, since there is no training, you will skip this step and work on the entire dataset.)\nYou use the train_test_split function that we imported above to split your data.\nX_train, X_test, y_train, y_test = train_test_split(\n    X, \n    y, \n    test_size=0.3, \n    random_state=0)\nThe test_size parameter determines what percentage of the data will be reserved for testing (in this case, 30%). If your dataset is very small, you may want to reserve a smaller test set so that you can use as much data as possible for training, but it’s unadvisable to choose a test set smaller than 20%.\nThe random_state parameter ensures that data split is the same every time. It doesn’t matter what number you use here, so long as it’s the same every time you run the function.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Modeling with Scikit-learn"
+    ]
+  },
+  {
+    "objectID": "guides/sklearn.html#initialize-the-model",
+    "href": "guides/sklearn.html#initialize-the-model",
+    "title": "Modeling with Scikit-learn",
+    "section": "",
+    "text": "In order to run a model, you must initialize the model class by assigning it to a variable. For a simple model like linear regression, it would look like this:\nyour_model_name = LinearRegression()\nMany models have hyperparameters and other settings you need to select at the time of initialization. Refer to your notes from class and the sklearn documentation for details about specific hyperparameters. As an example, initialization of a Naive Bayes model might look like:\nnaive_model = MultinomialNB(alpha=0.01, fit_prior=True)\nIn this case, the MultinomialNB class has two hyperparamters, alpha and fit_prior.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Modeling with Scikit-learn"
+    ]
+  },
+  {
+    "objectID": "guides/sklearn.html#fit-the-model",
+    "href": "guides/sklearn.html#fit-the-model",
+    "title": "Modeling with Scikit-learn",
+    "section": "",
+    "text": "In a supervised model, you will take the model variable that you initialized in the previous step and fit, i.e. run, it on your split training data.\nyour_model_name.fit(X_train_std, y_train)\nIn an unsupervised model, you will fit directly to the full data, and there is no target y variable.\nyour_model_name.fit(X)\nOr sometimes:\nresults = your_model_name.fit_transform(X)\nThe last option will fit and get results in the same function, but we’ll typically only use it for our PCA model.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Modeling with Scikit-learn"
+    ]
+  },
+  {
+    "objectID": "guides/sklearn.html#summarize-andor-predict",
+    "href": "guides/sklearn.html#summarize-andor-predict",
+    "title": "Modeling with Scikit-learn",
+    "section": "",
+    "text": "Caution\n\n\n\nThis step is only for supervised models. For unsupervised models, you will often use the fit data to generate a transformation or retrieve attributes.\n\n\n\n\nThis option is only for linear models: linear and logistic regression. You can display the intercept and coefficients to better interpret the relationships in your data.\n# You'll use loops and string formatting here\nprint(f\"Intercept: {your_model_name.intercept_:.3f}\")\nfor c,p in zip(your_model_name.coef_,X.columns):\n    print(f\"Coefficient for {p}: {c:.4f}\")\n\n\n\nThis option is only for tree models: decision trees and the random forest.\n\nYou can use the plot_tree() function to create an informative tree diagram. See the Scikit-learn documentation for details.\nYou can display the feature importances from these models in order to interpret the results more accurately. Listing feature importances will use the your_model_name.feature_importances_ attribute and the same looping procedure as displaying coefficients (above).\n\n\n\n\nSupervised models always produce predictions. In regression models, you produce numerical predictions with .predict(). We will always run these functions on the test data to get out of sample predictions.\n# For regression\npredictions = your_model_name.predict(X_test)\nIn classification models, you produce categorical predictions with .predict() and numerical probabilities with .predict_proba(). You should also get the target classes at this stage.\n# For classification\nclasses = your_model_name.classes_\nprobabilities = your_model_name.predict_proba(X_test_std)\npredictions = your_model_name.predict(X_test_std)\n\n# It's helpful to put the probabilities into a dataframe\nprobabilities = pd.DataFrame(probabilities, columns=classes)",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Modeling with Scikit-learn"
+    ]
+  },
+  {
+    "objectID": "guides/sklearn.html#validate-and-assess-your-model",
+    "href": "guides/sklearn.html#validate-and-assess-your-model",
+    "title": "Modeling with Scikit-learn",
+    "section": "",
+    "text": "For every kind of model, there are distinct validation and assessment steps that help you interpret your results.\n\n\n\n\n\n\nNote\n\n\n\nThere are many different validation methods, and this guide will go through a few of the ones we’ll use in this class. The sklearn documentation lists many more possibilities for different kinds of models.\n\n\n\n\nAll supervised models should be cross-validated. This runs the model multiple times over different splits of the data, to verify that your results weren’t skewed by a random split of the data.\nAt the top of your code, you should have the cross_val_score function imported. Then, no matter the model, you run the function on the entire unsplit dataset.\n# cv is the number of folds, or the repeated runs of the model\nscores = cross_val_score(your_model name, X, y, cv=5)\n# Use f-strings to print the mean and standard deviation of your result\nprint(f\"{scores.mean():.2} score with standard deviation {scores.std():.2}\")\nFor regression models, cross_val_score will generate an \\(R^2\\) score for each run of your model. For classification models, it will generate an accuracy score.\n\n\n\nRegression validation is based on residuals. Here are the sklearn functions you need to validate a regression. You would add these at the top of your notebook with your other imports.\nfrom sklearn.metrics import mean_squared_error, r2_score\nYou first step in regression validation is to calculate the residuals.\n# Out-of-sample residuals:\nresiduals = y_test - predictions\n\n# It's helpful to put them into a dataframe with your predictions\nresults = pd.DataFrame({'Predictions': predictions, 'Residuals':residuals})\nYou can use the predictions you generated in the previous step to calculate Root Mean Squared Error (RMSE).\nprint(f\"Root mean squared error: {np.sqrt(mean_squared_error(y_test, predictions)):.2f}\")\nYou can also display the \\(R^2\\) score, aka the coefficient of determination.\nprint(f\"Coefficient of determination: {r2_score(y_test, predictions):.2f}\")\nIn addition to these two values, you can also create visualizations for validation.\nA histogram of residuals will show you if the residuals are normally distributed.\nresults.residuals.plot(\n    kind=\"hist\",\n    alpha=0.5,\n    title=\"Histogram of Residuals\",\n    xlabel=\"Residuals\"\n)\nplt.show()\nAnd you can plot the absolute value of residuals against the predictions to test for heteroskedasticity. You will only use this plot for linear regression.\n# Get absolute value of residuals\nresults = results.assign(abs_residuals = np.abs(results.residuals)).sort_values(\"predictions\")\nresults.plot(\n    kind=\"scatter\",\n    x=\"predictions\", \n    y=\"abs_residuals\",\n    title=\"Testing for Heteroskedasticity\",\n    xlabel=\"Predicted Values\",\n    ylabel=\"Absolute value of Residuals\"\n)\n\n# Plot a rolling average of the absolute values (estimates a LOESS curve)\nplt.plot(results[\"predictions\"], results[\"abs_residuals\"].rolling(window=30, center=True).mean(), c=\"red\")\nplt.show()\n\n\n\nClassification validation is based on the confusion matrix, which tallies the number of categories correctly predicted by the model. Here are the sklearn functions you need to validate a classifier. You would add these at the top of your notebook with your other imports.\nfrom sklearn.metrics import ConfusionMatrixDisplay, classification_report, RocCurveDisplay\n# You won't always need matplotlib, but it's good to have\nimport matplotlib.pyplot as plt\nThe confusion_matrix function generates the results, and you can turn this into a confusion matrix visualization: a special kind of heatmap with text overlayed.\n# Display confusion matrix\nConfusionMatrixDisplay.from_predictions(y_test,predictions,display_labels=classes)\nplt.show()\nYou can calculate the accuracy, precision, and recall scores with the classification report.\n# You must use print() to make this readable\nprint(classification_report(y_test, predictions))\nDon’t forget that you must also use cross-validation for a classifier!\nYou can also create an ROC Curve if you have a binary classifer (just two target classes).\n# Create our ROC Curve plot\nRocCurveDisplay.from_predictions(y_test,\n                                 probabilities[classes[0]],\n                                 pos_label=classes[0])\n\n# Draw a green line for 0\nplt.plot([0, 1], [0, 1], color = 'g')\nplt.show()\n\n\n\nValidation steps for unsupervised models are specific to the model. For example, in K-means clustering, you could show the labels of your clustering and a bar plot of the cluster means. Refer back to our class notes and supplementary readings for validation steps for K-means clustering and PCA.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Modeling with Scikit-learn"
+    ]
+  },
+  {
+    "objectID": "guides/sklearn.html#appendix-import-models",
+    "href": "guides/sklearn.html#appendix-import-models",
+    "title": "Modeling with Scikit-learn",
+    "section": "",
+    "text": "Here are the bits of sklearn you will need to import different model classes. You can refer to the documentation for each of these classes to get more details about hyperparameters and other features. Remember, you should only import the code you need for your specific model.\n# Linear Regression\nfrom sklearn.linear_model import LinearRegression\n\n# KNN Regression\nfrom sklearn.neighbors import KNeighborsRegressor\n\n# Random Forest Regression\nfrom sklearn.tree import DecisionTreeRegressor, plot_tree\nfrom sklearn.ensemble import RandomForestRegressor\n\n# Logistic Regression\nfrom sklearn.linear_model import LogisticRegression\n\n# KNN Classification\nfrom sklearn.neighbors import KNeighborsClassifier\n\n# Random Forest Classification\nfrom sklearn.tree import DecisionTreeClassifier, plot_tree\nfrom sklearn.ensemble import RandomForestClassifier\n\n# Naive Bayes Classifier\nfrom sklearn.naive_bayes import MultinomialNB\n\n# K-Means Clustering\nfrom sklearn.cluster import KMeans\n\n# Principal Component Analysis\nfrom sklearn.decomposition import PCA",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Modeling with Scikit-learn"
+    ]
+  },
+  {
     "objectID": "radcat.html",
     "href": "radcat.html",
     "title": "R.A.D. C.A.T.",
@@ -261,363 +474,6 @@
       "Home",
       "Guides",
       "Python"
-    ]
-  },
-  {
-    "objectID": "schedule.html",
-    "href": "schedule.html",
-    "title": "Course Schedule",
-    "section": "",
-    "text": "Date\nTopics & Data\nReadings\nAssignments\n\n\n\n\n\n1: 25 & 27 Aug.\nWhat Is Data? & Data Ethics\nADSA Case Study\n\n\n\n\n2: 1 & 3 Sept.\nJupyter, Python, and Data Wrangling (W0)\nDowney Ch. 1 & 7\n\n\n\n\n3: 8 & 10 Sept.\nExploratory Data Analysis w/ Movies Data (W1.1): Summary Statistics & Data Types\nBruce Ch. 1 (pdf); Downey Ch. 2\nDocumentation Assignment Due 10 Sept.\n\n\n\n4: 15 & 17 Sept.\nExploratory Data Analysis w/ Movies Data (W1.2): Visualization\nWilke Ch. 5\n\n\n\n\n5: 22 & 24 Sept.\nDistributions & Hypothesis Testing w/ Baseball Data (W2.1)\nBruce Ch. 3 (pdf); (Optional: Downey Ch. 8)\n\n\n\n\n6: 29 Sept. & 1 Oct.\nCorrelation w/ Baseball Data (W2.2)\nDowney Ch. 9\n\n\n\n\n7: 6 & 8 Oct.\nReview & Exam\n\nTest 1 8 Oct.\n\n\n\n8: 13 & 15 Oct.\nRegression w/ Business Data (W3.1)\nBruce Ch. 4 (pdf)\n\n\n\n\n9: 22 Oct.\nOpen Lab: Explanatory vs. Predictive Modeling\n\nDescriptive Analysis Project Due 22 Oct.\n\n\n\n10: 27 & 29 Oct.\nMore Regression w/ Business Data (W3.2)\nBruce Ch. 6 (pdf)\n\n\n\n\n11: 3 & 5 Nov.\nClassification w/ Health Data (W4.1)\nBruce Ch. 5 (pdf)\n\n\n\n\n12: 10 & 12 Nov.\nMore Classification w/ Health Data (W4.2)\n\n\n\n\n\n13: 17 & 19 Nov.\nReview & Exam\n\nSlide Draft 17 Nov.; Test 2 19 Nov.\n\n\n\n14: 24 Nov.\nClustering w/ Literature Data (W5.1)\nBruce Ch. 7 (pdf)\n\n\n\n\n15: 1 & 3 Dec.\nDimension Reduction w/ Literature Data (W5.2)\n\nVideo Presentations Due 3 Dec.\n\n\n\n8 Dec. 2pm–3:50pm\nCIS Open House on Scholars Day!\n\n\n\n\n\nFinal Exam Time\nDiscuss Videos/Projects\n\nFinal Project Due Mon. 14 Dec. at 9am",
-    "crumbs": [
-      "Home",
-      "Course Information",
-      "Course Schedule"
-    ]
-  },
-  {
-    "objectID": "schedule.html#textbooks",
-    "href": "schedule.html#textbooks",
-    "title": "Course Schedule",
-    "section": "Textbooks:",
-    "text": "Textbooks:\nThere are no required textbooks for this course. All textbooks are free online or made available to you on Sakai.\n\nBruce, Bruce, and Gedeck, Practical Statistics for Data Scientists 2nd ed.\nDowney, Elements of Data Science\nWilke, Fundamentals of Data Visualization\n\n\nNote on the schedule\nKeep in mind that some of this schedule could change throughout the semester. However, if anything changes I’ll update this page, and I’ll be sure to give you plenty of advance notice.",
-    "crumbs": [
-      "Home",
-      "Course Information",
-      "Course Schedule"
-    ]
-  },
-  {
-    "objectID": "schedule.html#software",
-    "href": "schedule.html#software",
-    "title": "Course Schedule",
-    "section": "Software",
-    "text": "Software\nAll projects in this course will be scripted and analyzed using Python, an open source programming language and environment. Specifically, we will be using JupyterHub as our programming environment. No previous experience with Python, statistical software packages, or computer programming is required.",
-    "crumbs": [
-      "Home",
-      "Course Information",
-      "Course Schedule"
-    ]
-  },
-  {
-    "objectID": "guides/uploading.html",
-    "href": "guides/uploading.html",
-    "title": "Uploading a Jupyter Assignment",
-    "section": "",
-    "text": "Many of the assignments you create in this class will be written and coded in Jupyter notebooks. This is a short guide to submitting those assignments to Sakai.",
-    "crumbs": [
-      "Home",
-      "Other Key Info",
-      "Uploading a Jupyter Assignment"
-    ]
-  },
-  {
-    "objectID": "guides/uploading.html#step-1-complete-the-whole-assignment",
-    "href": "guides/uploading.html#step-1-complete-the-whole-assignment",
-    "title": "Uploading a Jupyter Assignment",
-    "section": "Step 1: Complete the whole assignment",
-    "text": "Step 1: Complete the whole assignment\nMake sure the entire assignment is finished, following the RAD CAT guide. All of the visualizations should be displayed the way you want, and all of the necessary code output should be shown in the notebook. If it’s not showing up in the notebook view in JupyterHub, it won’t show up in the output.",
-    "crumbs": [
-      "Home",
-      "Other Key Info",
-      "Uploading a Jupyter Assignment"
-    ]
-  },
-  {
-    "objectID": "guides/uploading.html#step-2-export-an-html-file",
-    "href": "guides/uploading.html#step-2-export-an-html-file",
-    "title": "Uploading a Jupyter Assignment",
-    "section": "Step 2: Export an HTML file",
-    "text": "Step 2: Export an HTML file\nIn JupyterHub, select File &gt; Save and Export Notebook As... &gt; HTML (see the screenshot below). This will download an HTML version of the notebook to your computer. Do not download the .ipynb file or submit it to Sakai. You need the HTML output so that I can read and grade your work.",
-    "crumbs": [
-      "Home",
-      "Other Key Info",
-      "Uploading a Jupyter Assignment"
-    ]
-  },
-  {
-    "objectID": "guides/uploading.html#step-3-rename-and-check-the-html-file",
-    "href": "guides/uploading.html#step-3-rename-and-check-the-html-file",
-    "title": "Uploading a Jupyter Assignment",
-    "section": "Step 3: Rename and check the HTML file",
-    "text": "Step 3: Rename and check the HTML file\nThe HTML will be downloaded somewhere on your computer (usually into the Downloads folder by default). Find the HTML file, open it, and look it over. Make sure that the file displays everything correctly. Sometimes the export goes wrong, and you may need to go back, make changes to your notebook, and export the file again. It is your responsibility that the HTML file is correct.\nAfter checking that the file is ready, rename the file so that it includes your last name. If the original file name was 01_movies1.html and your last name is Smith, you should rename the file to smith_01_movies1.html. Just add your last name and an underscore to the start of the filename. Correctly naming your files is an important part of staying organized as a programmer and data scientist!",
-    "crumbs": [
-      "Home",
-      "Other Key Info",
-      "Uploading a Jupyter Assignment"
-    ]
-  },
-  {
-    "objectID": "guides/uploading.html#step-4-upload-to-sakai",
-    "href": "guides/uploading.html#step-4-upload-to-sakai",
-    "title": "Uploading a Jupyter Assignment",
-    "section": "Step 4: Upload to Sakai",
-    "text": "Step 4: Upload to Sakai\nNow that your HTML is exported, checked, and renamed, you can upload it to the Sakai assignment as you would any other file. Under our class in Sakai is an Assignments tab. You’ll see an assignment that matches the name of the assignment in your notebook. Select that one, then click Browse... to add the file from your computer to Sakai. Once your file is uploaded, make sure you click Proceed and then Submit to fully upload your assignment. I won’t be able to see and grade the assignment until you’ve clicked Submit.\nAnd that’s it! If anything goes wrong at any point in this process or you don’t know what to do next, you can always send me an email or stop by office hours.",
-    "crumbs": [
-      "Home",
-      "Other Key Info",
-      "Uploading a Jupyter Assignment"
-    ]
-  },
-  {
-    "objectID": "guides/hypothesis-testing.html",
-    "href": "guides/hypothesis-testing.html",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "The goal of a hypothesis test is to determine whether the data in your sample accurately reflects the full population. This guide won’t get into detail about how hypothesis tests work statistically, but it will give you an outline for how to perform permutation tests with Python and Pandas.\n\n\n\n\n\n\nImportant\n\n\n\nThis guide will not show you how to conduct traditional parametric hypothesis tests such as the T-test! This is only for the non-parametric permutation tests that we covered in class.\n\n\n\n\n\n\n\n\nNote\n\n\n\nFor a refresher on hypothesis tests and how they work, you can refer back to our slides from class, Ch. 13 of Downey’s Elements of Data Science, or the Crash Course video on the subject.\n\n\n\n\nNo matter what your test statistic is, here are the steps you need to follow each time you want to run a permutation test. At each step, you should fully explain and interpret what you are doing.\n\nRun some Exploratory Data Analysis on your dataset. Typically it’s helpful to make a visualization that lets you see the potential difference, correlation, or other phenomenon you want to test.\nCalculate your observed test statistic. In our case, this will usually either be a difference in means between two groups, or a Pearson’s correlation coefficient.\nBased on your exploratory analysis and test statistic, write out your null and alternative hypothesis.\n\n\n\n\n\n\n\nTip\n\n\n\nYou can use the MathJax markdown syntax to produce a nicely-formatted hypothesis, so $H_0 : \\bar A = \\bar C$ will become \\(H_0 : \\bar A = \\bar C\\) and $H_1 : \\bar A \\gt \\bar C$ will become \\(H_1 : \\bar A \\gt \\bar C\\).\n\n\n\nChoose the appropriate simulation function for the hypothesis test you’re running. Make sure you have a basic understanding of how the code works in these simulations—you may have to filter or adjust your data to prepare it for the function. (See below for the functions you can choose from.)\nIn a for loop, run the simulation many times (1000 is a good minimum) and put the resulting permutations into a list. This is similar to how we conducted bootstrap sampling. Convert that list to a dataframe with two columns: the permutation and the observed statistic.\nCreate a histogram that shows your permutation distribution and your observed statistic. This is a standard histogram or density plotplus a plt.axvline() layer that draws a vertical line for the observed statistic.\nCalculate the p-value (see below) and interpret the p-value and histogram together.\n\n\n\n\nPermutation tests use simulation and resampling to create a random permutation as a point of comparison. Here are two simulation functions that apply to different test statistics. These functions use the same sampling techniques we learned about when we calculated confidence intervals with bootstrap sampling, but they use sampling without replacement. You’ll use these as part of steps 4 and 5 in the instructions above.\n\n\n\n\n\n\nCaution\n\n\n\nNote that these functions take specific kinds of arguments and will require the right inputs to work properly!\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nThis function will typically require two steps before it can be run. You will need to filter your dataframe so it includes only the two groups you are testing, and you will need to calculate the number of rows in the first group.\n\n\ndef simulate_two_groups(df, group1_len, stat_var):\n    \"\"\"\n    This simulation function takes the following arguments:\n    - df: the name of your dataframe, limited to only the two groups you care about\n    - group1_len (int): the length (number of rows) in the first of your two groups of data\n    - stat_var (str): the name of the column (numerical variable) for the mean you want to test\n    \"\"\"\n    data = df[stat_var].sample(frac=1) #Reshuffle all data\n    group1 = data.iloc[:group1_len] #Get random first group\n    group2 = data.iloc[group1_len:] #Get random second group\n    return group1.mean() - group2.mean() #Calculate mean difference\n\n\n\ndef simulate_correlation(df,var1,var2):\n    \"\"\"\n    This simulation function takes the following arguments:\n    - df: the name of your dataframe\n    - var1 (str): the name of the first column (numerical variable) you want to compare\n    - var2 (str): the name of the second column (numerical variable) you want to compare\n    \"\"\"\n    shuffled = df[var1].sample(frac=1).reset_index(drop=True)\n    corr = shuffled.corr(df[var2])\n    return corr\n\n\n\n\nIn addition to the histogram of the permutation distribution, the p-value can tell you what percentage of your randomly simulated data was more extreme than your observed result. There are a few different formulas you can use to achieve this.\n\n\n\n\n\n\nCaution\n\n\n\nIn a p-value calculation, you need all the permutations you calculated as well as your observed statistic. The different calculations below assume your dataframe of results is called results, the permutation column of that dataframe is called permutations, and the observed statistic variable is called obs_stat. Your own variable and column names may be different!\n\n\n\n\nIf you have a one-tailed alternative hypothesis, simply calculate the mean of the permutations that are either greater than or equal to your observed statistic.\nIf your observed statistic is positive, you are looking for permutations greater than the observed statistic, like so:\np_value = (results.permutations &gt;= obs_stat).mean()\nIf your observed statistic is negative, you are looking for permutations less than the observed statistic:\np_value = (results.permutations &lt;= obs_stat).mean()\n\n\n\n\n\n\nTip\n\n\n\nA great rule of thumb here is: the comparison symbol (greater than or less than) should always go in the same direction as the comparison symbol in your alternative hypothesis.\n\n\n\n\n\nIf you have a two-tailed hypothesis, you should compare the absolute values of your permutations to the absolute value of your observed statistic. In this case, you are always looking for permutations greater than your observed statistic. You can use the numpy function np.abs() to get the absolute values.\np_value = (np.abs(results.permutations) &gt;= np.abs(observed_difference)).mean()",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Hypothesis Testing"
-    ]
-  },
-  {
-    "objectID": "guides/hypothesis-testing.html#the-steps-of-a-permutation-test",
-    "href": "guides/hypothesis-testing.html#the-steps-of-a-permutation-test",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "No matter what your test statistic is, here are the steps you need to follow each time you want to run a permutation test. At each step, you should fully explain and interpret what you are doing.\n\nRun some Exploratory Data Analysis on your dataset. Typically it’s helpful to make a visualization that lets you see the potential difference, correlation, or other phenomenon you want to test.\nCalculate your observed test statistic. In our case, this will usually either be a difference in means between two groups, or a Pearson’s correlation coefficient.\nBased on your exploratory analysis and test statistic, write out your null and alternative hypothesis.\n\n\n\n\n\n\n\nTip\n\n\n\nYou can use the MathJax markdown syntax to produce a nicely-formatted hypothesis, so $H_0 : \\bar A = \\bar C$ will become \\(H_0 : \\bar A = \\bar C\\) and $H_1 : \\bar A \\gt \\bar C$ will become \\(H_1 : \\bar A \\gt \\bar C\\).\n\n\n\nChoose the appropriate simulation function for the hypothesis test you’re running. Make sure you have a basic understanding of how the code works in these simulations—you may have to filter or adjust your data to prepare it for the function. (See below for the functions you can choose from.)\nIn a for loop, run the simulation many times (1000 is a good minimum) and put the resulting permutations into a list. This is similar to how we conducted bootstrap sampling. Convert that list to a dataframe with two columns: the permutation and the observed statistic.\nCreate a histogram that shows your permutation distribution and your observed statistic. This is a standard histogram or density plotplus a plt.axvline() layer that draws a vertical line for the observed statistic.\nCalculate the p-value (see below) and interpret the p-value and histogram together.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Hypothesis Testing"
-    ]
-  },
-  {
-    "objectID": "guides/hypothesis-testing.html#simulation-functions",
-    "href": "guides/hypothesis-testing.html#simulation-functions",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "Permutation tests use simulation and resampling to create a random permutation as a point of comparison. Here are two simulation functions that apply to different test statistics. These functions use the same sampling techniques we learned about when we calculated confidence intervals with bootstrap sampling, but they use sampling without replacement. You’ll use these as part of steps 4 and 5 in the instructions above.\n\n\n\n\n\n\nCaution\n\n\n\nNote that these functions take specific kinds of arguments and will require the right inputs to work properly!\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nThis function will typically require two steps before it can be run. You will need to filter your dataframe so it includes only the two groups you are testing, and you will need to calculate the number of rows in the first group.\n\n\ndef simulate_two_groups(df, group1_len, stat_var):\n    \"\"\"\n    This simulation function takes the following arguments:\n    - df: the name of your dataframe, limited to only the two groups you care about\n    - group1_len (int): the length (number of rows) in the first of your two groups of data\n    - stat_var (str): the name of the column (numerical variable) for the mean you want to test\n    \"\"\"\n    data = df[stat_var].sample(frac=1) #Reshuffle all data\n    group1 = data.iloc[:group1_len] #Get random first group\n    group2 = data.iloc[group1_len:] #Get random second group\n    return group1.mean() - group2.mean() #Calculate mean difference\n\n\n\ndef simulate_correlation(df,var1,var2):\n    \"\"\"\n    This simulation function takes the following arguments:\n    - df: the name of your dataframe\n    - var1 (str): the name of the first column (numerical variable) you want to compare\n    - var2 (str): the name of the second column (numerical variable) you want to compare\n    \"\"\"\n    shuffled = df[var1].sample(frac=1).reset_index(drop=True)\n    corr = shuffled.corr(df[var2])\n    return corr",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Hypothesis Testing"
-    ]
-  },
-  {
-    "objectID": "guides/hypothesis-testing.html#calculating-a-p-value",
-    "href": "guides/hypothesis-testing.html#calculating-a-p-value",
-    "title": "Hypothesis Testing",
-    "section": "",
-    "text": "In addition to the histogram of the permutation distribution, the p-value can tell you what percentage of your randomly simulated data was more extreme than your observed result. There are a few different formulas you can use to achieve this.\n\n\n\n\n\n\nCaution\n\n\n\nIn a p-value calculation, you need all the permutations you calculated as well as your observed statistic. The different calculations below assume your dataframe of results is called results, the permutation column of that dataframe is called permutations, and the observed statistic variable is called obs_stat. Your own variable and column names may be different!\n\n\n\n\nIf you have a one-tailed alternative hypothesis, simply calculate the mean of the permutations that are either greater than or equal to your observed statistic.\nIf your observed statistic is positive, you are looking for permutations greater than the observed statistic, like so:\np_value = (results.permutations &gt;= obs_stat).mean()\nIf your observed statistic is negative, you are looking for permutations less than the observed statistic:\np_value = (results.permutations &lt;= obs_stat).mean()\n\n\n\n\n\n\nTip\n\n\n\nA great rule of thumb here is: the comparison symbol (greater than or less than) should always go in the same direction as the comparison symbol in your alternative hypothesis.\n\n\n\n\n\nIf you have a two-tailed hypothesis, you should compare the absolute values of your permutations to the absolute value of your observed statistic. In this case, you are always looking for permutations greater than your observed statistic. You can use the numpy function np.abs() to get the absolute values.\np_value = (np.abs(results.permutations) &gt;= np.abs(observed_difference)).mean()",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Hypothesis Testing"
-    ]
-  },
-  {
-    "objectID": "guides/debugging.html",
-    "href": "guides/debugging.html",
-    "title": "Debugging Your Code",
-    "section": "",
-    "text": "Bugs in your code can be frustrating! But there are concrete steps you can take:\n\n\n\nThink about what you were trying to do vs. what happened instead. Create a hypothesis for what went wrong.\n\n\n\nLook for a line number where the error is occurring.\nSometimes the bug is in the line before the one that threw the error!\nSee Section 3 below for more.\n\n\n\nRemember that code is run in order, from the first line in your script to the last one. And specific parts of your code, like for loops or functions, have specific indented contexts. If any of your code is out of order or indented improperly, the rest of the code may not work.\nThis can happen a lot in JupyterHub, since sometimes you re-run a lower cell without fixing one that’s higher up in your code. Go back to the beginning of your code and re-run to see if that will fix it, and if not go cell-by-cell through the code to find the problem.\n\n\n\nTry your best to explain the problem out loud, preferably to a friend or teammate.\nPractice rubber duck debugging.\n\n\n\n\nIf you’re lost, refer to all the resources you have: cheatsheets, guides, online documentation. Don’t forget RAD CAT!\nAnd when in doubt: Google the error message and see if someone else had the same problem!\n\n\n\nDon’t let a single bug frustrate you for too long. If none of the above strategies worked, ask a classmate, PAL tutor, or instructor for help with the problem.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Debugging Your Code"
-    ]
-  },
-  {
-    "objectID": "guides/debugging.html#some-steps-to-try-when-you-encounter-an-error",
-    "href": "guides/debugging.html#some-steps-to-try-when-you-encounter-an-error",
-    "title": "Debugging Your Code",
-    "section": "",
-    "text": "Bugs in your code can be frustrating! But there are concrete steps you can take:\n\n\n\nThink about what you were trying to do vs. what happened instead. Create a hypothesis for what went wrong.\n\n\n\nLook for a line number where the error is occurring.\nSometimes the bug is in the line before the one that threw the error!\nSee Section 3 below for more.\n\n\n\nRemember that code is run in order, from the first line in your script to the last one. And specific parts of your code, like for loops or functions, have specific indented contexts. If any of your code is out of order or indented improperly, the rest of the code may not work.\nThis can happen a lot in JupyterHub, since sometimes you re-run a lower cell without fixing one that’s higher up in your code. Go back to the beginning of your code and re-run to see if that will fix it, and if not go cell-by-cell through the code to find the problem.\n\n\n\nTry your best to explain the problem out loud, preferably to a friend or teammate.\nPractice rubber duck debugging.\n\n\n\n\nIf you’re lost, refer to all the resources you have: cheatsheets, guides, online documentation. Don’t forget RAD CAT!\nAnd when in doubt: Google the error message and see if someone else had the same problem!\n\n\n\nDon’t let a single bug frustrate you for too long. If none of the above strategies worked, ask a classmate, PAL tutor, or instructor for help with the problem.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Debugging Your Code"
-    ]
-  },
-  {
-    "objectID": "guides/debugging.html#avoid-bugs-before-they-happen",
-    "href": "guides/debugging.html#avoid-bugs-before-they-happen",
-    "title": "Debugging Your Code",
-    "section": "Avoid Bugs before they happen!",
-    "text": "Avoid Bugs before they happen!\n\nSave and/or “Restart and Run All” Often.\nIf you’re getting the same bug repeatedly in the same cell despite making changes, it could be that something is “stuck” in memory. Use the “restart and run all” button to try it again with a fresh kernel.\n\n\nUse good names.\nName your variables and dataframes with care. Rename things to make them more clear. Good names can help you find a problem quickly.\n\n\nStart simple, and build up little by little.\nDon’t try to write a whole program all in one go.\n\n\nRun your code line-by-line.\nCheck that it works as you go.\n\n\nLeave yourself good annotations and comments!\nUse # to leave comments: remind yourself what certain lines of code are doing.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Debugging Your Code"
-    ]
-  },
-  {
-    "objectID": "guides/debugging.html#sec-anatomy",
-    "href": "guides/debugging.html#sec-anatomy",
-    "title": "Debugging Your Code",
-    "section": "Anatomy of an Error Message",
-    "text": "Anatomy of an Error Message\nHere’s an example of an error message from Pandas:\n\n# Import library\nimport pandas as pd\n\n# Read in data\npenguins = pd.read_csv(\"../data/penguins.csv\")\n\n# Filter only Adelie penguins\npenguins_filter = penguins[penguins.Species == \"Adelie\"]\npenguins_filter\n\n\n---------------------------------------------------------------------------\nAttributeError                            Traceback (most recent call last)\nCell In[1], line 8\n      4 # Read in data\n      5 penguins = pd.read_csv(\"../data/penguins.csv\")\n      6 \n      7 # Filter only Adelie penguins\n----&gt; 8 penguins_filter = penguins[penguins.Species == \"Adelie\"]\n      9 penguins_filter\n\nFile ~/CIS241/.venv/lib/python3.14/site-packages/pandas/core/generic.py:6194, in NDFrame.__getattr__(self, name)\n   6190             and name not in self._accessors\n   6191             and self._info_axis._can_hold_identifiers_and_holds_name(name)\n   6192         ):\n   6193             return self[name]\n-&gt; 6194         return object.__getattribute__(self, name)\n\nAttributeError: 'DataFrame' object has no attribute 'Species'\n\n\n\nThis code uses a lot of best practices (clear variable names, good comments, etc.), but it still has an error. Let’s see if you can decode it.\nThe bottom line of the error message defines the error itself. Make sure you always scroll to the bottom of the error message first!\nIn this case the last line says AttributeError: 'DataFrame' object has no attribute 'Species'. Before the colon is the type of error (an attribute error in Pandas refers to a column or attribute of the data), and after the colon Python attempts to tell you what’s wrong (in this case it says that the dataframe doesn’t have a column called “Species”).\nEverything above the bottom line of the error message is part of the Traceback, which shows you step by step what went wrong with the code. Sometimes these tracebacks can be very long, but usually you only need a small part of it.\nAfter you’ve looked at the last line, go back to the top part of the Traceback. This will show you the code that you wrote. In our case it looks like this:\n&lt;ipython-input-3-ff22716e7d6d&gt; in ?()\n      4 # Read in data\n      5 penguins = pd.read_csv(\"../data/penguins.csv\")\n      6 \n      7 # Filter only Adelie penguins\n----&gt; 8 penguins_filter = penguins[penguins.Species == \"Adelie\"]\nThe Traceback has an arrow that points directly at the line causing the problem. In this case, that’s line 8, the final line of our cell. Sometimes the Traceback will even highlight the part of the line that’s causing the problem!\nThere’s no highlight here, but the error definition told us what was wrong: the “Species” column. Let’s look at the columns in this DataFrame to see if we can spot the issue:\n\npenguins.info()\n\n&lt;class 'pandas.DataFrame'&gt;\nRangeIndex: 344 entries, 0 to 343\nData columns (total 7 columns):\n #   Column             Non-Null Count  Dtype  \n---  ------             --------------  -----  \n 0   species            344 non-null    str    \n 1   island             344 non-null    str    \n 2   bill_length_mm     342 non-null    float64\n 3   bill_depth_mm      342 non-null    float64\n 4   flipper_length_mm  342 non-null    float64\n 5   body_mass_g        342 non-null    float64\n 6   sex                333 non-null    str    \ndtypes: float64(4), str(3)\nmemory usage: 18.9 KB\n\n\nDo you see it?\nYes! The column isn’t called “Species”, it’s called “species”. The code accidentally capitalized the word! This is a very easy fix. You can repair the cell like so:\n\n# Import library\nimport pandas as pd\n\n# Read in data\npenguins = pd.read_csv(\"../data/penguins.csv\")\n\n# Filter only Adelie penguins\npenguins_filter = penguins[penguins.species == \"Adelie\"]\npenguins_filter\n\n\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\n0\nAdelie\nTorgersen\n39.1\n18.7\n181.0\n3750.0\nMale\n\n\n1\nAdelie\nTorgersen\n39.5\n17.4\n186.0\n3800.0\nFemale\n\n\n2\nAdelie\nTorgersen\n40.3\n18.0\n195.0\n3250.0\nFemale\n\n\n3\nAdelie\nTorgersen\nNaN\nNaN\nNaN\nNaN\nNaN\n\n\n4\nAdelie\nTorgersen\n36.7\n19.3\n193.0\n3450.0\nFemale\n\n\n...\n...\n...\n...\n...\n...\n...\n...\n\n\n147\nAdelie\nDream\n36.6\n18.4\n184.0\n3475.0\nFemale\n\n\n148\nAdelie\nDream\n36.0\n17.8\n195.0\n3450.0\nFemale\n\n\n149\nAdelie\nDream\n37.8\n18.1\n193.0\n3750.0\nMale\n\n\n150\nAdelie\nDream\n36.0\n17.1\n187.0\n3700.0\nFemale\n\n\n151\nAdelie\nDream\n41.5\n18.5\n201.0\n4000.0\nMale\n\n\n\n\n152 rows × 7 columns\n\n\n\nAnd goodbye error message!\nOver time, you’ll get used to reading and decoding these error messages on your own, but don’t be afraid to ask questions if you run into one you’re unsure about.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Debugging Your Code"
-    ]
-  },
-  {
-    "objectID": "guides/sklearn.html",
-    "href": "guides/sklearn.html",
-    "title": "Modeling with Scikit-learn",
-    "section": "",
-    "text": "Scikit-learn, or sklearn, is an all-purpose Python library for statistical modeling and machine learning. It gives you access to many different kinds of models and approaches, and we will just scratch the surface in this class. You’ll use scikit-learn any time you create a model, whether it’s a supervised regression or classification, or an unsupervised approach. This guide will walk you through the general aspects of modeling in scikit-learn, but the specifics will be up to you!\n\n\n\n\n\n\nNote\n\n\n\nScikit-learn’s User Guide and Documentation are very detailed, and we’ll practice using them together in class. That’s a good place to start if you want more information about anything you find here.\n\n\n\n\nNo matter what kind of modeling you’re doing, here are the general steps you will follow:\n\nChoose your model based on your data and research questions\nChoose predictor and target variables appropriate to the model, test for validity if necessary\nPrepare the data: removing any null values, scaling/normalizing variables, or using one-hot encoding or reference coding as necessary.\nSplit the data into train and test portions (n.b.: You will skip this step for unsupervised approaches!)\nInitialize the model, paying special attention to hyperparameters\nFit the model to your training data\nSummarize and/or predict based on the model\nValidate and assess the model based on your results\n\n\n\n\nUnlike the other libraries we’ve used so far, you’d never simply run import sklearn: the library is too big and would import way more than you need, potentially slowing down your code! Instead, you’ll import just the parts you need for a particular model.\nIn the first step of the modeling workflow, you need to use the model selection principles we’ll discuss in class to determine the right model for your data and research questions. That will give you a good idea of what functions and methods you’ll need. You’ll import them with code that looks like this:\n# You only need to import the functions you will use\n# This may be different every time\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.model_selection import train_test_split, cross_val_score\nfrom sklearn.metrics import mean_squared_error, r2_score\nThis is the example of what you’d need if you were going to run a linear regression. Note that you’re importing a class, the capitalized LinearRegression in the first line, that has your model itself. And you’re also importing all the additional functions you need to validate and explain that model.\n\n\n\nNext you’ll choose what predictors and target variables you use. The process of choosing predictors (i.e. features) is called feature selection, and the kind of model you chose will often help you determine which predictors you use. The reverse is also true: the kind of features/predictors you have access to might help you determine which model to use.\nTypically you’d first identify the variables and then use them to select the specific X (predictors) and y (target) data you’ll use in the model.\npredictors = [\"your_first_predictor\", \"your_second_predictor\", \"your_third_predictor\", ...]\ntarget = \"your_target_variable\" #Note there are no brackets here\n\nX = your_dataframe[predictors]\ny = your_dataframe[target]\nSometimes you will want to test your predictors for validity before selecting them. In this case, you might create a potential_predictors list and use that before narrowing down to your official predictors. This is especially true for linear models like Linear Regression or Logistic Regression, when you often want to check for multicollinearity using a pairplot or correlation matrix at this stage.\n\n\n\n\n\n\nTip\n\n\n\nIn an unsupervised model, there is no target variable, so you would only need to set up predictors and an X. And in some cases, you would run your model on the entire dataset without selecting specific features as predictors.\n\n\n\n\n\nThere are a few steps you might take at this stage. Some of these steps might happen before or during the previous step.\n\n\n\n\n\n\nImportant\n\n\n\nYOU WILL NOT DO EVERY ONE OF THESE STEPS EVERY TIME YOU RUN A MODEL. IT WILL ALWAYS DEPEND ON YOUR MODEL AND YOUR DATA.\n\n\n\n\nIf your data has null values, this will cause errors in most models. It is helpful to remove null values from your data before you create your X and y variables. Use subset= to avoid dropping rows unnecesarily.\nyour_dataframe = your_dataframe.dropna(subset=predictors)\nIf there are null values in the target, you may need to add the target to the subset list.\n\n\n\nIf you have categorical variables in your predictors, you may need to change them to numerical 1s and 0s in order to run your model. You may be able to skip this for certain tree models, like the random forest.\nFor linear models (linear and logistic regression), use reference coding by dropping one of your category columns. This code will got in place of the code where you defined X in the previos section.\nX = pd.get_dummies(your_dataframe[predictors], drop_first=True)\nFor almost all other models, use one-hot encoding and don’t drop any of the reference columns.\nX = pd.get_dummies(your_dataframe[predictors])\n\n\n\n\n\n\nWarning\n\n\n\nIf you have a categorical variable with lots of individual classes, this process will create too many columns in your code. This could slow down your code, cause your kernel crash, and/or make your model unreliable. Make sure you’ve inspected the categorical variables you want to use.\n\n\n\n\n\nIf your predictors are at very different scales, this could affect the results of your model. Especially in the case of distance-based models like K-nearest neighbors or K-means clustering, it’s important to scale your variables.\nThe process of scaling works like using a model class in sklearn. First you import the scaler. There are many different ways to scale data, but we’ll typically standardize with z-scores.\nfrom sklearn.preprocessing import StandardScaler\nAfter you split the data (see below) you should standardize the training data.\nscaler = StandardScaler()\nscaler.fit(X_train)\nX_train_std = scaler.transform(X_train)\nThen you would use X_train_std in place of X_train in any subsequent code.\nBefore you validate on your test data, you need to scale the test data with the same scaler.\nX_test_std = scaler.transform(X_test)\nNotice that you don’t re-fit the scaler at this step. After this you would use X_test_std in place of X_test in any subsequent code.\nBefore you cross-validate (or before you fit an unsupervised model), you will need to standardize the entirety of the unsplit data.\nscaler = StandardScaler()\nscaler.fit(X)\nX_std = scaler.transform(X)\nThen you would use X_std in place of X in any subsequent code.\n\n\n\n\nFor all supervised models, you will split the data into training and test sets. A training set will determine the model’s coefficients, and a test set will let us see how well it works on new data that it hasn’t already seen. (For unsupervised models, since there is no training, you will skip this step and work on the entire dataset.)\nYou use the train_test_split function that we imported above to split your data.\nX_train, X_test, y_train, y_test = train_test_split(\n    X, \n    y, \n    test_size=0.3, \n    random_state=0)\nThe test_size parameter determines what percentage of the data will be reserved for testing (in this case, 30%). If your dataset is very small, you may want to reserve a smaller test set so that you can use as much data as possible for training, but it’s unadvisable to choose a test set smaller than 20%.\nThe random_state parameter ensures that data split is the same every time. It doesn’t matter what number you use here, so long as it’s the same every time you run the function.\n\n\n\nIn order to run a model, you must initialize the model class by assigning it to a variable. For a simple model like linear regression, it would look like this:\nyour_model_name = LinearRegression()\nMany models have hyperparameters and other settings you need to select at the time of initialization. Refer to your notes from class and the sklearn documentation for details about specific hyperparameters. As an example, initialization of a Naive Bayes model might look like:\nnaive_model = MultinomialNB(alpha=0.01, fit_prior=True)\nIn this case, the MultinomialNB class has two hyperparamters, alpha and fit_prior.\n\n\n\nIn a supervised model, you will take the model variable that you initialized in the previous step and fit, i.e. run, it on your split training data.\nyour_model_name.fit(X_train_std, y_train)\nIn an unsupervised model, you will fit directly to the full data, and there is no target y variable.\nyour_model_name.fit(X)\nOr sometimes:\nresults = your_model_name.fit_transform(X)\nThe last option will fit and get results in the same function, but we’ll typically only use it for our PCA model.\n\n\n\n\n\n\n\n\n\nCaution\n\n\n\nThis step is only for supervised models. For unsupervised models, you will often use the fit data to generate a transformation or retrieve attributes.\n\n\n\n\nThis option is only for linear models: linear and logistic regression. You can display the intercept and coefficients to better interpret the relationships in your data.\n# You'll use loops and string formatting here\nprint(f\"Intercept: {your_model_name.intercept_:.3f}\")\nfor c,p in zip(your_model_name.coef_,X.columns):\n    print(f\"Coefficient for {p}: {c:.4f}\")\n\n\n\nThis option is only for tree models: decision trees and the random forest.\n\nYou can use the plot_tree() function to create an informative tree diagram. See the Scikit-learn documentation for details.\nYou can display the feature importances from these models in order to interpret the results more accurately. Listing feature importances will use the your_model_name.feature_importances_ attribute and the same looping procedure as displaying coefficients (above).\n\n\n\n\nSupervised models always produce predictions. In regression models, you produce numerical predictions with .predict(). We will always run these functions on the test data to get out of sample predictions.\n# For regression\npredictions = your_model_name.predict(X_test)\nIn classification models, you produce categorical predictions with .predict() and numerical probabilities with .predict_proba(). You should also get the target classes at this stage.\n# For classification\nclasses = your_model_name.classes_\nprobabilities = your_model_name.predict_proba(X_test_std)\npredictions = your_model_name.predict(X_test_std)\n\n# It's helpful to put the probabilities into a dataframe\nprobabilities = pd.DataFrame(probabilities, columns=classes)\n\n\n\n\nFor every kind of model, there are distinct validation and assessment steps that help you interpret your results.\n\n\n\n\n\n\nNote\n\n\n\nThere are many different validation methods, and this guide will go through a few of the ones we’ll use in this class. The sklearn documentation lists many more possibilities for different kinds of models.\n\n\n\n\nAll supervised models should be cross-validated. This runs the model multiple times over different splits of the data, to verify that your results weren’t skewed by a random split of the data.\nAt the top of your code, you should have the cross_val_score function imported. Then, no matter the model, you run the function on the entire unsplit dataset.\n# cv is the number of folds, or the repeated runs of the model\nscores = cross_val_score(your_model name, X, y, cv=5)\n# Use f-strings to print the mean and standard deviation of your result\nprint(f\"{scores.mean():.2} score with standard deviation {scores.std():.2}\")\nFor regression models, cross_val_score will generate an \\(R^2\\) score for each run of your model. For classification models, it will generate an accuracy score.\n\n\n\nRegression validation is based on residuals. Here are the sklearn functions you need to validate a regression. You would add these at the top of your notebook with your other imports.\nfrom sklearn.metrics import mean_squared_error, r2_score\nYou first step in regression validation is to calculate the residuals.\n# Out-of-sample residuals:\nresiduals = y_test - predictions\n\n# It's helpful to put them into a dataframe with your predictions\nresults = pd.DataFrame({'Predictions': predictions, 'Residuals':residuals})\nYou can use the predictions you generated in the previous step to calculate Root Mean Squared Error (RMSE).\nprint(f\"Root mean squared error: {np.sqrt(mean_squared_error(y_test, predictions)):.2f}\")\nYou can also display the \\(R^2\\) score, aka the coefficient of determination.\nprint(f\"Coefficient of determination: {r2_score(y_test, predictions):.2f}\")\nIn addition to these two values, you can also create visualizations for validation.\nA histogram of residuals will show you if the residuals are normally distributed.\nresults.residuals.plot(\n    kind=\"hist\",\n    alpha=0.5,\n    title=\"Histogram of Residuals\",\n    xlabel=\"Residuals\"\n)\nplt.show()\nAnd you can plot the absolute value of residuals against the predictions to test for heteroskedasticity. You will only use this plot for linear regression.\n# Get absolute value of residuals\nresults = results.assign(abs_residuals = np.abs(results.residuals)).sort_values(\"predictions\")\nresults.plot(\n    kind=\"scatter\",\n    x=\"predictions\", \n    y=\"abs_residuals\",\n    title=\"Testing for Heteroskedasticity\",\n    xlabel=\"Predicted Values\",\n    ylabel=\"Absolute value of Residuals\"\n)\n\n# Plot a rolling average of the absolute values (estimates a LOESS curve)\nplt.plot(results[\"predictions\"], results[\"abs_residuals\"].rolling(window=30, center=True).mean(), c=\"red\")\nplt.show()\n\n\n\nClassification validation is based on the confusion matrix, which tallies the number of categories correctly predicted by the model. Here are the sklearn functions you need to validate a classifier. You would add these at the top of your notebook with your other imports.\nfrom sklearn.metrics import ConfusionMatrixDisplay, classification_report, RocCurveDisplay\n# You won't always need matplotlib, but it's good to have\nimport matplotlib.pyplot as plt\nThe confusion_matrix function generates the results, and you can turn this into a confusion matrix visualization: a special kind of heatmap with text overlayed.\n# Display confusion matrix\nConfusionMatrixDisplay.from_predictions(y_test,predictions,display_labels=classes)\nplt.show()\nYou can calculate the accuracy, precision, and recall scores with the classification report.\n# You must use print() to make this readable\nprint(classification_report(y_test, predictions))\nDon’t forget that you must also use cross-validation for a classifier!\nYou can also create an ROC Curve if you have a binary classifer (just two target classes).\n# Create our ROC Curve plot\nRocCurveDisplay.from_predictions(y_test,\n                                 probabilities[classes[0]],\n                                 pos_label=classes[0])\n\n# Draw a green line for 0\nplt.plot([0, 1], [0, 1], color = 'g')\nplt.show()\n\n\n\nValidation steps for unsupervised models are specific to the model. For example, in K-means clustering, you could show the labels of your clustering and a bar plot of the cluster means. Refer back to our class notes and supplementary readings for validation steps for K-means clustering and PCA.\n\n\n\n\nHere are the bits of sklearn you will need to import different model classes. You can refer to the documentation for each of these classes to get more details about hyperparameters and other features. Remember, you should only import the code you need for your specific model.\n# Linear Regression\nfrom sklearn.linear_model import LinearRegression\n\n# KNN Regression\nfrom sklearn.neighbors import KNeighborsRegressor\n\n# Random Forest Regression\nfrom sklearn.tree import DecisionTreeRegressor, plot_tree\nfrom sklearn.ensemble import RandomForestRegressor\n\n# Logistic Regression\nfrom sklearn.linear_model import LogisticRegression\n\n# KNN Classification\nfrom sklearn.neighbors import KNeighborsClassifier\n\n# Random Forest Classification\nfrom sklearn.tree import DecisionTreeClassifier, plot_tree\nfrom sklearn.ensemble import RandomForestClassifier\n\n# Naive Bayes Classifier\nfrom sklearn.naive_bayes import MultinomialNB\n\n# K-Means Clustering\nfrom sklearn.cluster import KMeans\n\n# Principal Component Analysis\nfrom sklearn.decomposition import PCA",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Modeling with Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "guides/sklearn.html#the-scikit-learn-modeling-workflow",
-    "href": "guides/sklearn.html#the-scikit-learn-modeling-workflow",
-    "title": "Modeling with Scikit-learn",
-    "section": "",
-    "text": "No matter what kind of modeling you’re doing, here are the general steps you will follow:\n\nChoose your model based on your data and research questions\nChoose predictor and target variables appropriate to the model, test for validity if necessary\nPrepare the data: removing any null values, scaling/normalizing variables, or using one-hot encoding or reference coding as necessary.\nSplit the data into train and test portions (n.b.: You will skip this step for unsupervised approaches!)\nInitialize the model, paying special attention to hyperparameters\nFit the model to your training data\nSummarize and/or predict based on the model\nValidate and assess the model based on your results",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Modeling with Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "guides/sklearn.html#choose-a-model-and-import-functions",
-    "href": "guides/sklearn.html#choose-a-model-and-import-functions",
-    "title": "Modeling with Scikit-learn",
-    "section": "",
-    "text": "Unlike the other libraries we’ve used so far, you’d never simply run import sklearn: the library is too big and would import way more than you need, potentially slowing down your code! Instead, you’ll import just the parts you need for a particular model.\nIn the first step of the modeling workflow, you need to use the model selection principles we’ll discuss in class to determine the right model for your data and research questions. That will give you a good idea of what functions and methods you’ll need. You’ll import them with code that looks like this:\n# You only need to import the functions you will use\n# This may be different every time\nfrom sklearn.linear_model import LinearRegression\nfrom sklearn.model_selection import train_test_split, cross_val_score\nfrom sklearn.metrics import mean_squared_error, r2_score\nThis is the example of what you’d need if you were going to run a linear regression. Note that you’re importing a class, the capitalized LinearRegression in the first line, that has your model itself. And you’re also importing all the additional functions you need to validate and explain that model.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Modeling with Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "guides/sklearn.html#choose-predictor-and-target-variables",
-    "href": "guides/sklearn.html#choose-predictor-and-target-variables",
-    "title": "Modeling with Scikit-learn",
-    "section": "",
-    "text": "Next you’ll choose what predictors and target variables you use. The process of choosing predictors (i.e. features) is called feature selection, and the kind of model you chose will often help you determine which predictors you use. The reverse is also true: the kind of features/predictors you have access to might help you determine which model to use.\nTypically you’d first identify the variables and then use them to select the specific X (predictors) and y (target) data you’ll use in the model.\npredictors = [\"your_first_predictor\", \"your_second_predictor\", \"your_third_predictor\", ...]\ntarget = \"your_target_variable\" #Note there are no brackets here\n\nX = your_dataframe[predictors]\ny = your_dataframe[target]\nSometimes you will want to test your predictors for validity before selecting them. In this case, you might create a potential_predictors list and use that before narrowing down to your official predictors. This is especially true for linear models like Linear Regression or Logistic Regression, when you often want to check for multicollinearity using a pairplot or correlation matrix at this stage.\n\n\n\n\n\n\nTip\n\n\n\nIn an unsupervised model, there is no target variable, so you would only need to set up predictors and an X. And in some cases, you would run your model on the entire dataset without selecting specific features as predictors.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Modeling with Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "guides/sklearn.html#prepare-the-data",
-    "href": "guides/sklearn.html#prepare-the-data",
-    "title": "Modeling with Scikit-learn",
-    "section": "",
-    "text": "There are a few steps you might take at this stage. Some of these steps might happen before or during the previous step.\n\n\n\n\n\n\nImportant\n\n\n\nYOU WILL NOT DO EVERY ONE OF THESE STEPS EVERY TIME YOU RUN A MODEL. IT WILL ALWAYS DEPEND ON YOUR MODEL AND YOUR DATA.\n\n\n\n\nIf your data has null values, this will cause errors in most models. It is helpful to remove null values from your data before you create your X and y variables. Use subset= to avoid dropping rows unnecesarily.\nyour_dataframe = your_dataframe.dropna(subset=predictors)\nIf there are null values in the target, you may need to add the target to the subset list.\n\n\n\nIf you have categorical variables in your predictors, you may need to change them to numerical 1s and 0s in order to run your model. You may be able to skip this for certain tree models, like the random forest.\nFor linear models (linear and logistic regression), use reference coding by dropping one of your category columns. This code will got in place of the code where you defined X in the previos section.\nX = pd.get_dummies(your_dataframe[predictors], drop_first=True)\nFor almost all other models, use one-hot encoding and don’t drop any of the reference columns.\nX = pd.get_dummies(your_dataframe[predictors])\n\n\n\n\n\n\nWarning\n\n\n\nIf you have a categorical variable with lots of individual classes, this process will create too many columns in your code. This could slow down your code, cause your kernel crash, and/or make your model unreliable. Make sure you’ve inspected the categorical variables you want to use.\n\n\n\n\n\nIf your predictors are at very different scales, this could affect the results of your model. Especially in the case of distance-based models like K-nearest neighbors or K-means clustering, it’s important to scale your variables.\nThe process of scaling works like using a model class in sklearn. First you import the scaler. There are many different ways to scale data, but we’ll typically standardize with z-scores.\nfrom sklearn.preprocessing import StandardScaler\nAfter you split the data (see below) you should standardize the training data.\nscaler = StandardScaler()\nscaler.fit(X_train)\nX_train_std = scaler.transform(X_train)\nThen you would use X_train_std in place of X_train in any subsequent code.\nBefore you validate on your test data, you need to scale the test data with the same scaler.\nX_test_std = scaler.transform(X_test)\nNotice that you don’t re-fit the scaler at this step. After this you would use X_test_std in place of X_test in any subsequent code.\nBefore you cross-validate (or before you fit an unsupervised model), you will need to standardize the entirety of the unsplit data.\nscaler = StandardScaler()\nscaler.fit(X)\nX_std = scaler.transform(X)\nThen you would use X_std in place of X in any subsequent code.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Modeling with Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "guides/sklearn.html#split-the-data",
-    "href": "guides/sklearn.html#split-the-data",
-    "title": "Modeling with Scikit-learn",
-    "section": "",
-    "text": "For all supervised models, you will split the data into training and test sets. A training set will determine the model’s coefficients, and a test set will let us see how well it works on new data that it hasn’t already seen. (For unsupervised models, since there is no training, you will skip this step and work on the entire dataset.)\nYou use the train_test_split function that we imported above to split your data.\nX_train, X_test, y_train, y_test = train_test_split(\n    X, \n    y, \n    test_size=0.3, \n    random_state=0)\nThe test_size parameter determines what percentage of the data will be reserved for testing (in this case, 30%). If your dataset is very small, you may want to reserve a smaller test set so that you can use as much data as possible for training, but it’s unadvisable to choose a test set smaller than 20%.\nThe random_state parameter ensures that data split is the same every time. It doesn’t matter what number you use here, so long as it’s the same every time you run the function.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Modeling with Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "guides/sklearn.html#initialize-the-model",
-    "href": "guides/sklearn.html#initialize-the-model",
-    "title": "Modeling with Scikit-learn",
-    "section": "",
-    "text": "In order to run a model, you must initialize the model class by assigning it to a variable. For a simple model like linear regression, it would look like this:\nyour_model_name = LinearRegression()\nMany models have hyperparameters and other settings you need to select at the time of initialization. Refer to your notes from class and the sklearn documentation for details about specific hyperparameters. As an example, initialization of a Naive Bayes model might look like:\nnaive_model = MultinomialNB(alpha=0.01, fit_prior=True)\nIn this case, the MultinomialNB class has two hyperparamters, alpha and fit_prior.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Modeling with Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "guides/sklearn.html#fit-the-model",
-    "href": "guides/sklearn.html#fit-the-model",
-    "title": "Modeling with Scikit-learn",
-    "section": "",
-    "text": "In a supervised model, you will take the model variable that you initialized in the previous step and fit, i.e. run, it on your split training data.\nyour_model_name.fit(X_train_std, y_train)\nIn an unsupervised model, you will fit directly to the full data, and there is no target y variable.\nyour_model_name.fit(X)\nOr sometimes:\nresults = your_model_name.fit_transform(X)\nThe last option will fit and get results in the same function, but we’ll typically only use it for our PCA model.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Modeling with Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "guides/sklearn.html#summarize-andor-predict",
-    "href": "guides/sklearn.html#summarize-andor-predict",
-    "title": "Modeling with Scikit-learn",
-    "section": "",
-    "text": "Caution\n\n\n\nThis step is only for supervised models. For unsupervised models, you will often use the fit data to generate a transformation or retrieve attributes.\n\n\n\n\nThis option is only for linear models: linear and logistic regression. You can display the intercept and coefficients to better interpret the relationships in your data.\n# You'll use loops and string formatting here\nprint(f\"Intercept: {your_model_name.intercept_:.3f}\")\nfor c,p in zip(your_model_name.coef_,X.columns):\n    print(f\"Coefficient for {p}: {c:.4f}\")\n\n\n\nThis option is only for tree models: decision trees and the random forest.\n\nYou can use the plot_tree() function to create an informative tree diagram. See the Scikit-learn documentation for details.\nYou can display the feature importances from these models in order to interpret the results more accurately. Listing feature importances will use the your_model_name.feature_importances_ attribute and the same looping procedure as displaying coefficients (above).\n\n\n\n\nSupervised models always produce predictions. In regression models, you produce numerical predictions with .predict(). We will always run these functions on the test data to get out of sample predictions.\n# For regression\npredictions = your_model_name.predict(X_test)\nIn classification models, you produce categorical predictions with .predict() and numerical probabilities with .predict_proba(). You should also get the target classes at this stage.\n# For classification\nclasses = your_model_name.classes_\nprobabilities = your_model_name.predict_proba(X_test_std)\npredictions = your_model_name.predict(X_test_std)\n\n# It's helpful to put the probabilities into a dataframe\nprobabilities = pd.DataFrame(probabilities, columns=classes)",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Modeling with Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "guides/sklearn.html#validate-and-assess-your-model",
-    "href": "guides/sklearn.html#validate-and-assess-your-model",
-    "title": "Modeling with Scikit-learn",
-    "section": "",
-    "text": "For every kind of model, there are distinct validation and assessment steps that help you interpret your results.\n\n\n\n\n\n\nNote\n\n\n\nThere are many different validation methods, and this guide will go through a few of the ones we’ll use in this class. The sklearn documentation lists many more possibilities for different kinds of models.\n\n\n\n\nAll supervised models should be cross-validated. This runs the model multiple times over different splits of the data, to verify that your results weren’t skewed by a random split of the data.\nAt the top of your code, you should have the cross_val_score function imported. Then, no matter the model, you run the function on the entire unsplit dataset.\n# cv is the number of folds, or the repeated runs of the model\nscores = cross_val_score(your_model name, X, y, cv=5)\n# Use f-strings to print the mean and standard deviation of your result\nprint(f\"{scores.mean():.2} score with standard deviation {scores.std():.2}\")\nFor regression models, cross_val_score will generate an \\(R^2\\) score for each run of your model. For classification models, it will generate an accuracy score.\n\n\n\nRegression validation is based on residuals. Here are the sklearn functions you need to validate a regression. You would add these at the top of your notebook with your other imports.\nfrom sklearn.metrics import mean_squared_error, r2_score\nYou first step in regression validation is to calculate the residuals.\n# Out-of-sample residuals:\nresiduals = y_test - predictions\n\n# It's helpful to put them into a dataframe with your predictions\nresults = pd.DataFrame({'Predictions': predictions, 'Residuals':residuals})\nYou can use the predictions you generated in the previous step to calculate Root Mean Squared Error (RMSE).\nprint(f\"Root mean squared error: {np.sqrt(mean_squared_error(y_test, predictions)):.2f}\")\nYou can also display the \\(R^2\\) score, aka the coefficient of determination.\nprint(f\"Coefficient of determination: {r2_score(y_test, predictions):.2f}\")\nIn addition to these two values, you can also create visualizations for validation.\nA histogram of residuals will show you if the residuals are normally distributed.\nresults.residuals.plot(\n    kind=\"hist\",\n    alpha=0.5,\n    title=\"Histogram of Residuals\",\n    xlabel=\"Residuals\"\n)\nplt.show()\nAnd you can plot the absolute value of residuals against the predictions to test for heteroskedasticity. You will only use this plot for linear regression.\n# Get absolute value of residuals\nresults = results.assign(abs_residuals = np.abs(results.residuals)).sort_values(\"predictions\")\nresults.plot(\n    kind=\"scatter\",\n    x=\"predictions\", \n    y=\"abs_residuals\",\n    title=\"Testing for Heteroskedasticity\",\n    xlabel=\"Predicted Values\",\n    ylabel=\"Absolute value of Residuals\"\n)\n\n# Plot a rolling average of the absolute values (estimates a LOESS curve)\nplt.plot(results[\"predictions\"], results[\"abs_residuals\"].rolling(window=30, center=True).mean(), c=\"red\")\nplt.show()\n\n\n\nClassification validation is based on the confusion matrix, which tallies the number of categories correctly predicted by the model. Here are the sklearn functions you need to validate a classifier. You would add these at the top of your notebook with your other imports.\nfrom sklearn.metrics import ConfusionMatrixDisplay, classification_report, RocCurveDisplay\n# You won't always need matplotlib, but it's good to have\nimport matplotlib.pyplot as plt\nThe confusion_matrix function generates the results, and you can turn this into a confusion matrix visualization: a special kind of heatmap with text overlayed.\n# Display confusion matrix\nConfusionMatrixDisplay.from_predictions(y_test,predictions,display_labels=classes)\nplt.show()\nYou can calculate the accuracy, precision, and recall scores with the classification report.\n# You must use print() to make this readable\nprint(classification_report(y_test, predictions))\nDon’t forget that you must also use cross-validation for a classifier!\nYou can also create an ROC Curve if you have a binary classifer (just two target classes).\n# Create our ROC Curve plot\nRocCurveDisplay.from_predictions(y_test,\n                                 probabilities[classes[0]],\n                                 pos_label=classes[0])\n\n# Draw a green line for 0\nplt.plot([0, 1], [0, 1], color = 'g')\nplt.show()\n\n\n\nValidation steps for unsupervised models are specific to the model. For example, in K-means clustering, you could show the labels of your clustering and a bar plot of the cluster means. Refer back to our class notes and supplementary readings for validation steps for K-means clustering and PCA.",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Modeling with Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "guides/sklearn.html#appendix-import-models",
-    "href": "guides/sklearn.html#appendix-import-models",
-    "title": "Modeling with Scikit-learn",
-    "section": "",
-    "text": "Here are the bits of sklearn you will need to import different model classes. You can refer to the documentation for each of these classes to get more details about hyperparameters and other features. Remember, you should only import the code you need for your specific model.\n# Linear Regression\nfrom sklearn.linear_model import LinearRegression\n\n# KNN Regression\nfrom sklearn.neighbors import KNeighborsRegressor\n\n# Random Forest Regression\nfrom sklearn.tree import DecisionTreeRegressor, plot_tree\nfrom sklearn.ensemble import RandomForestRegressor\n\n# Logistic Regression\nfrom sklearn.linear_model import LogisticRegression\n\n# KNN Classification\nfrom sklearn.neighbors import KNeighborsClassifier\n\n# Random Forest Classification\nfrom sklearn.tree import DecisionTreeClassifier, plot_tree\nfrom sklearn.ensemble import RandomForestClassifier\n\n# Naive Bayes Classifier\nfrom sklearn.naive_bayes import MultinomialNB\n\n# K-Means Clustering\nfrom sklearn.cluster import KMeans\n\n# Principal Component Analysis\nfrom sklearn.decomposition import PCA",
-    "crumbs": [
-      "Home",
-      "Guides",
-      "Modeling with Scikit-learn"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Introduction to Data Science",
-    "section": "",
-    "text": "CIS 241. Washington & Jefferson College. Fall 2026.\nMeeting Time: TR 8:30-10:00am\nDr. Ladd’s Student Drop-In Hours: Mon. 1–3pm, Thurs. 10am–12pm TECH 201\nor email for appointment, jladd@washjeff.edu\nPAL Tutoring Hours: 7-10pm Sunday–Thursday in the CIS Lounge (TECH 217)",
-    "crumbs": [
-      "Home",
-      "Introduction to Data Science"
-    ]
-  },
-  {
-    "objectID": "index.html#course-description",
-    "href": "index.html#course-description",
-    "title": "Introduction to Data Science",
-    "section": "Course Description",
-    "text": "Course Description\nFrom social media to the James Webb telescope, from Shakespeare’s plays to the U.S. Census, data is being collected all around us, all the time. How can we make sense of these near-constant streams of information?\nThis course will attempt to answer this question by introducing the concepts and practices involved in data analysis: data collection and preparation, exploratory analysis, and prediction and classification. Using the programming language Python and other industry-standard tools, we will practice ways of working with data from simple summary statistics to advanced machine learning models. At each step of the way, we’ll discuss how to approach data analysis critically and ethically. And we’ll explore data sets from a wide range of fields and disciplines, including sociology, ecology, business, film, and history.",
-    "crumbs": [
-      "Home",
-      "Introduction to Data Science"
-    ]
-  },
-  {
-    "objectID": "index.html#learning-goals",
-    "href": "index.html#learning-goals",
-    "title": "Introduction to Data Science",
-    "section": "Learning Goals",
-    "text": "Learning Goals\nAt the end of this course, you should be able to:\n\nUnderstand and implement the data analysis process, from data collection to communicating results.\nUse exploratory data analysis to quickly understand a complex dataset.\nApply modeling techniques to make predictions.\nEvaluate the effectiveness of different modeling techniques.\nThink and act ethically at all steps of the data analysis process.\n\nBanner image: The Library Computer Access/Retrieval System (LCARS), a fictional operating system and data analysis interface from Star Trek: The Next Generation",
-    "crumbs": [
-      "Home",
-      "Introduction to Data Science"
     ]
   },
   {
@@ -916,6 +772,150 @@
       "Home",
       "Course Information",
       "Course Policies"
+    ]
+  },
+  {
+    "objectID": "guides/hypothesis-testing.html",
+    "href": "guides/hypothesis-testing.html",
+    "title": "Hypothesis Testing",
+    "section": "",
+    "text": "The goal of a hypothesis test is to determine whether the data in your sample accurately reflects the full population. This guide won’t get into detail about how hypothesis tests work statistically, but it will give you an outline for how to perform permutation tests with Python and Pandas.\n\n\n\n\n\n\nImportant\n\n\n\nThis guide will not show you how to conduct traditional parametric hypothesis tests such as the T-test! This is only for the non-parametric permutation tests that we covered in class.\n\n\n\n\n\n\n\n\nNote\n\n\n\nFor a refresher on hypothesis tests and how they work, you can refer back to our slides from class, Ch. 13 of Downey’s Elements of Data Science, or the Crash Course video on the subject.\n\n\n\n\nNo matter what your test statistic is, here are the steps you need to follow each time you want to run a permutation test. At each step, you should fully explain and interpret what you are doing.\n\nRun some Exploratory Data Analysis on your dataset. Typically it’s helpful to make a visualization that lets you see the potential difference, correlation, or other phenomenon you want to test.\nCalculate your observed test statistic. In our case, this will usually either be a difference in means between two groups, or a Pearson’s correlation coefficient.\nBased on your exploratory analysis and test statistic, write out your null and alternative hypothesis.\n\n\n\n\n\n\n\nTip\n\n\n\nYou can use the MathJax markdown syntax to produce a nicely-formatted hypothesis, so $H_0 : \\bar A = \\bar C$ will become \\(H_0 : \\bar A = \\bar C\\) and $H_1 : \\bar A \\gt \\bar C$ will become \\(H_1 : \\bar A \\gt \\bar C\\).\n\n\n\nChoose the appropriate simulation function for the hypothesis test you’re running. Make sure you have a basic understanding of how the code works in these simulations—you may have to filter or adjust your data to prepare it for the function. (See below for the functions you can choose from.)\nIn a for loop, run the simulation many times (1000 is a good minimum) and put the resulting permutations into a list. This is similar to how we conducted bootstrap sampling. Convert that list to a dataframe with two columns: the permutation and the observed statistic.\nCreate a histogram that shows your permutation distribution and your observed statistic. This is a standard histogram or density plotplus a plt.axvline() layer that draws a vertical line for the observed statistic.\nCalculate the p-value (see below) and interpret the p-value and histogram together.\n\n\n\n\nPermutation tests use simulation and resampling to create a random permutation as a point of comparison. Here are two simulation functions that apply to different test statistics. These functions use the same sampling techniques we learned about when we calculated confidence intervals with bootstrap sampling, but they use sampling without replacement. You’ll use these as part of steps 4 and 5 in the instructions above.\n\n\n\n\n\n\nCaution\n\n\n\nNote that these functions take specific kinds of arguments and will require the right inputs to work properly!\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nThis function will typically require two steps before it can be run. You will need to filter your dataframe so it includes only the two groups you are testing, and you will need to calculate the number of rows in the first group.\n\n\ndef simulate_two_groups(df, group1_len, stat_var):\n    \"\"\"\n    This simulation function takes the following arguments:\n    - df: the name of your dataframe, limited to only the two groups you care about\n    - group1_len (int): the length (number of rows) in the first of your two groups of data\n    - stat_var (str): the name of the column (numerical variable) for the mean you want to test\n    \"\"\"\n    data = df[stat_var].sample(frac=1) #Reshuffle all data\n    group1 = data.iloc[:group1_len] #Get random first group\n    group2 = data.iloc[group1_len:] #Get random second group\n    return group1.mean() - group2.mean() #Calculate mean difference\n\n\n\ndef simulate_correlation(df,var1,var2):\n    \"\"\"\n    This simulation function takes the following arguments:\n    - df: the name of your dataframe\n    - var1 (str): the name of the first column (numerical variable) you want to compare\n    - var2 (str): the name of the second column (numerical variable) you want to compare\n    \"\"\"\n    shuffled = df[var1].sample(frac=1).reset_index(drop=True)\n    corr = shuffled.corr(df[var2])\n    return corr\n\n\n\n\nIn addition to the histogram of the permutation distribution, the p-value can tell you what percentage of your randomly simulated data was more extreme than your observed result. There are a few different formulas you can use to achieve this.\n\n\n\n\n\n\nCaution\n\n\n\nIn a p-value calculation, you need all the permutations you calculated as well as your observed statistic. The different calculations below assume your dataframe of results is called results, the permutation column of that dataframe is called permutations, and the observed statistic variable is called obs_stat. Your own variable and column names may be different!\n\n\n\n\nIf you have a one-tailed alternative hypothesis, simply calculate the mean of the permutations that are either greater than or equal to your observed statistic.\nIf your observed statistic is positive, you are looking for permutations greater than the observed statistic, like so:\np_value = (results.permutations &gt;= obs_stat).mean()\nIf your observed statistic is negative, you are looking for permutations less than the observed statistic:\np_value = (results.permutations &lt;= obs_stat).mean()\n\n\n\n\n\n\nTip\n\n\n\nA great rule of thumb here is: the comparison symbol (greater than or less than) should always go in the same direction as the comparison symbol in your alternative hypothesis.\n\n\n\n\n\nIf you have a two-tailed hypothesis, you should compare the absolute values of your permutations to the absolute value of your observed statistic. In this case, you are always looking for permutations greater than your observed statistic. You can use the numpy function np.abs() to get the absolute values.\np_value = (np.abs(results.permutations) &gt;= np.abs(observed_difference)).mean()",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Hypothesis Testing"
+    ]
+  },
+  {
+    "objectID": "guides/hypothesis-testing.html#the-steps-of-a-permutation-test",
+    "href": "guides/hypothesis-testing.html#the-steps-of-a-permutation-test",
+    "title": "Hypothesis Testing",
+    "section": "",
+    "text": "No matter what your test statistic is, here are the steps you need to follow each time you want to run a permutation test. At each step, you should fully explain and interpret what you are doing.\n\nRun some Exploratory Data Analysis on your dataset. Typically it’s helpful to make a visualization that lets you see the potential difference, correlation, or other phenomenon you want to test.\nCalculate your observed test statistic. In our case, this will usually either be a difference in means between two groups, or a Pearson’s correlation coefficient.\nBased on your exploratory analysis and test statistic, write out your null and alternative hypothesis.\n\n\n\n\n\n\n\nTip\n\n\n\nYou can use the MathJax markdown syntax to produce a nicely-formatted hypothesis, so $H_0 : \\bar A = \\bar C$ will become \\(H_0 : \\bar A = \\bar C\\) and $H_1 : \\bar A \\gt \\bar C$ will become \\(H_1 : \\bar A \\gt \\bar C\\).\n\n\n\nChoose the appropriate simulation function for the hypothesis test you’re running. Make sure you have a basic understanding of how the code works in these simulations—you may have to filter or adjust your data to prepare it for the function. (See below for the functions you can choose from.)\nIn a for loop, run the simulation many times (1000 is a good minimum) and put the resulting permutations into a list. This is similar to how we conducted bootstrap sampling. Convert that list to a dataframe with two columns: the permutation and the observed statistic.\nCreate a histogram that shows your permutation distribution and your observed statistic. This is a standard histogram or density plotplus a plt.axvline() layer that draws a vertical line for the observed statistic.\nCalculate the p-value (see below) and interpret the p-value and histogram together.",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Hypothesis Testing"
+    ]
+  },
+  {
+    "objectID": "guides/hypothesis-testing.html#simulation-functions",
+    "href": "guides/hypothesis-testing.html#simulation-functions",
+    "title": "Hypothesis Testing",
+    "section": "",
+    "text": "Permutation tests use simulation and resampling to create a random permutation as a point of comparison. Here are two simulation functions that apply to different test statistics. These functions use the same sampling techniques we learned about when we calculated confidence intervals with bootstrap sampling, but they use sampling without replacement. You’ll use these as part of steps 4 and 5 in the instructions above.\n\n\n\n\n\n\nCaution\n\n\n\nNote that these functions take specific kinds of arguments and will require the right inputs to work properly!\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nThis function will typically require two steps before it can be run. You will need to filter your dataframe so it includes only the two groups you are testing, and you will need to calculate the number of rows in the first group.\n\n\ndef simulate_two_groups(df, group1_len, stat_var):\n    \"\"\"\n    This simulation function takes the following arguments:\n    - df: the name of your dataframe, limited to only the two groups you care about\n    - group1_len (int): the length (number of rows) in the first of your two groups of data\n    - stat_var (str): the name of the column (numerical variable) for the mean you want to test\n    \"\"\"\n    data = df[stat_var].sample(frac=1) #Reshuffle all data\n    group1 = data.iloc[:group1_len] #Get random first group\n    group2 = data.iloc[group1_len:] #Get random second group\n    return group1.mean() - group2.mean() #Calculate mean difference\n\n\n\ndef simulate_correlation(df,var1,var2):\n    \"\"\"\n    This simulation function takes the following arguments:\n    - df: the name of your dataframe\n    - var1 (str): the name of the first column (numerical variable) you want to compare\n    - var2 (str): the name of the second column (numerical variable) you want to compare\n    \"\"\"\n    shuffled = df[var1].sample(frac=1).reset_index(drop=True)\n    corr = shuffled.corr(df[var2])\n    return corr",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Hypothesis Testing"
+    ]
+  },
+  {
+    "objectID": "guides/hypothesis-testing.html#calculating-a-p-value",
+    "href": "guides/hypothesis-testing.html#calculating-a-p-value",
+    "title": "Hypothesis Testing",
+    "section": "",
+    "text": "In addition to the histogram of the permutation distribution, the p-value can tell you what percentage of your randomly simulated data was more extreme than your observed result. There are a few different formulas you can use to achieve this.\n\n\n\n\n\n\nCaution\n\n\n\nIn a p-value calculation, you need all the permutations you calculated as well as your observed statistic. The different calculations below assume your dataframe of results is called results, the permutation column of that dataframe is called permutations, and the observed statistic variable is called obs_stat. Your own variable and column names may be different!\n\n\n\n\nIf you have a one-tailed alternative hypothesis, simply calculate the mean of the permutations that are either greater than or equal to your observed statistic.\nIf your observed statistic is positive, you are looking for permutations greater than the observed statistic, like so:\np_value = (results.permutations &gt;= obs_stat).mean()\nIf your observed statistic is negative, you are looking for permutations less than the observed statistic:\np_value = (results.permutations &lt;= obs_stat).mean()\n\n\n\n\n\n\nTip\n\n\n\nA great rule of thumb here is: the comparison symbol (greater than or less than) should always go in the same direction as the comparison symbol in your alternative hypothesis.\n\n\n\n\n\nIf you have a two-tailed hypothesis, you should compare the absolute values of your permutations to the absolute value of your observed statistic. In this case, you are always looking for permutations greater than your observed statistic. You can use the numpy function np.abs() to get the absolute values.\np_value = (np.abs(results.permutations) &gt;= np.abs(observed_difference)).mean()",
+    "crumbs": [
+      "Home",
+      "Guides",
+      "Hypothesis Testing"
+    ]
+  },
+  {
+    "objectID": "guides/uploading.html",
+    "href": "guides/uploading.html",
+    "title": "Uploading a Jupyter Assignment",
+    "section": "",
+    "text": "Many of the assignments you create in this class will be written and coded in Jupyter notebooks. This is a short guide to submitting those assignments to Sakai.",
+    "crumbs": [
+      "Home",
+      "Other Key Info",
+      "Uploading a Jupyter Assignment"
+    ]
+  },
+  {
+    "objectID": "guides/uploading.html#step-1-complete-the-whole-assignment",
+    "href": "guides/uploading.html#step-1-complete-the-whole-assignment",
+    "title": "Uploading a Jupyter Assignment",
+    "section": "Step 1: Complete the whole assignment",
+    "text": "Step 1: Complete the whole assignment\nMake sure the entire assignment is finished, following the RAD CAT guide. All of the visualizations should be displayed the way you want, and all of the necessary code output should be shown in the notebook. If it’s not showing up in the notebook view in JupyterHub, it won’t show up in the output.",
+    "crumbs": [
+      "Home",
+      "Other Key Info",
+      "Uploading a Jupyter Assignment"
+    ]
+  },
+  {
+    "objectID": "guides/uploading.html#step-2-export-an-html-file",
+    "href": "guides/uploading.html#step-2-export-an-html-file",
+    "title": "Uploading a Jupyter Assignment",
+    "section": "Step 2: Export an HTML file",
+    "text": "Step 2: Export an HTML file\nIn JupyterHub, select File &gt; Save and Export Notebook As... &gt; HTML (see the screenshot below). This will download an HTML version of the notebook to your computer. Do not download the .ipynb file or submit it to Sakai. You need the HTML output so that I can read and grade your work.",
+    "crumbs": [
+      "Home",
+      "Other Key Info",
+      "Uploading a Jupyter Assignment"
+    ]
+  },
+  {
+    "objectID": "guides/uploading.html#step-3-rename-and-check-the-html-file",
+    "href": "guides/uploading.html#step-3-rename-and-check-the-html-file",
+    "title": "Uploading a Jupyter Assignment",
+    "section": "Step 3: Rename and check the HTML file",
+    "text": "Step 3: Rename and check the HTML file\nThe HTML will be downloaded somewhere on your computer (usually into the Downloads folder by default). Find the HTML file, open it, and look it over. Make sure that the file displays everything correctly. Sometimes the export goes wrong, and you may need to go back, make changes to your notebook, and export the file again. It is your responsibility that the HTML file is correct.\nAfter checking that the file is ready, rename the file so that it includes your last name. If the original file name was 01_movies1.html and your last name is Smith, you should rename the file to smith_01_movies1.html. Just add your last name and an underscore to the start of the filename. Correctly naming your files is an important part of staying organized as a programmer and data scientist!",
+    "crumbs": [
+      "Home",
+      "Other Key Info",
+      "Uploading a Jupyter Assignment"
+    ]
+  },
+  {
+    "objectID": "guides/uploading.html#step-4-upload-to-sakai",
+    "href": "guides/uploading.html#step-4-upload-to-sakai",
+    "title": "Uploading a Jupyter Assignment",
+    "section": "Step 4: Upload to Sakai",
+    "text": "Step 4: Upload to Sakai\nNow that your HTML is exported, checked, and renamed, you can upload it to the Sakai assignment as you would any other file. Under our class in Sakai is an Assignments tab. You’ll see an assignment that matches the name of the assignment in your notebook. Select that one, then click Browse... to add the file from your computer to Sakai. Once your file is uploaded, make sure you click Proceed and then Submit to fully upload your assignment. I won’t be able to see and grade the assignment until you’ve clicked Submit.\nAnd that’s it! If anything goes wrong at any point in this process or you don’t know what to do next, you can always send me an email or stop by office hours.",
+    "crumbs": [
+      "Home",
+      "Other Key Info",
+      "Uploading a Jupyter Assignment"
+    ]
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Course Schedule",
+    "section": "",
+    "text": "Date\nTopics & Data\nReadings\nAssignments\n\n\n\n\n\n1: 25 & 27 Aug.\nWhat Is Data? & Data Ethics\nADSA Case Study\n\n\n\n\n2: 1 & 3 Sept.\nJupyter, Python, and Data Wrangling (W0)\nDowney Ch. 1 & 7\n\n\n\n\n3: 8 & 10 Sept.\nExploratory Data Analysis w/ Movies Data (W1.1): Summary Statistics & Data Types\nBruce Ch. 1 (pdf); Downey Ch. 2\nDocumentation Assignment Due 10 Sept.\n\n\n\n4: 15 & 17 Sept.\nExploratory Data Analysis w/ Movies Data (W1.2): Visualization\nWilke Ch. 5\n\n\n\n\n5: 22 & 24 Sept.\nDistributions & Hypothesis Testing w/ Baseball Data (W2.1)\nBruce Ch. 3 (pdf); (Optional: Downey Ch. 8)\n\n\n\n\n6: 29 Sept. & 1 Oct.\nCorrelation w/ Baseball Data (W2.2)\nDowney Ch. 9\n\n\n\n\n7: 6 & 8 Oct.\nReview & Exam\n\nTest 1 8 Oct.\n\n\n\n8: 13 & 15 Oct.\nRegression w/ Business Data (W3.1)\nBruce Ch. 4 (pdf)\n\n\n\n\n9: 22 Oct.\nOpen Lab: Explanatory vs. Predictive Modeling\n\nDescriptive Analysis Project Due 22 Oct.\n\n\n\n10: 27 & 29 Oct.\nMore Regression w/ Business Data (W3.2)\nBruce Ch. 6 (pdf)\n\n\n\n\n11: 3 & 5 Nov.\nClassification w/ Health Data (W4.1)\nBruce Ch. 5 (pdf)\n\n\n\n\n12: 10 & 12 Nov.\nMore Classification w/ Health Data (W4.2)\n\n\n\n\n\n13: 17 & 19 Nov.\nReview & Exam\n\nSlide Draft 17 Nov.; Test 2 19 Nov.\n\n\n\n14: 24 Nov.\nClustering w/ Literature Data (W5.1)\nBruce Ch. 7 (pdf)\n\n\n\n\n15: 1 & 3 Dec.\nDimension Reduction w/ Literature Data (W5.2)\n\nVideo Presentations Due 3 Dec.\n\n\n\n8 Dec. 2pm–3:50pm\nCIS Open House on Scholars Day!\n\n\n\n\n\nFinal Exam Time\nDiscuss Videos/Projects\n\nFinal Project Due Mon. 14 Dec. at 9am",
+    "crumbs": [
+      "Home",
+      "Course Information",
+      "Course Schedule"
+    ]
+  },
+  {
+    "objectID": "schedule.html#textbooks",
+    "href": "schedule.html#textbooks",
+    "title": "Course Schedule",
+    "section": "Textbooks:",
+    "text": "Textbooks:\nThere are no required textbooks for this course. All textbooks are free online or made available to you on Sakai.\n\nBruce, Bruce, and Gedeck, Practical Statistics for Data Scientists 2nd ed.\nDowney, Elements of Data Science\nWilke, Fundamentals of Data Visualization\n\n\nNote on the schedule\nKeep in mind that some of this schedule could change throughout the semester. However, if anything changes I’ll update this page, and I’ll be sure to give you plenty of advance notice.",
+    "crumbs": [
+      "Home",
+      "Course Information",
+      "Course Schedule"
+    ]
+  },
+  {
+    "objectID": "schedule.html#software",
+    "href": "schedule.html#software",
+    "title": "Course Schedule",
+    "section": "Software",
+    "text": "Software\nAll projects in this course will be scripted and analyzed using Python, an open source programming language and environment. Specifically, we will be using JupyterHub as our programming environment. No previous experience with Python, statistical software packages, or computer programming is required.",
+    "crumbs": [
+      "Home",
+      "Course Information",
+      "Course Schedule"
     ]
   }
 ]
